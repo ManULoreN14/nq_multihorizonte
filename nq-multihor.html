@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#080810">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>NQ Radar · Multi-Horizonte 2D→4W</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080810;--bg2:#0d0d18;--s1:#12121e;--s2:#181826;--s3:#20202e;--s4:#2a2a3a;
+  --b1:rgba(255,255,255,0.05);--b2:rgba(255,255,255,0.09);--b3:rgba(255,255,255,0.15);
+  --t1:#f0eeff;--t2:#9896b8;--t3:#55536e;--t4:#32304a;
+  --gr:#2ecc8a;--gr2:rgba(46,204,138,0.12);--grb:rgba(46,204,138,0.28);
+  --am:#f0a500;--am2:rgba(240,165,0,0.12);--amb:rgba(240,165,0,0.28);
+  --rd:#ff5e5e;--rd2:rgba(255,94,94,0.12);--rdb:rgba(255,94,94,0.28);
+  --ac:#8b7fff;--ac2:rgba(139,127,255,0.15);--acb:rgba(139,127,255,0.32);
+  --bl:#5b9cf6;--bl2:rgba(91,156,246,0.12);
+  --cy:#06b6d4;--cy2:rgba(6,182,212,0.12);
+  --r-sm:10px;--r-md:14px;--r-lg:18px;--r-xl:24px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--t1);font-family:'Syne',sans-serif;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+input,textarea,button{font-family:inherit}
+.mono{font-family:'JetBrains Mono',monospace}
+
+/* ── SPLASH ── */
+#splash{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .6s,transform .6s}
+#splash.out{opacity:0;transform:scale(1.04);pointer-events:none}
+.splash-ring{width:80px;height:80px;border-radius:50%;border:1.5px solid var(--b2);display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative}
+.splash-ring::before{content:'';position:absolute;inset:-1px;border-radius:50%;border:1.5px solid transparent;border-top-color:var(--ac);animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.splash-logo{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:600;letter-spacing:-1px}
+.splash-logo em{color:var(--ac);font-style:normal}
+.splash-tag{font-size:11px;color:var(--t3);letter-spacing:.2em;text-transform:uppercase;margin-top:10px}
+.splash-progress{position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--b1)}
+.splash-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--ac),var(--cy));animation:loadBar 1.6s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes loadBar{to{width:100%}}
+
+/* ── APP ── */
+#app{display:none;padding-bottom:80px}
+
+/* ── HEADER ── */
+.app-header{padding:16px 20px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.header-brand{display:flex;flex-direction:column;gap:2px}
+.brand-name{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;letter-spacing:-1px}
+.brand-name em{color:var(--ac);font-style:normal}
+.brand-sub{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.15em}
+.btn-refresh{background:var(--s2);border:1px solid var(--b2);border-radius:var(--r-md);padding:8px 14px;color:var(--t2);font-family:'JetBrains Mono',monospace;font-size:11px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s;white-space:nowrap}
+.btn-refresh:hover{border-color:var(--ac);color:var(--ac)}
+.btn-refresh:disabled{opacity:.4;cursor:not-allowed}
+.refresh-dot{width:6px;height:6px;border-radius:50%;background:var(--gr);box-shadow:0 0 6px var(--gr);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.last-upd{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t4);margin:6px 20px 0}
+
+/* ── HORIZONTE TABS ── */
+.hor-tabs{display:flex;gap:6px;padding:14px 20px 0;overflow-x:auto;scrollbar-width:none}
+.hor-tabs::-webkit-scrollbar{display:none}
+.hor-tab{flex-shrink:0;padding:7px 14px;border-radius:100px;background:var(--s2);border:1px solid var(--b2);color:var(--t3);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s}
+.hor-tab.active{background:var(--ac2);border-color:var(--acb);color:var(--ac)}
+.hor-tab.g{background:var(--gr2);border-color:var(--grb);color:var(--gr)}
+.hor-tab.a{background:var(--am2);border-color:var(--amb);color:var(--am)}
+.hor-tab.r{background:var(--rd2);border-color:var(--rdb);color:var(--rd)}
+
+/* ── SIGNAL HERO ── */
+.signal-hero{margin:14px 20px 0;padding:20px;background:var(--s1);border:1px solid var(--b2);border-radius:var(--r-xl);position:relative;overflow:hidden}
+.signal-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(139,127,255,.06),transparent 70%);pointer-events:none}
+.sh-row{display:flex;align-items:center;gap:16px}
+.sh-score{display:flex;flex-direction:column;align-items:center;justify-content:center;width:88px;height:88px;border-radius:50%;border:2px solid var(--b2);flex-shrink:0;position:relative}
+.sh-score-val{font-family:'JetBrains Mono',monospace;font-size:30px;font-weight:700;line-height:1}
+.sh-score-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em}
+.sh-right{flex:1;min-width:0}
+.sh-estado{font-size:20px;font-weight:800;letter-spacing:.5px}
+.sh-conf{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);margin-top:4px}
+.sh-desc{font-size:12px;color:var(--t2);margin-top:8px;line-height:1.5}
+.sh-levels{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.sh-level{background:var(--s2);border-radius:var(--r-sm);padding:8px 10px;display:flex;flex-direction:column;gap:2px}
+.shl-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase}
+.shl-val{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600}
+
+/* ── HORIZONTE GRID ── */
+.hor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 20px 0}
+@media(min-width:600px){.hor-grid{grid-template-columns:repeat(3,1fr)}}
+.hor-card{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r-lg);padding:13px;cursor:pointer;transition:border-color .15s}
+.hor-card:hover{border-color:var(--b3)}
+.hor-card.g{border-color:var(--grb);background:rgba(46,204,138,.04)}
+.hor-card.a{border-color:var(--amb);background:rgba(240,165,0,.04)}
+.hor-card.r{border-color:var(--rdb);background:rgba(255,94,94,.04)}
+.hc-horizon{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.hc-estado{font-size:16px;font-weight:800;letter-spacing:.5px;margin-bottom:3px}
+.hc-score{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3)}
+.hc-bar{height:3px;background:var(--s3);border-radius:2px;margin-top:8px;overflow:hidden}
+.hc-bar-fill{height:100%;border-radius:2px;transition:width .8s ease}
+
+/* ── SECCIÓN CARDS ── */
+.section{margin:14px 20px 0}
+.section-title{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.15em;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--b1)}
+
+.card{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r-lg);overflow:hidden;margin-bottom:10px}
+.card-header{display:flex;align-items:center;gap:10px;padding:13px 14px 10px;border-bottom:1px solid var(--b1)}
+.card-icon{font-size:18px;flex-shrink:0}
+.card-info{flex:1}
+.card-title{font-size:13px;font-weight:700;color:var(--t1)}
+.card-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+.badge{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 9px;border-radius:100px;border:1px solid;white-space:nowrap}
+.badge.g{background:var(--gr2);color:var(--gr);border-color:var(--grb)}
+.badge.a{background:var(--am2);color:var(--am);border-color:var(--amb)}
+.badge.r{background:var(--rd2);color:var(--rd);border-color:var(--rdb)}
+.badge.p{background:var(--ac2);color:var(--ac);border-color:var(--acb)}
+.badge.n{background:var(--s3);color:var(--t3);border-color:var(--b2)}
+.card-body{padding:13px 14px}
+.card-explain{font-size:11px;color:var(--t3);line-height:1.6;margin-bottom:10px}
+
+/* ── INDICADOR ROW ── */
+.ind-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--b1)}
+.ind-row:last-child{border-bottom:none}
+.ind-left{flex:1}
+.ind-name{font-size:13px;font-weight:600;color:var(--t1)}
+.ind-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-top:2px}
+.ind-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.ind-val{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600;min-width:64px;text-align:right}
+.ind-bar{height:3px;background:var(--s3);border-radius:2px;margin-top:4px;overflow:hidden}
+.ind-bar-fill{height:100%;border-radius:2px;transition:width .8s}
+
+/* ── SCORE BREAKDOWN ── */
+.score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.score-box{background:var(--s2);border:1px solid var(--b1);border-radius:var(--r-sm);padding:10px 8px;text-align:center}
+.sb-val{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;line-height:1}
+.sb-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;margin-top:3px}
+
+/* ── COT BARS ── */
+.cot-bar-wrap{margin:8px 0;display:flex;align-items:center;gap:8px}
+.cot-bar-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);width:56px;text-align:right;flex-shrink:0}
+.cot-track{flex:1;height:10px;background:var(--s3);border-radius:5px;overflow:hidden}
+.cot-fill{height:100%;border-radius:5px;transition:width .8s}
+.cot-pct{font-family:'JetBrains Mono',monospace;font-size:10px;min-width:40px}
+
+/* ── VIX TERM BARS ── */
+.vts-bars{display:flex;align-items:flex-end;gap:6px;height:52px;margin-bottom:8px}
+.vts-bar{flex:1;border-radius:3px 3px 0 0;min-height:4px;transition:height .4s}
+.vts-labels{display:flex;gap:6px;margin-bottom:10px}
+.vts-label{flex:1;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-align:center}
+.vts-val{font-family:'JetBrains Mono',monospace;font-size:9px;text-align:center;font-weight:600}
+
+/* ── OI STRIKES ── */
+.oi-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.oi-lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t2);min-width:56px;text-align:right}
+.oi-bar-wrap{flex:1;height:16px;display:flex;gap:2px}
+.oi-bar-c{height:100%;background:var(--gr);border-radius:3px;min-width:2px}
+.oi-bar-p{height:100%;background:var(--rd);border-radius:3px;min-width:2px}
+.oi-oi{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);min-width:44px;text-align:right}
+
+/* ── FLUJOS ROW ── */
+.flow-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--b1)}
+.flow-row:last-child{border-bottom:none}
+.flow-name{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t2);width:40px;flex-shrink:0}
+.flow-track{flex:1;height:6px;background:var(--s3);border-radius:3px;overflow:hidden;position:relative}
+.flow-fill{height:100%;position:absolute;border-radius:3px;transition:width .6s,left .6s}
+.flow-pct{font-family:'JetBrains Mono',monospace;font-size:11px;min-width:56px;text-align:right}
+
+/* ── LIQUIDEZ MAP ── */
+.liq-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--b1)}
+.liq-row:last-child{border-bottom:none}
+.liq-nivel{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;min-width:72px}
+.liq-info{flex:1}
+.liq-tipo{font-size:11px;color:var(--t2)}
+.liq-dist{font-family:'JetBrains Mono',monospace;font-size:11px}
+.liq-fuerza{font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 7px;border-radius:100px;background:var(--s3);border:1px solid var(--b2);color:var(--t3)}
+.liq-fuerza.alta{background:var(--ac2);border-color:var(--acb);color:var(--ac)}
+.precio-line{padding:7px 0;display:flex;align-items:center;gap:10px;border-top:1px dashed var(--b2);border-bottom:1px dashed var(--b2);margin:4px 0}
+
+/* ── MACRO GRID ── */
+.macro-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.macro-box{background:var(--s2);border:1px solid var(--b1);border-radius:var(--r-sm);padding:10px}
+.mb-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;margin-bottom:4px}
+.mb-val{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;line-height:1}
+.mb-trend{font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:2px}
+
+/* ── CURVA TIPOS ── */
+.curva-bars{display:flex;align-items:flex-end;gap:5px;height:60px;margin:8px 0 4px}
+.curva-bar{flex:1;border-radius:3px 3px 0 0;min-height:4px;transition:height .6s}
+.curva-ticks{display:flex;gap:5px}
+.curva-tick{flex:1;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-align:center}
+
+/* ── GIRO INDICATOR ── */
+.giro-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--b1)}
+.giro-row:last-child{border-bottom:none}
+.giro-icon{font-size:18px;flex-shrink:0;width:28px;text-align:center}
+.giro-body{flex:1}
+.giro-name{font-size:12px;font-weight:700;color:var(--t1)}
+.giro-desc{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-top:2px;line-height:1.4}
+.giro-badge{flex-shrink:0}
+
+/* ── IA PANEL ── */
+.ia-panel{margin:14px 20px 0;background:var(--s1);border:1px solid var(--acb);border-radius:var(--r-xl);overflow:hidden;position:relative}
+.ia-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ac),var(--cy),var(--gr),var(--ac));background-size:200% 100%;animation:iaGrad 3s linear infinite}
+@keyframes iaGrad{to{background-position:-200% 0}}
+.ia-header{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--b1);background:linear-gradient(135deg,rgba(139,127,255,.06),rgba(6,182,212,.04))}
+.ia-title{font-size:13px;font-weight:700;flex:1}
+.ia-pill{background:var(--ac2);border:1px solid var(--acb);color:var(--ac);font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 8px;border-radius:100px;font-weight:700;letter-spacing:.08em}
+.btn-ia{background:linear-gradient(135deg,var(--ac),var(--cy));border:none;border-radius:var(--r-md);padding:10px 20px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:8px;transition:opacity .2s;box-shadow:0 4px 20px rgba(139,127,255,.3)}
+.btn-ia:disabled{background:var(--s3);color:var(--t3);box-shadow:none;cursor:not-allowed}
+.btn-ia .sp{width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite;display:none}
+.btn-ia.loading .sp{display:block}
+.ia-body{padding:16px;min-height:100px;font-size:13px;color:var(--t2);line-height:1.7}
+.ia-body p{margin-bottom:10px}
+.ia-body p:last-child{margin-bottom:0}
+.ia-body strong{color:var(--t1)}
+.ia-body em{color:var(--ac);font-style:normal}
+.ia-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center;color:var(--t3);font-size:12px}
+.ia-ph-icon{font-size:28px;opacity:.3}
+
+/* ── TABBAR ── */
+.tabbar{position:fixed;bottom:0;left:0;right:0;height:62px;background:rgba(8,8,16,.95);backdrop-filter:blur(24px);border-top:1px solid var(--b2);display:flex;align-items:flex-start;z-index:500}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;height:62px;background:none;border:none;color:var(--t4);cursor:pointer;font-size:9px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:color .2s;position:relative}
+.tab.active{color:var(--ac)}
+.tab svg{width:20px;height:20px;stroke-width:1.6}
+.tab-dot{position:absolute;top:0;left:50%;transform:translateX(-50%);width:20px;height:2px;background:var(--ac);border-radius:0 0 2px 2px;opacity:0;transition:opacity .2s}
+.tab.active .tab-dot{opacity:1}
+
+/* ── TAB PAGES ── */
+.page{display:none;animation:fadeUp .25s ease}
+.page.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── UTIL ── */
+.c-gr{color:var(--gr)}.c-am{color:var(--am)}.c-rd{color:var(--rd)}.c-ac{color:var(--ac)}.c-bl{color:var(--bl)}.c-t2{color:var(--t2)}.c-t3{color:var(--t3)}
+.fw7{font-weight:700}
+.divider{height:1px;background:var(--b1);margin:10px 0}
+.no-data{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t4);padding:12px 0;text-align:center}
+
+/* ── API URL CONFIG ── */
+.cfg-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+.cfg-modal.open{display:flex}
+.cfg-box{background:var(--s1);border:1px solid var(--b3);border-radius:var(--r-xl);padding:22px;width:100%;max-width:480px}
+.cfg-title{font-size:15px;font-weight:700;margin-bottom:6px}
+.cfg-sub{font-size:12px;color:var(--t3);margin-bottom:16px;line-height:1.5}
+.cfg-input{width:100%;background:var(--s2);border:1px solid var(--b2);border-radius:var(--r-md);padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--t1);outline:none;margin-bottom:12px}
+.cfg-input:focus{border-color:var(--ac)}
+.cfg-btns{display:flex;gap:10px}
+.cfg-btn{flex:1;padding:10px;border-radius:var(--r-md);font-weight:700;font-size:13px;cursor:pointer;transition:opacity .2s}
+.cfg-btn.save{background:var(--ac);border:none;color:#fff}
+.cfg-btn.cancel{background:var(--s3);border:1px solid var(--b2);color:var(--t2)}
+
+@media(min-width:768px){#app{max-width:800px;margin:0 auto}.tabbar{max-width:800px;left:50%;transform:translateX(-50%)}}
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="splash-ring">
+    <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;color:var(--ac)">NQ</span>
+  </div>
+  <div class="splash-logo">NQ <em>Radar</em></div>
+  <div class="splash-tag">Multi-Horizonte · 2D → 4W</div>
+  <div class="splash-progress"><div class="splash-bar"></div></div>
+</div>
+
+<!-- CONFIG MODAL -->
+<div class="cfg-modal" id="cfg-modal">
+  <div class="cfg-box">
+    <div class="cfg-title">⚙️ Configurar API</div>
+    <div class="cfg-sub">Introduce la URL de tu API Vercel. Formato:<br><code style="color:var(--ac);font-size:11px">https://TU-PROYECTO.vercel.app/api/datos-multihor</code><br><br>Si aún no tienes la API desplegada, los datos se generarán en modo demo.</div>
+    <input class="cfg-input mono" id="api-url-input" placeholder="https://tu-proyecto.vercel.app/api/datos-multihor">
+    <div class="cfg-btns">
+      <button class="cfg-btn cancel" onclick="closeCfg()">Cancelar</button>
+      <button class="cfg-btn save" onclick="saveCfg()">Guardar y recargar</button>
+    </div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+
+  <!-- HEADER -->
+  <div class="app-header">
+    <div class="header-brand">
+      <div class="brand-name">NQ <em>Radar</em></div>
+      <div class="brand-sub">Multi-Horizonte · 2D → 4 Semanas</div>
+    </div>
+    <button class="btn-refresh" id="btn-refresh" onclick="loadData()">
+      <div class="refresh-dot" id="live-dot"></div>
+      <span id="btn-txt">Actualizar</span>
+    </button>
+  </div>
+  <div class="last-upd" id="last-upd">—</div>
+
+  <!-- TAB PAGES -->
+  <!-- PAGE 1: SEÑALES -->
+  <div class="page active" id="page-senales">
+
+    <!-- HORIZONTE SELECTOR -->
+    <div class="hor-tabs" id="hor-tabs"></div>
+
+    <!-- SIGNAL HERO -->
+    <div class="signal-hero" id="signal-hero">
+      <div class="sh-row">
+        <div class="sh-score" id="sh-score">
+          <div class="sh-score-val" id="sh-score-val">--</div>
+          <div class="sh-score-lbl">Score</div>
+        </div>
+        <div class="sh-right">
+          <div class="sh-estado" id="sh-estado">Cargando...</div>
+          <div class="sh-conf" id="sh-conf">Confianza —%</div>
+          <div class="sh-desc" id="sh-desc">Inicializando el sistema de análisis multi-horizonte...</div>
+        </div>
+      </div>
+      <div class="sh-levels" id="sh-levels"></div>
+    </div>
+
+    <!-- GRID 6 HORIZONTES -->
+    <div class="hor-grid" id="hor-grid"></div>
+
+    <!-- SCORE COMPONENTS -->
+    <div class="section">
+      <div class="section-title">Componentes del Score</div>
+      <div class="card">
+        <div class="card-body">
+          <div class="score-grid" id="score-components"></div>
+          <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);line-height:1.7" id="score-desc-text"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IA PANEL -->
+    <div class="ia-panel">
+      <div class="ia-header">
+        <span style="font-size:18px">🤖</span>
+        <div class="ia-title">Análisis Institucional IA</div>
+        <span class="ia-pill">CLAUDE SONNET 4</span>
+        <button class="btn-ia" id="btn-ia" onclick="generateIA()">
+          <div class="sp"></div>
+          <span>Generar</span>
+        </button>
+      </div>
+      <div class="ia-body" id="ia-body">
+        <div class="ia-placeholder"><div class="ia-ph-icon">🧠</div><div>Pulsa <strong style="color:var(--ac)">Generar</strong> para análisis institucional completo con señales 2D→4W y niveles exactos.</div></div>
+      </div>
+    </div>
+
+  </div><!-- /page-senales -->
+
+  <!-- PAGE 2: INSTITUCIONAL -->
+  <div class="page" id="page-inst">
+
+    <!-- COT -->
+    <div class="section">
+      <div class="section-title">🏦 COT Report — CFTC (Mano Institucional)</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📋</div>
+          <div class="card-info">
+            <div class="card-title">Non-Commercial Positions — NQ Futures</div>
+            <div class="card-sub">CFTC · Actualización viernes 15:30 ET</div>
+          </div>
+          <div class="badge" id="cot-badge">—</div>
+        </div>
+        <div class="card-body">
+          <div class="card-explain">Posiciones de <strong>Large Speculators</strong> (fondos hedge, institucionales) en futuros Nasdaq Mini (E-mini NQ). <br>Indicador contrario: exceso de largos = techo próximo · exceso de cortos = suelo próximo.</div>
+          <div id="cot-content"><div class="no-data">Cargando datos CFTC...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OI STRIKES -->
+    <div class="section">
+      <div class="section-title">📊 Open Interest por Strike — QQQ Options</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🎯</div>
+          <div class="card-info">
+            <div class="card-title">Paredes de Opciones · Max Pain · GEX</div>
+            <div class="card-sub">Yahoo Finance Options Chain · Multi-vencimiento</div>
+          </div>
+          <div class="badge" id="oi-badge">—</div>
+        </div>
+        <div class="card-body">
+          <div class="card-explain">Las concentraciones de <strong>Open Interest</strong> actúan como imanes de precio (gravedad de opciones). El <strong>Max Pain</strong> es el nivel donde expira con mayor pérdida para los compradores — los market makers tienen incentivos para llevar el precio ahí.</div>
+          <div id="oi-content"><div class="no-data">Cargando opciones...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GEX -->
+    <div class="section">
+      <div class="section-title">⚡ GEX Estimado + Gamma Flip</div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-explain">El <strong>Gamma Exposure (GEX)</strong> mide si los dealers de opciones están comprando caídas (gamma positiva = mercado estable) o amplificando movimientos (gamma negativa = tendencias violentas).</div>
+          <div id="gex-content"><div class="no-data">Cargando...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PCR -->
+    <div class="section">
+      <div class="section-title">📉 Put/Call Ratio — CBOE</div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-explain">Indicador contrario: PCR alto (&gt;1.2) = miedo extremo → señal alcista contraria. PCR bajo (&lt;0.6) = euforia → señal bajista contraria.</div>
+          <div id="pcr-content"><div class="no-data">Cargando CBOE PCR...</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /page-inst -->
+
+  <!-- PAGE 3: MACRO -->
+  <div class="page" id="page-macro">
+
+    <!-- VIX TERM STRUCTURE -->
+    <div class="section">
+      <div class="section-title">🌡️ VIX Term Structure</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📈</div>
+          <div class="card-info">
+            <div class="card-title">VIX Spot · VX3M · Futuros VX1/VX2</div>
+            <div class="card-sub">CBOE · Estructura temporal de volatilidad</div>
+          </div>
+          <div class="badge" id="vts-badge">—</div>
+        </div>
+        <div class="card-body">
+          <div class="card-explain"><strong>Contango</strong> (VX1 &gt; Spot) = mercado tranquilo. <strong>Backwardation</strong> (VX1 &lt; Spot) = estrés agudo → probable rebote en 2-5 días. Percentil VIX indica nivel histórico.</div>
+          <div id="vts-content"><div class="no-data">Cargando VIX TS...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FRED MACRO -->
+    <div class="section">
+      <div class="section-title">🏛️ Macro FRED — Federal Reserve</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🏦</div>
+          <div class="card-info">
+            <div class="card-title">Condiciones Financieras · Crédito · Tipos</div>
+            <div class="card-sub">FRED API · stlouisfed.org</div>
+          </div>
+          <div class="badge" id="fred-badge">—</div>
+        </div>
+        <div class="card-body">
+          <div id="fred-content"><div class="no-data">Cargando FRED...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CURVA DE TIPOS -->
+    <div class="section">
+      <div class="section-title">📐 Curva de Tipos EEUU</div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-explain">Curva invertida (2Y &gt; 10Y) ha precedido cada recesión americana en los últimos 50 años. La 10Y-3M es la más fiable históricamente (modelo Fed Cleveland).</div>
+          <div id="curva-content"><div class="no-data">Cargando curva...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETF FLOWS / RISK MODE -->
+    <div class="section">
+      <div class="section-title">💸 Flujos ETF + Modo Mercado</div>
+      <div class="card">
+        <div class="card-body">
+          <div class="card-explain">Rotación entre activos: QQQ↑ + HYG↑ + TLT↓ = <strong>Risk-On</strong>. QQQ↓ + TLT↑ + GLD↑ = <strong>Risk-Off / Vuelo a Calidad</strong>.</div>
+          <div id="flows-content"><div class="no-data">Cargando flujos...</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /page-macro -->
+
+  <!-- PAGE 4: TÉCNICO -->
+  <div class="page" id="page-tecnico">
+
+    <!-- DETECTORES DE GIRO -->
+    <div class="section">
+      <div class="section-title">🔄 Detectores de Giro</div>
+      <div class="card">
+        <div class="card-body">
+          <div id="giro-content"><div class="no-data">Cargando...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INDICADORES TÉCNICOS -->
+    <div class="section">
+      <div class="section-title">📊 Indicadores Técnicos — NDX Multi-TF</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📉</div>
+          <div class="card-info">
+            <div class="card-title">RSI · MACD · Stoch · Bollinger · EMAs</div>
+            <div class="card-sub">Diario / Semanal / Mensual</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div id="tec-content"><div class="no-data">Cargando técnicos...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ZONAS DE LIQUIDEZ -->
+    <div class="section">
+      <div class="section-title">💧 Zonas de Liquidez · Equal Highs/Lows</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🎯</div>
+          <div class="card-info">
+            <div class="card-title">Swing Highs/Lows + Igualdades</div>
+            <div class="card-sub">NDX 2 años · Análisis Smart Money</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-explain">Las <strong>igualdades</strong> (equal highs/lows) son zonas de liquidez acumulada donde los institucionales ejecutan órdenes. Son objetivos de precio de alta probabilidad.</div>
+          <div id="liq-content"><div class="no-data">Cargando zonas...</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /page-tecnico -->
+
+  <!-- TABBAR -->
+  <nav class="tabbar">
+    <button class="tab active" id="tab-senales" onclick="switchTab('senales')">
+      <div class="tab-dot"></div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+      Señales
+    </button>
+    <button class="tab" id="tab-inst" onclick="switchTab('inst')">
+      <div class="tab-dot"></div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      Inst.
+    </button>
+    <button class="tab" id="tab-macro" onclick="switchTab('macro')">
+      <div class="tab-dot"></div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Macro
+    </button>
+    <button class="tab" id="tab-tecnico" onclick="switchTab('tecnico')">
+      <div class="tab-dot"></div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      Técnico
+    </button>
+    <button class="tab" id="tab-cfg" onclick="openCfg()">
+      <div class="tab-dot"></div>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M12 2v2M4.93 4.93l1.41 1.41M2 12h2m1.34 5.66l1.41-1.41M12 22v-2m5.66-1.34l-1.41-1.41M22 12h-2"/></svg>
+      Config
+    </button>
+  </nav>
+
+</div><!-- /app -->
+
+<script>
+'use strict';
+
+// ══════════════════════════════════════════════════════════
+// CONFIG
+// ══════════════════════════════════════════════════════════
+const DEMO_MODE = !localStorage.getItem('api_url');
+let API_URL = localStorage.getItem('api_url') || '';
+let D = {}; // datos globales
+let HORIZON = 'd2'; // horizonte seleccionado
+
+const HORIZONS = [
+  { id: 'd2', label: '2 Días', short: '2D' },
+  { id: 'd5', label: '5 Días', short: '5D' },
+  { id: 'w1', label: '1 Semana', short: '1S' },
+  { id: 'w2', label: '2 Semanas', short: '2S' },
+  { id: 'w3', label: '3 Semanas', short: '3S' },
+  { id: 'w4', label: '4 Semanas', short: '4S' },
+];
+
+const ESTADO_LABELS = {
+  alcista: 'ALCISTA', alcista_mod: 'ALCISTA+', bajista: 'BAJISTA', bajista_mod: 'BAJISTA+', neutro: 'NEUTRO'
+};
+const ESTADO_CLASS = {
+  alcista: 'gr', alcista_mod: 'gr', bajista: 'rd', bajista_mod: 'rd', neutro: 'am'
+};
+
+// ══════════════════════════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════════════════════════
+const fmt = (n, d = 0) => n == null || isNaN(n) ? '--' : n.toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d });
+const fmtPct = (n, d = 2) => n == null || isNaN(n) ? '--' : (n >= 0 ? '+' : '') + n.toFixed(d) + '%';
+const fmtK = n => n == null ? '--' : Math.abs(n) >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : Math.abs(n) >= 1e3 ? (n / 1e3).toFixed(1) + 'K' : n.toFixed(0);
+const clr = v => v > 0 ? 'var(--gr)' : v < 0 ? 'var(--rd)' : 'var(--t3)';
+const cls = v => v > 0 ? 'c-gr' : v < 0 ? 'c-rd' : 'c-t3';
+const badgeCls = s => s === 'alcista' || s === 'alcista_mod' ? 'g' : s === 'bajista' || s === 'bajista_mod' ? 'r' : 'a';
+
+// ══════════════════════════════════════════════════════════
+// CONFIG MODAL
+// ══════════════════════════════════════════════════════════
+function openCfg() {
+  document.getElementById('api-url-input').value = API_URL;
+  document.getElementById('cfg-modal').classList.add('open');
+}
+function closeCfg() { document.getElementById('cfg-modal').classList.remove('open'); }
+function saveCfg() {
+  const v = document.getElementById('api-url-input').value.trim();
+  if (v) { localStorage.setItem('api_url', v); API_URL = v; }
+  closeCfg(); loadData();
+}
+
+// ══════════════════════════════════════════════════════════
+// TAB NAVIGATION
+// ══════════════════════════════════════════════════════════
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + id)?.classList.add('active');
+  document.getElementById('page-' + id)?.classList.add('active');
+}
+
+// ══════════════════════════════════════════════════════════
+// HORIZON SELECTOR
+// ══════════════════════════════════════════════════════════
+function buildHorTabs() {
+  const container = document.getElementById('hor-tabs');
+  container.innerHTML = HORIZONS.map(h => {
+    const sc = D.scores?.horizontes?.[h.id];
+    const ec = sc ? ESTADO_CLASS[sc.estado] ?? 'n' : 'n';
+    return `<button class="hor-tab ${h.id === HORIZON ? 'active ' + ec : ''}" onclick="selectHorizon('${h.id}')">${h.label}</button>`;
+  }).join('');
+}
+
+function selectHorizon(id) {
+  HORIZON = id;
+  buildHorTabs();
+  renderSignalHero();
+}
+
+// ══════════════════════════════════════════════════════════
+// RENDER HELPERS
+// ══════════════════════════════════════════════════════════
+function stateColor(estado) {
+  if (estado === 'alcista' || estado === 'alcista_mod') return 'var(--gr)';
+  if (estado === 'bajista' || estado === 'bajista_mod') return 'var(--rd)';
+  return 'var(--am)';
+}
+
+function renderSignalHero() {
+  const hs = D.scores?.horizontes;
+  if (!hs) return;
+  const hd = hs[HORIZON];
+  if (!hd) return;
+  const hor = HORIZONS.find(h => h.id === HORIZON);
+  const sc = hd.score, estado = hd.estado, conf = hd.conf;
+  const col = stateColor(estado);
+  const liq = D.liquidez;
+
+  const scoreEl = document.getElementById('sh-score');
+  const scoreVal = document.getElementById('sh-score-val');
+  const estadoEl = document.getElementById('sh-estado');
+  const confEl = document.getElementById('sh-conf');
+  const descEl = document.getElementById('sh-desc');
+
+  scoreEl.style.borderColor = col + '80';
+  scoreVal.textContent = (sc >= 0 ? '+' : '') + sc;
+  scoreVal.style.color = col;
+  estadoEl.textContent = ESTADO_LABELS[estado] ?? estado.toUpperCase();
+  estadoEl.style.color = col;
+  confEl.textContent = `Confianza ${conf}% · Horizonte ${hor?.label}`;
+
+  // Descripción
+  const descs = {
+    alcista: 'Confluencia alcista en todos los marcos. Institucionales acumulando. Momentum y macro alineados al alza.',
+    alcista_mod: 'Sesgo alcista moderado. Indicadores técnicos y de sentimiento favorables, aunque sin confirmación plena.',
+    bajista: 'Señales bajistas dominantes. COT muestra distribución. Evitar posiciones largas sin señal de reversión.',
+    bajista_mod: 'Sesgo bajista moderado. Cautela recomendada. Reducir exposición y ajustar stops.',
+    neutro: 'Señales mixtas. Sin dirección clara. Esperar ruptura confirmada antes de posicionarse.'
+  };
+  descEl.textContent = descs[estado] ?? 'Analizando condiciones...';
+
+  // Niveles (del rango ATR)
+  const rangos = liq?.rangosPorHorizonte?.[HORIZON];
+  const levelsEl = document.getElementById('sh-levels');
+  if (rangos) {
+    levelsEl.innerHTML = `
+      <div class="sh-level"><div class="shl-lbl">Soporte</div><div class="shl-val c-gr">${fmt(rangos.sup)}</div></div>
+      <div class="sh-level"><div class="shl-lbl">Resistencia</div><div class="shl-val c-rd">${fmt(rangos.res)}</div></div>
+      <div class="sh-level"><div class="shl-lbl">Precio NDX</div><div class="shl-val c-ac">${fmt(D.precio?.ndx)}</div></div>
+      <div class="sh-level"><div class="shl-lbl">ATR 14d</div><div class="shl-val c-t2">${fmt(liq?.atr14)}</div></div>
+    `;
+  }
+}
+
+function renderHorGrid() {
+  const hs = D.scores?.horizontes;
+  if (!hs) return;
+  const grid = document.getElementById('hor-grid');
+  grid.innerHTML = HORIZONS.map(h => {
+    const hd = hs[h.id];
+    if (!hd) return '';
+    const sc = hd.score, estado = hd.estado, conf = hd.conf;
+    const ec = ESTADO_CLASS[estado] ?? 'a';
+    const col = stateColor(estado);
+    const confW = Math.min(100, conf);
+    const sel = HORIZON === h.id ? 'border-color:' + col + ';' : '';
+    return `<div class="hor-card ${ec}" style="${sel}" onclick="selectHorizon('${h.id}')">
+      <div class="hc-horizon">${h.label}</div>
+      <div class="hc-estado" style="color:${col}">${ESTADO_LABELS[estado] ?? estado}</div>
+      <div class="hc-score mono">Score ${(sc>=0?'+':'')+sc} · ${conf}%</div>
+      <div class="hc-bar"><div class="hc-bar-fill" style="width:${confW}%;background:${col}"></div></div>
+    </div>`;
+  }).join('');
+}
+
+function renderScoreComponents() {
+  const comp = D.scores?.componentes;
+  if (!comp) return;
+  const items = [
+    { k: 'tecnico', l: 'Técnico', max: 10 },
+    { k: 'macro', l: 'Macro', max: 8 },
+    { k: 'cot', l: 'COT' , max: 3 },
+    { k: 'vix', l: 'VIX/Opciones', max: 5 },
+    { k: 'flujos', l: 'Flujos', max: 5 },
+    { k: 'giro', l: 'Giro', max: 2 }
+  ];
+  document.getElementById('score-components').innerHTML = items.map(it => {
+    const v = comp[it.k] ?? 0;
+    const col = v > 0 ? 'var(--gr)' : v < 0 ? 'var(--rd)' : 'var(--am)';
+    return `<div class="score-box">
+      <div class="sb-val" style="color:${col}">${v >= 0 ? '+' : ''}${v}</div>
+      <div class="sb-lbl">${it.l}</div>
+    </div>`;
+  }).join('');
+
+  const hs = D.scores?.horizontes;
+  if (hs) {
+    const lines = HORIZONS.map(h => {
+      const hd = hs[h.id];
+      if (!hd) return '';
+      return `${h.short}: ${(hd.score>=0?'+':'')+hd.score} (${ESTADO_LABELS[hd.estado]??hd.estado} ${hd.conf}%)`;
+    }).join(' · ');
+    document.getElementById('score-desc-text').textContent = lines;
+  }
+}
+
+function renderCOT() {
+  const cot = D.cot;
+  if (!cot || cot.error) { document.getElementById('cot-content').innerHTML = '<div class="no-data">COT no disponible: ' + (cot?.error ?? 'error') + '</div>'; return; }
+  const bc = badgeCls(cot.señal);
+  document.getElementById('cot-badge').className = 'badge ' + bc;
+  document.getElementById('cot-badge').textContent = (cot.señal ?? '—').toUpperCase();
+
+  const cambioNeto = cot.cambioNeto != null ? ((cot.cambioNeto >= 0 ? '+' : '') + fmtK(cot.cambioNeto)) : '--';
+  const trend4w = cot.trend4w != null ? ((cot.trend4w >= 0 ? '▲' : '▼') + ' ' + fmtK(Math.abs(cot.trend4w)) + ' (4sem)') : '--';
+
+  document.getElementById('cot-content').innerHTML = `
+    <div class="cot-bar-wrap">
+      <div class="cot-bar-label">Largos</div>
+      <div class="cot-track"><div class="cot-fill" style="width:${cot.pctLargo??50}%;background:var(--gr)"></div></div>
+      <div class="cot-pct c-gr">${fmtK(cot.largos)}</div>
+    </div>
+    <div class="cot-bar-wrap">
+      <div class="cot-bar-label">Cortos</div>
+      <div class="cot-track"><div class="cot-fill" style="width:${100-(cot.pctLargo??50)}%;background:var(--rd)"></div></div>
+      <div class="cot-pct c-rd">${fmtK(cot.cortos)}</div>
+    </div>
+    <div class="divider"></div>
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">Posición Neta</div><div class="ind-sub">Largos − Cortos · cambio semanal: ${cambioNeto}</div></div>
+      <div class="ind-right"><div class="ind-val ${cot.neto>=0?'c-gr':'c-rd'}">${fmtK(cot.neto)}</div></div>
+    </div>
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">% Posición Larga</div><div class="ind-sub">Tendencia 4 semanas: ${trend4w}</div></div>
+      <div class="ind-right"><div class="ind-val ${(cot.pctLargo??50)>65?'c-rd':(cot.pctLargo??50)<35?'c-gr':'c-am'}">${cot.pctLargo}%</div></div>
+    </div>
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">Dealers (Smart Money)</div><div class="ind-sub">Señal dealers: ${cot.señalDealers ?? 'neutro'}</div></div>
+      <div class="ind-right"><div class="ind-val ${cot.netoDealers>=0?'c-gr':'c-rd'}">${fmtK(cot.netoDealers)}</div></div>
+    </div>
+    <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);line-height:1.6">${cot.desc ?? ''} · Datos: ${cot.fecha ?? '--'}</div>
+  `;
+}
+
+function renderOI() {
+  const op = D.opciones;
+  if (!op || op.error) { document.getElementById('oi-content').innerHTML = '<div class="no-data">OI no disponible</div>'; return; }
+  const v1 = op.v1, v2 = op.v2;
+  if (!v1) { document.getElementById('oi-content').innerHTML = '<div class="no-data">Sin datos de opciones</div>'; return; }
+  document.getElementById('oi-badge').className = 'badge ' + badgeCls(v1.señal);
+  document.getElementById('oi-badge').textContent = v1.señal?.toUpperCase() ?? '—';
+
+  const buildStrikes = (calls, puts) => {
+    if (!calls?.length && !puts?.length) return '<div class="no-data">Sin strikes</div>';
+    const allStrikes = [...new Set([...(calls||[]).map(c=>c.strike), ...(puts||[]).map(p=>p.strike)])].sort((a,b)=>a-b);
+    const maxOI = Math.max(...(calls||[]).map(c=>c.oi), ...(puts||[]).map(p=>p.oi), 1);
+    return allStrikes.map(s => {
+      const call = calls?.find(c=>c.strike===s);
+      const put  = puts?.find(p=>p.strike===s);
+      const cW = call ? Math.max(2, (call.oi/maxOI)*100) : 0;
+      const pW = put  ? Math.max(2, (put.oi/maxOI)*100)  : 0;
+      return `<div class="oi-row">
+        <div class="oi-lbl">${s}</div>
+        <div class="oi-bar-wrap">
+          ${call ? `<div class="oi-bar-c" style="width:${cW}%" title="Call OI: ${fmtK(call.oi)}"></div>` : ''}
+          ${put  ? `<div class="oi-bar-p" style="width:${pW}%" title="Put OI: ${fmtK(put.oi)}"></div>`  : ''}
+        </div>
+        <div class="oi-oi c-t3">${fmtK((call?.oi??0)+(put?.oi??0))}</div>
+      </div>`;
+    }).join('');
+  };
+
+  const vencs = [v1, v2].filter(Boolean);
+  document.getElementById('oi-content').innerHTML = vencs.map((v, i) => `
+    <div style="margin-bottom:14px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between">
+        <span>Venc. ${i+1}: ${v.fecha}</span>
+        <span style="color:${v.distPct>0?'var(--gr)':'var(--rd)'}">Max Pain ${fmt(v.maxPain)} (${fmtPct(v.distPct,2)})</span>
+      </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);display:flex;gap:14px;margin-bottom:8px">
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:var(--gr);border-radius:2px;display:inline-block"></span>Calls (resistencia)</span>
+        <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:var(--rd);border-radius:2px;display:inline-block"></span>Puts (soporte)</span>
+      </div>
+      ${buildStrikes([...v.topCalls,...(v.topPuts.filter(p=>!v.topCalls.find(c=>c.strike===p.strike)))]?.slice(0,8)?.sort((a,b)=>b.strike-a.strike), v.topPuts)}
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-top:8px;line-height:1.5">${v.desc}</div>
+    </div>
+    ${i < vencs.length-1 ? '<div class="divider"></div>' : ''}
+  `).join('');
+}
+
+function renderGEX() {
+  const gex = D.opciones?.gex;
+  if (!gex) { document.getElementById('gex-content').innerHTML = '<div class="no-data">GEX no disponible</div>'; return; }
+  const col = gex.valor > 0 ? 'var(--gr)' : gex.valor < 0 ? 'var(--rd)' : 'var(--am)';
+  document.getElementById('gex-content').innerHTML = `
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">Estado GEX</div><div class="ind-sub">${gex.estado?.replace(/_/g,' ').toUpperCase()}</div></div>
+      <div class="ind-right"><div class="ind-val" style="color:${col}">${gex.valor > 0 ? '+' : ''}${gex.valor}</div></div>
+    </div>
+    <div style="margin:10px 0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);line-height:1.6">${gex.desc}</div>
+    ${gex.trampa ? `<div style="padding:8px 10px;background:var(--rd2);border:1px solid var(--rdb);border-radius:var(--r-sm);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rd)">⚠️ ${gex.desc}</div>` : ''}
+  `;
+}
+
+function renderPCR() {
+  const pcr = D.pcr;
+  if (!pcr || pcr.error) { document.getElementById('pcr-content').innerHTML = '<div class="no-data">PCR no disponible</div>'; return; }
+  const total = pcr.total ?? pcr.equity;
+  const col = total > 1.2 ? 'var(--gr)' : total < 0.6 ? 'var(--rd)' : 'var(--am)';
+  document.getElementById('pcr-content').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
+      <div class="macro-box">
+        <div class="mb-lbl">PCR Total</div>
+        <div class="mb-val" style="color:${col}">${total ?? '--'}</div>
+        <div class="mb-trend" style="color:${col}">${total > 1.2 ? '⬆ ALTO' : total < 0.6 ? '⬇ BAJO' : '● NORMAL'}</div>
+      </div>
+      <div class="macro-box">
+        <div class="mb-lbl">PCR Equity</div>
+        <div class="mb-val">${pcr.equity ?? '--'}</div>
+        <div class="mb-trend c-t3">Solo opciones de acciones</div>
+      </div>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);line-height:1.6">${pcr.desc ?? ''}</div>
+  `;
+}
+
+function renderVixTS() {
+  const vts = D.vixTS;
+  if (!vts || vts.error) { document.getElementById('vts-content').innerHTML = '<div class="no-data">VIX TS no disponible</div>'; return; }
+  document.getElementById('vts-badge').className = 'badge ' + badgeCls(vts.señal);
+  document.getElementById('vts-badge').textContent = vts.señal?.toUpperCase() ?? '—';
+
+  const items = [
+    { k: vts.spot, l: 'VIX Spot', col: vts.spot > 25 ? 'var(--rd)' : vts.spot > 20 ? 'var(--am)' : 'var(--gr)' },
+    { k: vts.vix3m, l: 'VIX 3M', col: 'var(--t2)' },
+    { k: vts.vx1, l: 'VX1', col: 'var(--t2)' },
+    { k: vts.vx2, l: 'VX2', col: 'var(--t3)' }
+  ].filter(i => i.k);
+  const maxV = Math.max(...items.map(i => i.k ?? 0), 30);
+
+  document.getElementById('vts-content').innerHTML = `
+    <div class="vts-bars">
+      ${items.map(it => `<div class="vts-bar" style="height:${Math.max(4,(it.k/maxV)*52)}px;background:${it.col}"></div>`).join('')}
+    </div>
+    <div class="vts-labels">
+      ${items.map(it => `<div class="vts-label" style="color:${it.col}">${it.l}<br><div class="vts-val" style="color:${it.col}">${it.k?.toFixed(1)??'--'}</div></div>`).join('')}
+    </div>
+    <div class="divider"></div>
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">Spread VIX3M - Spot</div><div class="ind-sub">${vts.backwardation ? '⚠ Backwardation — estrés agudo' : 'Contango — mercado tranquilo'}</div></div>
+      <div class="ind-right"><div class="ind-val ${(vts.spread1??0)<0?'c-rd':'c-gr'}">${vts.spread1 != null ? (vts.spread1>=0?'+':'')+vts.spread1 : '--'}</div></div>
+    </div>
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">Percentil VIX</div><div class="ind-sub">vs últimos 6 meses</div></div>
+      <div class="ind-right"><div class="ind-val c-t2">${vts.vixPercentil != null ? vts.vixPercentil + 'º' : '--'}</div></div>
+    </div>
+    <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);line-height:1.6">${vts.desc ?? ''}</div>
+  `;
+}
+
+function renderFRED() {
+  const mac = D.macro;
+  if (!mac || mac.error) { document.getElementById('fred-content').innerHTML = '<div class="no-data">FRED no disponible</div>'; return; }
+  const fr = mac.fred;
+  document.getElementById('fred-badge').className = 'badge ' + (mac.score > 2 ? 'g' : mac.score < -2 ? 'r' : 'a');
+  document.getElementById('fred-badge').textContent = 'Score ' + (mac.score >= 0 ? '+' : '') + mac.score;
+
+  const items = [
+    { l: 'Balance Fed', v: fr && fr.walcl ? (fr.walcl.v / 1e6).toFixed(2) + 'T' : null, t: fr && fr.walcl ? fr.walcl.trend : null, pos: fr && fr.walcl && fr.walcl.trend === 'up' },
+    { l: 'Fed Funds Rate', v: fr && fr.fedfunds ? fr.fedfunds.v + '%' : null, t: fr && fr.fedfunds ? fr.fedfunds.trend : null, pos: fr && fr.fedfunds ? fr.fedfunds.v < 4 : false },
+    { l: 'HY Credit Spread', v: fr && fr.hySpread ? fr.hySpread.v + '%' : null, t: fr && fr.hySpread ? fr.hySpread.trend : null, pos: fr && fr.hySpread ? fr.hySpread.v < 3 : false },
+    { l: 'NFCI (Cond. Fin.)', v: fr && fr.nfci && fr.nfci.v != null ? String(fr.nfci.v) : null, t: fr && fr.nfci ? fr.nfci.trend : null, pos: fr && fr.nfci ? fr.nfci.v < 0 : false },
+    { l: 'SOFR', v: fr && fr.sofr ? fr.sofr.v + '%' : null, t: null, pos: true },
+    { l: 'TIPS 5Y (Inflacion)', v: fr && fr.t5yie ? fr.t5yie.v + '%' : null, t: fr && fr.t5yie ? fr.t5yie.trend : null, pos: fr && fr.t5yie ? fr.t5yie.v < 2.5 : false },
+    { l: 'TIPS 10Y', v: fr && fr.t10yie ? fr.t10yie.v + '%' : null, t: fr && fr.t10yie ? fr.t10yie.trend : null, pos: fr && fr.t10yie ? fr.t10yie.v < 2.5 : false },
+    { l: '5Y5Y Inf. Expect.', v: fr && fr.t5y5y ? fr.t5y5y.v + '%' : null, t: fr && fr.t5y5y ? fr.t5y5y.trend : null, pos: fr && fr.t5y5y ? fr.t5y5y.v < 3 : false }
+  ];
+  document.getElementById('fred-content').innerHTML = items.filter(i => i.v && i.v !== 'undefined%').map(it => {
+    const trendHtml = it.t ? '<div class="ind-sub">Tendencia: ' + (it.t === 'up' ? '▲ subiendo' : '▼ bajando') + '</div>' : '';
+    const valCls = it.pos ? 'c-gr' : 'c-rd';
+    const val = it.v || '--';
+    return '<div class="ind-row"><div class="ind-left"><div class="ind-name">' + it.l + '</div>' + trendHtml + '</div><div class="ind-right"><div class="ind-val ' + valCls + '">' + val + '</div></div></div>';
+  }).join('');
+}
+
+function renderCurva() {
+  const mac = D.macro;
+  if (!mac?.curva) { document.getElementById('curva-content').innerHTML = '<div class="no-data">Curva no disponible</div>'; return; }
+  const c = mac.curva;
+  const items = [
+    { l: '3M', v: c.t3m }, { l: '5Y', v: c.t5y }, { l: '10Y', v: c.t10y }, { l: '30Y', v: c.t30y }
+  ];
+  const maxV = Math.max(...items.map(i => i.v ?? 0), 5);
+  const spread = c.sp10_2;
+
+  document.getElementById('curva-content').innerHTML = `
+    <div class="curva-bars">
+      ${items.map(it => {
+        const inv = it.v != null && c.t10y != null && it.v > c.t10y;
+        const col = inv ? 'var(--rd)' : 'var(--cy)';
+        return `<div class="curva-bar" style="height:${Math.max(4,(it.v??0)/maxV*60)}px;background:${col}" title="${it.l}: ${it.v}%"></div>`;
+      }).join('')}
+    </div>
+    <div class="curva-ticks">${items.map(it => `<div class="curva-tick">${it.l}<br><span style="color:${it.v!=null?'var(--t2)':'var(--t4)'}">${it.v != null ? it.v + '%' : '--'}</span></div>`).join('')}</div>
+    <div class="divider"></div>
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">Spread 10Y-2Y</div><div class="ind-sub">${c.invertida2y ? '⚠ INVERTIDA' : 'Normal'}</div></div>
+      <div class="ind-right"><div class="ind-val ${(spread??0)<0?'c-rd':'c-gr'}">${spread != null ? (spread>=0?'+':'')+spread+'%' : '--'}</div></div>
+    </div>
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">Spread 10Y-3M</div><div class="ind-sub">${c.invertida3m ? '⚠ INVERTIDA (más fiable)' : 'Normal'} · Señal recesión: ${c.señalRecesion ?? '--'}</div></div>
+      <div class="ind-right"><div class="ind-val ${(c.sp10_3m??0)<0?'c-rd':'c-gr'}">${c.sp10_3m != null ? (c.sp10_3m>=0?'+':'')+c.sp10_3m+'%' : '--'}</div></div>
+    </div>
+  `;
+}
+
+function renderFlows() {
+  const fl = D.flows;
+  if (!fl) { document.getElementById('flows-content').innerHTML = '<div class="no-data">Flujos no disponibles</div>'; return; }
+  const modo = fl.modo;
+  const modoColor = modo === 'risk_on' ? 'var(--gr)' : modo === 'risk_off' || modo === 'vuelo_calidad' ? 'var(--rd)' : 'var(--am)';
+  const modoLabel = { risk_on: 'RISK-ON ✅', risk_off: 'RISK-OFF ⚠️', vuelo_calidad: 'VUELO A CALIDAD 🔴', neutro: 'NEUTRO' }[modo] ?? modo;
+
+  const items = ['qqq', 'spy', 'tlt', 'hyg', 'gld', 'eem', 'iwm'].map(k => fl[k]).filter(Boolean);
+  const maxAbs = Math.max(...items.map(i => Math.abs(i.retorno5d ?? 0)), 1);
+
+  document.getElementById('flows-content').innerHTML = `
+    <div style="padding:10px 12px;background:${modoColor}18;border:1px solid ${modoColor}40;border-radius:var(--r-sm);text-align:center;font-weight:700;font-size:14px;color:${modoColor};margin-bottom:12px">${modoLabel}</div>
+    ${items.map(it => {
+      const v = it.retorno5d ?? 0;
+      const ip = v >= 0;
+      const w = Math.min(50, Math.abs(v) / maxAbs * 50);
+      const col = ip ? 'var(--gr)' : 'var(--rd)';
+      return `<div class="flow-row">
+        <div class="flow-name">${it.name}</div>
+        <div class="flow-track">
+          <div class="flow-fill" style="width:${w}%;background:${col};${ip ? 'left:50%' : 'left:' + (50-w) + '%'}"></div>
+          <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--b2)"></div>
+        </div>
+        <div class="flow-pct ${ip ? 'c-gr' : 'c-rd'}">${fmtPct(v,2)}</div>
+      </div>`;
+    }).join('')}
+    <div style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3)">Retorno 5D. QQQ↑+HYG↑+TLT↓=Risk-On · TLT↑+GLD↑=Risk-Off</div>
+  `;
+}
+
+function renderGiro() {
+  const g = D.giro;
+  if (!g) { document.getElementById('giro-content').innerHTML = '<div class="no-data">No disponible</div>'; return; }
+  const senal = g.señalGlobal;
+  const senalCol = senal === 'techo' ? 'var(--rd)' : senal === 'suelo' ? 'var(--gr)' : 'var(--am)';
+
+  const items = [
+    { icon: '📉', n: 'Divergencia RSI Diaria', d: g.d?.divBajista ? 'Divergencia bajista detectada — precio sube, RSI baja' : g.d?.divAlcista ? 'Divergencia alcista detectada — precio baja, RSI sube' : 'Sin divergencia', badge: g.d?.divBajista ? 'r' : g.d?.divAlcista ? 'g' : 'n', bl: g.d?.divBajista ? 'BAJISTA' : g.d?.divAlcista ? 'ALCISTA' : 'NEUTRO', fi: g.d?.fiabilidad ?? '' },
+    { icon: '📈', n: 'Divergencia RSI Semanal', d: g.w?.divBajista ? 'Div. bajista semanal — señal de mayor plazo' : g.w?.divAlcista ? 'Div. alcista semanal — giro importante posible' : 'Sin divergencia semanal', badge: g.w?.divBajista ? 'r' : g.w?.divAlcista ? 'g' : 'n', bl: g.w?.divBajista ? 'BAJISTA' : g.w?.divAlcista ? 'ALCISTA' : 'NEUTRO', fi: '' },
+    { icon: '📊', n: 'Bollinger Bands', d: g.bb?.señal === 'techo' ? 'Precio en/sobre banda superior — agotamiento posible' : g.bb?.señal === 'suelo' ? 'Precio en/bajo banda inferior — rebote posible' : `Precio dentro de bandas (%B: ${g.bb?.pct ?? '--'})`, badge: g.bb?.señal === 'techo' ? 'r' : g.bb?.señal === 'suelo' ? 'g' : 'n', bl: g.bb?.señal?.toUpperCase() ?? 'NEUTRO', fi: '' },
+    { icon: '🔢', n: 'Días Consecutivos', d: g.diasConsec ? `${g.diasConsec.dias} días ${g.diasConsec.dir} — ${g.diasConsec.señal?.replace(/_/g,' ')}` : 'Sin datos', badge: g.diasConsec?.señal === 'agotamiento' ? 'r' : g.diasConsec?.señal === 'rebote' ? 'g' : 'n', bl: g.diasConsec?.señal?.toUpperCase() ?? '--', fi: '' }
+  ];
+
+  document.getElementById('giro-content').innerHTML = `
+    <div style="text-align:center;padding:8px 0 14px">
+      <div style="font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;font-family:'JetBrains Mono',monospace;margin-bottom:4px">Señal Global de Giro</div>
+      <div style="font-size:22px;font-weight:800;color:${senalCol}">${senal?.toUpperCase() ?? 'NEUTRO'}</div>
+    </div>
+    ${items.map(it => `
+      <div class="giro-row">
+        <div class="giro-icon">${it.icon}</div>
+        <div class="giro-body">
+          <div class="giro-name">${it.n}</div>
+          <div class="giro-desc">${it.d}${it.fi ? ' · Fiabilidad: ' + it.fi : ''}</div>
+        </div>
+        <div class="giro-badge"><div class="badge ${it.badge}">${it.bl}</div></div>
+      </div>
+    `).join('')}
+  `;
+}
+
+function renderTecnicos() {
+  const t = D.tecnicos;
+  if (!t) { document.getElementById('tec-content').innerHTML = '<div class="no-data">No disponible</div>'; return; }
+  const d = t.d, w = t.w, m = t.m;
+  const p = d?.precio ?? D.precio?.ndx ?? 0;
+
+  const emaItems = [
+    { l: 'EMA 8', v: d?.ema8, above: p > (d?.ema8 ?? 0) },
+    { l: 'EMA 21', v: d?.ema21, above: p > (d?.ema21 ?? 0) },
+    { l: 'EMA 50', v: d?.ema50, above: p > (d?.ema50 ?? 0) },
+    { l: 'EMA 100', v: d?.ema100, above: p > (d?.ema100 ?? 0) },
+    { l: 'EMA 200', v: d?.ema200, above: p > (d?.ema200 ?? 0) },
+  ].filter(i => i.v);
+
+  document.getElementById('tec-content').innerHTML = `
+    <!-- Diario -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Timeframe Diario</div>
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">RSI (14)</div><div class="ind-sub">${d?.rsi14 > 70 ? 'Sobrecompra' : d?.rsi14 < 30 ? 'Sobreventa' : 'Zona normal'}</div></div>
+      <div class="ind-right"><div class="ind-val ${d?.rsi14 > 70 ? 'c-rd' : d?.rsi14 < 30 ? 'c-gr' : 'c-am'}">${d?.rsi14 ?? '--'}</div></div>
+    </div>
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">MACD Histograma</div><div class="ind-sub">Señal: ${d?.macd?.signal ?? '--'} · Línea: ${d?.macd?.line ?? '--'}</div></div>
+      <div class="ind-right"><div class="ind-val ${(d?.macd?.hist ?? 0) > 0 ? 'c-gr' : 'c-rd'}">${d?.macd?.hist != null ? (d.macd.hist>=0?'+':'')+d.macd.hist : '--'}</div></div>
+    </div>
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">Estocástico %K/%D</div><div class="ind-sub">${d?.stoch?.k < 20 ? 'Sobreventa' : d?.stoch?.k > 80 ? 'Sobrecompra' : 'Zona normal'}</div></div>
+      <div class="ind-right"><div class="ind-val ${(d?.stoch?.k??50)<20?'c-gr':(d?.stoch?.k??50)>80?'c-rd':'c-am'}">${d?.stoch ? d.stoch.k + '/' + d.stoch.d : '--'}</div></div>
+    </div>
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">Bollinger %B</div><div class="ind-sub">Anchura: ${d?.bb?.width ?? '--'}% · Ancho relativo</div></div>
+      <div class="ind-right"><div class="ind-val ${(d?.bb?.pct??50)>80?'c-rd':(d?.bb?.pct??50)<20?'c-gr':'c-am'}">${d?.bb?.pct != null ? d.bb.pct + '%' : '--'}</div></div>
+    </div>
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">ROC 5D / 10D / 20D</div><div class="ind-sub">Rate of Change</div></div>
+      <div class="ind-right"><div class="ind-val c-t2" style="font-size:11px">${fmtPct(d?.roc5,2)} / ${fmtPct(d?.roc10,2)} / ${fmtPct(d?.roc20,2)}</div></div>
+    </div>
+    <div class="ind-row">
+      <div class="ind-left"><div class="ind-name">Vol. Relativo 5D</div><div class="ind-sub">vs media histórica</div></div>
+      <div class="ind-right"><div class="ind-val ${(d?.volRatio5??1)>1.3?'c-gr':(d?.volRatio5??1)<0.7?'c-rd':'c-t2'}">${d?.volRatio5 != null ? d.volRatio5 + 'x' : '--'}</div></div>
+    </div>
+
+    <!-- EMAs -->
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin:10px 0 6px">EMAs · Precio: ${fmt(p)}</div>
+    ${emaItems.map(e => `
+      <div class="ind-row">
+        <div class="ind-left"><div class="ind-name">${e.l}</div><div class="ind-sub">${e.above ? 'Precio POR ENCIMA' : 'Precio POR DEBAJO'}</div></div>
+        <div class="ind-right"><div class="ind-val ${e.above ? 'c-gr' : 'c-rd'}">${fmt(e.v)}</div></div>
+      </div>
+    `).join('')}
+
+    <!-- Semanal -->
+    ${w ? `<div class="divider"></div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Timeframe Semanal</div>
+    <div class="ind-row"><div class="ind-left"><div class="ind-name">RSI Semanal (14)</div></div><div class="ind-right"><div class="ind-val ${(w.rsi14??50)>70?'c-rd':(w.rsi14??50)<30?'c-gr':'c-am'}">${w.rsi14 ?? '--'}</div></div></div>
+    <div class="ind-row"><div class="ind-left"><div class="ind-name">MACD Semanal</div><div class="ind-sub">Señal: ${w.macd?.signal ?? '--'}</div></div><div class="ind-right"><div class="ind-val ${(w.macd?.hist??0)>0?'c-gr':'c-rd'}">${w.macd?.hist != null ? (w.macd.hist>=0?'+':'')+w.macd.hist : '--'}</div></div></div>
+    <div class="ind-row"><div class="ind-left"><div class="ind-name">ROC 4S / 8S</div></div><div class="ind-right"><div class="ind-val c-t2" style="font-size:11px">${fmtPct(w.roc4,2)} / ${fmtPct(w.roc8,2)}</div></div></div>
+    ` : ''}
+
+    <!-- Mensual -->
+    ${m ? `<div class="divider"></div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Timeframe Mensual</div>
+    <div class="ind-row"><div class="ind-left"><div class="ind-name">RSI Mensual</div></div><div class="ind-right"><div class="ind-val ${(m.rsi14??50)>70?'c-rd':(m.rsi14??50)<30?'c-gr':'c-am'}">${m.rsi14 ?? '--'}</div></div></div>
+    <div class="ind-row"><div class="ind-left"><div class="ind-name">ROC 3M</div></div><div class="ind-right"><div class="ind-val ${(m.roc3??0)>0?'c-gr':'c-rd'}">${fmtPct(m.roc3,2)}</div></div></div>
+    ` : ''}
+  `;
+}
+
+function renderLiquidez() {
+  const liq = D.liquidez;
+  if (!liq) { document.getElementById('liq-content').innerHTML = '<div class="no-data">No disponible</div>'; return; }
+  const p = liq.precio;
+  const zR = liq.zonasResistencia?.slice(0, 5) ?? [];
+  const zS = liq.zonasSoporte?.slice(0, 5) ?? [];
+
+  const allZ = [
+    ...zR.map(z => ({ ...z, tipo: 'res' })),
+    { nivel: p, tipo: 'precio', igualdad: false, cnt: 0, distPct: 0 },
+    ...zS.map(z => ({ ...z, tipo: 'sup' }))
+  ].sort((a, b) => b.nivel - a.nivel);
+
+  document.getElementById('liq-content').innerHTML = allZ.map(z => {
+    if (z.tipo === 'precio') return `
+      <div class="precio-line">
+        <div class="ind-val c-ac mono" style="font-size:14px">${fmt(p)}</div>
+        <div style="flex:1;height:1px;background:linear-gradient(90deg,var(--ac),transparent)"></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ac)">PRECIO ACTUAL</div>
+      </div>`;
+    const col = z.tipo === 'res' ? 'var(--rd)' : 'var(--gr)';
+    const arrow = z.tipo === 'res' ? '▲' : '▼';
+    const fi = z.igualdad ? 'alta' : z.reciente ? 'media' : 'baja';
+    return `<div class="liq-row">
+      <div class="liq-nivel" style="color:${col}">${arrow} ${fmt(z.nivel)}</div>
+      <div class="liq-info">
+        <div class="liq-tipo" style="color:${col}">${z.tipo === 'res' ? 'Resistencia' : 'Soporte'}${z.igualdad ? ' · Equal ' + (z.tipo==='res'?'High':'Low') : ''}</div>
+        <div class="liq-dist mono">${z.distPct >= 0 ? '+' : ''}${z.distPct}%${z.cnt > 1 ? ' · ' + z.cnt + 'x testado' : ''}</div>
+      </div>
+      <div class="liq-fuerza ${fi}">${fi.toUpperCase()}</div>
+    </div>`;
+  }).join('');
+}
+
+// ══════════════════════════════════════════════════════════
+// DEMO DATA (cuando no hay API)
+// ══════════════════════════════════════════════════════════
+function buildDemo() {
+  const p = 19850 + Math.random() * 300;
+  const vix = 18 + Math.random() * 8;
+  const rsi = 45 + Math.random() * 25;
+  const macdHist = (Math.random() - 0.4) * 80;
+  const bull = rsi > 50 && macdHist > 0;
+
+  const scores = { d2: bull ? 4.2 : -3.1, d5: bull ? 3.8 : -2.4, w1: bull ? 2.9 : -1.8, w2: bull ? 2.1 : -1.2, w3: bull ? 1.4 : -0.7, w4: bull ? 0.8 : -0.3 };
+  const estado = s => s >= 3 ? 'alcista' : s <= -3 ? 'bajista' : s >= 1 ? 'alcista_mod' : s <= -1 ? 'bajista_mod' : 'neutro';
+  const conf = s => Math.min(95, Math.max(15, Math.round(Math.abs(s) / 10 * 100)));
+
+  return {
+    precio: { ndx: +p.toFixed(2), vix: +vix.toFixed(2), qqq: +(p/36).toFixed(2), tnx: 4.4, dxy: 100.5 },
+    scores: {
+      componentes: { tecnico: bull ? 6 : -5, macro: bull ? 2 : -3, cot: bull ? 1.5 : -1.5, vix: bull ? 2 : -1.5, flujos: bull ? 1.5 : -1, giro: bull ? 1 : -1 },
+      horizontes: Object.fromEntries(Object.entries(scores).map(([k, v]) => [k, { score: +v.toFixed(1), estado: estado(v), conf: conf(v), pesos: 'DEMO' }]))
+    },
+    cot: { largos: 185000, cortos: 85000, neto: 100000, netoDealers: -45000, pctLargo: 68.5, cambioNeto: 8500, cambioNetoDealers: -3200, trend4w: 22000, señal: 'bajista_mod', desc: 'Specs 68.5% largos — posicionamiento elevado, precaución', señalDealers: 'neutro', fecha: '2025-05-16', fuente: 'DEMO' },
+    opciones: { precio: p, gex: { estado: 'positivo', valor: 2, trampa: false, desc: 'Gamma positiva — dealers comprando caídas' }, v1: { fecha: '2025-05-23', maxPain: Math.round(p/10)*10-50, distPct: -1.2, topCalls: [{ strike: Math.round(p/10)*10+50, oi: 85000, dist: 0.8 }, { strike: Math.round(p/10)*10+100, oi: 62000, dist: 1.3 }], topPuts: [{ strike: Math.round(p/10)*10-50, oi: 72000, dist: -0.8 }, { strike: Math.round(p/10)*10-100, oi: 55000, dist: -1.3 }], señal: 'neutro', desc: 'Demo: Max Pain cerca del precio actual' } },
+    pcr: { equity: 0.72, total: 0.85, señal: 'neutro', desc: 'PCR normal — sin señal contraria extrema' },
+    vixTS: { spot: vix, vix3m: +(vix + 1.8).toFixed(2), vx1: +(vix + 1.2).toFixed(2), vx2: +(vix + 2.4).toFixed(2), spread1: 1.8, spread1Pct: +(1.8/vix*100).toFixed(1), backwardation: false, vixPercentil: 42, señal: 'neutro', desc: 'Contango normal — mercado sin estrés agudo' },
+    macro: { curva: { t3m: 4.28, t5y: 4.1, t10y: 4.42, t30y: 4.85, sp10_2: 0.18, sp10_3m: 0.14, invertida2y: false, invertida3m: false, señalRecesion: 'baja' }, fred: { walcl: { v: 8941000, trend: 'down' }, fedfunds: { v: 4.33, trend: null }, hySpread: { v: 3.1, trend: 'up' }, nfci: { v: -0.24, trend: 'down' }, sofr: { v: 4.31, trend: null }, t5yie: { v: 2.42, trend: 'up' }, t10yie: { v: 2.38, trend: 'up' } }, score: 1.5 },
+    tecnicos: { label: 'NDX-DEMO', d: { rsi14: +rsi.toFixed(1), macd: { hist: +macdHist.toFixed(1), signal: +(macdHist*0.9).toFixed(1), line: +(macdHist*1.1).toFixed(1) }, stoch: { k: 58, d: 52 }, bb: { upper: +(p*1.025).toFixed(2), mid: +p.toFixed(2), lower: +(p*0.975).toFixed(2), width: 5.1, pct: 55 }, ema8: +(p*0.998).toFixed(2), ema21: +(p*0.993).toFixed(2), ema50: +(p*0.985).toFixed(2), ema100: +(p*0.970).toFixed(2), ema200: +(p*0.945).toFixed(2), roc5: +(1.8+Math.random()*2-1).toFixed(2), roc10: +(2.1+Math.random()*3-1.5).toFixed(2), roc20: +(3.4+Math.random()*4-2).toFixed(2), volRatio5: +(0.9+Math.random()*0.6).toFixed(2), precio: p }, w: { rsi14: +(rsi-5).toFixed(1), macd: { hist: +( macdHist*0.7).toFixed(1), signal: null }, roc4: +1.4.toFixed(2), roc8: +3.2.toFixed(2) }, m: { rsi14: +(rsi-3).toFixed(1), roc3: +4.8.toFixed(2) } },
+    giro: { d: { divAlcista: false, divBajista: rsi > 72, fiabilidad: rsi > 72 ? 'media' : 'sin_div' }, w: { divAlcista: false, divBajista: false }, bb: { señal: rsi > 72 ? 'techo' : 'neutro', pct: 55, width: 5.1 }, diasConsec: { dias: 4, dir: 'subiendo', señal: 'vigilar_techo' }, señalGlobal: rsi > 72 ? 'techo' : 'neutro' },
+    flows: { qqq: { name:'QQQ', retorno5d: 1.8, retorno10d: 2.9, volRatio: 1.1, señal: 'entradas' }, spy: { name:'SPY', retorno5d: 1.2, retorno10d: 2.1, volRatio: 1.0, señal:'entradas_mod'}, tlt: { name:'TLT', retorno5d: -0.9, retorno10d: -1.2, volRatio: 0.9, señal:'salidas_mod'}, hyg: { name:'HYG', retorno5d: 0.4, retorno10d: 0.8, volRatio: 1.0, señal:'neutro'}, gld: { name:'GLD', retorno5d: 0.6, retorno10d: 1.1, volRatio: 1.05, señal:'neutro'}, eem: { name:'EEM', retorno5d: -0.3, retorno10d: -0.5, volRatio: 0.95, señal:'neutro'}, iwm: { name:'IWM', retorno5d: 0.9, retorno10d: 1.4, volRatio: 1.0, señal:'neutro'}, modo: 'risk_on' },
+    liquidez: { precio: p, atr14: +(p*0.011).toFixed(2), zonasResistencia: [{ nivel: +(p*1.02).toFixed(2), igualdad: false, cnt: 1, reciente: true, distPct: 2.0 }, { nivel: +(p*1.035).toFixed(2), igualdad: true, cnt: 2, reciente: false, distPct: 3.5 }], zonasSoporte: [{ nivel: +(p*0.985).toFixed(2), igualdad: false, cnt: 1, reciente: true, distPct: -1.5 }, { nivel: +(p*0.970).toFixed(2), igualdad: true, cnt: 3, reciente: false, distPct: -3.0 }], rangosPorHorizonte: { d2: { sup: +(p*0.994).toFixed(2), res: +(p*1.006).toFixed(2) }, d5: { sup: +(p*0.986).toFixed(2), res: +(p*1.014).toFixed(2) }, w1: { sup: +(p*0.977).toFixed(2), res: +(p*1.023).toFixed(2) }, w2: { sup: +(p*0.965).toFixed(2), res: +(p*1.035).toFixed(2) }, w3: { sup: +(p*0.953).toFixed(2), res: +(p*1.047).toFixed(2) }, w4: { sup: +(p*0.940).toFixed(2), res: +(p*1.060).toFixed(2) } } },
+    ts: new Date().toISOString(), version: '2.0-demo'
+  };
+}
+
+// ══════════════════════════════════════════════════════════
+// LOAD DATA
+// ══════════════════════════════════════════════════════════
+async function loadData() {
+  const btn = document.getElementById('btn-refresh');
+  btn.disabled = true; document.getElementById('btn-txt').textContent = 'Cargando...';
+  document.getElementById('live-dot').style.background = 'var(--am)';
+
+  try {
+    if (API_URL) {
+      const r = await Promise.race([fetch(API_URL), new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 25000))]);
+      if (!r.ok) throw new Error('API ' + r.status);
+      D = await r.json();
+    } else {
+      D = buildDemo();
+    }
+  } catch (e) {
+    console.warn('API error, using demo:', e.message);
+    D = buildDemo();
+  }
+
+  renderAll();
+  document.getElementById('last-upd').textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-ES') + (D.version?.includes('demo') ? ' · MODO DEMO' : '');
+  document.getElementById('live-dot').style.background = 'var(--gr)';
+  btn.disabled = false; document.getElementById('btn-txt').textContent = 'Actualizar';
+}
+
+function renderAll() {
+  buildHorTabs();
+  renderSignalHero();
+  renderHorGrid();
+  renderScoreComponents();
+  renderCOT();
+  renderOI();
+  renderGEX();
+  renderPCR();
+  renderVixTS();
+  renderFRED();
+  renderCurva();
+  renderFlows();
+  renderGiro();
+  renderTecnicos();
+  renderLiquidez();
+}
+
+// ══════════════════════════════════════════════════════════
+// IA REPORT
+// ══════════════════════════════════════════════════════════
+function buildIAPrompt() {
+  const p = D.precio?.ndx, vix = D.precio?.vix;
+  const sc = D.scores;
+  const t = D.tecnicos?.d;
+  const cot = D.cot;
+  const macro = D.macro;
+  const hs = sc?.horizontes;
+
+  return `Eres un analista institucional senior de Nasdaq 100. Análisis COMPLETO en español con datos reales.
+
+PRECIOS: NDX ${p?.toFixed(0)} | VIX ${vix?.toFixed(1)} | DXY ${D.precio?.dxy?.toFixed(1)} | TNX ${D.precio?.tnx?.toFixed(2)}%
+
+TÉCNICO (NDX diario):
+RSI: ${t?.rsi14} | MACD hist: ${t?.macd?.hist} | Stoch: ${t?.stoch?.k}/${t?.stoch?.d}
+EMA8: ${t?.ema8} | EMA21: ${t?.ema21} | EMA50: ${t?.ema50} | EMA200: ${t?.ema200}
+ROC 5D/10D/20D: ${t?.roc5}% / ${t?.roc10}% / ${t?.roc20}%
+
+COT (mano institucional):
+Neto especuladores: ${cot?.neto > 0 ? '+' : ''}${cot?.neto} (${cot?.pctLargo}% largos)
+Cambio semanal: ${cot?.cambioNeto > 0 ? '+' : ''}${cot?.cambioNeto}
+Tendencia 4 semanas: ${cot?.trend4w > 0 ? 'acumulando' : 'reduciendo'} ${Math.abs(cot?.trend4w ?? 0)}
+Señal dealers: ${cot?.señalDealers}
+
+OPCIONES: Max Pain ${D.opciones?.v1?.maxPain} (${D.opciones?.v1?.distPct}%) | GEX: ${D.opciones?.gex?.estado} (${D.opciones?.gex?.valor})
+PCR: ${D.pcr?.total} (${D.pcr?.señal}) | VIX backwardation: ${D.vixTS?.backwardation ? 'SÍ' : 'NO'}
+
+MACRO: HY Spread: ${macro?.fred?.hySpread?.v}% | NFCI: ${macro?.fred?.nfci?.v} | Curva 10Y-2Y: ${macro?.curva?.sp10_2}%
+
+SCORES POR HORIZONTE:
+${Object.entries(hs ?? {}).map(([k, v]) => `${k}: ${v.score > 0 ? '+' : ''}${v.score} (${v.estado.toUpperCase()}, conf ${v.conf}%)`).join(' | ')}
+
+GENERA INFORME CON ESTAS 5 SECCIONES:
+
+### MANO INSTITUCIONAL
+[¿Qué están haciendo los grandes? COT, opciones, GEX, flujos. ¿Acumulando o distribuyendo?]
+
+### SEÑALES POR HORIZONTE
+[2D / 5D / 1S / 2S / 3S / 4S: entrada exacta, stop, objetivo, probabilidad]
+
+### ANÁLISIS TÉCNICO Y ESTRUCTURA
+[EMAs, RSI, MACD, Bollinger, momentum, divergencias detectadas]
+
+### MACRO Y SENTIMIENTO
+[Curva, crédito, NFCI, VIX TS, PCR — ¿apoya o contradice la técnica?]
+
+### VEREDICTO Y PLAN ACCIÓN
+[3-5 líneas. Qué hacer HOY. Próximos catalizadores a vigilar. Niveles críticos de invalidación.]
+
+Usa [ALCISTA], [BAJISTA] o [NEUTRO] al inicio. Sé específico con precios y niveles.`;
+}
+
+async function generateIA() {
+  const btn = document.getElementById('btn-ia');
+  btn.disabled = true; btn.classList.add('loading');
+  const msgs = ['Analizando COT y opciones...', 'Procesando mano institucional...', 'Calculando horizontes...', 'Redactando informe...'];
+  let ti = 0;
+  document.getElementById('ia-body').innerHTML = `<div style="display:flex;align-items:center;gap:12px;padding:8px 0"><div style="display:flex;gap:5px">${[1,2,3].map(()=>`<div style="width:7px;height:7px;background:var(--ac);border-radius:50%;animation:pulse 1.2s ease infinite"></div>`).join('')}</div><div id="ia-msg" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ac)">${msgs[0]}</div></div>`;
+  const iv = setInterval(() => { ti = (ti+1) % msgs.length; const m = document.getElementById('ia-msg'); if(m) m.textContent = msgs[ti]; }, 1800);
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 2000, messages: [{ role: 'user', content: buildIAPrompt() }] })
+    });
+    clearInterval(iv);
+    const data = await res.json();
+    const text = data?.content?.[0]?.text ?? '';
+    const fmt2 = text.replace(/^### (.+)$/gm, '<p><strong style="color:var(--ac);font-size:13px">$1</strong></p>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\[ALCISTA\]/g, '<em style="color:var(--gr);font-weight:700">[ALCISTA]</em>')
+      .replace(/\[BAJISTA\]/g, '<em style="color:var(--rd);font-weight:700">[BAJISTA]</em>')
+      .replace(/\[NEUTRO\]/g, '<em style="color:var(--am);font-weight:700">[NEUTRO]</em>')
+      .split('\n').filter(l => l.trim()).map(l => `<p>${l}</p>`).join('');
+    document.getElementById('ia-body').innerHTML = fmt2 || '<div class="no-data">Sin respuesta</div>';
+  } catch(e) {
+    clearInterval(iv);
+    // Fallback local
+    const hs = D.scores?.horizontes;
+    const bull = (hs?.d5?.estado === 'alcista' || hs?.d5?.estado === 'alcista_mod');
+    document.getElementById('ia-body').innerHTML = `
+      <p><strong style="color:var(--ac)">MANO INSTITUCIONAL</strong></p>
+      <p>${bull ? '[ALCISTA]' : '[BAJISTA]'} COT muestra ${D.cot?.pctLargo}% de especuladores largos. ${D.cot?.cambioNeto > 0 ? 'Incremento semanal — acumulación en curso.' : 'Reducción semanal — distribución posible.'} GEX en ${D.opciones?.gex?.estado?.replace(/_/g,' ')} — ${D.opciones?.gex?.desc}.</p>
+      <p><strong style="color:var(--ac)">SEÑALES POR HORIZONTE</strong></p>
+      <p>${Object.entries(D.scores?.horizontes ?? {}).map(([k, v]) => `<strong>${k.toUpperCase()}</strong>: ${v.estado.toUpperCase()} (${v.conf}%)`).join(' · ')}</p>
+      <p><strong style="color:var(--ac)">VEREDICTO</strong></p>
+      <p>Score dominante ${bull ? 'alcista' : 'bajista'}. ${bull ? 'Buscar entradas en retrocesos a EMA8/21. ' : 'Evitar nuevas posiciones largas. '}Catalizadores clave: datos macro del calendario, comportamiento VIX y confirmación de volumen.</p>
+    `;
+  }
+
+  btn.disabled = false; btn.classList.remove('loading');
+}
+
+// ══════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', async () => {
+  setTimeout(() => {
+    document.getElementById('splash').classList.add('out');
+    setTimeout(() => { document.getElementById('splash').style.display = 'none'; document.getElementById('app').style.display = 'block'; }, 600);
+  }, 1800);
+  await loadData();
+});
+</script>
+</body>
+</html>
