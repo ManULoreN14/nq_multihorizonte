@@ -1,6 +1,6 @@
 {
   "version": "3.0-fase3",
-  "ts": "2026-05-23T13:36:02.987393",
+  "ts": "2026-05-23T13:43:30.883563",
   "precio": {
     "ndx": 29481.6406,
     "qqq": 717.54,
@@ -431,44 +431,44 @@
     "componentes": {
       "tecnico": 0,
       "macro": 2.5,
-      "cot": 0.0,
+      "cot": -1.5,
       "vix": 0.8,
       "flujos": 0.0,
       "giro": -2.0
     },
     "horizontes": {
       "d2": {
-        "score": 0.2,
+        "score": 0.1,
         "estado": "neutro",
         "conf": 10,
         "pesos": "30%T+25%V+15%F+15%Fl+10%G+10%M"
       },
       "d5": {
-        "score": 0.3,
+        "score": 0.1,
         "estado": "neutro",
         "conf": 10,
         "pesos": "25%T+20%V+15%F+15%M+15%Fl+10%G"
       },
       "w1": {
-        "score": 0.4,
+        "score": 0.1,
         "estado": "neutro",
         "conf": 10,
         "pesos": "20%T+20%M+20%C+15%V+15%Fl+10%G"
       },
       "w2": {
-        "score": 0.6,
+        "score": 0.2,
         "estado": "neutro",
         "conf": 10,
         "pesos": "20%T+25%M+25%C+15%Fl+10%V+5%G"
       },
       "w3": {
-        "score": 0.7,
+        "score": 0.3,
         "estado": "neutro",
         "conf": 10,
         "pesos": "15%T+30%M+30%C+12%Fl+8%V+5%G"
       },
       "w4": {
-        "score": 0.8,
+        "score": 0.3,
         "estado": "neutro",
         "conf": 10,
         "pesos": "10%T+35%M+35%C+10%Fl+5%V+5%G"
@@ -476,18 +476,47 @@
     }
   },
   "cot": {
-    "error": "todas_fuentes_fallaron",
-    "fuente_verificacion": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm",
+    "fecha": "2026-05-19",
+    "largos": 87137,
+    "cortos": 88557,
+    "neto": -1420,
+    "netoDealers": -4033,
+    "pctLargo": 49.6,
+    "pctDealers": 49.4,
+    "cambioNeto": 14565,
+    "cambioNetoDealers": -16296,
+    "trend4w": 902,
     "señal": "neutro",
-    "desc": "COT no disponible — verificar manualmente",
-    "largos": null,
-    "cortos": null,
-    "neto": null,
-    "pctLargo": null,
-    "cambioNeto": null,
-    "trend4w": null,
-    "señalDealers": "neutro",
-    "netoDealers": null
+    "desc": "Specs 49.6% largos — posicionamiento neutral",
+    "señalDealers": "distribucion",
+    "historial": [
+      {
+        "fecha": "2026-05-19",
+        "neto": -1420,
+        "largos": 87137,
+        "cortos": 88557
+      },
+      {
+        "fecha": "2026-05-12",
+        "neto": -15985,
+        "largos": 71239,
+        "cortos": 87224
+      },
+      {
+        "fecha": "2026-05-05",
+        "neto": 1221,
+        "largos": 81707,
+        "cortos": 80486
+      },
+      {
+        "fecha": "2026-04-28",
+        "neto": -2322,
+        "largos": 77487,
+        "cortos": 79809
+      }
+    ],
+    "fuente": "cftc_socrata_api",
+    "fuente_verificacion": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm"
   },
   "opciones": {
     "precio": 717.54,
