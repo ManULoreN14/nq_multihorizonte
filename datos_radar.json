@@ -1,6 +1,6 @@
 {
   "version": "4.0-fase4",
-  "ts": "2026-05-23T17:33:25.157863",
+  "ts": "2026-05-23T17:36:30.116818",
   "precio": {
     "ndx": 29481.6406,
     "qqq": 717.54,
@@ -972,17 +972,17 @@
     "fuente_alternativa": "https://finance.yahoo.com/quote/QQQ/options/"
   },
   "comparativa_correcciones": {
-    "micro_3pct": 0,
-    "tecnica_7pct": 0,
-    "macro_15pct": 0,
-    "bajista_25pct": 0,
-    "cisne_negro_30pct": 0,
-    "escenario_dominante": "indeterminado",
+    "micro_3pct": 84,
+    "tecnica_7pct": 62,
+    "macro_15pct": 81,
+    "bajista_25pct": 30,
+    "cisne_negro_30pct": 45,
+    "escenario_dominante": "micro_3pct",
     "recomendacion": "MONITOREAR SOPORTES",
-    "confianza": 0,
-    "detalle": "Datos insuficientes para análisis de régimen",
+    "confianza": 5,
+    "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (84% similitud). Contexto: VIX=16.7, RSI=71. Confianza del sistema: 5%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "error": "assignment destination is read-only"
+    "ts_calculo": "2026-05-23T17:36:30.114273"
   },
   "fase_activa": 4,
   "proximas_fases": "Fase5=Amplitud+Kelly | Fase6=IntegracionFinal"
