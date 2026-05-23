@@ -1,21 +1,18 @@
-﻿{
+{
   "version": 2,
-  "routes": [
+  "headers": [
     {
-      "src": "/datos_radar.json",
-      "dest": "/datos_radar.json",
-      "headers": {
-        "Access-Control-Allow-Origin": "*",
-        "Cache-Control": "no-cache"
-      }
+      "source": "/datos_radar.json",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate" }
+      ]
     },
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
+      "source": "/(.*)\\.html",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-cache" }
+      ]
     }
   ]
 }
