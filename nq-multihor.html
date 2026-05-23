@@ -562,7 +562,7 @@ input,textarea,button{font-family:inherit}
 // CONFIG
 // ══════════════════════════════════════════════════════════
 const DEMO_MODE = !localStorage.getItem('api_url');
-let API_URL = localStorage.getItem('api_url') || '';
+let API_URL = localStorage.getItem('api_url') || '/datos_radar.json';
 let D = {}; // datos globales
 let HORIZON = 'd2'; // horizonte seleccionado
 
@@ -1156,15 +1156,15 @@ async function loadData() {
   document.getElementById('live-dot').style.background = 'var(--am)';
 
   try {
-    if (API_URL) {
-      const r = await Promise.race([fetch(API_URL), new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 25000))]);
-      if (!r.ok) throw new Error('API ' + r.status);
-      D = await r.json();
-    } else {
-      D = buildDemo();
-    }
+    const r = await Promise.race([
+      fetch(API_URL, { cache: 'no-cache' }),
+      new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 10000))
+    ]);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    D = await r.json();
+    console.log('✅ JSON cargado:', D.version, D.ts);
   } catch (e) {
-    console.warn('API error, using demo:', e.message);
+    console.warn('JSON error, usando demo:', e.message);
     D = buildDemo();
   }
 
