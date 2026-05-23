@@ -247,6 +247,32 @@ input,textarea,button{font-family:inherit}
 .cfg-btn.cancel{background:var(--s3);border:1px solid var(--b2);color:var(--t2)}
 
 @media(min-width:768px){#app{max-width:800px;margin:0 auto}.tabbar{max-width:800px;left:50%;transform:translateX(-50%)}}
+
+/* ── FUENTES VERIFICABLES ── */
+.fuente-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-top:12px;padding:8px 10px;background:var(--s2);border:1px solid var(--b1);border-radius:var(--r-sm)}
+.fuente-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t4);text-transform:uppercase;letter-spacing:.08em;flex-shrink:0}
+.fuente-links{display:flex;gap:8px;flex-wrap:wrap}
+.fuente-link{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ac);text-decoration:none;padding:2px 8px;border:1px solid var(--acb);border-radius:100px;background:var(--ac2);white-space:nowrap;transition:all .15s}
+.fuente-link:hover{background:var(--ac);color:#fff}
+.fuente-link.warn{color:var(--am);border-color:var(--amb);background:var(--am2)}
+.fuente-link.warn:hover{background:var(--am);color:#000}
+.sesgo-badge{font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 7px;border-radius:100px;background:var(--am2);border:1px solid var(--amb);color:var(--am)}
+
+/* ── EDICION MANUAL DE VALORES ── */
+.edit-panel{margin-top:10px;padding:10px;background:var(--s2);border:1px solid var(--b2);border-radius:var(--r-sm)}
+.edit-panel-title{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.edit-panel-title::before{content:'✏️';font-size:10px}
+.edit-row{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.edit-row:last-child{margin-bottom:0}
+.edit-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t2);min-width:110px;flex-shrink:0}
+.edit-input{flex:1;background:var(--s3);border:1px solid var(--b2);border-radius:8px;padding:5px 8px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--t1);outline:none;min-width:0}
+.edit-input:focus{border-color:var(--ac);background:var(--s1)}
+.edit-input::placeholder{color:var(--t4)}
+.btn-apply{background:var(--ac);border:none;border-radius:8px;padding:5px 12px;color:#fff;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;cursor:pointer;white-space:nowrap;transition:opacity .15s}
+.btn-apply:hover{opacity:.8}
+.edit-applied{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gr);margin-left:4px;opacity:0;transition:opacity .3s}
+.edit-applied.show{opacity:1}
+
 </style>
 </head>
 <body>
@@ -363,6 +389,33 @@ input,textarea,button{font-family:inherit}
         <div class="card-body">
           <div class="card-explain">Posiciones de <strong>Large Speculators</strong> (fondos hedge, institucionales) en futuros Nasdaq Mini (E-mini NQ). <br>Indicador contrario: exceso de largos = techo próximo · exceso de cortos = suelo próximo.</div>
           <div id="cot-content"><div class="no-data">Cargando datos CFTC...</div></div>
+          <!-- FUENTES COT -->
+          <div class="fuente-bar">
+            <span class="fuente-label">Verificar fuente</span>
+            <div class="fuente-links">
+              <a class="fuente-link" href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm" target="_blank" rel="noopener">CFTC Oficial</a>
+              <a class="fuente-link" href="https://www.cftc.gov/files/dea/history/fut_disagg_txtonly_2026.zip" target="_blank" rel="noopener">ZIP Datos 2026</a>
+              <a class="fuente-link warn" href="https://barchart.com/futures/commitment-of-traders/NQ" target="_blank" rel="noopener">Barchart (visual)</a>
+            </div>
+          </div>
+          <!-- EDICION MANUAL COT -->
+          <div class="edit-panel" id="cot-edit-panel">
+            <div class="edit-panel-title">Corrección manual de datos COT</div>
+            <div class="edit-row">
+              <span class="edit-lbl">% Largos specs</span>
+              <input class="edit-input" id="edit-cot-pctlargo" type="number" step="0.1" min="0" max="100" placeholder="ej: 68.5">
+              <button class="btn-apply" onclick="applyEditCOT()">Aplicar</button>
+              <span class="edit-applied" id="edit-cot-ok">Aplicado</span>
+            </div>
+            <div class="edit-row">
+              <span class="edit-lbl">Neto especuladores</span>
+              <input class="edit-input" id="edit-cot-neto" type="number" placeholder="ej: 95000">
+            </div>
+            <div class="edit-row">
+              <span class="edit-lbl">Fecha del dato</span>
+              <input class="edit-input" id="edit-cot-fecha" type="date">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -399,11 +452,35 @@ input,textarea,button{font-family:inherit}
 
     <!-- PCR -->
     <div class="section">
-      <div class="section-title">📉 Put/Call Ratio — CBOE</div>
+      <div class="section-title">📉 Put/Call Ratio — CBOE / QQQ</div>
       <div class="card">
         <div class="card-body">
           <div class="card-explain">Indicador contrario: PCR alto (&gt;1.2) = miedo extremo → señal alcista contraria. PCR bajo (&lt;0.6) = euforia → señal bajista contraria.</div>
-          <div id="pcr-content"><div class="no-data">Cargando CBOE PCR...</div></div>
+          <div id="pcr-content"><div class="no-data">Cargando PCR...</div></div>
+          <!-- FUENTES PCR -->
+          <div class="fuente-bar">
+            <span class="fuente-label">Verificar fuente</span>
+            <div class="fuente-links">
+              <a class="fuente-link" href="https://www.cboe.com/data/volatility-and-put-call-ratio-data/" target="_blank" rel="noopener">CBOE Oficial</a>
+              <a class="fuente-link warn" href="https://finance.yahoo.com/quote/QQQ/options/" target="_blank" rel="noopener">Yahoo QQQ Options</a>
+              <a class="fuente-link warn" href="https://markets.cboe.com/us/options/market_statistics/daily/" target="_blank" rel="noopener">CBOE Daily Stats</a>
+            </div>
+          </div>
+          <div id="pcr-sesgo-notice"></div>
+          <!-- EDICION MANUAL PCR -->
+          <div class="edit-panel">
+            <div class="edit-panel-title">Corrección manual de datos PCR</div>
+            <div class="edit-row">
+              <span class="edit-lbl">PCR Total</span>
+              <input class="edit-input" id="edit-pcr-total" type="number" step="0.001" min="0" max="5" placeholder="ej: 0.85">
+              <button class="btn-apply" onclick="applyEditPCR()">Aplicar</button>
+              <span class="edit-applied" id="edit-pcr-ok">Aplicado</span>
+            </div>
+            <div class="edit-row">
+              <span class="edit-lbl">PCR Equity</span>
+              <input class="edit-input" id="edit-pcr-equity" type="number" step="0.001" min="0" max="5" placeholder="ej: 0.72">
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -562,7 +639,7 @@ input,textarea,button{font-family:inherit}
 // CONFIG
 // ══════════════════════════════════════════════════════════
 const DEMO_MODE = !localStorage.getItem('api_url');
-let API_URL = localStorage.getItem('api_url') || '/datos_radar.json';
+let API_URL = localStorage.getItem('api_url') || '';
 let D = {}; // datos globales
 let HORIZON = 'd2'; // horizonte seleccionado
 
@@ -741,9 +818,41 @@ function renderScoreComponents() {
   }
 }
 
+// Overrides manuales
+const OVERRIDES = { cot: {}, pcr: {} };
+
+function applyEditCOT() {
+  const pct = parseFloat(document.getElementById('edit-cot-pctlargo').value);
+  const neto = parseFloat(document.getElementById('edit-cot-neto').value);
+  const fecha = document.getElementById('edit-cot-fecha').value;
+  if (!isNaN(pct))  OVERRIDES.cot.pctLargo = pct;
+  if (!isNaN(neto)) OVERRIDES.cot.neto = neto;
+  if (fecha)        OVERRIDES.cot.fecha = fecha;
+  renderCOT();
+  const ok = document.getElementById('edit-cot-ok');
+  ok.classList.add('show');
+  setTimeout(() => ok.classList.remove('show'), 2000);
+}
+
+function applyEditPCR() {
+  const total = parseFloat(document.getElementById('edit-pcr-total').value);
+  const equity = parseFloat(document.getElementById('edit-pcr-equity').value);
+  if (!isNaN(total))  OVERRIDES.pcr.total = total;
+  if (!isNaN(equity)) OVERRIDES.pcr.equity = equity;
+  renderPCR();
+  const ok = document.getElementById('edit-pcr-ok');
+  ok.classList.add('show');
+  setTimeout(() => ok.classList.remove('show'), 2000);
+}
+
 function renderCOT() {
-  const cot = D.cot;
-  if (!cot || cot.error) { document.getElementById('cot-content').innerHTML = '<div class="no-data">COT no disponible: ' + (cot?.error ?? 'error') + '</div>'; return; }
+  const raw = D.cot;
+  // Aplicar overrides manuales si los hay
+  const cot = raw ? {...raw, ...OVERRIDES.cot} : null;
+  if (!cot || (cot.error && !OVERRIDES.cot.pctLargo)) {
+    document.getElementById('cot-content').innerHTML = '<div class="no-data">COT no disponible: ' + (cot?.error ?? 'error') + '<br><span style="font-size:10px;color:var(--am)">Introduce los datos manualmente abajo o verifica la fuente oficial.</span></div>';
+    return;
+  }
   const bc = badgeCls(cot.señal);
   document.getElementById('cot-badge').className = 'badge ' + bc;
   document.getElementById('cot-badge').textContent = (cot.señal ?? '—').toUpperCase();
@@ -775,7 +884,11 @@ function renderCOT() {
       <div class="ind-left"><div class="ind-name">Dealers (Smart Money)</div><div class="ind-sub">Señal dealers: ${cot.señalDealers ?? 'neutro'}</div></div>
       <div class="ind-right"><div class="ind-val ${cot.netoDealers>=0?'c-gr':'c-rd'}">${fmtK(cot.netoDealers)}</div></div>
     </div>
-    <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);line-height:1.6">${cot.desc ?? ''} · Datos: ${cot.fecha ?? '--'}</div>
+    <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);line-height:1.6">
+      ${cot.desc ?? ''} · Datos: ${cot.fecha ?? '--'}
+      ${OVERRIDES.cot.pctLargo ? '<span style="color:var(--am);margin-left:6px">✏ EDITADO MANUALMENTE</span>' : ''}
+      ${cot.fuente ? '<span style="opacity:.5;margin-left:6px">fuente: ' + cot.fuente + '</span>' : ''}
+    </div>
   `;
 }
 
@@ -840,24 +953,50 @@ function renderGEX() {
 }
 
 function renderPCR() {
-  const pcr = D.pcr;
-  if (!pcr || pcr.error) { document.getElementById('pcr-content').innerHTML = '<div class="no-data">PCR no disponible</div>'; return; }
+  const raw = D.pcr;
+  const pcr = raw ? {...raw, ...OVERRIDES.pcr} : null;
+  if (!pcr || (pcr.error && !OVERRIDES.pcr.total)) {
+    document.getElementById('pcr-content').innerHTML = '<div class="no-data">PCR no disponible<br><span style="font-size:10px;color:var(--am)">Introduce el valor manualmente o verifica la fuente CBOE.</span></div>';
+    // Mostrar aviso de sesgo si hay fuente alternativa
+    const sn = document.getElementById('pcr-sesgo-notice');
+    if (sn) sn.innerHTML = '';
+    return;
+  }
   const total = pcr.total ?? pcr.equity;
   const col = total > 1.2 ? 'var(--gr)' : total < 0.6 ? 'var(--rd)' : 'var(--am)';
+  const esFuenteYahoo = pcr.fuente === 'yahoo_qqq_options';
+  const etiquetaFuente = esFuenteYahoo ? 'QQQ Options (proxy)' : 'CBOE Total Market';
+  const colorFuente = esFuenteYahoo ? 'var(--am)' : 'var(--gr)';
+
+  // Aviso de sesgo si es Yahoo
+  const sn = document.getElementById('pcr-sesgo-notice');
+  if (sn) {
+    sn.innerHTML = esFuenteYahoo
+      ? `<div style="margin:8px 0;padding:7px 10px;background:var(--am2);border:1px solid var(--amb);border-radius:var(--r-sm);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--am);line-height:1.5">
+           ⚠ Fuente alternativa activa: PCR calculado de opciones QQQ (CBOE devuelve 403).<br>
+           Ligero sesgo hacia large-cap tech vs PCR total del mercado.
+           Verificar en: <a href="https://www.cboe.com/data/volatility-and-put-call-ratio-data/" target="_blank" style="color:var(--am)">cboe.com</a>
+         </div>`
+      : '';
+  }
+
   document.getElementById('pcr-content').innerHTML = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
       <div class="macro-box">
         <div class="mb-lbl">PCR Total</div>
         <div class="mb-val" style="color:${col}">${total ?? '--'}</div>
-        <div class="mb-trend" style="color:${col}">${total > 1.2 ? '⬆ ALTO' : total < 0.6 ? '⬇ BAJO' : '● NORMAL'}</div>
+        <div class="mb-trend" style="color:${col}">${total > 1.2 ? 'ALTO' : total < 0.6 ? 'BAJO' : 'NORMAL'}</div>
       </div>
       <div class="macro-box">
-        <div class="mb-lbl">PCR Equity</div>
-        <div class="mb-val">${pcr.equity ?? '--'}</div>
-        <div class="mb-trend c-t3">Solo opciones de acciones</div>
+        <div class="mb-lbl">Fuente</div>
+        <div class="mb-val" style="color:${colorFuente};font-size:11px">${etiquetaFuente}</div>
+        <div class="mb-trend" style="color:${colorFuente}">${esFuenteYahoo ? 'proxy QQQ' : 'mercado total'}</div>
       </div>
     </div>
-    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);line-height:1.6">${pcr.desc ?? ''}</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);line-height:1.6">
+      ${pcr.desc ?? ''}
+      ${OVERRIDES.pcr.total ? '<span style="color:var(--am);margin-left:6px">✏ EDITADO MANUALMENTE</span>' : ''}
+    </div>
   `;
 }
 
@@ -1156,15 +1295,15 @@ async function loadData() {
   document.getElementById('live-dot').style.background = 'var(--am)';
 
   try {
-    const r = await Promise.race([
-      fetch(API_URL, { cache: 'no-cache' }),
-      new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 10000))
-    ]);
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    D = await r.json();
-    console.log('✅ JSON cargado:', D.version, D.ts);
+    if (API_URL) {
+      const r = await Promise.race([fetch(API_URL), new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 25000))]);
+      if (!r.ok) throw new Error('API ' + r.status);
+      D = await r.json();
+    } else {
+      D = buildDemo();
+    }
   } catch (e) {
-    console.warn('JSON error, usando demo:', e.message);
+    console.warn('API error, using demo:', e.message);
     D = buildDemo();
   }
 
