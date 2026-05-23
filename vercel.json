@@ -1,15 +1,21 @@
-{
+﻿{
   "version": 2,
   "routes": [
-    { "src": "/api/datos-multihor", "dest": "/api/datos-multihor.js" }
-  ],
-  "headers": [
     {
-      "source": "/api/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET, OPTIONS" }
-      ]
+      "src": "/datos_radar.json",
+      "dest": "/datos_radar.json",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Cache-Control": "no-cache"
+      }
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
     }
   ]
 }
