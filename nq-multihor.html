@@ -273,6 +273,25 @@ input,textarea,button{font-family:inherit}
 .edit-applied{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gr);margin-left:4px;opacity:0;transition:opacity .3s}
 .edit-applied.show{opacity:1}
 
+/* ── FASE 4: MARKET REGIME MATCHING ── */
+.mrm-card{margin:14px 20px 0;background:var(--s1);border:1px solid var(--b2);border-radius:var(--r-xl);overflow:hidden}
+.mrm-header{padding:14px 16px 10px;border-bottom:1px solid var(--b1);display:flex;align-items:center;gap:10px}
+.mrm-title{flex:1;font-size:13px;font-weight:700}
+.mrm-rec{font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 10px;border-radius:100px;border:1px solid;white-space:nowrap;font-weight:700}
+.mrm-rec.mantener{background:var(--gr2);color:var(--gr);border-color:var(--grb)}
+.mrm-rec.monitorear{background:var(--am2);color:var(--am);border-color:var(--amb)}
+.mrm-rec.reducir{background:var(--rd2);color:var(--rd);border-color:var(--rdb)}
+.mrm-body{padding:14px 16px}
+.mrm-scenario{margin-bottom:13px}
+.mrm-scenario:last-child{margin-bottom:0}
+.mrm-sc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:5px}
+.mrm-sc-label{font-size:12px;font-weight:700}
+.mrm-sc-pct{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700}
+.mrm-bar-track{height:10px;background:var(--s3);border-radius:5px;overflow:hidden}
+.mrm-bar-fill{height:100%;border-radius:5px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.mrm-detalle{margin-top:12px;padding:10px 12px;background:var(--s2);border-radius:var(--r-sm);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);line-height:1.7;border-left:2px solid var(--b2)}
+.mrm-conf{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t4);margin-top:8px;text-align:right}
+
 </style>
 </head>
 <body>
@@ -350,6 +369,18 @@ input,textarea,button{font-family:inherit}
           <div class="score-grid" id="score-components"></div>
           <div style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);line-height:1.7" id="score-desc-text"></div>
         </div>
+      </div>
+    </div>
+
+    <!-- FASE 4: MARKET REGIME MATCHING -->
+    <div class="mrm-card">
+      <div class="mrm-header">
+        <span style="font-size:18px">🔬</span>
+        <div class="mrm-title">Market Regime Matching · Crisis Fingerprint</div>
+        <div class="mrm-rec monitorear" id="mrm-rec-badge">—</div>
+      </div>
+      <div class="mrm-body" id="mrm-body">
+        <div class="no-data">Cargando...</div>
       </div>
     </div>
 
@@ -639,7 +670,8 @@ input,textarea,button{font-family:inherit}
 // CONFIG
 // ══════════════════════════════════════════════════════════
 const DEMO_MODE = !localStorage.getItem('api_url');
-let API_URL = localStorage.getItem('api_url') || '';
+const JSON_ESTATICO = '/datos_radar.json';
+let API_URL = localStorage.getItem('api_url') || JSON_ESTATICO;
 let D = {}; // datos globales
 let HORIZON = 'd2'; // horizonte seleccionado
 
@@ -1293,24 +1325,65 @@ async function loadData() {
   const btn = document.getElementById('btn-refresh');
   btn.disabled = true; document.getElementById('btn-txt').textContent = 'Cargando...';
   document.getElementById('live-dot').style.background = 'var(--am)';
-
   try {
-    if (API_URL) {
-      const r = await Promise.race([fetch(API_URL), new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 25000))]);
-      if (!r.ok) throw new Error('API ' + r.status);
-      D = await r.json();
-    } else {
-      D = buildDemo();
-    }
+    const r = await Promise.race([
+      fetch(API_URL),
+      new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 25000))
+    ]);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    D = await r.json();
   } catch (e) {
-    console.warn('API error, using demo:', e.message);
+    console.warn('JSON error, using demo:', e.message);
     D = buildDemo();
   }
-
   renderAll();
   document.getElementById('last-upd').textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-ES') + (D.version?.includes('demo') ? ' · MODO DEMO' : '');
   document.getElementById('live-dot').style.background = 'var(--gr)';
   btn.disabled = false; document.getElementById('btn-txt').textContent = 'Actualizar';
+}
+
+function renderMRM() {
+  var mrm = D.comparativa_correcciones;
+  var body = document.getElementById('mrm-body');
+  var badge = document.getElementById('mrm-rec-badge');
+  if (!mrm || !mrm.micro_3pct) {
+    body.innerHTML = '<div class="no-data">Fase 4 pendiente</div>';
+    return;
+  }
+  var rec = mrm.recomendacion || '';
+  var recCls = rec.indexOf('MANTENER') >= 0 ? 'mantener' : rec.indexOf('REDUCIR') >= 0 ? 'reducir' : 'monitorear';
+  var recShort = rec.indexOf('MANTENER') >= 0 ? 'MANTENER/ACUMULAR' : rec.indexOf('REDUCIR') >= 0 ? 'REDUCIR EXPOSICION' : 'MONITOREAR';
+  badge.className = 'mrm-rec ' + recCls;
+  badge.textContent = recShort;
+  var scenarios = [
+    {key:'micro_3pct',      label:'Micro-Retraccion (2-3%)',         desc:'Ajuste tecnico saludable',                     colH:'var(--gr)', colL:'rgba(46,204,138,0.3)'},
+    {key:'tecnica_7pct',    label:'Correccion Tecnica (5-7%)',        desc:'Testeo de soportes intermedios',               colH:'#a3e635',   colL:'rgba(163,230,53,0.3)'},
+    {key:'macro_15pct',     label:'Correccion Macro/Geo (10-15%)',    desc:'Aranceles, DXY fuerte, geopolitica',           colH:'var(--am)', colL:'rgba(240,165,0,0.3)'},
+    {key:'bajista_25pct',   label:'Mercado Bajista Ciclico (20-25%)', desc:'Drenaje severo de liquidez - como 2022',       colH:'#f97316',   colL:'rgba(249,115,22,0.3)'},
+    {key:'cisne_negro_30pct',label:'Cisne Negro / Colapso (+30%)',    desc:'Punto Com 2000 / Crisis 2008 / COVID 2020',    colH:'var(--rd)', colL:'rgba(255,94,94,0.3)'}
+  ];
+  var dom = mrm.escenario_dominante;
+  var html = '';
+  for (var i = 0; i < scenarios.length; i++) {
+    var sc = scenarios[i];
+    var val = mrm[sc.key] || 0;
+    var col = val > 65 ? sc.colH : val > 40 ? sc.colL : 'var(--s4)';
+    var domTag = sc.key === dom ? '<span style="font-family:monospace;font-size:9px;padding:1px 6px;border-radius:100px;background:var(--ac2);border:1px solid var(--acb);color:var(--ac);margin-left:6px">DOM</span>' : '';
+    html += '<div class="mrm-scenario">';
+    html += '<div class="mrm-sc-header"><div class="mrm-sc-label">' + sc.label + domTag + '</div><div class="mrm-sc-pct" style="color:' + col + '">' + val + '%</div></div>';
+    html += '<div style="font-family:monospace;font-size:9px;color:var(--t4);margin-bottom:5px">' + sc.desc + '</div>';
+    html += '<div class="mrm-bar-track"><div class="mrm-bar-fill" data-w="' + val + '" style="width:0%;background:' + col + '"></div></div>';
+    html += '</div>';
+  }
+  html += '<div class="mrm-detalle">' + (mrm.detalle || '') + '</div>';
+  html += '<div class="mrm-conf">Confianza: ' + (mrm.confianza || 0) + '% - MRM v4 - ' + (mrm.ts_calculo || '').slice(0,10) + '</div>';
+  body.innerHTML = html;
+  setTimeout(function() {
+    var fills = body.querySelectorAll('.mrm-bar-fill');
+    for (var j = 0; j < fills.length; j++) {
+      fills[j].style.width = fills[j].getAttribute('data-w') + '%';
+    }
+  }, 150);
 }
 
 function renderAll() {
@@ -1318,6 +1391,7 @@ function renderAll() {
   renderSignalHero();
   renderHorGrid();
   renderScoreComponents();
+  renderMRM();
   renderCOT();
   renderOI();
   renderGEX();
