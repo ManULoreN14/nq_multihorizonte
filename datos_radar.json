@@ -1,0 +1,424 @@
+{
+  "version": "1.0-fase1",
+  "ts": "2026-05-23T08:12:19.879083",
+  "precio": {
+    "ndx": 29481.6406,
+    "qqq": 717.54,
+    "spy": 745.64,
+    "vix": 16.7,
+    "vxn": 22.82,
+    "dxy": 99.32,
+    "tnx": 4.558,
+    "tlt": 84.68,
+    "gld": 413.82
+  },
+  "tecnicos": {
+    "label": "NDX",
+    "d": {
+      "precio": 29481.6406,
+      "rsi14": 71.0937,
+      "rsi5": 68.9894,
+      "macd": {
+        "line": 835.7363,
+        "signal": 892.164,
+        "hist": -56.4278
+      },
+      "stoch": {
+        "k": 89.25,
+        "d": 85.65
+      },
+      "bb": {
+        "upper": 30302.6407,
+        "mid": 28557.8429,
+        "lower": 26813.045,
+        "width": 12.22,
+        "pct": 76.47
+      },
+      "ema8": 29183.5788,
+      "ema13": 28929.7097,
+      "ema21": 28442.1409,
+      "ema50": 27156.3811,
+      "ema100": 26214.7502,
+      "ema200": 25131.3303,
+      "sma20": 28557.8429,
+      "sma50": 26390.1999,
+      "sma200": 25258.3315,
+      "atr14": 471.173,
+      "obv": 1798594250000.0,
+      "roc5": 1.224,
+      "roc10": 0.844,
+      "roc20": 7.977,
+      "volRatio5": 1.047
+    },
+    "w": {
+      "rsi14": 74.4227,
+      "macd": {
+        "line": 1118.3898,
+        "signal": 636.4193,
+        "hist": 481.9705
+      },
+      "stoch": {
+        "k": 97.12,
+        "d": 96.34
+      },
+      "bb": {
+        "upper": 29514.6431,
+        "mid": 25848.9684,
+        "lower": 22183.2936,
+        "width": 28.36,
+        "pct": 99.55
+      },
+      "ema13": 26958.2076,
+      "ema26": 25961.43,
+      "ema52": 24675.8577,
+      "roc4": 7.977,
+      "roc8": 27.445
+    },
+    "m": {
+      "rsi14": 76.4656,
+      "ema5": 26852.9849,
+      "ema10": 25555.9367,
+      "ema20": 23615.3743,
+      "roc3": 18.115
+    }
+  },
+  "tecnicosQQQ": {
+    "label": "QQQ",
+    "d": {
+      "precio": 717.54,
+      "rsi14": 71.3782,
+      "rsi5": 69.1832,
+      "macd": {
+        "line": 20.4558,
+        "signal": 21.813,
+        "hist": -1.3572
+      },
+      "stoch": {
+        "k": 89.73,
+        "d": 86.3
+      },
+      "bb": {
+        "upper": 737.5554,
+        "mid": 694.912,
+        "lower": 652.2686,
+        "width": 12.27,
+        "pct": 76.53
+      },
+      "ema8": 710.2858,
+      "ema13": 704.0541,
+      "ema21": 692.1182,
+      "ema50": 660.6378,
+      "ema100": 637.4343,
+      "ema200": 610.5609,
+      "sma20": 694.912,
+      "sma50": 642.0147,
+      "sma200": 613.5971,
+      "atr14": 11.4436,
+      "obv": 8791922100.0,
+      "roc5": 1.215,
+      "roc10": 0.887,
+      "roc20": 8.083,
+      "volRatio5": 1.031
+    },
+    "w": {
+      "rsi14": 74.7634,
+      "macd": {
+        "line": 27.5869,
+        "signal": 15.8423,
+        "hist": 11.7445
+      },
+      "stoch": {
+        "k": 97.25,
+        "d": 96.46
+      },
+      "bb": {
+        "upper": 718.0788,
+        "mid": 628.5239,
+        "lower": 538.969,
+        "width": 28.5,
+        "pct": 99.7
+      },
+      "ema13": 655.7401,
+      "ema26": 631.1409,
+      "ema52": 599.2494,
+      "roc4": 8.083,
+      "roc8": 27.545
+    },
+    "m": {
+      "rsi14": 76.8809,
+      "ema5": 653.0265,
+      "ema10": 620.9401,
+      "ema20": 572.81,
+      "roc3": 18.303
+    }
+  },
+  "vixTS": {
+    "spot": 16.7,
+    "vix3m": 20.03,
+    "spread1": 3.33,
+    "spread1Pct": 19.9,
+    "backwardation": false,
+    "vixPercentil": 43,
+    "señal": "bajista",
+    "desc": "Contango elevado — complacencia, vigilar"
+  },
+  "giro": {
+    "d": {
+      "divAlcista": false,
+      "divBajista": true,
+      "fiabilidad": "media"
+    },
+    "w": {
+      "divAlcista": false,
+      "divBajista": false
+    },
+    "bb": {
+      "señal": "neutro",
+      "pct": 76.47,
+      "width": 12.22
+    },
+    "diasConsec": {
+      "dias": 3,
+      "dir": "subiendo",
+      "señal": "normal"
+    },
+    "señalGlobal": "techo"
+  },
+  "flows": {
+    "qqq": {
+      "name": "QQQ",
+      "retorno5d": 1.21,
+      "retorno10d": 0.89,
+      "retorno20d": 8.08,
+      "volRatio": 0.61,
+      "señal": "neutro"
+    },
+    "spy": {
+      "name": "SPY",
+      "retorno5d": 0.88,
+      "retorno10d": 1.09,
+      "retorno20d": 4.44,
+      "volRatio": 0.45,
+      "señal": "neutro"
+    },
+    "tlt": {
+      "name": "TLT",
+      "retorno5d": 1.22,
+      "retorno10d": -1.63,
+      "retorno20d": -1.98,
+      "volRatio": 2.81,
+      "señal": "entradas"
+    },
+    "hyg": {
+      "name": "HYG",
+      "retorno5d": 0.57,
+      "retorno10d": -0.29,
+      "retorno20d": -0.19,
+      "volRatio": 2.44,
+      "señal": "neutro"
+    },
+    "gld": {
+      "name": "GLD",
+      "retorno5d": -0.83,
+      "retorno10d": -4.6,
+      "retorno20d": -4.48,
+      "volRatio": 0.57,
+      "señal": "neutro"
+    },
+    "eem": {
+      "name": "EEM",
+      "retorno5d": 1.24,
+      "retorno10d": -3.03,
+      "retorno20d": 3.36,
+      "volRatio": 0.71,
+      "señal": "neutro"
+    },
+    "iwm": {
+      "name": "IWM",
+      "retorno5d": 2.71,
+      "retorno10d": 0.33,
+      "retorno20d": 3.06,
+      "volRatio": 0.82,
+      "señal": "entradas_mod"
+    },
+    "modo": "neutro"
+  },
+  "liquidez": {
+    "precio": 29481.640625,
+    "atr14": 471.17,
+    "zonasResistencia": [
+      {
+        "nivel": 29678.89,
+        "igualdad": false,
+        "cnt": 1,
+        "reciente": true,
+        "distPct": 0.67
+      }
+    ],
+    "zonasSoporte": [
+      {
+        "nivel": 1760.08,
+        "igualdad": true,
+        "cnt": 7,
+        "reciente": false,
+        "distPct": -94.03
+      },
+      {
+        "nivel": 1770.23,
+        "igualdad": true,
+        "cnt": 6,
+        "reciente": false,
+        "distPct": -94.0
+      },
+      {
+        "nivel": 1676.49,
+        "igualdad": true,
+        "cnt": 5,
+        "reciente": false,
+        "distPct": -94.31
+      },
+      {
+        "nivel": 1943.92,
+        "igualdad": true,
+        "cnt": 5,
+        "reciente": false,
+        "distPct": -93.41
+      },
+      {
+        "nivel": 2288.68,
+        "igualdad": true,
+        "cnt": 5,
+        "reciente": false,
+        "distPct": -92.24
+      },
+      {
+        "nivel": 4281.18,
+        "igualdad": true,
+        "cnt": 5,
+        "reciente": false,
+        "distPct": -85.48
+      }
+    ],
+    "rangosPorHorizonte": {
+      "d2": {
+        "sup": 29246.05,
+        "res": 29717.23
+      },
+      "d5": {
+        "sup": 28916.23,
+        "res": 30047.05
+      },
+      "w1": {
+        "sup": 28539.29,
+        "res": 30423.99
+      },
+      "w2": {
+        "sup": 28068.12,
+        "res": 30895.16
+      },
+      "w3": {
+        "sup": 27596.95,
+        "res": 31366.33
+      },
+      "w4": {
+        "sup": 27125.78,
+        "res": 31837.51
+      }
+    }
+  },
+  "scores": {
+    "componentes": {
+      "tecnico": 0,
+      "macro": 1,
+      "cot": 0,
+      "vix": -0.9,
+      "flujos": 0,
+      "giro": -2
+    },
+    "horizontes": {
+      "d2": {
+        "score": -0.3,
+        "estado": "neutro",
+        "conf": 10,
+        "pesos": "30%T+25%V+15%F+15%Fl+10%G+10%M"
+      },
+      "d5": {
+        "score": -0.2,
+        "estado": "neutro",
+        "conf": 10,
+        "pesos": "25%T+20%V+15%F+15%M+15%Fl+10%G"
+      },
+      "w1": {
+        "score": -0.1,
+        "estado": "neutro",
+        "conf": 10,
+        "pesos": "20%T+20%M+20%C+15%V+15%Fl+10%G"
+      },
+      "w2": {
+        "score": 0.1,
+        "estado": "neutro",
+        "conf": 10,
+        "pesos": "20%T+25%M+25%C+15%Fl+10%V+5%G"
+      },
+      "w3": {
+        "score": 0.1,
+        "estado": "neutro",
+        "conf": 10,
+        "pesos": "15%T+30%M+30%C+12%Fl+8%V+5%G"
+      },
+      "w4": {
+        "score": 0.2,
+        "estado": "neutro",
+        "conf": 10,
+        "pesos": "10%T+35%M+35%C+10%Fl+5%V+5%G"
+      }
+    }
+  },
+  "cot": {
+    "error": "pendiente_fase3",
+    "señal": "neutro",
+    "desc": "COT se integrará en Fase 3",
+    "largos": null,
+    "cortos": null,
+    "neto": null,
+    "pctLargo": null,
+    "cambioNeto": null,
+    "trend4w": null,
+    "señalDealers": "neutro"
+  },
+  "opciones": {
+    "error": "pendiente_fase3",
+    "gex": {
+      "estado": "neutro",
+      "valor": 0,
+      "trampa": false,
+      "desc": "GEX se calculará en Fase 3"
+    }
+  },
+  "pcr": {
+    "error": "pendiente_fase3",
+    "equity": null,
+    "total": null,
+    "señal": "neutro",
+    "desc": "PCR (CBOE) se integrará en Fase 3"
+  },
+  "macro": {
+    "error": "pendiente_fase2",
+    "curva": {
+      "t3m": 0.456,
+      "t10y": 0.456
+    },
+    "score": 1,
+    "desc": "Macro completo (FRED) se integrará en Fase 2"
+  },
+  "comparativa_correcciones": {
+    "micro_3pct": null,
+    "tecnica_7pct": null,
+    "macro_15pct": null,
+    "bajista_25pct": null,
+    "cisne_negro_30pct": null,
+    "recomendacion": "PENDIENTE_FASE4"
+  },
+  "fase_activa": 1,
+  "proximas_fases": "Fase2=FRED+macro | Fase3=Derivados+COT | Fase4=MarketRegimeMatching"
+}
