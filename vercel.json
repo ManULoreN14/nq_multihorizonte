@@ -1,5 +1,15 @@
 {
   "version": 2,
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/nq-multihor.html"
+    },
+    {
+      "src": "/datos_radar.json",
+      "dest": "/datos_radar.json"
+    }
+  ],
   "headers": [
     {
       "source": "/datos_radar.json",
