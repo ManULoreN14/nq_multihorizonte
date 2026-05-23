@@ -1,6 +1,6 @@
 {
-  "version": "3.0-fase3",
-  "ts": "2026-05-23T13:43:30.883563",
+  "version": "4.0-fase4",
+  "ts": "2026-05-23T17:33:25.157863",
   "precio": {
     "ndx": 29481.6406,
     "qqq": 717.54,
@@ -972,13 +972,18 @@
     "fuente_alternativa": "https://finance.yahoo.com/quote/QQQ/options/"
   },
   "comparativa_correcciones": {
-    "micro_3pct": null,
-    "tecnica_7pct": null,
-    "macro_15pct": null,
-    "bajista_25pct": null,
-    "cisne_negro_30pct": null,
-    "recomendacion": "PENDIENTE_FASE4"
+    "micro_3pct": 0,
+    "tecnica_7pct": 0,
+    "macro_15pct": 0,
+    "bajista_25pct": 0,
+    "cisne_negro_30pct": 0,
+    "escenario_dominante": "indeterminado",
+    "recomendacion": "MONITOREAR SOPORTES",
+    "confianza": 0,
+    "detalle": "Datos insuficientes para análisis de régimen",
+    "fuente": "market_regime_matching_v4",
+    "error": "assignment destination is read-only"
   },
-  "fase_activa": 3,
-  "proximas_fases": "Fase4=MarketRegimeMatching | Fase5=Amplitud+Kelly | Fase6=IntegracionFinal"
+  "fase_activa": 4,
+  "proximas_fases": "Fase5=Amplitud+Kelly | Fase6=IntegracionFinal"
 }
