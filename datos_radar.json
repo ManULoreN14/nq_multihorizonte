@@ -1,6 +1,6 @@
 {
   "version": "3.0-fase3",
-  "ts": "2026-05-23T13:17:59.244331",
+  "ts": "2026-05-23T13:36:02.987393",
   "precio": {
     "ndx": 29481.6406,
     "qqq": 717.54,
@@ -432,25 +432,25 @@
       "tecnico": 0,
       "macro": 2.5,
       "cot": 0.0,
-      "vix": 0.3,
+      "vix": 0.8,
       "flujos": 0.0,
       "giro": -2.0
     },
     "horizontes": {
       "d2": {
-        "score": 0.1,
+        "score": 0.2,
         "estado": "neutro",
         "conf": 10,
         "pesos": "30%T+25%V+15%F+15%Fl+10%G+10%M"
       },
       "d5": {
-        "score": 0.2,
+        "score": 0.3,
         "estado": "neutro",
         "conf": 10,
         "pesos": "25%T+20%V+15%F+15%M+15%Fl+10%G"
       },
       "w1": {
-        "score": 0.3,
+        "score": 0.4,
         "estado": "neutro",
         "conf": 10,
         "pesos": "20%T+20%M+20%C+15%V+15%Fl+10%G"
@@ -476,9 +476,10 @@
     }
   },
   "cot": {
-    "error": "ambas_fuentes_fallaron",
+    "error": "todas_fuentes_fallaron",
+    "fuente_verificacion": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm",
     "señal": "neutro",
-    "desc": "COT no disponible",
+    "desc": "COT no disponible — verificar manualmente",
     "largos": null,
     "cortos": null,
     "neto": null,
@@ -929,11 +930,17 @@
     "fuente": "yahoo_options"
   },
   "pcr": {
-    "error": "403 Client Error: Forbidden for url: https://cdn.cboe.com/api/global/us_indices/daily_prices/PC_STATS.csv",
     "equity": null,
-    "total": null,
-    "señal": "neutro",
-    "desc": "PCR CBOE no disponible: 403 Client Error: Forbidden for url: https://cdn.cboe.com/api/global/us_indices/daily_prices/PC_STATS.csv"
+    "index": null,
+    "total": 1.641,
+    "trend": null,
+    "historial": [],
+    "señal": "alcista_contrario",
+    "desc": "PCR=1.641 — miedo extremo, señal contraria alcista (QQQ only — proxy Nasdaq, ligero sesgo large-cap tech)",
+    "fuente": "yahoo_qqq_options",
+    "sesgo": "(QQQ only — proxy Nasdaq, ligero sesgo large-cap tech)",
+    "fuente_verificacion": "https://www.cboe.com/data/volatility-and-put-call-ratio-data/",
+    "fuente_alternativa": "https://finance.yahoo.com/quote/QQQ/options/"
   },
   "comparativa_correcciones": {
     "micro_3pct": null,
