@@ -1,6 +1,6 @@
 {
   "version": "5.0-fase5",
-  "ts": "2026-05-24T09:34:55.788113",
+  "ts": "2026-05-24T09:41:02.588491",
   "precio": {
     "ndx": 29481.6426,
     "qqq": 717.54,
@@ -435,41 +435,41 @@
       "vix": 0.8,
       "flujos": 0.0,
       "giro": -2.0,
-      "amplitud": -1.0
+      "amplitud": 0.5
     },
     "horizontes": {
       "d2": {
-        "score": 0.0,
+        "score": 0.1,
         "estado": "neutro",
         "conf": 10,
         "pesos": "28%T+23%V+13%F+10%G+10%M+10%C+6%A"
       },
       "d5": {
-        "score": 0.0,
+        "score": 0.1,
         "estado": "neutro",
         "conf": 10,
         "pesos": "23%T+18%V+14%M+14%C+13%F+9%G+9%A"
       },
       "w1": {
-        "score": 0.0,
+        "score": 0.2,
         "estado": "neutro",
         "conf": 10,
         "pesos": "19%M+19%C+18%T+14%V+13%F+9%G+8%A"
       },
       "w2": {
-        "score": 0.1,
+        "score": 0.2,
         "estado": "neutro",
         "conf": 10,
         "pesos": "23%M+23%C+18%T+13%F+9%A+9%V+5%G"
       },
       "w3": {
-        "score": 0.2,
+        "score": 0.3,
         "estado": "neutro",
         "conf": 10,
         "pesos": "28%M+28%C+13%T+11%F+8%A+7%V+5%G"
       },
       "w4": {
-        "score": 0.2,
+        "score": 0.3,
         "estado": "neutro",
         "conf": 10,
         "pesos": "32%M+32%C+10%A+9%F+8%T+5%G+4%V"
@@ -983,12 +983,12 @@
     "confianza": 5,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (84% similitud). Contexto: VIX=16.7, RSI=71. Confianza del sistema: 5%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-05-24T09:34:55.646376"
+    "ts_calculo": "2026-05-24T09:41:02.443917"
   },
   "amplitud_mercado": {
-    "ratio_cobre_oro": null,
-    "tendencia_cobre_oro": "neutro",
-    "señal_cobre_oro": "neutro",
+    "ratio_cobre_oro": 0.015326,
+    "tendencia_cobre_oro": "up",
+    "señal_cobre_oro": "risk_on",
     "zscore_qqq_sma200": 1.487,
     "señal_zscore": "normal",
     "sesgo_estacional": -1,
@@ -996,7 +996,7 @@
     "factor_exposicion_recomendado": 0.3598,
     "kelly_bruto": 0.3422,
     "vix_scalar": 1.1976,
-    "score_amplitud": -1.0,
+    "score_amplitud": 0.5,
     "fuente": "fase5_amplitud_v5",
     "error": null
   },
