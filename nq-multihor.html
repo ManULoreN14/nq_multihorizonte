@@ -6,6 +6,9 @@
 <meta name="theme-color" content="#080810">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <title>NQ Radar · Multi-Horizonte 2D→4W</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -127,7 +130,7 @@ input,textarea,button{font-family:inherit}
 .ind-bar-fill{height:100%;border-radius:2px;transition:width .8s}
 
 /* ── SCORE BREAKDOWN ── */
-.score-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .score-box{background:var(--s2);border:1px solid var(--b1);border-radius:var(--r-sm);padding:10px 8px;text-align:center}
 .sb-val{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;line-height:1}
 .sb-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;margin-top:3px}
@@ -292,6 +295,30 @@ input,textarea,button{font-family:inherit}
 .mrm-detalle{margin-top:12px;padding:10px 12px;background:var(--s2);border-radius:var(--r-sm);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);line-height:1.7;border-left:2px solid var(--b2)}
 .mrm-conf{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t4);margin-top:8px;text-align:right}
 
+/* ── ALERT BANNER FASE 6 ── */
+.alert-banner{margin:10px 20px 0;padding:10px 12px;background:var(--rd2);border:1px solid var(--rdb);border-radius:var(--r-md);display:flex;align-items:flex-start;gap:10px;animation:fadeUp .3s ease}
+.alert-banner.hidden{display:none}
+.alert-banner-body{flex:1;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rd);line-height:1.6}
+.alert-banner-body a{color:var(--am);text-decoration:underline;text-underline-offset:2px}
+.alert-banner-close{background:none;border:none;color:var(--rd);font-size:16px;cursor:pointer;padding:0 4px;flex-shrink:0;line-height:1}
+.alert-banner-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+
+/* ── AMPLITUD DE MERCADO FASE 6 ── */
+.amp-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.amp-box{background:var(--s2);border:1px solid var(--b1);border-radius:var(--r-sm);padding:10px 10px 8px}
+.amp-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.amp-val{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:700;line-height:1}
+.amp-sub{font-family:'JetBrains Mono',monospace;font-size:9px;margin-top:3px}
+.zscore-track{height:8px;background:var(--s3);border-radius:4px;margin:8px 0 4px;position:relative}
+.zscore-fill{height:100%;border-radius:4px;position:absolute;transition:width .8s,left .8s}
+.zscore-mid{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--b3)}
+.zscore-labels{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t4)}
+.kelly-track{height:10px;background:var(--s3);border-radius:5px;overflow:hidden;margin:6px 0 4px}
+.kelly-fill{height:100%;border-radius:5px;transition:width .8s}
+
+/* ── VERSION FOOTER ── */
+.version-footer{text-align:center;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t4);padding:10px 0 4px;letter-spacing:.1em}
+
 </style>
 </head>
 <body>
@@ -334,6 +361,13 @@ input,textarea,button{font-family:inherit}
     </button>
   </div>
   <div class="last-upd" id="last-upd">—</div>
+
+  <!-- BANNER ALERTAS FASE 6 -->
+  <div class="alert-banner hidden" id="alert-banner">
+    <div class="alert-banner-icon">&#9888;</div>
+    <div class="alert-banner-body" id="alert-banner-body">Modulo con error detectado.</div>
+    <button class="alert-banner-close" onclick="document.getElementById('alert-banner').classList.add('hidden')">&#215;</button>
+  </div>
 
   <!-- TAB PAGES -->
   <!-- PAGE 1: SEÑALES -->
@@ -630,7 +664,28 @@ input,textarea,button{font-family:inherit}
       </div>
     </div>
 
+    <!-- AMPLITUD DE MERCADO FASE 6 -->
+    <div class="section">
+      <div class="section-title">&#128200; Amplitud de Mercado + Kelly Sizing</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">&#127919;</div>
+          <div class="card-info">
+            <div class="card-title">Cobre/Oro · Z-Score QQQ · Estacional · Kelly</div>
+            <div class="card-sub">Fase 5 · Amplitud + Gestion de Riesgo</div>
+          </div>
+          <div class="badge" id="amp-badge">—</div>
+        </div>
+        <div class="card-body">
+          <div id="amp-content"><div class="no-data">Cargando amplitud...</div></div>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /page-tecnico -->
+
+  <!-- VERSION FOOTER -->
+  <div class="version-footer" id="version-footer">v5.0-fase5</div>
 
   <!-- TABBAR -->
   <nav class="tabbar">
@@ -828,7 +883,8 @@ function renderScoreComponents() {
     { k: 'cot', l: 'COT' , max: 3 },
     { k: 'vix', l: 'VIX/Opciones', max: 5 },
     { k: 'flujos', l: 'Flujos', max: 5 },
-    { k: 'giro', l: 'Giro', max: 2 }
+    { k: 'giro', l: 'Giro', max: 2 },
+    { k: 'amplitud', l: 'Amplitud', max: 3 }
   ];
   document.getElementById('score-components').innerHTML = items.map(it => {
     const v = comp[it.k] ?? 0;
@@ -1386,6 +1442,173 @@ function renderMRM() {
   }, 150);
 }
 
+
+// ══════════════════════════════════════════════════════════
+// FASE 6 — AMPLITUD DE MERCADO
+// ══════════════════════════════════════════════════════════
+function renderAmplitud() {
+  try {
+    var amp = D.amplitud_mercado;
+    var badge = document.getElementById('amp-badge');
+    var container = document.getElementById('amp-content');
+    if (!amp || !container) return;
+
+    if (amp.error && amp.error !== 'no_ejecutado') {
+      if (badge) { badge.className = 'badge r'; badge.textContent = 'ERROR'; }
+      container.innerHTML = '<div class="no-data">Amplitud no disponible: ' + (amp.error || '') + '</div>';
+      return;
+    }
+
+    // Señal global amplitud
+    var sa = amp.score_amplitud || 0;
+    var fe = amp.factor_exposicion_recomendado || 1.0;
+    var signalCls = sa > 1 ? 'g' : sa < -1 ? 'r' : 'a';
+    var signalTxt = sa > 1 ? 'RISK ON' : sa < -1 ? 'RISK OFF' : 'NEUTRO';
+    if (badge) { badge.className = 'badge ' + signalCls; badge.textContent = signalTxt; }
+
+    // Cobre/Oro
+    var cuOro = amp.ratio_cobre_oro != null ? amp.ratio_cobre_oro.toFixed(4) : '--';
+    var cuTend = amp.tendencia_cobre_oro || 'neutro';
+    var cuSenal = amp.señal_cobre_oro || 'neutro';
+    var cuCol = cuSenal === 'risk_on' ? 'var(--gr)' : cuSenal === 'risk_off' ? 'var(--rd)' : 'var(--am)';
+    var cuLabel = cuSenal === 'risk_on' ? 'RISK-ON' : cuSenal === 'risk_off' ? 'RISK-OFF' : 'NEUTRO';
+    var cuArrow = cuTend === 'up' ? ' &#9650;' : cuTend === 'down' ? ' &#9660;' : '';
+
+    // Z-Score QQQ vs SMA200
+    var zs = amp.zscore_qqq_sma200;
+    var zsStr = zs != null ? zs.toFixed(3) : '--';
+    var zsSenal = amp.señal_zscore || 'normal';
+    var zsCol = zsSenal === 'sobreextendido' ? 'var(--rd)' : zsSenal === 'elevado' ? 'var(--am)' : zsSenal === 'deprimido' || zsSenal === 'sobreventa' ? 'var(--gr)' : 'var(--t2)';
+    var zsDescMap = {sobreextendido: 'Sobreextendido', elevado: 'Elevado', normal: 'Normal', deprimido: 'Deprimido', sobreventa: 'Sobreventa'};
+    var zsDesc = zsDescMap[zsSenal] || zsSenal;
+    // Barra Z-Score de -3 a +3
+    var zsNum = zs != null ? Math.max(-3, Math.min(3, zs)) : 0;
+    var zsW = Math.abs(zsNum) / 3 * 50;
+    var zsLeft = zsNum >= 0 ? 50 : (50 - zsW);
+
+    // Estacional
+    var estVal = amp.sesgo_estacional != null ? amp.sesgo_estacional : 0;
+    var estDesc = amp.descripcion_estacional || 'Sin datos estacionales';
+    var estCol = estVal > 0 ? 'var(--gr)' : estVal < 0 ? 'var(--rd)' : 'var(--am)';
+    var estSign = estVal > 0 ? '+' : '';
+
+    // Kelly
+    var kelly = amp.kelly_bruto != null ? amp.kelly_bruto.toFixed(3) : '--';
+    var vixSc = amp.vix_scalar != null ? amp.vix_scalar.toFixed(3) : '--';
+    var feW = Math.min(100, Math.max(0, fe / 1.5 * 100));
+    var feCol = fe >= 1.0 ? 'var(--gr)' : fe >= 0.5 ? 'var(--am)' : 'var(--rd)';
+
+    var html = '';
+    html += '<div class="amp-grid">';
+
+    // Cobre/Oro
+    html += '<div class="amp-box">';
+    html += '<div class="amp-lbl">Ratio Cobre / Oro</div>';
+    html += '<div class="amp-val" style="color:' + cuCol + '">' + cuOro + cuArrow + '</div>';
+    html += '<div class="amp-sub" style="color:' + cuCol + '">' + cuLabel + '</div>';
+    html += '</div>';
+
+    // Estacional
+    html += '<div class="amp-box">';
+    html += '<div class="amp-lbl">Sesgo Estacional</div>';
+    html += '<div class="amp-val" style="color:' + estCol + '">' + estSign + estVal + '</div>';
+    html += '<div class="amp-sub" style="color:var(--t3);font-size:8px;line-height:1.3">' + estDesc.substring(0, 40) + '</div>';
+    html += '</div>';
+
+    html += '</div>'; // amp-grid
+
+    // Z-Score row
+    html += '<div style="margin-bottom:10px">';
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">';
+    html += '<div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t2);font-weight:700">Z-Score QQQ vs SMA200</div>';
+    html += '<div style="font-family:JetBrains Mono,monospace;font-size:13px;font-weight:700;color:' + zsCol + '">' + zsStr + ' <span style="font-size:10px">' + zsDesc + '</span></div>';
+    html += '</div>';
+    html += '<div class="zscore-track">';
+    html += '<div class="zscore-mid"></div>';
+    html += '<div class="zscore-fill" style="width:' + zsW + '%;left:' + zsLeft + '%;background:' + zsCol + '"></div>';
+    html += '</div>';
+    html += '<div class="zscore-labels"><span>-3</span><span>-2</span><span>-1</span><span>0</span><span>+1</span><span>+2</span><span>+3</span></div>';
+    html += '</div>';
+
+    // Kelly row
+    html += '<div class="divider"></div>';
+    html += '<div style="margin-top:10px">';
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px">';
+    html += '<div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t2);font-weight:700">Factor Exposicion Kelly</div>';
+    html += '<div style="font-family:JetBrains Mono,monospace;font-size:14px;font-weight:700;color:' + feCol + '">' + fe.toFixed(3) + 'x</div>';
+    html += '</div>';
+    html += '<div class="kelly-track"><div class="kelly-fill" style="width:' + feW + '%;background:' + feCol + '"></div></div>';
+    html += '<div style="font-family:JetBrains Mono,monospace;font-size:9px;color:var(--t3);display:flex;gap:16px">';
+    html += '<span>Kelly bruto: ' + kelly + '</span><span>VIX scalar: ' + vixSc + '</span>';
+    html += '<span>Score amplitud: ' + (sa >= 0 ? '+' : '') + sa + '</span>';
+    html += '</div>';
+    html += '</div>';
+
+    container.innerHTML = html;
+  } catch(e) {
+    console.warn('renderAmplitud error:', e);
+  }
+}
+
+// ══════════════════════════════════════════════════════════
+// FASE 6 — BANNER DE ALERTAS
+// ══════════════════════════════════════════════════════════
+var FUENTES_OFICIALES = {
+  cot: 'https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm',
+  pcr: 'https://www.cboe.com/data/volatility-and-put-call-ratio-data/',
+  fred: 'https://fred.stlouisfed.org',
+  opciones: 'https://finance.yahoo.com/quote/QQQ/options',
+  vix: 'https://www.cboe.com/tradable_products/vix/'
+};
+
+function checkAlertas() {
+  try {
+    var errores = [];
+    var modulos = {
+      'COT': D.cot,
+      'PCR': D.pcr,
+      'FRED': D.macro && D.macro.fred ? D.macro.fred : null,
+      'Opciones': D.opciones,
+      'VIX TS': D.vixTS,
+      'Amplitud': D.amplitud_mercado
+    };
+    var fuente_keys = { 'COT': 'cot', 'PCR': 'pcr', 'FRED': 'fred', 'Opciones': 'opciones', 'VIX TS': 'vix', 'Amplitud': '' };
+
+    for (var nombre in modulos) {
+      var mod = modulos[nombre];
+      if (!mod) {
+        errores.push({ nombre: nombre, url: FUENTES_OFICIALES[fuente_keys[nombre]] || '' });
+      } else if (mod.error && mod.error !== 'no_ejecutado') {
+        errores.push({ nombre: nombre, url: FUENTES_OFICIALES[fuente_keys[nombre]] || '' });
+      }
+    }
+
+    var banner = document.getElementById('alert-banner');
+    var body = document.getElementById('alert-banner-body');
+    if (!banner || !body) return;
+
+    if (errores.length === 0) {
+      banner.classList.add('hidden');
+      return;
+    }
+
+    banner.classList.remove('hidden');
+    var html = '';
+    html += '<strong>Modulos con error:</strong> ';
+    var parts = [];
+    for (var i = 0; i < errores.length; i++) {
+      var e = errores[i];
+      var link = e.url ? ' <a href="' + e.url + '" target="_blank" rel="noopener">[verificar]</a>' : '';
+      parts.push('<strong>' + e.nombre + '</strong>' + link);
+    }
+    html += parts.join(', ');
+    html += '<br><span style="color:var(--t3)">Los datos mostrados pueden ser parciales. Verifica las fuentes oficiales.</span>';
+    body.innerHTML = html;
+  } catch(e2) {
+    console.warn('checkAlertas error:', e2);
+  }
+}
+
 function renderAll() {
   buildHorTabs();
   renderSignalHero();
@@ -1403,6 +1626,12 @@ function renderAll() {
   renderGiro();
   renderTecnicos();
   renderLiquidez();
+  try { renderAmplitud(); } catch(e) { console.warn('renderAmplitud:', e); }
+  try { checkAlertas(); } catch(e) { console.warn('checkAlertas:', e); }
+  try {
+    var vf = document.getElementById('version-footer');
+    if (vf && D.version) vf.textContent = 'v' + D.version;
+  } catch(e2) {}
 }
 
 // ══════════════════════════════════════════════════════════
