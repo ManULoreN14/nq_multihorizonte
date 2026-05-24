@@ -1,6 +1,6 @@
 {
-  "version": "5.0-fase5",
-  "ts": "2026-05-24T09:41:02.588491",
+  "version": "6.0-fase6",
+  "ts": "2026-05-24T11:01:27.794012",
   "precio": {
     "ndx": 29481.6426,
     "qqq": 717.54,
@@ -983,10 +983,10 @@
     "confianza": 5,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (84% similitud). Contexto: VIX=16.7, RSI=71. Confianza del sistema: 5%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-05-24T09:41:02.443917"
+    "ts_calculo": "2026-05-24T11:01:27.621377"
   },
   "amplitud_mercado": {
-    "ratio_cobre_oro": 0.015326,
+    "ratio_cobre_oro": 0.015415,
     "tendencia_cobre_oro": "up",
     "señal_cobre_oro": "risk_on",
     "zscore_qqq_sma200": 1.487,
@@ -1000,6 +1000,6 @@
     "fuente": "fase5_amplitud_v5",
     "error": null
   },
-  "fase_activa": 5,
-  "proximas_fases": "Fase6=IntegracionFinalHTML+Alertas"
+  "fase_activa": 6,
+  "proximas_fases": "Fase7=AlertasEmailNivel2+OverridesUI"
 }
