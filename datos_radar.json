@@ -1,85 +1,85 @@
 {
-  "version": "4.0-fase4",
-  "ts": "2026-05-23T17:36:30.116818",
+  "version": "5.0-fase5",
+  "ts": "2026-05-24T09:34:55.788113",
   "precio": {
-    "ndx": 29481.6406,
+    "ndx": 29481.6426,
     "qqq": 717.54,
     "spy": 745.64,
     "vix": 16.7,
     "vxn": 22.82,
-    "dxy": 99.32,
+    "dxy": 99.319,
     "tnx": 4.558,
     "tlt": 84.68,
     "gld": 413.82,
-    "oro": null
+    "oro": 4523.2002
   },
   "tecnicos": {
     "label": "NDX",
     "d": {
-      "precio": 29481.6406,
-      "rsi14": 71.0937,
-      "rsi5": 68.9894,
+      "precio": 29481.6426,
+      "rsi14": 71.0938,
+      "rsi5": 68.9895,
       "macd": {
-        "line": 835.7363,
-        "signal": 892.164,
-        "hist": -56.4278
+        "line": 835.7364,
+        "signal": 892.1641,
+        "hist": -56.4276
       },
       "stoch": {
         "k": 89.25,
         "d": 85.65
       },
       "bb": {
-        "upper": 30302.6407,
-        "mid": 28557.8429,
-        "lower": 26813.045,
+        "upper": 30302.6411,
+        "mid": 28557.843,
+        "lower": 26813.0449,
         "width": 12.22,
         "pct": 76.47
       },
-      "ema8": 29183.5788,
-      "ema13": 28929.7097,
-      "ema21": 28442.1409,
-      "ema50": 27156.3811,
+      "ema8": 29183.5792,
+      "ema13": 28929.71,
+      "ema21": 28442.1411,
+      "ema50": 27156.3812,
       "ema100": 26214.7502,
-      "ema200": 25131.3303,
-      "sma20": 28557.8429,
-      "sma50": 26390.1999,
+      "ema200": 25131.3304,
+      "sma20": 28557.843,
+      "sma50": 26390.2,
       "sma200": 25258.3315,
       "atr14": 471.173,
-      "obv": 1798594250000.0,
+      "obv": 1790431823000.0,
       "roc5": 1.224,
       "roc10": 0.844,
       "roc20": 7.977,
-      "volRatio5": 1.047
+      "volRatio5": 0.907
     },
     "w": {
       "rsi14": 74.4227,
       "macd": {
-        "line": 1118.3898,
+        "line": 1118.3899,
         "signal": 636.4193,
-        "hist": 481.9705
+        "hist": 481.9706
       },
       "stoch": {
         "k": 97.12,
         "d": 96.34
       },
       "bb": {
-        "upper": 29514.6431,
-        "mid": 25848.9684,
-        "lower": 22183.2936,
+        "upper": 29514.6436,
+        "mid": 25848.9685,
+        "lower": 22183.2933,
         "width": 28.36,
         "pct": 99.55
       },
-      "ema13": 26958.2076,
-      "ema26": 25961.43,
-      "ema52": 24675.8577,
+      "ema13": 26958.2079,
+      "ema26": 25961.4302,
+      "ema52": 24675.8578,
       "roc4": 7.977,
       "roc8": 27.445
     },
     "m": {
       "rsi14": 76.4656,
-      "ema5": 26852.9849,
-      "ema10": 25555.9367,
-      "ema20": 23615.3743,
+      "ema5": 26852.9856,
+      "ema10": 25555.937,
+      "ema20": 23615.3745,
       "roc3": 18.115
     }
   },
@@ -115,11 +115,11 @@
       "sma50": 642.0147,
       "sma200": 613.5971,
       "atr14": 11.4436,
-      "obv": 8791922100.0,
+      "obv": 8789522140.0,
       "roc5": 1.215,
       "roc10": 0.887,
       "roc20": 8.083,
-      "volRatio5": 1.031
+      "volRatio5": 1.022
     },
     "w": {
       "rsi14": 74.7634,
@@ -191,7 +191,7 @@
       "retorno5d": 1.21,
       "retorno10d": 0.89,
       "retorno20d": 8.08,
-      "volRatio": 0.61,
+      "volRatio": 0.6,
       "señal": "neutro"
     },
     "spy": {
@@ -199,7 +199,7 @@
       "retorno5d": 0.88,
       "retorno10d": 1.09,
       "retorno20d": 4.44,
-      "volRatio": 0.45,
+      "volRatio": 0.44,
       "señal": "neutro"
     },
     "tlt": {
@@ -215,7 +215,7 @@
       "retorno5d": 0.57,
       "retorno10d": -0.29,
       "retorno20d": -0.19,
-      "volRatio": 2.44,
+      "volRatio": 2.39,
       "señal": "neutro"
     },
     "gld": {
@@ -231,7 +231,7 @@
       "retorno5d": 1.24,
       "retorno10d": -3.03,
       "retorno20d": 3.36,
-      "volRatio": 0.71,
+      "volRatio": 0.7,
       "señal": "neutro"
     },
     "iwm": {
@@ -239,13 +239,13 @@
       "retorno5d": 2.71,
       "retorno10d": 0.33,
       "retorno20d": 3.06,
-      "volRatio": 0.82,
+      "volRatio": 0.81,
       "señal": "entradas_mod"
     },
     "modo": "neutro"
   },
   "liquidez": {
-    "precio": 29481.640625,
+    "precio": 29481.642578125,
     "atr14": 471.17,
     "zonasResistencia": [
       {
@@ -302,7 +302,7 @@
     ],
     "rangosPorHorizonte": {
       "d2": {
-        "sup": 29246.05,
+        "sup": 29246.06,
         "res": 29717.23
       },
       "d5": {
@@ -310,7 +310,7 @@
         "res": 30047.05
       },
       "w1": {
-        "sup": 28539.29,
+        "sup": 28539.3,
         "res": 30423.99
       },
       "w2": {
@@ -417,7 +417,7 @@
       "señal": "drenaje_liquidez",
       "alerta": true,
       "desc": "⚠️ Tipos reales elevados (2.18%) — DRENAJE DE LIQUIDEZ, coste oportunidad alto para QQQ",
-      "oroPrice": 413.82
+      "oroPrice": 4523.2002
     },
     "dxy": {
       "corr30d": -0.586,
@@ -434,44 +434,45 @@
       "cot": -1.5,
       "vix": 0.8,
       "flujos": 0.0,
-      "giro": -2.0
+      "giro": -2.0,
+      "amplitud": -1.0
     },
     "horizontes": {
       "d2": {
-        "score": 0.1,
+        "score": 0.0,
         "estado": "neutro",
         "conf": 10,
-        "pesos": "30%T+25%V+15%F+15%Fl+10%G+10%M"
+        "pesos": "28%T+23%V+13%F+10%G+10%M+10%C+6%A"
       },
       "d5": {
-        "score": 0.1,
+        "score": 0.0,
         "estado": "neutro",
         "conf": 10,
-        "pesos": "25%T+20%V+15%F+15%M+15%Fl+10%G"
+        "pesos": "23%T+18%V+14%M+14%C+13%F+9%G+9%A"
       },
       "w1": {
+        "score": 0.0,
+        "estado": "neutro",
+        "conf": 10,
+        "pesos": "19%M+19%C+18%T+14%V+13%F+9%G+8%A"
+      },
+      "w2": {
         "score": 0.1,
         "estado": "neutro",
         "conf": 10,
-        "pesos": "20%T+20%M+20%C+15%V+15%Fl+10%G"
+        "pesos": "23%M+23%C+18%T+13%F+9%A+9%V+5%G"
       },
-      "w2": {
+      "w3": {
         "score": 0.2,
         "estado": "neutro",
         "conf": 10,
-        "pesos": "20%T+25%M+25%C+15%Fl+10%V+5%G"
-      },
-      "w3": {
-        "score": 0.3,
-        "estado": "neutro",
-        "conf": 10,
-        "pesos": "15%T+30%M+30%C+12%Fl+8%V+5%G"
+        "pesos": "28%M+28%C+13%T+11%F+8%A+7%V+5%G"
       },
       "w4": {
-        "score": 0.3,
+        "score": 0.2,
         "estado": "neutro",
         "conf": 10,
-        "pesos": "10%T+35%M+35%C+10%Fl+5%V+5%G"
+        "pesos": "32%M+32%C+10%A+9%F+8%T+5%G+4%V"
       }
     }
   },
@@ -982,8 +983,23 @@
     "confianza": 5,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (84% similitud). Contexto: VIX=16.7, RSI=71. Confianza del sistema: 5%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-05-23T17:36:30.114273"
+    "ts_calculo": "2026-05-24T09:34:55.646376"
   },
-  "fase_activa": 4,
-  "proximas_fases": "Fase5=Amplitud+Kelly | Fase6=IntegracionFinal"
+  "amplitud_mercado": {
+    "ratio_cobre_oro": null,
+    "tendencia_cobre_oro": "neutro",
+    "señal_cobre_oro": "neutro",
+    "zscore_qqq_sma200": 1.487,
+    "señal_zscore": "normal",
+    "sesgo_estacional": -1,
+    "descripcion_estacional": "Sell in May (-1): inicio periodo estacionalmente debil",
+    "factor_exposicion_recomendado": 0.3598,
+    "kelly_bruto": 0.3422,
+    "vix_scalar": 1.1976,
+    "score_amplitud": -1.0,
+    "fuente": "fase5_amplitud_v5",
+    "error": null
+  },
+  "fase_activa": 5,
+  "proximas_fases": "Fase6=IntegracionFinalHTML+Alertas"
 }
