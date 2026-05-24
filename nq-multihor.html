@@ -9,7 +9,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>NQ Radar · Multi-Horizonte 2D→4W</title>
+<title>NQ Radar v7 · Multi-Horizonte 2D→4W</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -30,7 +30,7 @@ body{background:var(--bg);color:var(--t1);font-family:'Syne',sans-serif;min-heig
 input,textarea,button{font-family:inherit}
 .mono{font-family:'JetBrains Mono',monospace}
 
-/* ── SPLASH ── */
+/* SPLASH */
 #splash{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .6s,transform .6s}
 #splash.out{opacity:0;transform:scale(1.04);pointer-events:none}
 .splash-ring{width:80px;height:80px;border-radius:50%;border:1.5px solid var(--b2);display:flex;align-items:center;justify-content:center;margin-bottom:24px;position:relative}
@@ -43,10 +43,10 @@ input,textarea,button{font-family:inherit}
 .splash-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--ac),var(--cy));animation:loadBar 1.6s cubic-bezier(.4,0,.2,1) forwards}
 @keyframes loadBar{to{width:100%}}
 
-/* ── APP ── */
+/* APP */
 #app{display:none;padding-bottom:80px}
 
-/* ── HEADER ── */
+/* HEADER */
 .app-header{padding:16px 20px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .header-brand{display:flex;flex-direction:column;gap:2px}
 .brand-name{font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;letter-spacing:-1px}
@@ -57,9 +57,16 @@ input,textarea,button{font-family:inherit}
 .btn-refresh:disabled{opacity:.4;cursor:not-allowed}
 .refresh-dot{width:6px;height:6px;border-radius:50%;background:var(--gr);box-shadow:0 0 6px var(--gr);animation:pulse 2s ease infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-.last-upd{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t4);margin:6px 20px 0}
+.last-upd{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t4);margin:6px 20px 0;display:flex;align-items:center;gap:8px}
 
-/* ── HORIZONTE TABS ── */
+/* B2 FRESHNESS DOT */
+.freshness-dot{width:7px;height:7px;border-radius:50%;display:inline-block;flex-shrink:0}
+.freshness-dot.fresh{background:var(--gr);box-shadow:0 0 5px var(--gr)}
+.freshness-dot.stale{background:var(--am);box-shadow:0 0 5px var(--am)}
+.freshness-dot.old{background:var(--rd);box-shadow:0 0 5px var(--rd)}
+.freshness-txt{font-family:'JetBrains Mono',monospace;font-size:10px}
+
+/* HORIZONTE TABS */
 .hor-tabs{display:flex;gap:6px;padding:14px 20px 0;overflow-x:auto;scrollbar-width:none}
 .hor-tabs::-webkit-scrollbar{display:none}
 .hor-tab{flex-shrink:0;padding:7px 14px;border-radius:100px;background:var(--s2);border:1px solid var(--b2);color:var(--t3);font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s}
@@ -68,7 +75,7 @@ input,textarea,button{font-family:inherit}
 .hor-tab.a{background:var(--am2);border-color:var(--amb);color:var(--am)}
 .hor-tab.r{background:var(--rd2);border-color:var(--rdb);color:var(--rd)}
 
-/* ── SIGNAL HERO ── */
+/* SIGNAL HERO */
 .signal-hero{margin:14px 20px 0;padding:20px;background:var(--s1);border:1px solid var(--b2);border-radius:var(--r-xl);position:relative;overflow:hidden}
 .signal-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(139,127,255,.06),transparent 70%);pointer-events:none}
 .sh-row{display:flex;align-items:center;gap:16px}
@@ -84,7 +91,7 @@ input,textarea,button{font-family:inherit}
 .shl-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase}
 .shl-val{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:600}
 
-/* ── HORIZONTE GRID ── */
+/* HORIZONTE GRID */
 .hor-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:14px 20px 0}
 @media(min-width:600px){.hor-grid{grid-template-columns:repeat(3,1fr)}}
 .hor-card{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r-lg);padding:13px;cursor:pointer;transition:border-color .15s}
@@ -98,11 +105,10 @@ input,textarea,button{font-family:inherit}
 .hc-bar{height:3px;background:var(--s3);border-radius:2px;margin-top:8px;overflow:hidden}
 .hc-bar-fill{height:100%;border-radius:2px;transition:width .8s ease}
 
-/* ── SECCIÓN CARDS ── */
+/* SECCION CARDS */
 .section{margin:14px 20px 0}
 .section-title{font-size:11px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.15em;margin-bottom:10px;display:flex;align-items:center;gap:8px}
 .section-title::after{content:'';flex:1;height:1px;background:var(--b1)}
-
 .card{background:var(--s1);border:1px solid var(--b2);border-radius:var(--r-lg);overflow:hidden;margin-bottom:10px}
 .card-header{display:flex;align-items:center;gap:10px;padding:13px 14px 10px;border-bottom:1px solid var(--b1)}
 .card-icon{font-size:18px;flex-shrink:0}
@@ -118,7 +124,7 @@ input,textarea,button{font-family:inherit}
 .card-body{padding:13px 14px}
 .card-explain{font-size:11px;color:var(--t3);line-height:1.6;margin-bottom:10px}
 
-/* ── INDICADOR ROW ── */
+/* INDICADOR ROW */
 .ind-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--b1)}
 .ind-row:last-child{border-bottom:none}
 .ind-left{flex:1}
@@ -129,27 +135,27 @@ input,textarea,button{font-family:inherit}
 .ind-bar{height:3px;background:var(--s3);border-radius:2px;margin-top:4px;overflow:hidden}
 .ind-bar-fill{height:100%;border-radius:2px;transition:width .8s}
 
-/* ── SCORE BREAKDOWN ── */
+/* SCORE BREAKDOWN */
 .score-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .score-box{background:var(--s2);border:1px solid var(--b1);border-radius:var(--r-sm);padding:10px 8px;text-align:center}
 .sb-val{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:700;line-height:1}
 .sb-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;margin-top:3px}
 
-/* ── COT BARS ── */
+/* COT BARS */
 .cot-bar-wrap{margin:8px 0;display:flex;align-items:center;gap:8px}
 .cot-bar-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);width:56px;text-align:right;flex-shrink:0}
 .cot-track{flex:1;height:10px;background:var(--s3);border-radius:5px;overflow:hidden}
 .cot-fill{height:100%;border-radius:5px;transition:width .8s}
 .cot-pct{font-family:'JetBrains Mono',monospace;font-size:10px;min-width:40px}
 
-/* ── VIX TERM BARS ── */
+/* VIX TERM BARS */
 .vts-bars{display:flex;align-items:flex-end;gap:6px;height:52px;margin-bottom:8px}
 .vts-bar{flex:1;border-radius:3px 3px 0 0;min-height:4px;transition:height .4s}
 .vts-labels{display:flex;gap:6px;margin-bottom:10px}
 .vts-label{flex:1;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-align:center}
 .vts-val{font-family:'JetBrains Mono',monospace;font-size:9px;text-align:center;font-weight:600}
 
-/* ── OI STRIKES ── */
+/* OI STRIKES */
 .oi-row{display:flex;align-items:center;gap:8px;margin-bottom:5px}
 .oi-lbl{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t2);min-width:56px;text-align:right}
 .oi-bar-wrap{flex:1;height:16px;display:flex;gap:2px}
@@ -157,7 +163,7 @@ input,textarea,button{font-family:inherit}
 .oi-bar-p{height:100%;background:var(--rd);border-radius:3px;min-width:2px}
 .oi-oi{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);min-width:44px;text-align:right}
 
-/* ── FLUJOS ROW ── */
+/* FLUJOS ROW */
 .flow-row{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--b1)}
 .flow-row:last-child{border-bottom:none}
 .flow-name{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t2);width:40px;flex-shrink:0}
@@ -165,7 +171,7 @@ input,textarea,button{font-family:inherit}
 .flow-fill{height:100%;position:absolute;border-radius:3px;transition:width .6s,left .6s}
 .flow-pct{font-family:'JetBrains Mono',monospace;font-size:11px;min-width:56px;text-align:right}
 
-/* ── LIQUIDEZ MAP ── */
+/* LIQUIDEZ MAP */
 .liq-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--b1)}
 .liq-row:last-child{border-bottom:none}
 .liq-nivel{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;min-width:72px}
@@ -176,20 +182,20 @@ input,textarea,button{font-family:inherit}
 .liq-fuerza.alta{background:var(--ac2);border-color:var(--acb);color:var(--ac)}
 .precio-line{padding:7px 0;display:flex;align-items:center;gap:10px;border-top:1px dashed var(--b2);border-bottom:1px dashed var(--b2);margin:4px 0}
 
-/* ── MACRO GRID ── */
+/* MACRO GRID */
 .macro-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
 .macro-box{background:var(--s2);border:1px solid var(--b1);border-radius:var(--r-sm);padding:10px}
 .mb-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;margin-bottom:4px}
 .mb-val{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;line-height:1}
 .mb-trend{font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:2px}
 
-/* ── CURVA TIPOS ── */
+/* CURVA TIPOS */
 .curva-bars{display:flex;align-items:flex-end;gap:5px;height:60px;margin:8px 0 4px}
 .curva-bar{flex:1;border-radius:3px 3px 0 0;min-height:4px;transition:height .6s}
 .curva-ticks{display:flex;gap:5px}
 .curva-tick{flex:1;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-align:center}
 
-/* ── GIRO INDICATOR ── */
+/* GIRO INDICATOR */
 .giro-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--b1)}
 .giro-row:last-child{border-bottom:none}
 .giro-icon{font-size:18px;flex-shrink:0;width:28px;text-align:center}
@@ -198,7 +204,7 @@ input,textarea,button{font-family:inherit}
 .giro-desc{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-top:2px;line-height:1.4}
 .giro-badge{flex-shrink:0}
 
-/* ── IA PANEL ── */
+/* IA PANEL */
 .ia-panel{margin:14px 20px 0;background:var(--s1);border:1px solid var(--acb);border-radius:var(--r-xl);overflow:hidden;position:relative}
 .ia-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--ac),var(--cy),var(--gr),var(--ac));background-size:200% 100%;animation:iaGrad 3s linear infinite}
 @keyframes iaGrad{to{background-position:-200% 0}}
@@ -217,7 +223,7 @@ input,textarea,button{font-family:inherit}
 .ia-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:24px;text-align:center;color:var(--t3);font-size:12px}
 .ia-ph-icon{font-size:28px;opacity:.3}
 
-/* ── TABBAR ── */
+/* TABBAR */
 .tabbar{position:fixed;bottom:0;left:0;right:0;height:62px;background:rgba(8,8,16,.95);backdrop-filter:blur(24px);border-top:1px solid var(--b2);display:flex;align-items:flex-start;z-index:500}
 .tab{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;height:62px;background:none;border:none;color:var(--t4);cursor:pointer;font-size:9px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;transition:color .2s;position:relative}
 .tab.active{color:var(--ac)}
@@ -225,18 +231,18 @@ input,textarea,button{font-family:inherit}
 .tab-dot{position:absolute;top:0;left:50%;transform:translateX(-50%);width:20px;height:2px;background:var(--ac);border-radius:0 0 2px 2px;opacity:0;transition:opacity .2s}
 .tab.active .tab-dot{opacity:1}
 
-/* ── TAB PAGES ── */
+/* TAB PAGES */
 .page{display:none;animation:fadeUp .25s ease}
 .page.active{display:block}
 @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── UTIL ── */
+/* UTIL */
 .c-gr{color:var(--gr)}.c-am{color:var(--am)}.c-rd{color:var(--rd)}.c-ac{color:var(--ac)}.c-bl{color:var(--bl)}.c-t2{color:var(--t2)}.c-t3{color:var(--t3)}
 .fw7{font-weight:700}
 .divider{height:1px;background:var(--b1);margin:10px 0}
 .no-data{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t4);padding:12px 0;text-align:center}
 
-/* ── API URL CONFIG ── */
+/* CONFIG MODAL */
 .cfg-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
 .cfg-modal.open{display:flex}
 .cfg-box{background:var(--s1);border:1px solid var(--b3);border-radius:var(--r-xl);padding:22px;width:100%;max-width:480px}
@@ -251,7 +257,7 @@ input,textarea,button{font-family:inherit}
 
 @media(min-width:768px){#app{max-width:800px;margin:0 auto}.tabbar{max-width:800px;left:50%;transform:translateX(-50%)}}
 
-/* ── FUENTES VERIFICABLES ── */
+/* B3 FUENTES VERIFICABLES */
 .fuente-bar{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-top:12px;padding:8px 10px;background:var(--s2);border:1px solid var(--b1);border-radius:var(--r-sm)}
 .fuente-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t4);text-transform:uppercase;letter-spacing:.08em;flex-shrink:0}
 .fuente-links{display:flex;gap:8px;flex-wrap:wrap}
@@ -261,7 +267,7 @@ input,textarea,button{font-family:inherit}
 .fuente-link.warn:hover{background:var(--am);color:#000}
 .sesgo-badge{font-family:'JetBrains Mono',monospace;font-size:9px;padding:2px 7px;border-radius:100px;background:var(--am2);border:1px solid var(--amb);color:var(--am)}
 
-/* ── EDICION MANUAL DE VALORES ── */
+/* B1 EDICION MANUAL */
 .edit-panel{margin-top:10px;padding:10px;background:var(--s2);border:1px solid var(--b2);border-radius:var(--r-sm)}
 .edit-panel-title{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;display:flex;align-items:center;gap:6px}
 .edit-panel-title::before{content:'✏️';font-size:10px}
@@ -276,7 +282,7 @@ input,textarea,button{font-family:inherit}
 .edit-applied{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gr);margin-left:4px;opacity:0;transition:opacity .3s}
 .edit-applied.show{opacity:1}
 
-/* ── FASE 4: MARKET REGIME MATCHING ── */
+/* FASE 4 MARKET REGIME MATCHING */
 .mrm-card{margin:14px 20px 0;background:var(--s1);border:1px solid var(--b2);border-radius:var(--r-xl);overflow:hidden}
 .mrm-header{padding:14px 16px 10px;border-bottom:1px solid var(--b1);display:flex;align-items:center;gap:10px}
 .mrm-title{flex:1;font-size:13px;font-weight:700}
@@ -295,7 +301,7 @@ input,textarea,button{font-family:inherit}
 .mrm-detalle{margin-top:12px;padding:10px 12px;background:var(--s2);border-radius:var(--r-sm);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);line-height:1.7;border-left:2px solid var(--b2)}
 .mrm-conf{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t4);margin-top:8px;text-align:right}
 
-/* ── ALERT BANNER FASE 6 ── */
+/* ALERT BANNER */
 .alert-banner{margin:10px 20px 0;padding:10px 12px;background:var(--rd2);border:1px solid var(--rdb);border-radius:var(--r-md);display:flex;align-items:flex-start;gap:10px;animation:fadeUp .3s ease}
 .alert-banner.hidden{display:none}
 .alert-banner-body{flex:1;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rd);line-height:1.6}
@@ -303,7 +309,7 @@ input,textarea,button{font-family:inherit}
 .alert-banner-close{background:none;border:none;color:var(--rd);font-size:16px;cursor:pointer;padding:0 4px;flex-shrink:0;line-height:1}
 .alert-banner-icon{font-size:16px;flex-shrink:0;margin-top:1px}
 
-/* ── AMPLITUD DE MERCADO FASE 6 ── */
+/* AMPLITUD FASE 5 */
 .amp-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
 .amp-box{background:var(--s2);border:1px solid var(--b1);border-radius:var(--r-sm);padding:10px 10px 8px}
 .amp-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
@@ -316,9 +322,35 @@ input,textarea,button{font-family:inherit}
 .kelly-track{height:10px;background:var(--s3);border-radius:5px;overflow:hidden;margin:6px 0 4px}
 .kelly-fill{height:100%;border-radius:5px;transition:width .8s}
 
-/* ── VERSION FOOTER ── */
+/* VERSION FOOTER */
 .version-footer{text-align:center;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t4);padding:10px 0 4px;letter-spacing:.1em}
 
+/* B4 DERIVADOS AVANZADOS */
+.deriv-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+.deriv-box{background:var(--s2);border:1px solid var(--b1);border-radius:var(--r-sm);padding:10px 9px;text-align:center}
+.deriv-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.deriv-val{font-family:'JetBrains Mono',monospace;font-size:17px;font-weight:700;line-height:1}
+.deriv-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);margin-top:3px;line-height:1.3}
+
+/* B5 CTA TRIGGER LEVELS */
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.cta-box{background:var(--s2);border:1px solid var(--b1);border-radius:var(--r-sm);padding:10px}
+.cta-lbl{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);text-transform:uppercase;margin-bottom:4px}
+.cta-val{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700}
+.cta-dist{font-family:'JetBrains Mono',monospace;font-size:10px;margin-top:2px}
+
+/* B6 BREADTH NDX100 */
+.breadth-bar-wrap{display:flex;align-items:center;gap:8px;margin:8px 0}
+.breadth-track{flex:1;height:10px;background:var(--s3);border-radius:5px;overflow:hidden}
+.breadth-fill{height:100%;border-radius:5px;transition:width .8s}
+.breadth-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);width:56px;text-align:right;flex-shrink:0}
+
+/* B8 SEC INSIDERS */
+.insider-ratio{display:flex;align-items:center;gap:12px;padding:10px 0}
+.ins-buy{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:var(--gr)}
+.ins-vs{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t4)}
+.ins-sell{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:var(--rd)}
+.ins-ratio-val{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;margin-left:auto}
 </style>
 </head>
 <body>
@@ -329,16 +361,16 @@ input,textarea,button{font-family:inherit}
     <span style="font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;color:var(--ac)">NQ</span>
   </div>
   <div class="splash-logo">NQ <em>Radar</em></div>
-  <div class="splash-tag">Multi-Horizonte · 2D → 4W</div>
+  <div class="splash-tag">v7 · Multi-Horizonte 2D → 4W</div>
   <div class="splash-progress"><div class="splash-bar"></div></div>
 </div>
 
 <!-- CONFIG MODAL -->
 <div class="cfg-modal" id="cfg-modal">
   <div class="cfg-box">
-    <div class="cfg-title">⚙️ Configurar API</div>
-    <div class="cfg-sub">Introduce la URL de tu API Vercel. Formato:<br><code style="color:var(--ac);font-size:11px">https://TU-PROYECTO.vercel.app/api/datos-multihor</code><br><br>Si aún no tienes la API desplegada, los datos se generarán en modo demo.</div>
-    <input class="cfg-input mono" id="api-url-input" placeholder="https://tu-proyecto.vercel.app/api/datos-multihor">
+    <div class="cfg-title">Configurar URL del JSON</div>
+    <div class="cfg-sub">Introduce la URL de tu <code style="color:var(--ac);font-size:11px">datos_radar.json</code> estático en Vercel.<br>Ejemplo: <code style="color:var(--ac);font-size:11px">https://tu-proyecto.vercel.app/datos_radar.json</code></div>
+    <input class="cfg-input mono" id="api-url-input" placeholder="https://tu-proyecto.vercel.app/datos_radar.json">
     <div class="cfg-btns">
       <button class="cfg-btn cancel" onclick="closeCfg()">Cancelar</button>
       <button class="cfg-btn save" onclick="saveCfg()">Guardar y recargar</button>
@@ -360,23 +392,23 @@ input,textarea,button{font-family:inherit}
       <span id="btn-txt">Actualizar</span>
     </button>
   </div>
-  <div class="last-upd" id="last-upd">—</div>
+  <!-- B2 FRESCURA + TIMESTAMP -->
+  <div class="last-upd" id="last-upd">
+    <span class="freshness-dot stale" id="freshness-dot"></span>
+    <span class="freshness-txt" id="freshness-txt">—</span>
+  </div>
 
-  <!-- BANNER ALERTAS FASE 6 -->
+  <!-- BANNER ALERTAS -->
   <div class="alert-banner hidden" id="alert-banner">
     <div class="alert-banner-icon">&#9888;</div>
     <div class="alert-banner-body" id="alert-banner-body">Modulo con error detectado.</div>
     <button class="alert-banner-close" onclick="document.getElementById('alert-banner').classList.add('hidden')">&#215;</button>
   </div>
 
-  <!-- TAB PAGES -->
   <!-- PAGE 1: SEÑALES -->
   <div class="page active" id="page-senales">
-
-    <!-- HORIZONTE SELECTOR -->
     <div class="hor-tabs" id="hor-tabs"></div>
 
-    <!-- SIGNAL HERO -->
     <div class="signal-hero" id="signal-hero">
       <div class="sh-row">
         <div class="sh-score" id="sh-score">
@@ -386,16 +418,14 @@ input,textarea,button{font-family:inherit}
         <div class="sh-right">
           <div class="sh-estado" id="sh-estado">Cargando...</div>
           <div class="sh-conf" id="sh-conf">Confianza —%</div>
-          <div class="sh-desc" id="sh-desc">Inicializando el sistema de análisis multi-horizonte...</div>
+          <div class="sh-desc" id="sh-desc">Inicializando...</div>
         </div>
       </div>
       <div class="sh-levels" id="sh-levels"></div>
     </div>
 
-    <!-- GRID 6 HORIZONTES -->
     <div class="hor-grid" id="hor-grid"></div>
 
-    <!-- SCORE COMPONENTS -->
     <div class="section">
       <div class="section-title">Componentes del Score</div>
       <div class="card">
@@ -413,9 +443,7 @@ input,textarea,button{font-family:inherit}
         <div class="mrm-title">Market Regime Matching · Crisis Fingerprint</div>
         <div class="mrm-rec monitorear" id="mrm-rec-badge">—</div>
       </div>
-      <div class="mrm-body" id="mrm-body">
-        <div class="no-data">Cargando...</div>
-      </div>
+      <div class="mrm-body" id="mrm-body"><div class="no-data">Cargando...</div></div>
     </div>
 
     <!-- IA PANEL -->
@@ -433,8 +461,7 @@ input,textarea,button{font-family:inherit}
         <div class="ia-placeholder"><div class="ia-ph-icon">🧠</div><div>Pulsa <strong style="color:var(--ac)">Generar</strong> para análisis institucional completo con señales 2D→4W y niveles exactos.</div></div>
       </div>
     </div>
-
-  </div><!-- /page-senales -->
+  </div>
 
   <!-- PAGE 2: INSTITUCIONAL -->
   <div class="page" id="page-inst">
@@ -452,20 +479,17 @@ input,textarea,button{font-family:inherit}
           <div class="badge" id="cot-badge">—</div>
         </div>
         <div class="card-body">
-          <div class="card-explain">Posiciones de <strong>Large Speculators</strong> (fondos hedge, institucionales) en futuros Nasdaq Mini (E-mini NQ). <br>Indicador contrario: exceso de largos = techo próximo · exceso de cortos = suelo próximo.</div>
+          <div class="card-explain">Posiciones de <strong>Large Speculators</strong> en futuros Nasdaq Mini. Indicador contrario: exceso de largos = techo · exceso de cortos = suelo.</div>
           <div id="cot-content"><div class="no-data">Cargando datos CFTC...</div></div>
-          <!-- FUENTES COT -->
           <div class="fuente-bar">
             <span class="fuente-label">Verificar fuente</span>
             <div class="fuente-links">
               <a class="fuente-link" href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm" target="_blank" rel="noopener">CFTC Oficial</a>
-              <a class="fuente-link" href="https://www.cftc.gov/files/dea/history/fut_disagg_txtonly_2026.zip" target="_blank" rel="noopener">ZIP Datos 2026</a>
-              <a class="fuente-link warn" href="https://barchart.com/futures/commitment-of-traders/NQ" target="_blank" rel="noopener">Barchart (visual)</a>
+              <a class="fuente-link warn" href="https://barchart.com/futures/commitment-of-traders/NQ" target="_blank" rel="noopener">Barchart Visual</a>
             </div>
           </div>
-          <!-- EDICION MANUAL COT -->
-          <div class="edit-panel" id="cot-edit-panel">
-            <div class="edit-panel-title">Corrección manual de datos COT</div>
+          <div class="edit-panel">
+            <div class="edit-panel-title">Corrección manual</div>
             <div class="edit-row">
               <span class="edit-lbl">% Largos specs</span>
               <input class="edit-input" id="edit-cot-pctlargo" type="number" step="0.1" min="0" max="100" placeholder="ej: 68.5">
@@ -485,6 +509,32 @@ input,textarea,button{font-family:inherit}
       </div>
     </div>
 
+    <!-- B8 SEC INSIDERS -->
+    <div class="section">
+      <div class="section-title">🔍 SEC Insiders — Form 4 Big Tech</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🏢</div>
+          <div class="card-info">
+            <div class="card-title">Compras vs Ventas de Directivos</div>
+            <div class="card-sub">SEC EDGAR · Form 4 · Últimos 90 días</div>
+          </div>
+          <div class="badge" id="insider-badge">—</div>
+        </div>
+        <div class="card-body">
+          <div class="card-explain">Las compras de insiders (directivos y consejeros) con dinero propio son la señal institucional más fiable. Ratio compras/ventas &gt;0.3 es bullish.</div>
+          <div id="insider-content"><div class="no-data">Cargando insiders...</div></div>
+          <div class="fuente-bar">
+            <span class="fuente-label">Verificar fuente</span>
+            <div class="fuente-links">
+              <a class="fuente-link" href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=4&dateb=&owner=include&count=40" target="_blank" rel="noopener">SEC EDGAR Form 4</a>
+              <a class="fuente-link warn" href="https://openinsider.com/screener?s=&o=&pl=&ph=&ll=&lh=&fd=90&fdr=&td=0&tdr=&fdlyl=&fdlyh=&daysago=&xp=1&xs=1&vl=&vh=&ocl=&och=&sic1=-1&sicl=100&sich=9999&grp=0&nfl=&nfh=&nil=&nih=&nol=&noh=&v2l=&v2h=&oc2l=&oc2h=&sortcol=0&cnt=100&page=1" target="_blank" rel="noopener">OpenInsider</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- OI STRIKES -->
     <div class="section">
       <div class="section-title">📊 Open Interest por Strike — QQQ Options</div>
@@ -498,18 +548,44 @@ input,textarea,button{font-family:inherit}
           <div class="badge" id="oi-badge">—</div>
         </div>
         <div class="card-body">
-          <div class="card-explain">Las concentraciones de <strong>Open Interest</strong> actúan como imanes de precio (gravedad de opciones). El <strong>Max Pain</strong> es el nivel donde expira con mayor pérdida para los compradores — los market makers tienen incentivos para llevar el precio ahí.</div>
+          <div class="card-explain">Las concentraciones de <strong>Open Interest</strong> actúan como imanes de precio. El <strong>Max Pain</strong> es el nivel donde expira con mayor pérdida para compradores de opciones.</div>
           <div id="oi-content"><div class="no-data">Cargando opciones...</div></div>
         </div>
       </div>
     </div>
 
-    <!-- GEX -->
+    <!-- B4 DERIVADOS AVANZADOS -->
+    <div class="section">
+      <div class="section-title">⚡ Derivados Avanzados — GEX Real · SKEW · 0DTE</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🧮</div>
+          <div class="card-info">
+            <div class="card-title">Gamma Exposure Real · Skew Options · 0DTE Ratio</div>
+            <div class="card-sub">Python local · yfinance · CBOE · Fase 7</div>
+          </div>
+          <div class="badge" id="deriv-badge">—</div>
+        </div>
+        <div class="card-body">
+          <div class="card-explain"><strong>GEX Real</strong>: exposición gamma calculada con strikes reales (negativo = amplifica volatilidad). <strong>SKEW</strong>: coste relativo de Puts vs Calls (cobertura de cisne negro). <strong>0DTE</strong>: ratio volumen opciones same-day vs total.</div>
+          <div id="deriv-content"><div class="no-data">Cargando derivados avanzados...</div></div>
+          <div class="fuente-bar">
+            <span class="fuente-label">Verificar fuente</span>
+            <div class="fuente-links">
+              <a class="fuente-link" href="https://finance.yahoo.com/quote/QQQ/options/" target="_blank" rel="noopener">QQQ Options</a>
+              <a class="fuente-link warn" href="https://www.cboe.com/data/volatility-and-put-call-ratio-data/" target="_blank" rel="noopener">CBOE SKEW</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GEX ESTIMADO -->
     <div class="section">
       <div class="section-title">⚡ GEX Estimado + Gamma Flip</div>
       <div class="card">
         <div class="card-body">
-          <div class="card-explain">El <strong>Gamma Exposure (GEX)</strong> mide si los dealers de opciones están comprando caídas (gamma positiva = mercado estable) o amplificando movimientos (gamma negativa = tendencias violentas).</div>
+          <div class="card-explain">El <strong>Gamma Exposure (GEX)</strong> mide si los dealers compran caídas (positivo = estable) o amplifican movimientos (negativo = tendencias violentas).</div>
           <div id="gex-content"><div class="no-data">Cargando...</div></div>
         </div>
       </div>
@@ -522,19 +598,16 @@ input,textarea,button{font-family:inherit}
         <div class="card-body">
           <div class="card-explain">Indicador contrario: PCR alto (&gt;1.2) = miedo extremo → señal alcista contraria. PCR bajo (&lt;0.6) = euforia → señal bajista contraria.</div>
           <div id="pcr-content"><div class="no-data">Cargando PCR...</div></div>
-          <!-- FUENTES PCR -->
           <div class="fuente-bar">
             <span class="fuente-label">Verificar fuente</span>
             <div class="fuente-links">
               <a class="fuente-link" href="https://www.cboe.com/data/volatility-and-put-call-ratio-data/" target="_blank" rel="noopener">CBOE Oficial</a>
               <a class="fuente-link warn" href="https://finance.yahoo.com/quote/QQQ/options/" target="_blank" rel="noopener">Yahoo QQQ Options</a>
-              <a class="fuente-link warn" href="https://markets.cboe.com/us/options/market_statistics/daily/" target="_blank" rel="noopener">CBOE Daily Stats</a>
             </div>
           </div>
           <div id="pcr-sesgo-notice"></div>
-          <!-- EDICION MANUAL PCR -->
           <div class="edit-panel">
-            <div class="edit-panel-title">Corrección manual de datos PCR</div>
+            <div class="edit-panel-title">Corrección manual PCR</div>
             <div class="edit-row">
               <span class="edit-lbl">PCR Total</span>
               <input class="edit-input" id="edit-pcr-total" type="number" step="0.001" min="0" max="5" placeholder="ej: 0.85">
@@ -568,7 +641,7 @@ input,textarea,button{font-family:inherit}
           <div class="badge" id="vts-badge">—</div>
         </div>
         <div class="card-body">
-          <div class="card-explain"><strong>Contango</strong> (VX1 &gt; Spot) = mercado tranquilo. <strong>Backwardation</strong> (VX1 &lt; Spot) = estrés agudo → probable rebote en 2-5 días. Percentil VIX indica nivel histórico.</div>
+          <div class="card-explain"><strong>Contango</strong> (VX1 &gt; Spot) = mercado tranquilo. <strong>Backwardation</strong> (VX1 &lt; Spot) = estrés agudo → probable rebote 2-5 días.</div>
           <div id="vts-content"><div class="no-data">Cargando VIX TS...</div></div>
         </div>
       </div>
@@ -588,6 +661,12 @@ input,textarea,button{font-family:inherit}
         </div>
         <div class="card-body">
           <div id="fred-content"><div class="no-data">Cargando FRED...</div></div>
+          <div class="fuente-bar">
+            <span class="fuente-label">Fuente oficial</span>
+            <div class="fuente-links">
+              <a class="fuente-link" href="https://fred.stlouisfed.org" target="_blank" rel="noopener">FRED St. Louis</a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -597,13 +676,32 @@ input,textarea,button{font-family:inherit}
       <div class="section-title">📐 Curva de Tipos EEUU</div>
       <div class="card">
         <div class="card-body">
-          <div class="card-explain">Curva invertida (2Y &gt; 10Y) ha precedido cada recesión americana en los últimos 50 años. La 10Y-3M es la más fiable históricamente (modelo Fed Cleveland).</div>
+          <div class="card-explain">Curva invertida (2Y &gt; 10Y) ha precedido cada recesión americana. La 10Y-3M es la más fiable históricamente.</div>
           <div id="curva-content"><div class="no-data">Cargando curva...</div></div>
         </div>
       </div>
     </div>
 
-    <!-- ETF FLOWS / RISK MODE -->
+    <!-- B7 PROXY CHINA -->
+    <div class="section">
+      <div class="section-title">🇨🇳 Proxy Liquidez China — SOXX · CNY</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">🔗</div>
+          <div class="card-info">
+            <div class="card-title">Semiconductores · Yuan · Correlacion</div>
+            <div class="card-sub">yfinance · CNY=X · SOXX · Fase 7</div>
+          </div>
+          <div class="badge" id="china-badge">—</div>
+        </div>
+        <div class="card-body">
+          <div class="card-explain">La liquidez china impacta directamente en semiconductores y Big Tech. SOXX↑ + CNY apreciándose = influx de capital asiático bullish para NQ.</div>
+          <div id="china-content"><div class="no-data">Cargando proxy China...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ETF FLOWS -->
     <div class="section">
       <div class="section-title">💸 Flujos ETF + Modo Mercado</div>
       <div class="card">
@@ -646,6 +744,44 @@ input,textarea,button{font-family:inherit}
       </div>
     </div>
 
+    <!-- B5 CTA TRIGGER LEVELS -->
+    <div class="section">
+      <div class="section-title">🤖 CTA Trigger Levels — Algoritmos Sistemáticos</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">⚙️</div>
+          <div class="card-info">
+            <div class="card-title">Donchian 20/50 · Zonas de Forzado CTA</div>
+            <div class="card-sub">Python local · Canales Donchian · Fase 7</div>
+          </div>
+          <div class="badge" id="cta-badge">—</div>
+        </div>
+        <div class="card-body">
+          <div class="card-explain">Los fondos CTA (sistemáticos) compran masivamente en rupturas de canales Donchian y liquidan en roturas a la baja. Estas zonas actúan como <strong>soporte/resistencia algorítmica</strong> de alta probabilidad.</div>
+          <div id="cta-content"><div class="no-data">Cargando CTA levels...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- B6 AMPLITUD NDX-100 -->
+    <div class="section">
+      <div class="section-title">📡 Amplitud NDX-100 · Breadth</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-icon">📡</div>
+          <div class="card-info">
+            <div class="card-title">New Highs/Lows 52W · Net Breadth %</div>
+            <div class="card-sub">Python local · yfinance · Fase 7</div>
+          </div>
+          <div class="badge" id="breadth-badge">—</div>
+        </div>
+        <div class="card-body">
+          <div class="card-explain">Cuando el índice sube pero pocos valores alcanzan máximos de 52 semanas = divergencia de amplitud bearish (distribución oculta). Net Breadth &gt;40% es señal de salud del rally.</div>
+          <div id="breadth-content"><div class="no-data">Cargando amplitud NDX-100...</div></div>
+        </div>
+      </div>
+    </div>
+
     <!-- ZONAS DE LIQUIDEZ -->
     <div class="section">
       <div class="section-title">💧 Zonas de Liquidez · Equal Highs/Lows</div>
@@ -658,21 +794,21 @@ input,textarea,button{font-family:inherit}
           </div>
         </div>
         <div class="card-body">
-          <div class="card-explain">Las <strong>igualdades</strong> (equal highs/lows) son zonas de liquidez acumulada donde los institucionales ejecutan órdenes. Son objetivos de precio de alta probabilidad.</div>
+          <div class="card-explain">Las <strong>igualdades</strong> (equal highs/lows) son zonas de liquidez acumulada donde los institucionales ejecutan órdenes.</div>
           <div id="liq-content"><div class="no-data">Cargando zonas...</div></div>
         </div>
       </div>
     </div>
 
-    <!-- AMPLITUD DE MERCADO FASE 6 -->
+    <!-- AMPLITUD FASE 5 -->
     <div class="section">
-      <div class="section-title">&#128200; Amplitud de Mercado + Kelly Sizing</div>
+      <div class="section-title">📈 Amplitud Avanzada + Kelly Sizing</div>
       <div class="card">
         <div class="card-header">
-          <div class="card-icon">&#127919;</div>
+          <div class="card-icon">🎯</div>
           <div class="card-info">
             <div class="card-title">Cobre/Oro · Z-Score QQQ · Estacional · Kelly</div>
-            <div class="card-sub">Fase 5 · Amplitud + Gestion de Riesgo</div>
+            <div class="card-sub">Fase 5 · Amplitud + Gestión de Riesgo</div>
           </div>
           <div class="badge" id="amp-badge">—</div>
         </div>
@@ -684,8 +820,7 @@ input,textarea,button{font-family:inherit}
 
   </div><!-- /page-tecnico -->
 
-  <!-- VERSION FOOTER -->
-  <div class="version-footer" id="version-footer">v5.0-fase5</div>
+  <div class="version-footer" id="version-footer">v7.0-fase7</div>
 
   <!-- TABBAR -->
   <nav class="tabbar">
@@ -724,37 +859,97 @@ input,textarea,button{font-family:inherit}
 // ══════════════════════════════════════════════════════════
 // CONFIG
 // ══════════════════════════════════════════════════════════
-const DEMO_MODE = !localStorage.getItem('api_url');
-const JSON_ESTATICO = '/datos_radar.json';
-let API_URL = localStorage.getItem('api_url') || JSON_ESTATICO;
-let D = {}; // datos globales
-let HORIZON = 'd2'; // horizonte seleccionado
+var JSON_ESTATICO = '/datos_radar.json';
+var API_URL = localStorage.getItem('api_url') || JSON_ESTATICO;
+var D = {};
+var HORIZON = 'd2';
 
-const HORIZONS = [
+var HORIZONS = [
   { id: 'd2', label: '2 Días', short: '2D' },
   { id: 'd5', label: '5 Días', short: '5D' },
   { id: 'w1', label: '1 Semana', short: '1S' },
   { id: 'w2', label: '2 Semanas', short: '2S' },
   { id: 'w3', label: '3 Semanas', short: '3S' },
-  { id: 'w4', label: '4 Semanas', short: '4S' },
+  { id: 'w4', label: '4 Semanas', short: '4S' }
 ];
 
-const ESTADO_LABELS = {
+var ESTADO_LABELS = {
   alcista: 'ALCISTA', alcista_mod: 'ALCISTA+', bajista: 'BAJISTA', bajista_mod: 'BAJISTA+', neutro: 'NEUTRO'
 };
-const ESTADO_CLASS = {
+var ESTADO_CLASS = {
   alcista: 'gr', alcista_mod: 'gr', bajista: 'rd', bajista_mod: 'rd', neutro: 'am'
 };
+
+// B1 — OVERRIDES GLOBALES EN MEMORIA
+var OVERRIDES = { cot: {}, pcr: {} };
 
 // ══════════════════════════════════════════════════════════
 // UTILS
 // ══════════════════════════════════════════════════════════
-const fmt = (n, d = 0) => n == null || isNaN(n) ? '--' : n.toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d });
-const fmtPct = (n, d = 2) => n == null || isNaN(n) ? '--' : (n >= 0 ? '+' : '') + n.toFixed(d) + '%';
-const fmtK = n => n == null ? '--' : Math.abs(n) >= 1e6 ? (n / 1e6).toFixed(1) + 'M' : Math.abs(n) >= 1e3 ? (n / 1e3).toFixed(1) + 'K' : n.toFixed(0);
-const clr = v => v > 0 ? 'var(--gr)' : v < 0 ? 'var(--rd)' : 'var(--t3)';
-const cls = v => v > 0 ? 'c-gr' : v < 0 ? 'c-rd' : 'c-t3';
-const badgeCls = s => s === 'alcista' || s === 'alcista_mod' ? 'g' : s === 'bajista' || s === 'bajista_mod' ? 'r' : 'a';
+var fmt = function(n, d) {
+  d = d || 0;
+  if (n == null || isNaN(n)) return '--';
+  return n.toLocaleString('es-ES', { minimumFractionDigits: d, maximumFractionDigits: d });
+};
+var fmtPct = function(n, d) {
+  d = d || 2;
+  if (n == null || isNaN(n)) return '--';
+  return (n >= 0 ? '+' : '') + n.toFixed(d) + '%';
+};
+var fmtK = function(n) {
+  if (n == null) return '--';
+  var a = Math.abs(n);
+  if (a >= 1e6) return (n / 1e6).toFixed(1) + 'M';
+  if (a >= 1e3) return (n / 1e3).toFixed(1) + 'K';
+  return n.toFixed(0);
+};
+var clr = function(v) { return v > 0 ? 'var(--gr)' : v < 0 ? 'var(--rd)' : 'var(--t3)'; };
+var cls = function(v) { return v > 0 ? 'c-gr' : v < 0 ? 'c-rd' : 'c-t3'; };
+var badgeCls = function(s) {
+  if (!s) return 'a';
+  if (s === 'alcista' || s === 'alcista_mod') return 'g';
+  if (s === 'bajista' || s === 'bajista_mod') return 'r';
+  return 'a';
+};
+// getVal: lee D con fallback para claves con o sin tilde
+var getVal = function(obj, key) {
+  if (!obj) return undefined;
+  if (obj[key] !== undefined) return obj[key];
+  // tilde fallbacks
+  var map = {
+    senal: 'señal', senalGlobal: 'señalGlobal', senalDealers: 'señalDealers',
+    senalRecesion: 'señalRecesion', señal: 'senal', señalGlobal: 'senalGlobal',
+    señalDealers: 'senalDealers', señalRecesion: 'senalRecesion'
+  };
+  return obj[map[key] || key];
+};
+
+// ══════════════════════════════════════════════════════════
+// B2 — FRESCURA DEL DATO
+// ══════════════════════════════════════════════════════════
+function updateFreshness() {
+  var ts = D.ts;
+  var dot = document.getElementById('freshness-dot');
+  var txt = document.getElementById('freshness-txt');
+  if (!ts || !dot || !txt) return;
+  var ago = (Date.now() - new Date(ts).getTime()) / 3600000;
+  var isDemo = D.version && D.version.indexOf('demo') >= 0;
+  var upd = 'Act: ' + new Date().toLocaleTimeString('es-ES');
+  if (isDemo) { upd += ' · MODO DEMO'; }
+  if (ago < 2) {
+    dot.className = 'freshness-dot fresh';
+    txt.textContent = upd + ' · hace ' + Math.round(ago * 60) + 'min';
+    txt.style.color = 'var(--gr)';
+  } else if (ago < 8) {
+    dot.className = 'freshness-dot stale';
+    txt.textContent = upd + ' · hace ' + Math.round(ago) + 'h';
+    txt.style.color = 'var(--am)';
+  } else {
+    dot.className = 'freshness-dot old';
+    txt.textContent = upd + ' · hace ' + Math.round(ago) + 'h (desactualizado)';
+    txt.style.color = 'var(--rd)';
+  }
+}
 
 // ══════════════════════════════════════════════════════════
 // CONFIG MODAL
@@ -765,7 +960,7 @@ function openCfg() {
 }
 function closeCfg() { document.getElementById('cfg-modal').classList.remove('open'); }
 function saveCfg() {
-  const v = document.getElementById('api-url-input').value.trim();
+  var v = document.getElementById('api-url-input').value.trim();
   if (v) { localStorage.setItem('api_url', v); API_URL = v; }
   closeCfg(); loadData();
 }
@@ -774,22 +969,29 @@ function saveCfg() {
 // TAB NAVIGATION
 // ══════════════════════════════════════════════════════════
 function switchTab(id) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('tab-' + id)?.classList.add('active');
-  document.getElementById('page-' + id)?.classList.add('active');
+  document.querySelectorAll('.tab').forEach(function(t) { t.classList.remove('active'); });
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  var tab = document.getElementById('tab-' + id);
+  var page = document.getElementById('page-' + id);
+  if (tab) tab.classList.add('active');
+  if (page) page.classList.add('active');
 }
 
 // ══════════════════════════════════════════════════════════
 // HORIZON SELECTOR
 // ══════════════════════════════════════════════════════════
 function buildHorTabs() {
-  const container = document.getElementById('hor-tabs');
-  container.innerHTML = HORIZONS.map(h => {
-    const sc = D.scores?.horizontes?.[h.id];
-    const ec = sc ? ESTADO_CLASS[sc.estado] ?? 'n' : 'n';
-    return `<button class="hor-tab ${h.id === HORIZON ? 'active ' + ec : ''}" onclick="selectHorizon('${h.id}')">${h.label}</button>`;
-  }).join('');
+  var container = document.getElementById('hor-tabs');
+  if (!container) return;
+  var html = '';
+  for (var i = 0; i < HORIZONS.length; i++) {
+    var h = HORIZONS[i];
+    var sc = D.scores && D.scores.horizontes ? D.scores.horizontes[h.id] : null;
+    var ec = sc ? (ESTADO_CLASS[sc.estado] || 'n') : 'n';
+    var cls2 = h.id === HORIZON ? 'active ' + ec : '';
+    html += '<button class="hor-tab ' + cls2 + '" onclick="selectHorizon(\'' + h.id + '\')">' + h.label + '</button>';
+  }
+  container.innerHTML = html;
 }
 
 function selectHorizon(id) {
@@ -798,653 +1000,805 @@ function selectHorizon(id) {
   renderSignalHero();
 }
 
-// ══════════════════════════════════════════════════════════
-// RENDER HELPERS
-// ══════════════════════════════════════════════════════════
 function stateColor(estado) {
   if (estado === 'alcista' || estado === 'alcista_mod') return 'var(--gr)';
   if (estado === 'bajista' || estado === 'bajista_mod') return 'var(--rd)';
   return 'var(--am)';
 }
 
+// ══════════════════════════════════════════════════════════
+// SIGNAL HERO
+// ══════════════════════════════════════════════════════════
 function renderSignalHero() {
-  const hs = D.scores?.horizontes;
+  var hs = D.scores && D.scores.horizontes ? D.scores.horizontes : null;
   if (!hs) return;
-  const hd = hs[HORIZON];
+  var hd = hs[HORIZON];
   if (!hd) return;
-  const hor = HORIZONS.find(h => h.id === HORIZON);
-  const sc = hd.score, estado = hd.estado, conf = hd.conf;
-  const col = stateColor(estado);
-  const liq = D.liquidez;
+  var hor = null;
+  for (var i = 0; i < HORIZONS.length; i++) { if (HORIZONS[i].id === HORIZON) { hor = HORIZONS[i]; break; } }
+  var sc = hd.score, estado = hd.estado, conf = hd.conf;
+  var col = stateColor(estado);
+  var liq = D.liquidez;
 
-  const scoreEl = document.getElementById('sh-score');
-  const scoreVal = document.getElementById('sh-score-val');
-  const estadoEl = document.getElementById('sh-estado');
-  const confEl = document.getElementById('sh-conf');
-  const descEl = document.getElementById('sh-desc');
+  var scoreEl = document.getElementById('sh-score');
+  var scoreVal = document.getElementById('sh-score-val');
+  var estadoEl = document.getElementById('sh-estado');
+  var confEl = document.getElementById('sh-conf');
+  var descEl = document.getElementById('sh-desc');
 
-  scoreEl.style.borderColor = col + '80';
-  scoreVal.textContent = (sc >= 0 ? '+' : '') + sc;
-  scoreVal.style.color = col;
-  estadoEl.textContent = ESTADO_LABELS[estado] ?? estado.toUpperCase();
-  estadoEl.style.color = col;
-  confEl.textContent = `Confianza ${conf}% · Horizonte ${hor?.label}`;
+  if (scoreEl) scoreEl.style.borderColor = col + '80';
+  if (scoreVal) { scoreVal.textContent = (sc >= 0 ? '+' : '') + sc; scoreVal.style.color = col; }
+  if (estadoEl) { estadoEl.textContent = ESTADO_LABELS[estado] || estado.toUpperCase(); estadoEl.style.color = col; }
+  if (confEl) confEl.textContent = 'Confianza ' + conf + '% · Horizonte ' + (hor ? hor.label : '');
 
-  // Descripción
-  const descs = {
+  var descs = {
     alcista: 'Confluencia alcista en todos los marcos. Institucionales acumulando. Momentum y macro alineados al alza.',
     alcista_mod: 'Sesgo alcista moderado. Indicadores técnicos y de sentimiento favorables, aunque sin confirmación plena.',
     bajista: 'Señales bajistas dominantes. COT muestra distribución. Evitar posiciones largas sin señal de reversión.',
     bajista_mod: 'Sesgo bajista moderado. Cautela recomendada. Reducir exposición y ajustar stops.',
     neutro: 'Señales mixtas. Sin dirección clara. Esperar ruptura confirmada antes de posicionarse.'
   };
-  descEl.textContent = descs[estado] ?? 'Analizando condiciones...';
+  if (descEl) descEl.textContent = descs[estado] || 'Analizando condiciones...';
 
-  // Niveles (del rango ATR)
-  const rangos = liq?.rangosPorHorizonte?.[HORIZON];
-  const levelsEl = document.getElementById('sh-levels');
-  if (rangos) {
-    levelsEl.innerHTML = `
-      <div class="sh-level"><div class="shl-lbl">Soporte</div><div class="shl-val c-gr">${fmt(rangos.sup)}</div></div>
-      <div class="sh-level"><div class="shl-lbl">Resistencia</div><div class="shl-val c-rd">${fmt(rangos.res)}</div></div>
-      <div class="sh-level"><div class="shl-lbl">Precio NDX</div><div class="shl-val c-ac">${fmt(D.precio?.ndx)}</div></div>
-      <div class="sh-level"><div class="shl-lbl">ATR 14d</div><div class="shl-val c-t2">${fmt(liq?.atr14)}</div></div>
-    `;
+  var rangos = liq && liq.rangosPorHorizonte ? liq.rangosPorHorizonte[HORIZON] : null;
+  var levelsEl = document.getElementById('sh-levels');
+  if (levelsEl && rangos) {
+    levelsEl.innerHTML = '' +
+      '<div class="sh-level"><div class="shl-lbl">Soporte</div><div class="shl-val c-gr">' + fmt(rangos.sup) + '</div></div>' +
+      '<div class="sh-level"><div class="shl-lbl">Resistencia</div><div class="shl-val c-rd">' + fmt(rangos.res) + '</div></div>' +
+      '<div class="sh-level"><div class="shl-lbl">Precio NDX</div><div class="shl-val c-ac">' + fmt(D.precio && D.precio.ndx) + '</div></div>' +
+      '<div class="sh-level"><div class="shl-lbl">ATR 14d</div><div class="shl-val c-t2">' + fmt(liq && liq.atr14) + '</div></div>';
   }
 }
 
 function renderHorGrid() {
-  const hs = D.scores?.horizontes;
+  var hs = D.scores && D.scores.horizontes ? D.scores.horizontes : null;
   if (!hs) return;
-  const grid = document.getElementById('hor-grid');
-  grid.innerHTML = HORIZONS.map(h => {
-    const hd = hs[h.id];
-    if (!hd) return '';
-    const sc = hd.score, estado = hd.estado, conf = hd.conf;
-    const ec = ESTADO_CLASS[estado] ?? 'a';
-    const col = stateColor(estado);
-    const confW = Math.min(100, conf);
-    const sel = HORIZON === h.id ? 'border-color:' + col + ';' : '';
-    return `<div class="hor-card ${ec}" style="${sel}" onclick="selectHorizon('${h.id}')">
-      <div class="hc-horizon">${h.label}</div>
-      <div class="hc-estado" style="color:${col}">${ESTADO_LABELS[estado] ?? estado}</div>
-      <div class="hc-score mono">Score ${(sc>=0?'+':'')+sc} · ${conf}%</div>
-      <div class="hc-bar"><div class="hc-bar-fill" style="width:${confW}%;background:${col}"></div></div>
-    </div>`;
-  }).join('');
+  var grid = document.getElementById('hor-grid');
+  if (!grid) return;
+  var html = '';
+  for (var i = 0; i < HORIZONS.length; i++) {
+    var h = HORIZONS[i];
+    var hd = hs[h.id];
+    if (!hd) continue;
+    var sc2 = hd.score, estado2 = hd.estado, conf2 = hd.conf;
+    var ec = ESTADO_CLASS[estado2] || 'a';
+    var col2 = stateColor(estado2);
+    var confW = Math.min(100, conf2 || 0);
+    var sel = HORIZON === h.id ? 'border-color:' + col2 + ';' : '';
+    html += '<div class="hor-card ' + ec + '" style="' + sel + '" onclick="selectHorizon(\'' + h.id + '\')">';
+    html += '<div class="hc-horizon">' + h.label + '</div>';
+    html += '<div class="hc-estado" style="color:' + col2 + '">' + (ESTADO_LABELS[estado2] || estado2) + '</div>';
+    html += '<div class="hc-score mono">Score ' + (sc2 >= 0 ? '+' : '') + sc2 + ' · ' + conf2 + '%</div>';
+    html += '<div class="hc-bar"><div class="hc-bar-fill" style="width:' + confW + '%;background:' + col2 + '"></div></div>';
+    html += '</div>';
+  }
+  grid.innerHTML = html;
 }
 
 function renderScoreComponents() {
-  const comp = D.scores?.componentes;
+  var comp = D.scores && D.scores.componentes ? D.scores.componentes : null;
   if (!comp) return;
-  const items = [
-    { k: 'tecnico', l: 'Técnico', max: 10 },
-    { k: 'macro', l: 'Macro', max: 8 },
-    { k: 'cot', l: 'COT' , max: 3 },
-    { k: 'vix', l: 'VIX/Opciones', max: 5 },
-    { k: 'flujos', l: 'Flujos', max: 5 },
-    { k: 'giro', l: 'Giro', max: 2 },
-    { k: 'amplitud', l: 'Amplitud', max: 3 }
+  var items = [
+    { k: 'tecnico', l: 'Técnico' },
+    { k: 'macro', l: 'Macro' },
+    { k: 'cot', l: 'COT' },
+    { k: 'vix', l: 'VIX/Opc' },
+    { k: 'flujos', l: 'Flujos' },
+    { k: 'giro', l: 'Giro' },
+    { k: 'amplitud', l: 'Amplitud' },
+    { k: 'breadth', l: 'Breadth' }
   ];
-  document.getElementById('score-components').innerHTML = items.map(it => {
-    const v = comp[it.k] ?? 0;
-    const col = v > 0 ? 'var(--gr)' : v < 0 ? 'var(--rd)' : 'var(--am)';
-    return `<div class="score-box">
-      <div class="sb-val" style="color:${col}">${v >= 0 ? '+' : ''}${v}</div>
-      <div class="sb-lbl">${it.l}</div>
-    </div>`;
-  }).join('');
+  var html = '';
+  for (var i = 0; i < items.length; i++) {
+    var it = items[i];
+    var v = comp[it.k] != null ? comp[it.k] : 0;
+    var col3 = v > 0 ? 'var(--gr)' : v < 0 ? 'var(--rd)' : 'var(--am)';
+    html += '<div class="score-box">';
+    html += '<div class="sb-val" style="color:' + col3 + '">' + (v >= 0 ? '+' : '') + v + '</div>';
+    html += '<div class="sb-lbl">' + it.l + '</div>';
+    html += '</div>';
+  }
+  var el = document.getElementById('score-components');
+  if (el) el.innerHTML = html;
 
-  const hs = D.scores?.horizontes;
+  var hs = D.scores && D.scores.horizontes ? D.scores.horizontes : null;
   if (hs) {
-    const lines = HORIZONS.map(h => {
-      const hd = hs[h.id];
-      if (!hd) return '';
-      return `${h.short}: ${(hd.score>=0?'+':'')+hd.score} (${ESTADO_LABELS[hd.estado]??hd.estado} ${hd.conf}%)`;
-    }).join(' · ');
-    document.getElementById('score-desc-text').textContent = lines;
+    var lines = [];
+    for (var j = 0; j < HORIZONS.length; j++) {
+      var hz = HORIZONS[j];
+      var hd2 = hs[hz.id];
+      if (!hd2) continue;
+      lines.push(hz.short + ': ' + (hd2.score >= 0 ? '+' : '') + hd2.score + ' (' + (ESTADO_LABELS[hd2.estado] || hd2.estado) + ' ' + hd2.conf + '%)');
+    }
+    var el2 = document.getElementById('score-desc-text');
+    if (el2) el2.textContent = lines.join(' · ');
   }
 }
 
-// Overrides manuales
-const OVERRIDES = { cot: {}, pcr: {} };
-
+// ══════════════════════════════════════════════════════════
+// B1 OVERRIDES MANUALES
+// ══════════════════════════════════════════════════════════
 function applyEditCOT() {
-  const pct = parseFloat(document.getElementById('edit-cot-pctlargo').value);
-  const neto = parseFloat(document.getElementById('edit-cot-neto').value);
-  const fecha = document.getElementById('edit-cot-fecha').value;
+  var pct = parseFloat(document.getElementById('edit-cot-pctlargo').value);
+  var neto = parseFloat(document.getElementById('edit-cot-neto').value);
+  var fecha = document.getElementById('edit-cot-fecha').value;
   if (!isNaN(pct))  OVERRIDES.cot.pctLargo = pct;
   if (!isNaN(neto)) OVERRIDES.cot.neto = neto;
   if (fecha)        OVERRIDES.cot.fecha = fecha;
   renderCOT();
-  const ok = document.getElementById('edit-cot-ok');
-  ok.classList.add('show');
-  setTimeout(() => ok.classList.remove('show'), 2000);
+  var ok = document.getElementById('edit-cot-ok');
+  if (ok) { ok.classList.add('show'); setTimeout(function() { ok.classList.remove('show'); }, 2000); }
 }
 
 function applyEditPCR() {
-  const total = parseFloat(document.getElementById('edit-pcr-total').value);
-  const equity = parseFloat(document.getElementById('edit-pcr-equity').value);
+  var total = parseFloat(document.getElementById('edit-pcr-total').value);
+  var equity = parseFloat(document.getElementById('edit-pcr-equity').value);
   if (!isNaN(total))  OVERRIDES.pcr.total = total;
   if (!isNaN(equity)) OVERRIDES.pcr.equity = equity;
   renderPCR();
-  const ok = document.getElementById('edit-pcr-ok');
-  ok.classList.add('show');
-  setTimeout(() => ok.classList.remove('show'), 2000);
+  var ok = document.getElementById('edit-pcr-ok');
+  if (ok) { ok.classList.add('show'); setTimeout(function() { ok.classList.remove('show'); }, 2000); }
 }
 
+// ══════════════════════════════════════════════════════════
+// COT
+// ══════════════════════════════════════════════════════════
 function renderCOT() {
-  const raw = D.cot;
-  // Aplicar overrides manuales si los hay
-  const cot = raw ? {...raw, ...OVERRIDES.cot} : null;
+  var raw = D.cot;
+  var cot = raw ? Object.assign({}, raw, OVERRIDES.cot) : null;
+  var el = document.getElementById('cot-content');
+  var badge = document.getElementById('cot-badge');
+  if (!el) return;
   if (!cot || (cot.error && !OVERRIDES.cot.pctLargo)) {
-    document.getElementById('cot-content').innerHTML = '<div class="no-data">COT no disponible: ' + (cot?.error ?? 'error') + '<br><span style="font-size:10px;color:var(--am)">Introduce los datos manualmente abajo o verifica la fuente oficial.</span></div>';
+    el.innerHTML = '<div class="no-data">COT no disponible: ' + ((cot && cot.error) || 'error') + '<br><span style="font-size:10px;color:var(--am)">Introduce datos manualmente.</span></div>';
     return;
   }
-  const bc = badgeCls(cot.señal);
-  document.getElementById('cot-badge').className = 'badge ' + bc;
-  document.getElementById('cot-badge').textContent = (cot.señal ?? '—').toUpperCase();
+  var senal = getVal(cot, 'senal') || getVal(cot, 'señal') || '';
+  var senalDealers = getVal(cot, 'senalDealers') || getVal(cot, 'señalDealers') || 'neutro';
+  if (badge) { badge.className = 'badge ' + badgeCls(senal); badge.textContent = senal.toUpperCase() || '—'; }
 
-  const cambioNeto = cot.cambioNeto != null ? ((cot.cambioNeto >= 0 ? '+' : '') + fmtK(cot.cambioNeto)) : '--';
-  const trend4w = cot.trend4w != null ? ((cot.trend4w >= 0 ? '▲' : '▼') + ' ' + fmtK(Math.abs(cot.trend4w)) + ' (4sem)') : '--';
+  var cambioNeto = cot.cambioNeto != null ? ((cot.cambioNeto >= 0 ? '+' : '') + fmtK(cot.cambioNeto)) : '--';
+  var trend4w = cot.trend4w != null ? ((cot.trend4w >= 0 ? '▲' : '▼') + ' ' + fmtK(Math.abs(cot.trend4w)) + ' (4sem)') : '--';
+  var pctL = cot.pctLargo != null ? cot.pctLargo : 50;
 
-  document.getElementById('cot-content').innerHTML = `
-    <div class="cot-bar-wrap">
-      <div class="cot-bar-label">Largos</div>
-      <div class="cot-track"><div class="cot-fill" style="width:${cot.pctLargo??50}%;background:var(--gr)"></div></div>
-      <div class="cot-pct c-gr">${fmtK(cot.largos)}</div>
-    </div>
-    <div class="cot-bar-wrap">
-      <div class="cot-bar-label">Cortos</div>
-      <div class="cot-track"><div class="cot-fill" style="width:${100-(cot.pctLargo??50)}%;background:var(--rd)"></div></div>
-      <div class="cot-pct c-rd">${fmtK(cot.cortos)}</div>
-    </div>
-    <div class="divider"></div>
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">Posición Neta</div><div class="ind-sub">Largos − Cortos · cambio semanal: ${cambioNeto}</div></div>
-      <div class="ind-right"><div class="ind-val ${cot.neto>=0?'c-gr':'c-rd'}">${fmtK(cot.neto)}</div></div>
-    </div>
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">% Posición Larga</div><div class="ind-sub">Tendencia 4 semanas: ${trend4w}</div></div>
-      <div class="ind-right"><div class="ind-val ${(cot.pctLargo??50)>65?'c-rd':(cot.pctLargo??50)<35?'c-gr':'c-am'}">${cot.pctLargo}%</div></div>
-    </div>
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">Dealers (Smart Money)</div><div class="ind-sub">Señal dealers: ${cot.señalDealers ?? 'neutro'}</div></div>
-      <div class="ind-right"><div class="ind-val ${cot.netoDealers>=0?'c-gr':'c-rd'}">${fmtK(cot.netoDealers)}</div></div>
-    </div>
-    <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);line-height:1.6">
-      ${cot.desc ?? ''} · Datos: ${cot.fecha ?? '--'}
-      ${OVERRIDES.cot.pctLargo ? '<span style="color:var(--am);margin-left:6px">✏ EDITADO MANUALMENTE</span>' : ''}
-      ${cot.fuente ? '<span style="opacity:.5;margin-left:6px">fuente: ' + cot.fuente + '</span>' : ''}
-    </div>
-  `;
+  el.innerHTML = '' +
+    '<div class="cot-bar-wrap"><div class="cot-bar-label">Largos</div><div class="cot-track"><div class="cot-fill" style="width:' + pctL + '%;background:var(--gr)"></div></div><div class="cot-pct c-gr">' + fmtK(cot.largos) + '</div></div>' +
+    '<div class="cot-bar-wrap"><div class="cot-bar-label">Cortos</div><div class="cot-track"><div class="cot-fill" style="width:' + (100 - pctL) + '%;background:var(--rd)"></div></div><div class="cot-pct c-rd">' + fmtK(cot.cortos) + '</div></div>' +
+    '<div class="divider"></div>' +
+    '<div class="ind-row"><div class="ind-left"><div class="ind-name">Posición Neta</div><div class="ind-sub">Largos menos Cortos · cambio semanal: ' + cambioNeto + '</div></div><div class="ind-right"><div class="ind-val ' + (cot.neto >= 0 ? 'c-gr' : 'c-rd') + '">' + fmtK(cot.neto) + '</div></div></div>' +
+    '<div class="ind-row"><div class="ind-left"><div class="ind-name">% Posición Larga</div><div class="ind-sub">Tendencia 4 semanas: ' + trend4w + '</div></div><div class="ind-right"><div class="ind-val ' + (pctL > 65 ? 'c-rd' : pctL < 35 ? 'c-gr' : 'c-am') + '">' + pctL + '%</div></div></div>' +
+    '<div class="ind-row"><div class="ind-left"><div class="ind-name">Dealers (Smart Money)</div><div class="ind-sub">Señal dealers: ' + senalDealers + '</div></div><div class="ind-right"><div class="ind-val ' + (cot.netoDealers >= 0 ? 'c-gr' : 'c-rd') + '">' + fmtK(cot.netoDealers) + '</div></div></div>' +
+    '<div style="margin-top:10px;font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t3);line-height:1.6">' + (cot.desc || '') + ' · Datos: ' + (cot.fecha || '--') + (OVERRIDES.cot.pctLargo ? ' <span style="color:var(--am)">EDITADO</span>' : '') + '</div>';
 }
 
-function renderOI() {
-  const op = D.opciones;
-  if (!op || op.error) { document.getElementById('oi-content').innerHTML = '<div class="no-data">OI no disponible</div>'; return; }
-  const v1 = op.v1, v2 = op.v2;
-  if (!v1) { document.getElementById('oi-content').innerHTML = '<div class="no-data">Sin datos de opciones</div>'; return; }
-  document.getElementById('oi-badge').className = 'badge ' + badgeCls(v1.señal);
-  document.getElementById('oi-badge').textContent = v1.señal?.toUpperCase() ?? '—';
+// ══════════════════════════════════════════════════════════
+// B8 SEC INSIDERS
+// ══════════════════════════════════════════════════════════
+function renderInsiders() {
+  var ins = D.sec_insiders;
+  var el = document.getElementById('insider-content');
+  var badge = document.getElementById('insider-badge');
+  if (!el) return;
+  if (!ins || ins.error) {
+    el.innerHTML = '<div class="no-data">SEC Insiders no disponible' + (ins && ins.nota ? ': ' + ins.nota : '') + '</div>';
+    if (badge) { badge.className = 'badge n'; badge.textContent = 'N/A'; }
+    return;
+  }
+  var senal = getVal(ins, 'senal') || getVal(ins, 'señal') || 'neutro';
+  if (badge) { badge.className = 'badge ' + badgeCls(senal); badge.textContent = senal.toUpperCase(); }
+  var ratio = ins.ratio != null ? ins.ratio.toFixed(2) : '--';
+  var ratioCol = ins.ratio > 0.3 ? 'var(--gr)' : ins.ratio < 0.1 ? 'var(--rd)' : 'var(--am)';
 
-  const buildStrikes = (calls, puts) => {
-    if (!calls?.length && !puts?.length) return '<div class="no-data">Sin strikes</div>';
-    const allStrikes = [...new Set([...(calls||[]).map(c=>c.strike), ...(puts||[]).map(p=>p.strike)])].sort((a,b)=>a-b);
-    const maxOI = Math.max(...(calls||[]).map(c=>c.oi), ...(puts||[]).map(p=>p.oi), 1);
-    return allStrikes.map(s => {
-      const call = calls?.find(c=>c.strike===s);
-      const put  = puts?.find(p=>p.strike===s);
-      const cW = call ? Math.max(2, (call.oi/maxOI)*100) : 0;
-      const pW = put  ? Math.max(2, (put.oi/maxOI)*100)  : 0;
-      return `<div class="oi-row">
-        <div class="oi-lbl">${s}</div>
-        <div class="oi-bar-wrap">
-          ${call ? `<div class="oi-bar-c" style="width:${cW}%" title="Call OI: ${fmtK(call.oi)}"></div>` : ''}
-          ${put  ? `<div class="oi-bar-p" style="width:${pW}%" title="Put OI: ${fmtK(put.oi)}"></div>`  : ''}
-        </div>
-        <div class="oi-oi c-t3">${fmtK((call?.oi??0)+(put?.oi??0))}</div>
-      </div>`;
-    }).join('');
+  var html = '<div class="insider-ratio">';
+  html += '<div><div style="font-family:JetBrains Mono,monospace;font-size:9px;color:var(--t3);margin-bottom:3px">COMPRAS 90d</div><div class="ins-buy">' + fmtK(ins.compras_90d) + '</div></div>';
+  html += '<div class="ins-vs">vs</div>';
+  html += '<div><div style="font-family:JetBrains Mono,monospace;font-size:9px;color:var(--t3);margin-bottom:3px">VENTAS 90d</div><div class="ins-sell">' + fmtK(ins.ventas_90d) + '</div></div>';
+  html += '<div class="ins-ratio-val" style="color:' + ratioCol + '">' + ratio + 'x</div>';
+  html += '</div>';
+  html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">Empresas monitorizadas</div><div class="ind-sub">Big Tech + semis en el NDX-100</div></div><div class="ind-right"><div class="ind-val c-t2">' + (ins.empresas_ok || '--') + '</div></div></div>';
+  html += '<div style="margin-top:8px;font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t3);line-height:1.6">' + (ins.desc || '') + '</div>';
+  if (ins.nota) html += '<div style="margin-top:6px;font-family:JetBrains Mono,monospace;font-size:10px;color:var(--t4);font-style:italic">' + ins.nota + '</div>';
+  el.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════════
+// OI
+// ══════════════════════════════════════════════════════════
+function renderOI() {
+  var op = D.opciones;
+  var el = document.getElementById('oi-content');
+  var badge = document.getElementById('oi-badge');
+  if (!el) return;
+  if (!op || op.error) { el.innerHTML = '<div class="no-data">OI no disponible</div>'; return; }
+  var v1 = op.v1, v2 = op.v2;
+  if (!v1) { el.innerHTML = '<div class="no-data">Sin datos de opciones</div>'; return; }
+  var v1senal = getVal(v1, 'senal') || getVal(v1, 'señal') || '';
+  if (badge) { badge.className = 'badge ' + badgeCls(v1senal); badge.textContent = v1senal.toUpperCase() || '—'; }
+
+  var precio = op.precio || 0;
+  var buildStrikes = function(calls, puts) {
+    if (!calls || !puts) return '<div class="no-data">Sin strikes</div>';
+    var all = [];
+    var seen = {};
+    for (var i = 0; i < (calls || []).length; i++) { if (!seen[calls[i].strike]) { all.push(calls[i].strike); seen[calls[i].strike] = 1; } }
+    for (var j = 0; j < (puts || []).length; j++) { if (!seen[puts[j].strike]) { all.push(puts[j].strike); seen[puts[j].strike] = 1; } }
+    all.sort(function(a, b) { return a - b; });
+    var maxOI = 1;
+    for (var k = 0; k < (calls || []).length; k++) if ((calls[k].oi || 0) > maxOI) maxOI = calls[k].oi;
+    for (var l = 0; l < (puts || []).length; l++) if ((puts[l].oi || 0) > maxOI) maxOI = puts[l].oi;
+    var html = '';
+    for (var m = all.length - 1; m >= 0; m--) {
+      var s = all[m];
+      var c = null, p2 = null;
+      for (var n = 0; n < (calls || []).length; n++) if (calls[n].strike === s) { c = calls[n]; break; }
+      for (var o = 0; o < (puts || []).length; o++) if (puts[o].strike === s) { p2 = puts[o]; break; }
+      var cW = c ? Math.max(2, (c.oi / maxOI) * 100) : 0;
+      var pW = p2 ? Math.max(2, (p2.oi / maxOI) * 100) : 0;
+      html += '<div class="oi-row">';
+      html += '<div class="oi-lbl">' + s + '</div>';
+      html += '<div class="oi-bar-wrap">';
+      if (c) html += '<div class="oi-bar-c" style="width:' + cW + '%"></div>';
+      if (p2) html += '<div class="oi-bar-p" style="width:' + pW + '%"></div>';
+      html += '</div>';
+      html += '<div class="oi-oi c-t3">' + fmtK(((c ? c.oi : 0) + (p2 ? p2.oi : 0))) + '</div>';
+      html += '</div>';
+    }
+    return html;
   };
 
-  const vencs = [v1, v2].filter(Boolean);
-  document.getElementById('oi-content').innerHTML = vencs.map((v, i) => `
-    <div style="margin-bottom:14px">
-      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between">
-        <span>Venc. ${i+1}: ${v.fecha}</span>
-        <span style="color:${v.distPct>0?'var(--gr)':'var(--rd)'}">Max Pain ${fmt(v.maxPain)} (${fmtPct(v.distPct,2)})</span>
-      </div>
-      <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);display:flex;gap:14px;margin-bottom:8px">
-        <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:var(--gr);border-radius:2px;display:inline-block"></span>Calls (resistencia)</span>
-        <span style="display:flex;align-items:center;gap:4px"><span style="width:8px;height:8px;background:var(--rd);border-radius:2px;display:inline-block"></span>Puts (soporte)</span>
-      </div>
-      ${buildStrikes([...v.topCalls,...(v.topPuts.filter(p=>!v.topCalls.find(c=>c.strike===p.strike)))]?.slice(0,8)?.sort((a,b)=>b.strike-a.strike), v.topPuts)}
-      <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin-top:8px;line-height:1.5">${v.desc}</div>
-    </div>
-    ${i < vencs.length-1 ? '<div class="divider"></div>' : ''}
-  `).join('');
+  var vencs = [v1, v2].filter(Boolean);
+  var html2 = '';
+  for (var vi = 0; vi < vencs.length; vi++) {
+    var v = vencs[vi];
+    var vDesc = getVal(v, 'desc') || '';
+    html2 += '<div style="margin-bottom:14px">';
+    html2 += '<div style="font-family:JetBrains Mono,monospace;font-size:10px;color:var(--t3);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between">';
+    html2 += '<span>Venc. ' + (vi + 1) + ': ' + (v.fecha || '') + '</span>';
+    html2 += '<span style="color:' + (v.distPct > 0 ? 'var(--gr)' : 'var(--rd)') + '">Max Pain ' + fmt(v.maxPain) + ' (' + fmtPct(v.distPct, 2) + ')</span>';
+    html2 += '</div>';
+    var merged = [];
+    var seenS = {};
+    var calls2 = v.topCalls || [], puts2 = v.topPuts || [];
+    for (var ci = 0; ci < calls2.length; ci++) { merged.push(calls2[ci]); seenS[calls2[ci].strike] = 1; }
+    for (var pi = 0; pi < puts2.length; pi++) { if (!seenS[puts2[pi].strike]) merged.push(puts2[pi]); }
+    html2 += buildStrikes(calls2.slice(0, 8), puts2);
+    html2 += '<div style="font-family:JetBrains Mono,monospace;font-size:10px;color:var(--t3);margin-top:8px;line-height:1.5">' + vDesc + '</div>';
+    html2 += '</div>';
+    if (vi < vencs.length - 1) html2 += '<div class="divider"></div>';
+  }
+  el.innerHTML = html2;
 }
 
+// ══════════════════════════════════════════════════════════
+// B4 DERIVADOS AVANZADOS (GEX Real + SKEW + 0DTE)
+// ══════════════════════════════════════════════════════════
+function renderDerivados() {
+  var op = D.opciones;
+  var el = document.getElementById('deriv-content');
+  var badge = document.getElementById('deriv-badge');
+  if (!el) return;
+
+  var gexReal = op && op.gex_real ? op.gex_real : null;
+  var skew = op && op.skew ? op.skew : null;
+  var dte0 = op && op.ratio_0dte ? op.ratio_0dte : null;
+
+  if (!gexReal && !skew && !dte0) {
+    el.innerHTML = '<div class="no-data">Derivados avanzados no disponibles (requiere Python Fase 7)</div>';
+    if (badge) { badge.className = 'badge n'; badge.textContent = 'N/A'; }
+    return;
+  }
+
+  var skewSenal = getVal(skew || {}, 'senal') || getVal(skew || {}, 'señal') || '';
+  var dte0Senal = getVal(dte0 || {}, 'senal') || getVal(dte0 || {}, 'señal') || '';
+  var badgeSrc = skewSenal || dte0Senal || 'neutro';
+  if (badge) { badge.className = 'badge ' + badgeCls(badgeSrc); badge.textContent = badgeSrc.toUpperCase(); }
+
+  // GEX Real
+  var gexValor = gexReal ? (gexReal.valor_total / 1e9).toFixed(2) + 'B' : '--';
+  var gexFlip = gexReal ? fmt(gexReal.gamma_flip_level) : '--';
+  var gexDist = gexReal ? fmtPct(gexReal.dist_gamma_flip_pct, 2) : '--';
+  var gexCol = gexReal && gexReal.valor_total > 0 ? 'var(--gr)' : 'var(--rd)';
+
+  // SKEW
+  var skewVal = skew ? (skew.valor != null ? skew.valor.toFixed(1) : '--') : '--';
+  var skewPutIV = skew ? (skew.put_iv != null ? (skew.put_iv * 100).toFixed(1) + '%' : '--') : '--';
+  var skewCallIV = skew ? (skew.call_iv != null ? (skew.call_iv * 100).toFixed(1) + '%' : '--') : '--';
+  var skewCol = skew && skew.valor > 30 ? 'var(--rd)' : skew && skew.valor > 20 ? 'var(--am)' : 'var(--gr)';
+
+  // 0DTE
+  var dte0Val = dte0 ? (dte0.valor != null ? (dte0.valor * 100).toFixed(1) + '%' : '--') : '--';
+  var dte0Col = dte0 && dte0.valor > 0.5 ? 'var(--rd)' : dte0 && dte0.valor > 0.3 ? 'var(--am)' : 'var(--gr)';
+
+  var html = '<div class="deriv-grid">';
+  html += '<div class="deriv-box">';
+  html += '<div class="deriv-lbl">GEX Real</div>';
+  html += '<div class="deriv-val" style="color:' + gexCol + '">' + gexValor + '</div>';
+  html += '<div class="deriv-sub">Gamma Flip: ' + gexFlip + ' (' + gexDist + ')</div>';
+  html += '</div>';
+
+  html += '<div class="deriv-box">';
+  html += '<div class="deriv-lbl">SKEW Opciones</div>';
+  html += '<div class="deriv-val" style="color:' + skewCol + '">' + skewVal + '</div>';
+  html += '<div class="deriv-sub">Put IV ' + skewPutIV + ' / Call IV ' + skewCallIV + '</div>';
+  html += '</div>';
+
+  html += '<div class="deriv-box">';
+  html += '<div class="deriv-lbl">0DTE Ratio</div>';
+  html += '<div class="deriv-val" style="color:' + dte0Col + '">' + dte0Val + '</div>';
+  html += '<div class="deriv-sub">Vol 0DTE vs total</div>';
+  html += '</div>';
+  html += '</div>';
+
+  if (gexReal) {
+    html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">Gamma Flip Level</div><div class="ind-sub">Por encima = PIN estabilizador · por debajo = amplificador</div></div><div class="ind-right"><div class="ind-val" style="color:' + gexCol + '">' + gexFlip + '</div></div></div>';
+  }
+  if (skew) {
+    var skewDesc = getVal(skew, 'desc') || '';
+    html += '<div style="margin-top:8px;font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t3);line-height:1.6">';
+    html += (skewDesc || '') + (dte0 && getVal(dte0, 'desc') ? ' · ' + getVal(dte0, 'desc') : '');
+    html += '</div>';
+  }
+  el.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════════
+// GEX ESTIMADO (legacy)
+// ══════════════════════════════════════════════════════════
 function renderGEX() {
-  const gex = D.opciones?.gex;
-  if (!gex) { document.getElementById('gex-content').innerHTML = '<div class="no-data">GEX no disponible</div>'; return; }
-  const col = gex.valor > 0 ? 'var(--gr)' : gex.valor < 0 ? 'var(--rd)' : 'var(--am)';
-  document.getElementById('gex-content').innerHTML = `
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">Estado GEX</div><div class="ind-sub">${gex.estado?.replace(/_/g,' ').toUpperCase()}</div></div>
-      <div class="ind-right"><div class="ind-val" style="color:${col}">${gex.valor > 0 ? '+' : ''}${gex.valor}</div></div>
-    </div>
-    <div style="margin:10px 0;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);line-height:1.6">${gex.desc}</div>
-    ${gex.trampa ? `<div style="padding:8px 10px;background:var(--rd2);border:1px solid var(--rdb);border-radius:var(--r-sm);font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rd)">⚠️ ${gex.desc}</div>` : ''}
-  `;
+  var gex = D.opciones && D.opciones.gex ? D.opciones.gex : null;
+  var el = document.getElementById('gex-content');
+  if (!el) return;
+  if (!gex) { el.innerHTML = '<div class="no-data">GEX no disponible</div>'; return; }
+  var col = gex.valor > 0 ? 'var(--gr)' : gex.valor < 0 ? 'var(--rd)' : 'var(--am)';
+  var estado2 = gex.estado ? gex.estado.replace(/_/g, ' ').toUpperCase() : '--';
+  el.innerHTML = '' +
+    '<div class="ind-row"><div class="ind-left"><div class="ind-name">Estado GEX</div><div class="ind-sub">' + estado2 + '</div></div><div class="ind-right"><div class="ind-val" style="color:' + col + '">' + (gex.valor > 0 ? '+' : '') + gex.valor + '</div></div></div>' +
+    '<div style="margin:10px 0;font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t3);line-height:1.6">' + (gex.desc || '') + '</div>' +
+    (gex.trampa ? '<div style="padding:8px 10px;background:var(--rd2);border:1px solid var(--rdb);border-radius:var(--r-sm);font-family:JetBrains Mono,monospace;font-size:11px;color:var(--rd)">TRAMPA: ' + gex.desc + '</div>' : '');
 }
 
+// ══════════════════════════════════════════════════════════
+// PCR
+// ══════════════════════════════════════════════════════════
 function renderPCR() {
-  const raw = D.pcr;
-  const pcr = raw ? {...raw, ...OVERRIDES.pcr} : null;
+  var raw = D.pcr;
+  var pcr = raw ? Object.assign({}, raw, OVERRIDES.pcr) : null;
+  var el = document.getElementById('pcr-content');
+  var sn = document.getElementById('pcr-sesgo-notice');
+  if (!el) return;
   if (!pcr || (pcr.error && !OVERRIDES.pcr.total)) {
-    document.getElementById('pcr-content').innerHTML = '<div class="no-data">PCR no disponible<br><span style="font-size:10px;color:var(--am)">Introduce el valor manualmente o verifica la fuente CBOE.</span></div>';
-    // Mostrar aviso de sesgo si hay fuente alternativa
-    const sn = document.getElementById('pcr-sesgo-notice');
+    el.innerHTML = '<div class="no-data">PCR no disponible<br><span style="font-size:10px;color:var(--am)">Introduce valor manualmente o verifica CBOE.</span></div>';
     if (sn) sn.innerHTML = '';
     return;
   }
-  const total = pcr.total ?? pcr.equity;
-  const col = total > 1.2 ? 'var(--gr)' : total < 0.6 ? 'var(--rd)' : 'var(--am)';
-  const esFuenteYahoo = pcr.fuente === 'yahoo_qqq_options';
-  const etiquetaFuente = esFuenteYahoo ? 'QQQ Options (proxy)' : 'CBOE Total Market';
-  const colorFuente = esFuenteYahoo ? 'var(--am)' : 'var(--gr)';
-
-  // Aviso de sesgo si es Yahoo
-  const sn = document.getElementById('pcr-sesgo-notice');
+  var total = pcr.total != null ? pcr.total : pcr.equity;
+  var col2 = total > 1.2 ? 'var(--gr)' : total < 0.6 ? 'var(--rd)' : 'var(--am)';
+  var esFuenteYahoo = pcr.fuente === 'yahoo_qqq_options';
   if (sn) {
     sn.innerHTML = esFuenteYahoo
-      ? `<div style="margin:8px 0;padding:7px 10px;background:var(--am2);border:1px solid var(--amb);border-radius:var(--r-sm);font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--am);line-height:1.5">
-           ⚠ Fuente alternativa activa: PCR calculado de opciones QQQ (CBOE devuelve 403).<br>
-           Ligero sesgo hacia large-cap tech vs PCR total del mercado.
-           Verificar en: <a href="https://www.cboe.com/data/volatility-and-put-call-ratio-data/" target="_blank" style="color:var(--am)">cboe.com</a>
-         </div>`
+      ? '<div style="margin:8px 0;padding:7px 10px;background:var(--am2);border:1px solid var(--amb);border-radius:var(--r-sm);font-family:JetBrains Mono,monospace;font-size:10px;color:var(--am);line-height:1.5">Fuente alternativa: PCR calculado de opciones QQQ. Ligero sesgo hacia large-cap tech.</div>'
       : '';
   }
-
-  document.getElementById('pcr-content').innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">
-      <div class="macro-box">
-        <div class="mb-lbl">PCR Total</div>
-        <div class="mb-val" style="color:${col}">${total ?? '--'}</div>
-        <div class="mb-trend" style="color:${col}">${total > 1.2 ? 'ALTO' : total < 0.6 ? 'BAJO' : 'NORMAL'}</div>
-      </div>
-      <div class="macro-box">
-        <div class="mb-lbl">Fuente</div>
-        <div class="mb-val" style="color:${colorFuente};font-size:11px">${etiquetaFuente}</div>
-        <div class="mb-trend" style="color:${colorFuente}">${esFuenteYahoo ? 'proxy QQQ' : 'mercado total'}</div>
-      </div>
-    </div>
-    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);line-height:1.6">
-      ${pcr.desc ?? ''}
-      ${OVERRIDES.pcr.total ? '<span style="color:var(--am);margin-left:6px">✏ EDITADO MANUALMENTE</span>' : ''}
-    </div>
-  `;
+  el.innerHTML = '' +
+    '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px">' +
+    '<div class="macro-box"><div class="mb-lbl">PCR Total</div><div class="mb-val" style="color:' + col2 + '">' + (total || '--') + '</div><div class="mb-trend" style="color:' + col2 + '">' + (total > 1.2 ? 'ALTO' : total < 0.6 ? 'BAJO' : 'NORMAL') + '</div></div>' +
+    '<div class="macro-box"><div class="mb-lbl">PCR Equity</div><div class="mb-val">' + (pcr.equity || '--') + '</div><div class="mb-trend c-t3">solo acciones</div></div>' +
+    '</div>' +
+    '<div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t3);line-height:1.6">' + (pcr.desc || '') + (OVERRIDES.pcr.total ? ' <span style="color:var(--am)">EDITADO</span>' : '') + '</div>';
 }
 
+// ══════════════════════════════════════════════════════════
+// VIX TERM STRUCTURE
+// ══════════════════════════════════════════════════════════
 function renderVixTS() {
-  const vts = D.vixTS;
-  if (!vts || vts.error) { document.getElementById('vts-content').innerHTML = '<div class="no-data">VIX TS no disponible</div>'; return; }
-  document.getElementById('vts-badge').className = 'badge ' + badgeCls(vts.señal);
-  document.getElementById('vts-badge').textContent = vts.señal?.toUpperCase() ?? '—';
+  var vts = D.vixTS;
+  var el = document.getElementById('vts-content');
+  var badge = document.getElementById('vts-badge');
+  if (!el) return;
+  if (!vts || vts.error) { el.innerHTML = '<div class="no-data">VIX TS no disponible</div>'; return; }
+  var senal = getVal(vts, 'senal') || getVal(vts, 'señal') || '';
+  if (badge) { badge.className = 'badge ' + badgeCls(senal); badge.textContent = senal.toUpperCase() || '—'; }
 
-  const items = [
+  var items = [
     { k: vts.spot, l: 'VIX Spot', col: vts.spot > 25 ? 'var(--rd)' : vts.spot > 20 ? 'var(--am)' : 'var(--gr)' },
     { k: vts.vix3m, l: 'VIX 3M', col: 'var(--t2)' },
     { k: vts.vx1, l: 'VX1', col: 'var(--t2)' },
     { k: vts.vx2, l: 'VX2', col: 'var(--t3)' }
-  ].filter(i => i.k);
-  const maxV = Math.max(...items.map(i => i.k ?? 0), 30);
+  ].filter(function(i) { return i.k; });
+  var maxV = 30;
+  for (var i2 = 0; i2 < items.length; i2++) if ((items[i2].k || 0) > maxV) maxV = items[i2].k;
 
-  document.getElementById('vts-content').innerHTML = `
-    <div class="vts-bars">
-      ${items.map(it => `<div class="vts-bar" style="height:${Math.max(4,(it.k/maxV)*52)}px;background:${it.col}"></div>`).join('')}
-    </div>
-    <div class="vts-labels">
-      ${items.map(it => `<div class="vts-label" style="color:${it.col}">${it.l}<br><div class="vts-val" style="color:${it.col}">${it.k?.toFixed(1)??'--'}</div></div>`).join('')}
-    </div>
-    <div class="divider"></div>
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">Spread VIX3M - Spot</div><div class="ind-sub">${vts.backwardation ? '⚠ Backwardation — estrés agudo' : 'Contango — mercado tranquilo'}</div></div>
-      <div class="ind-right"><div class="ind-val ${(vts.spread1??0)<0?'c-rd':'c-gr'}">${vts.spread1 != null ? (vts.spread1>=0?'+':'')+vts.spread1 : '--'}</div></div>
-    </div>
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">Percentil VIX</div><div class="ind-sub">vs últimos 6 meses</div></div>
-      <div class="ind-right"><div class="ind-val c-t2">${vts.vixPercentil != null ? vts.vixPercentil + 'º' : '--'}</div></div>
-    </div>
-    <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t3);line-height:1.6">${vts.desc ?? ''}</div>
-  `;
+  var html = '<div class="vts-bars">';
+  for (var i3 = 0; i3 < items.length; i3++) {
+    var it = items[i3];
+    html += '<div class="vts-bar" style="height:' + Math.max(4, (it.k / maxV) * 52) + 'px;background:' + it.col + '"></div>';
+  }
+  html += '</div><div class="vts-labels">';
+  for (var i4 = 0; i4 < items.length; i4++) {
+    var it2 = items[i4];
+    html += '<div class="vts-label" style="color:' + it2.col + '">' + it2.l + '<br><div class="vts-val" style="color:' + it2.col + '">' + (it2.k != null ? it2.k.toFixed(1) : '--') + '</div></div>';
+  }
+  html += '</div><div class="divider"></div>';
+  html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">Spread VIX3M - Spot</div><div class="ind-sub">' + (vts.backwardation ? 'Backwardation — estres agudo' : 'Contango — mercado tranquilo') + '</div></div><div class="ind-right"><div class="ind-val ' + ((vts.spread1 || 0) < 0 ? 'c-rd' : 'c-gr') + '">' + (vts.spread1 != null ? (vts.spread1 >= 0 ? '+' : '') + vts.spread1 : '--') + '</div></div></div>';
+  html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">Percentil VIX</div><div class="ind-sub">vs últimos 6 meses</div></div><div class="ind-right"><div class="ind-val c-t2">' + (vts.vixPercentil != null ? vts.vixPercentil + 'º' : '--') + '</div></div></div>';
+  html += '<div style="margin-top:10px;font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t3);line-height:1.6">' + (vts.desc || '') + '</div>';
+  el.innerHTML = html;
 }
 
+// ══════════════════════════════════════════════════════════
+// FRED
+// ══════════════════════════════════════════════════════════
 function renderFRED() {
-  const mac = D.macro;
-  if (!mac || mac.error) { document.getElementById('fred-content').innerHTML = '<div class="no-data">FRED no disponible</div>'; return; }
-  const fr = mac.fred;
-  document.getElementById('fred-badge').className = 'badge ' + (mac.score > 2 ? 'g' : mac.score < -2 ? 'r' : 'a');
-  document.getElementById('fred-badge').textContent = 'Score ' + (mac.score >= 0 ? '+' : '') + mac.score;
+  var mac = D.macro;
+  var el = document.getElementById('fred-content');
+  var badge = document.getElementById('fred-badge');
+  if (!el) return;
+  if (!mac || mac.error) { el.innerHTML = '<div class="no-data">FRED no disponible</div>'; return; }
+  var fr = mac.fred;
+  if (badge) {
+    badge.className = 'badge ' + (mac.score > 2 ? 'g' : mac.score < -2 ? 'r' : 'a');
+    badge.textContent = 'Score ' + (mac.score >= 0 ? '+' : '') + mac.score;
+  }
 
-  const items = [
+  var items = [
     { l: 'Balance Fed', v: fr && fr.walcl ? (fr.walcl.v / 1e6).toFixed(2) + 'T' : null, t: fr && fr.walcl ? fr.walcl.trend : null, pos: fr && fr.walcl && fr.walcl.trend === 'up' },
+    { l: 'Liquidez Neta', v: fr && fr.liquidez_neta != null ? (fr.liquidez_neta / 1e9).toFixed(1) + 'B' : null, t: null, pos: fr && fr.liquidez_neta > 0 },
     { l: 'Fed Funds Rate', v: fr && fr.fedfunds ? fr.fedfunds.v + '%' : null, t: fr && fr.fedfunds ? fr.fedfunds.trend : null, pos: fr && fr.fedfunds ? fr.fedfunds.v < 4 : false },
     { l: 'HY Credit Spread', v: fr && fr.hySpread ? fr.hySpread.v + '%' : null, t: fr && fr.hySpread ? fr.hySpread.trend : null, pos: fr && fr.hySpread ? fr.hySpread.v < 3 : false },
     { l: 'NFCI (Cond. Fin.)', v: fr && fr.nfci && fr.nfci.v != null ? String(fr.nfci.v) : null, t: fr && fr.nfci ? fr.nfci.trend : null, pos: fr && fr.nfci ? fr.nfci.v < 0 : false },
     { l: 'SOFR', v: fr && fr.sofr ? fr.sofr.v + '%' : null, t: null, pos: true },
-    { l: 'TIPS 5Y (Inflacion)', v: fr && fr.t5yie ? fr.t5yie.v + '%' : null, t: fr && fr.t5yie ? fr.t5yie.trend : null, pos: fr && fr.t5yie ? fr.t5yie.v < 2.5 : false },
+    { l: 'TIPS 5Y (Inflac.)', v: fr && fr.t5yie ? fr.t5yie.v + '%' : null, t: fr && fr.t5yie ? fr.t5yie.trend : null, pos: fr && fr.t5yie ? fr.t5yie.v < 2.5 : false },
     { l: 'TIPS 10Y', v: fr && fr.t10yie ? fr.t10yie.v + '%' : null, t: fr && fr.t10yie ? fr.t10yie.trend : null, pos: fr && fr.t10yie ? fr.t10yie.v < 2.5 : false },
-    { l: '5Y5Y Inf. Expect.', v: fr && fr.t5y5y ? fr.t5y5y.v + '%' : null, t: fr && fr.t5y5y ? fr.t5y5y.trend : null, pos: fr && fr.t5y5y ? fr.t5y5y.v < 3 : false }
+    { l: 'CPI YoY', v: mac.fred && mac.fred.cpi_yoy != null ? mac.fred.cpi_yoy.toFixed(1) + '%' : null, t: null, pos: mac.fred && mac.fred.cpi_yoy < 3 },
+    { l: 'Ventanilla Desc.', v: fr && fr.wlcflpcl ? (fr.wlcflpcl.v / 1e6).toFixed(1) + 'B' : null, t: fr && fr.wlcflpcl ? fr.wlcflpcl.trend : null, pos: false }
   ];
-  document.getElementById('fred-content').innerHTML = items.filter(i => i.v && i.v !== 'undefined%').map(it => {
-    const trendHtml = it.t ? '<div class="ind-sub">Tendencia: ' + (it.t === 'up' ? '▲ subiendo' : '▼ bajando') + '</div>' : '';
-    const valCls = it.pos ? 'c-gr' : 'c-rd';
-    const val = it.v || '--';
-    return '<div class="ind-row"><div class="ind-left"><div class="ind-name">' + it.l + '</div>' + trendHtml + '</div><div class="ind-right"><div class="ind-val ' + valCls + '">' + val + '</div></div></div>';
-  }).join('');
+  var html = '';
+  for (var i5 = 0; i5 < items.length; i5++) {
+    var it3 = items[i5];
+    if (!it3.v || it3.v === 'undefined%' || it3.v === 'null%') continue;
+    var trendHtml = it3.t ? '<div class="ind-sub">Tendencia: ' + (it3.t === 'up' ? '▲ subiendo' : '▼ bajando') + '</div>' : '';
+    html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">' + it3.l + '</div>' + trendHtml + '</div><div class="ind-right"><div class="ind-val ' + (it3.pos ? 'c-gr' : 'c-rd') + '">' + it3.v + '</div></div></div>';
+  }
+  el.innerHTML = html || '<div class="no-data">Sin datos FRED disponibles</div>';
 }
 
+// ══════════════════════════════════════════════════════════
+// CURVA DE TIPOS
+// ══════════════════════════════════════════════════════════
 function renderCurva() {
-  const mac = D.macro;
-  if (!mac?.curva) { document.getElementById('curva-content').innerHTML = '<div class="no-data">Curva no disponible</div>'; return; }
-  const c = mac.curva;
-  const items = [
+  var mac = D.macro;
+  var el = document.getElementById('curva-content');
+  if (!el) return;
+  if (!mac || !mac.curva) { el.innerHTML = '<div class="no-data">Curva no disponible</div>'; return; }
+  var c = mac.curva;
+  var items = [
     { l: '3M', v: c.t3m }, { l: '5Y', v: c.t5y }, { l: '10Y', v: c.t10y }, { l: '30Y', v: c.t30y }
   ];
-  const maxV = Math.max(...items.map(i => i.v ?? 0), 5);
-  const spread = c.sp10_2;
+  var maxV2 = 5;
+  for (var i6 = 0; i6 < items.length; i6++) if ((items[i6].v || 0) > maxV2) maxV2 = items[i6].v;
+  var spread = c.sp10_2;
+  var srec = getVal(c, 'senalRecesion') || getVal(c, 'señalRecesion') || '--';
 
-  document.getElementById('curva-content').innerHTML = `
-    <div class="curva-bars">
-      ${items.map(it => {
-        const inv = it.v != null && c.t10y != null && it.v > c.t10y;
-        const col = inv ? 'var(--rd)' : 'var(--cy)';
-        return `<div class="curva-bar" style="height:${Math.max(4,(it.v??0)/maxV*60)}px;background:${col}" title="${it.l}: ${it.v}%"></div>`;
-      }).join('')}
-    </div>
-    <div class="curva-ticks">${items.map(it => `<div class="curva-tick">${it.l}<br><span style="color:${it.v!=null?'var(--t2)':'var(--t4)'}">${it.v != null ? it.v + '%' : '--'}</span></div>`).join('')}</div>
-    <div class="divider"></div>
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">Spread 10Y-2Y</div><div class="ind-sub">${c.invertida2y ? '⚠ INVERTIDA' : 'Normal'}</div></div>
-      <div class="ind-right"><div class="ind-val ${(spread??0)<0?'c-rd':'c-gr'}">${spread != null ? (spread>=0?'+':'')+spread+'%' : '--'}</div></div>
-    </div>
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">Spread 10Y-3M</div><div class="ind-sub">${c.invertida3m ? '⚠ INVERTIDA (más fiable)' : 'Normal'} · Señal recesión: ${c.señalRecesion ?? '--'}</div></div>
-      <div class="ind-right"><div class="ind-val ${(c.sp10_3m??0)<0?'c-rd':'c-gr'}">${c.sp10_3m != null ? (c.sp10_3m>=0?'+':'')+c.sp10_3m+'%' : '--'}</div></div>
-    </div>
-  `;
+  var html = '<div class="curva-bars">';
+  for (var i7 = 0; i7 < items.length; i7++) {
+    var it4 = items[i7];
+    var inv = it4.v != null && c.t10y != null && it4.v > c.t10y;
+    var col3 = inv ? 'var(--rd)' : 'var(--cy)';
+    html += '<div class="curva-bar" style="height:' + Math.max(4, (it4.v || 0) / maxV2 * 60) + 'px;background:' + col3 + '"></div>';
+  }
+  html += '</div><div class="curva-ticks">';
+  for (var i8 = 0; i8 < items.length; i8++) {
+    var it5 = items[i8];
+    html += '<div class="curva-tick">' + it5.l + '<br><span style="color:' + (it5.v != null ? 'var(--t2)' : 'var(--t4)') + '">' + (it5.v != null ? it5.v + '%' : '--') + '</span></div>';
+  }
+  html += '</div><div class="divider"></div>';
+  html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">Spread 10Y-2Y</div><div class="ind-sub">' + (c.invertida2y ? 'INVERTIDA' : 'Normal') + '</div></div><div class="ind-right"><div class="ind-val ' + ((spread || 0) < 0 ? 'c-rd' : 'c-gr') + '">' + (spread != null ? (spread >= 0 ? '+' : '') + spread + '%' : '--') + '</div></div></div>';
+  html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">Spread 10Y-3M</div><div class="ind-sub">' + (c.invertida3m ? 'INVERTIDA (mas fiable)' : 'Normal') + ' · Recesion: ' + srec + '</div></div><div class="ind-right"><div class="ind-val ' + ((c.sp10_3m || 0) < 0 ? 'c-rd' : 'c-gr') + '">' + (c.sp10_3m != null ? (c.sp10_3m >= 0 ? '+' : '') + c.sp10_3m + '%' : '--') + '</div></div></div>';
+  el.innerHTML = html;
 }
 
+// ══════════════════════════════════════════════════════════
+// B7 PROXY CHINA
+// ══════════════════════════════════════════════════════════
+function renderChina() {
+  var ch = D.macro && D.macro.proxy_china ? D.macro.proxy_china : null;
+  var el = document.getElementById('china-content');
+  var badge = document.getElementById('china-badge');
+  if (!el) return;
+  if (!ch) {
+    el.innerHTML = '<div class="no-data">Proxy China no disponible (requiere Python Fase 7)</div>';
+    if (badge) { badge.className = 'badge n'; badge.textContent = 'N/A'; }
+    return;
+  }
+  var senal = getVal(ch, 'senal') || getVal(ch, 'señal') || 'neutro';
+  if (badge) { badge.className = 'badge ' + badgeCls(senal); badge.textContent = senal.toUpperCase(); }
+
+  var rocCNY = ch.roc_cny_20d != null ? fmtPct(ch.roc_cny_20d, 2) : '--';
+  var rocSOXX = ch.roc_soxx_20d != null ? fmtPct(ch.roc_soxx_20d, 2) : '--';
+  var corr = ch.corr_cny_soxx_30d != null ? ch.corr_cny_soxx_30d.toFixed(3) : '--';
+  var corrCol = ch.corr_cny_soxx_30d > 0.3 ? 'var(--gr)' : ch.corr_cny_soxx_30d < -0.3 ? 'var(--rd)' : 'var(--am)';
+
+  var html = '' +
+    '<div class="ind-row"><div class="ind-left"><div class="ind-name">ROC CNY 20D</div><div class="ind-sub">Yuan vs USD — apreciacion = bullish NQ</div></div><div class="ind-right"><div class="ind-val ' + cls(ch.roc_cny_20d) + '">' + rocCNY + '</div></div></div>' +
+    '<div class="ind-row"><div class="ind-left"><div class="ind-name">ROC SOXX 20D</div><div class="ind-sub">Semiconductores — proxy liquidez Asia</div></div><div class="ind-right"><div class="ind-val ' + cls(ch.roc_soxx_20d) + '">' + rocSOXX + '</div></div></div>' +
+    '<div class="ind-row"><div class="ind-left"><div class="ind-name">Corr. CNY-SOXX 30D</div><div class="ind-sub">Correlacion movil yuan-semis</div></div><div class="ind-right"><div class="ind-val" style="color:' + corrCol + '">' + corr + '</div></div></div>';
+  el.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════════
+// ETF FLOWS
+// ══════════════════════════════════════════════════════════
 function renderFlows() {
-  const fl = D.flows;
-  if (!fl) { document.getElementById('flows-content').innerHTML = '<div class="no-data">Flujos no disponibles</div>'; return; }
-  const modo = fl.modo;
-  const modoColor = modo === 'risk_on' ? 'var(--gr)' : modo === 'risk_off' || modo === 'vuelo_calidad' ? 'var(--rd)' : 'var(--am)';
-  const modoLabel = { risk_on: 'RISK-ON ✅', risk_off: 'RISK-OFF ⚠️', vuelo_calidad: 'VUELO A CALIDAD 🔴', neutro: 'NEUTRO' }[modo] ?? modo;
+  var fl = D.flows;
+  var el = document.getElementById('flows-content');
+  if (!el) return;
+  if (!fl) { el.innerHTML = '<div class="no-data">Flujos no disponibles</div>'; return; }
+  var modo = fl.modo;
+  var modoColor = modo === 'risk_on' ? 'var(--gr)' : (modo === 'risk_off' || modo === 'vuelo_calidad') ? 'var(--rd)' : 'var(--am)';
+  var modoLabels = { risk_on: 'RISK-ON', risk_off: 'RISK-OFF', vuelo_calidad: 'VUELO A CALIDAD', neutro: 'NEUTRO' };
+  var modoLabel = modoLabels[modo] || modo;
 
-  const items = ['qqq', 'spy', 'tlt', 'hyg', 'gld', 'eem', 'iwm'].map(k => fl[k]).filter(Boolean);
-  const maxAbs = Math.max(...items.map(i => Math.abs(i.retorno5d ?? 0)), 1);
+  var etfs = ['qqq', 'spy', 'tlt', 'hyg', 'gld', 'eem', 'iwm'];
+  var items = [];
+  for (var i9 = 0; i9 < etfs.length; i9++) if (fl[etfs[i9]]) items.push(fl[etfs[i9]]);
+  var maxAbs = 1;
+  for (var j2 = 0; j2 < items.length; j2++) if (Math.abs(items[j2].retorno5d || 0) > maxAbs) maxAbs = Math.abs(items[j2].retorno5d);
 
-  document.getElementById('flows-content').innerHTML = `
-    <div style="padding:10px 12px;background:${modoColor}18;border:1px solid ${modoColor}40;border-radius:var(--r-sm);text-align:center;font-weight:700;font-size:14px;color:${modoColor};margin-bottom:12px">${modoLabel}</div>
-    ${items.map(it => {
-      const v = it.retorno5d ?? 0;
-      const ip = v >= 0;
-      const w = Math.min(50, Math.abs(v) / maxAbs * 50);
-      const col = ip ? 'var(--gr)' : 'var(--rd)';
-      return `<div class="flow-row">
-        <div class="flow-name">${it.name}</div>
-        <div class="flow-track">
-          <div class="flow-fill" style="width:${w}%;background:${col};${ip ? 'left:50%' : 'left:' + (50-w) + '%'}"></div>
-          <div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--b2)"></div>
-        </div>
-        <div class="flow-pct ${ip ? 'c-gr' : 'c-rd'}">${fmtPct(v,2)}</div>
-      </div>`;
-    }).join('')}
-    <div style="margin-top:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3)">Retorno 5D. QQQ↑+HYG↑+TLT↓=Risk-On · TLT↑+GLD↑=Risk-Off</div>
-  `;
+  var html = '<div style="padding:10px 12px;background:' + modoColor + '18;border:1px solid ' + modoColor + '40;border-radius:var(--r-sm);text-align:center;font-weight:700;font-size:14px;color:' + modoColor + ';margin-bottom:12px">' + modoLabel + '</div>';
+  for (var k2 = 0; k2 < items.length; k2++) {
+    var it6 = items[k2];
+    var v2 = it6.retorno5d || 0;
+    var ip = v2 >= 0;
+    var w2 = Math.min(50, Math.abs(v2) / maxAbs * 50);
+    var col4 = ip ? 'var(--gr)' : 'var(--rd)';
+    html += '<div class="flow-row"><div class="flow-name">' + it6.name + '</div>';
+    html += '<div class="flow-track"><div class="flow-fill" style="width:' + w2 + '%;background:' + col4 + ';' + (ip ? 'left:50%' : 'left:' + (50 - w2) + '%') + '"></div>';
+    html += '<div style="position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--b2)"></div></div>';
+    html += '<div class="flow-pct ' + (ip ? 'c-gr' : 'c-rd') + '">' + fmtPct(v2, 2) + '</div></div>';
+  }
+  html += '<div style="margin-top:8px;font-family:JetBrains Mono,monospace;font-size:10px;color:var(--t3)">Retorno 5D. QQQ+HYG+TLT-=Risk-On · TLT+GLD+=Risk-Off</div>';
+  el.innerHTML = html;
 }
 
+// ══════════════════════════════════════════════════════════
+// DETECTORES DE GIRO
+// ══════════════════════════════════════════════════════════
 function renderGiro() {
-  const g = D.giro;
-  if (!g) { document.getElementById('giro-content').innerHTML = '<div class="no-data">No disponible</div>'; return; }
-  const senal = g.señalGlobal;
-  const senalCol = senal === 'techo' ? 'var(--rd)' : senal === 'suelo' ? 'var(--gr)' : 'var(--am)';
+  var g = D.giro;
+  var el = document.getElementById('giro-content');
+  if (!el) return;
+  if (!g) { el.innerHTML = '<div class="no-data">No disponible</div>'; return; }
+  var senal = getVal(g, 'senalGlobal') || getVal(g, 'señalGlobal') || 'neutro';
+  var senalCol = senal === 'techo' ? 'var(--rd)' : senal === 'suelo' ? 'var(--gr)' : 'var(--am)';
+  var bbSenal = getVal(g.bb || {}, 'senal') || getVal(g.bb || {}, 'señal') || 'neutro';
+  var diasSenal = getVal(g.diasConsec || {}, 'senal') || getVal(g.diasConsec || {}, 'señal') || 'normal';
 
-  const items = [
-    { icon: '📉', n: 'Divergencia RSI Diaria', d: g.d?.divBajista ? 'Divergencia bajista detectada — precio sube, RSI baja' : g.d?.divAlcista ? 'Divergencia alcista detectada — precio baja, RSI sube' : 'Sin divergencia', badge: g.d?.divBajista ? 'r' : g.d?.divAlcista ? 'g' : 'n', bl: g.d?.divBajista ? 'BAJISTA' : g.d?.divAlcista ? 'ALCISTA' : 'NEUTRO', fi: g.d?.fiabilidad ?? '' },
-    { icon: '📈', n: 'Divergencia RSI Semanal', d: g.w?.divBajista ? 'Div. bajista semanal — señal de mayor plazo' : g.w?.divAlcista ? 'Div. alcista semanal — giro importante posible' : 'Sin divergencia semanal', badge: g.w?.divBajista ? 'r' : g.w?.divAlcista ? 'g' : 'n', bl: g.w?.divBajista ? 'BAJISTA' : g.w?.divAlcista ? 'ALCISTA' : 'NEUTRO', fi: '' },
-    { icon: '📊', n: 'Bollinger Bands', d: g.bb?.señal === 'techo' ? 'Precio en/sobre banda superior — agotamiento posible' : g.bb?.señal === 'suelo' ? 'Precio en/bajo banda inferior — rebote posible' : `Precio dentro de bandas (%B: ${g.bb?.pct ?? '--'})`, badge: g.bb?.señal === 'techo' ? 'r' : g.bb?.señal === 'suelo' ? 'g' : 'n', bl: g.bb?.señal?.toUpperCase() ?? 'NEUTRO', fi: '' },
-    { icon: '🔢', n: 'Días Consecutivos', d: g.diasConsec ? `${g.diasConsec.dias} días ${g.diasConsec.dir} — ${g.diasConsec.señal?.replace(/_/g,' ')}` : 'Sin datos', badge: g.diasConsec?.señal === 'agotamiento' ? 'r' : g.diasConsec?.señal === 'rebote' ? 'g' : 'n', bl: g.diasConsec?.señal?.toUpperCase() ?? '--', fi: '' }
+  var items = [
+    { icon: '📉', n: 'Divergencia RSI Diaria', d: g.d && g.d.divBajista ? 'Divergencia bajista — precio sube, RSI baja' : (g.d && g.d.divAlcista ? 'Divergencia alcista — precio baja, RSI sube' : 'Sin divergencia'), badge: g.d && g.d.divBajista ? 'r' : (g.d && g.d.divAlcista ? 'g' : 'n'), bl: g.d && g.d.divBajista ? 'BAJISTA' : (g.d && g.d.divAlcista ? 'ALCISTA' : 'NEUTRO'), fi: g.d && g.d.fiabilidad || '' },
+    { icon: '📈', n: 'Divergencia RSI Semanal', d: g.w && g.w.divBajista ? 'Div. bajista semanal — señal de mayor plazo' : (g.w && g.w.divAlcista ? 'Div. alcista semanal — giro importante posible' : 'Sin divergencia semanal'), badge: g.w && g.w.divBajista ? 'r' : (g.w && g.w.divAlcista ? 'g' : 'n'), bl: g.w && g.w.divBajista ? 'BAJISTA' : (g.w && g.w.divAlcista ? 'ALCISTA' : 'NEUTRO'), fi: '' },
+    { icon: '📊', n: 'Bollinger Bands', d: bbSenal === 'techo' ? 'Precio en/sobre banda superior — agotamiento posible' : (bbSenal === 'suelo' ? 'Precio en/bajo banda inferior — rebote posible' : 'Precio dentro de bandas (%B: ' + (g.bb && g.bb.pct || '--') + ')'), badge: bbSenal === 'techo' ? 'r' : (bbSenal === 'suelo' ? 'g' : 'n'), bl: bbSenal.toUpperCase(), fi: '' },
+    { icon: '🔢', n: 'Días Consecutivos', d: g.diasConsec ? g.diasConsec.dias + ' días ' + g.diasConsec.dir + ' — ' + diasSenal.replace(/_/g, ' ') : 'Sin datos', badge: diasSenal === 'agotamiento' ? 'r' : (diasSenal === 'rebote' ? 'g' : 'n'), bl: diasSenal.toUpperCase(), fi: '' }
   ];
 
-  document.getElementById('giro-content').innerHTML = `
-    <div style="text-align:center;padding:8px 0 14px">
-      <div style="font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;font-family:'JetBrains Mono',monospace;margin-bottom:4px">Señal Global de Giro</div>
-      <div style="font-size:22px;font-weight:800;color:${senalCol}">${senal?.toUpperCase() ?? 'NEUTRO'}</div>
-    </div>
-    ${items.map(it => `
-      <div class="giro-row">
-        <div class="giro-icon">${it.icon}</div>
-        <div class="giro-body">
-          <div class="giro-name">${it.n}</div>
-          <div class="giro-desc">${it.d}${it.fi ? ' · Fiabilidad: ' + it.fi : ''}</div>
-        </div>
-        <div class="giro-badge"><div class="badge ${it.badge}">${it.bl}</div></div>
-      </div>
-    `).join('')}
-  `;
-}
-
-function renderTecnicos() {
-  const t = D.tecnicos;
-  if (!t) { document.getElementById('tec-content').innerHTML = '<div class="no-data">No disponible</div>'; return; }
-  const d = t.d, w = t.w, m = t.m;
-  const p = d?.precio ?? D.precio?.ndx ?? 0;
-
-  const emaItems = [
-    { l: 'EMA 8', v: d?.ema8, above: p > (d?.ema8 ?? 0) },
-    { l: 'EMA 21', v: d?.ema21, above: p > (d?.ema21 ?? 0) },
-    { l: 'EMA 50', v: d?.ema50, above: p > (d?.ema50 ?? 0) },
-    { l: 'EMA 100', v: d?.ema100, above: p > (d?.ema100 ?? 0) },
-    { l: 'EMA 200', v: d?.ema200, above: p > (d?.ema200 ?? 0) },
-  ].filter(i => i.v);
-
-  document.getElementById('tec-content').innerHTML = `
-    <!-- Diario -->
-    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Timeframe Diario</div>
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">RSI (14)</div><div class="ind-sub">${d?.rsi14 > 70 ? 'Sobrecompra' : d?.rsi14 < 30 ? 'Sobreventa' : 'Zona normal'}</div></div>
-      <div class="ind-right"><div class="ind-val ${d?.rsi14 > 70 ? 'c-rd' : d?.rsi14 < 30 ? 'c-gr' : 'c-am'}">${d?.rsi14 ?? '--'}</div></div>
-    </div>
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">MACD Histograma</div><div class="ind-sub">Señal: ${d?.macd?.signal ?? '--'} · Línea: ${d?.macd?.line ?? '--'}</div></div>
-      <div class="ind-right"><div class="ind-val ${(d?.macd?.hist ?? 0) > 0 ? 'c-gr' : 'c-rd'}">${d?.macd?.hist != null ? (d.macd.hist>=0?'+':'')+d.macd.hist : '--'}</div></div>
-    </div>
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">Estocástico %K/%D</div><div class="ind-sub">${d?.stoch?.k < 20 ? 'Sobreventa' : d?.stoch?.k > 80 ? 'Sobrecompra' : 'Zona normal'}</div></div>
-      <div class="ind-right"><div class="ind-val ${(d?.stoch?.k??50)<20?'c-gr':(d?.stoch?.k??50)>80?'c-rd':'c-am'}">${d?.stoch ? d.stoch.k + '/' + d.stoch.d : '--'}</div></div>
-    </div>
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">Bollinger %B</div><div class="ind-sub">Anchura: ${d?.bb?.width ?? '--'}% · Ancho relativo</div></div>
-      <div class="ind-right"><div class="ind-val ${(d?.bb?.pct??50)>80?'c-rd':(d?.bb?.pct??50)<20?'c-gr':'c-am'}">${d?.bb?.pct != null ? d.bb.pct + '%' : '--'}</div></div>
-    </div>
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">ROC 5D / 10D / 20D</div><div class="ind-sub">Rate of Change</div></div>
-      <div class="ind-right"><div class="ind-val c-t2" style="font-size:11px">${fmtPct(d?.roc5,2)} / ${fmtPct(d?.roc10,2)} / ${fmtPct(d?.roc20,2)}</div></div>
-    </div>
-    <div class="ind-row">
-      <div class="ind-left"><div class="ind-name">Vol. Relativo 5D</div><div class="ind-sub">vs media histórica</div></div>
-      <div class="ind-right"><div class="ind-val ${(d?.volRatio5??1)>1.3?'c-gr':(d?.volRatio5??1)<0.7?'c-rd':'c-t2'}">${d?.volRatio5 != null ? d.volRatio5 + 'x' : '--'}</div></div>
-    </div>
-
-    <!-- EMAs -->
-    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--t3);margin:10px 0 6px">EMAs · Precio: ${fmt(p)}</div>
-    ${emaItems.map(e => `
-      <div class="ind-row">
-        <div class="ind-left"><div class="ind-name">${e.l}</div><div class="ind-sub">${e.above ? 'Precio POR ENCIMA' : 'Precio POR DEBAJO'}</div></div>
-        <div class="ind-right"><div class="ind-val ${e.above ? 'c-gr' : 'c-rd'}">${fmt(e.v)}</div></div>
-      </div>
-    `).join('')}
-
-    <!-- Semanal -->
-    ${w ? `<div class="divider"></div>
-    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Timeframe Semanal</div>
-    <div class="ind-row"><div class="ind-left"><div class="ind-name">RSI Semanal (14)</div></div><div class="ind-right"><div class="ind-val ${(w.rsi14??50)>70?'c-rd':(w.rsi14??50)<30?'c-gr':'c-am'}">${w.rsi14 ?? '--'}</div></div></div>
-    <div class="ind-row"><div class="ind-left"><div class="ind-name">MACD Semanal</div><div class="ind-sub">Señal: ${w.macd?.signal ?? '--'}</div></div><div class="ind-right"><div class="ind-val ${(w.macd?.hist??0)>0?'c-gr':'c-rd'}">${w.macd?.hist != null ? (w.macd.hist>=0?'+':'')+w.macd.hist : '--'}</div></div></div>
-    <div class="ind-row"><div class="ind-left"><div class="ind-name">ROC 4S / 8S</div></div><div class="ind-right"><div class="ind-val c-t2" style="font-size:11px">${fmtPct(w.roc4,2)} / ${fmtPct(w.roc8,2)}</div></div></div>
-    ` : ''}
-
-    <!-- Mensual -->
-    ${m ? `<div class="divider"></div>
-    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Timeframe Mensual</div>
-    <div class="ind-row"><div class="ind-left"><div class="ind-name">RSI Mensual</div></div><div class="ind-right"><div class="ind-val ${(m.rsi14??50)>70?'c-rd':(m.rsi14??50)<30?'c-gr':'c-am'}">${m.rsi14 ?? '--'}</div></div></div>
-    <div class="ind-row"><div class="ind-left"><div class="ind-name">ROC 3M</div></div><div class="ind-right"><div class="ind-val ${(m.roc3??0)>0?'c-gr':'c-rd'}">${fmtPct(m.roc3,2)}</div></div></div>
-    ` : ''}
-  `;
-}
-
-function renderLiquidez() {
-  const liq = D.liquidez;
-  if (!liq) { document.getElementById('liq-content').innerHTML = '<div class="no-data">No disponible</div>'; return; }
-  const p = liq.precio;
-  const zR = liq.zonasResistencia?.slice(0, 5) ?? [];
-  const zS = liq.zonasSoporte?.slice(0, 5) ?? [];
-
-  const allZ = [
-    ...zR.map(z => ({ ...z, tipo: 'res' })),
-    { nivel: p, tipo: 'precio', igualdad: false, cnt: 0, distPct: 0 },
-    ...zS.map(z => ({ ...z, tipo: 'sup' }))
-  ].sort((a, b) => b.nivel - a.nivel);
-
-  document.getElementById('liq-content').innerHTML = allZ.map(z => {
-    if (z.tipo === 'precio') return `
-      <div class="precio-line">
-        <div class="ind-val c-ac mono" style="font-size:14px">${fmt(p)}</div>
-        <div style="flex:1;height:1px;background:linear-gradient(90deg,var(--ac),transparent)"></div>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ac)">PRECIO ACTUAL</div>
-      </div>`;
-    const col = z.tipo === 'res' ? 'var(--rd)' : 'var(--gr)';
-    const arrow = z.tipo === 'res' ? '▲' : '▼';
-    const fi = z.igualdad ? 'alta' : z.reciente ? 'media' : 'baja';
-    return `<div class="liq-row">
-      <div class="liq-nivel" style="color:${col}">${arrow} ${fmt(z.nivel)}</div>
-      <div class="liq-info">
-        <div class="liq-tipo" style="color:${col}">${z.tipo === 'res' ? 'Resistencia' : 'Soporte'}${z.igualdad ? ' · Equal ' + (z.tipo==='res'?'High':'Low') : ''}</div>
-        <div class="liq-dist mono">${z.distPct >= 0 ? '+' : ''}${z.distPct}%${z.cnt > 1 ? ' · ' + z.cnt + 'x testado' : ''}</div>
-      </div>
-      <div class="liq-fuerza ${fi}">${fi.toUpperCase()}</div>
-    </div>`;
-  }).join('');
-}
-
-// ══════════════════════════════════════════════════════════
-// DEMO DATA (cuando no hay API)
-// ══════════════════════════════════════════════════════════
-function buildDemo() {
-  const p = 19850 + Math.random() * 300;
-  const vix = 18 + Math.random() * 8;
-  const rsi = 45 + Math.random() * 25;
-  const macdHist = (Math.random() - 0.4) * 80;
-  const bull = rsi > 50 && macdHist > 0;
-
-  const scores = { d2: bull ? 4.2 : -3.1, d5: bull ? 3.8 : -2.4, w1: bull ? 2.9 : -1.8, w2: bull ? 2.1 : -1.2, w3: bull ? 1.4 : -0.7, w4: bull ? 0.8 : -0.3 };
-  const estado = s => s >= 3 ? 'alcista' : s <= -3 ? 'bajista' : s >= 1 ? 'alcista_mod' : s <= -1 ? 'bajista_mod' : 'neutro';
-  const conf = s => Math.min(95, Math.max(15, Math.round(Math.abs(s) / 10 * 100)));
-
-  return {
-    precio: { ndx: +p.toFixed(2), vix: +vix.toFixed(2), qqq: +(p/36).toFixed(2), tnx: 4.4, dxy: 100.5 },
-    scores: {
-      componentes: { tecnico: bull ? 6 : -5, macro: bull ? 2 : -3, cot: bull ? 1.5 : -1.5, vix: bull ? 2 : -1.5, flujos: bull ? 1.5 : -1, giro: bull ? 1 : -1 },
-      horizontes: Object.fromEntries(Object.entries(scores).map(([k, v]) => [k, { score: +v.toFixed(1), estado: estado(v), conf: conf(v), pesos: 'DEMO' }]))
-    },
-    cot: { largos: 185000, cortos: 85000, neto: 100000, netoDealers: -45000, pctLargo: 68.5, cambioNeto: 8500, cambioNetoDealers: -3200, trend4w: 22000, señal: 'bajista_mod', desc: 'Specs 68.5% largos — posicionamiento elevado, precaución', señalDealers: 'neutro', fecha: '2025-05-16', fuente: 'DEMO' },
-    opciones: { precio: p, gex: { estado: 'positivo', valor: 2, trampa: false, desc: 'Gamma positiva — dealers comprando caídas' }, v1: { fecha: '2025-05-23', maxPain: Math.round(p/10)*10-50, distPct: -1.2, topCalls: [{ strike: Math.round(p/10)*10+50, oi: 85000, dist: 0.8 }, { strike: Math.round(p/10)*10+100, oi: 62000, dist: 1.3 }], topPuts: [{ strike: Math.round(p/10)*10-50, oi: 72000, dist: -0.8 }, { strike: Math.round(p/10)*10-100, oi: 55000, dist: -1.3 }], señal: 'neutro', desc: 'Demo: Max Pain cerca del precio actual' } },
-    pcr: { equity: 0.72, total: 0.85, señal: 'neutro', desc: 'PCR normal — sin señal contraria extrema' },
-    vixTS: { spot: vix, vix3m: +(vix + 1.8).toFixed(2), vx1: +(vix + 1.2).toFixed(2), vx2: +(vix + 2.4).toFixed(2), spread1: 1.8, spread1Pct: +(1.8/vix*100).toFixed(1), backwardation: false, vixPercentil: 42, señal: 'neutro', desc: 'Contango normal — mercado sin estrés agudo' },
-    macro: { curva: { t3m: 4.28, t5y: 4.1, t10y: 4.42, t30y: 4.85, sp10_2: 0.18, sp10_3m: 0.14, invertida2y: false, invertida3m: false, señalRecesion: 'baja' }, fred: { walcl: { v: 8941000, trend: 'down' }, fedfunds: { v: 4.33, trend: null }, hySpread: { v: 3.1, trend: 'up' }, nfci: { v: -0.24, trend: 'down' }, sofr: { v: 4.31, trend: null }, t5yie: { v: 2.42, trend: 'up' }, t10yie: { v: 2.38, trend: 'up' } }, score: 1.5 },
-    tecnicos: { label: 'NDX-DEMO', d: { rsi14: +rsi.toFixed(1), macd: { hist: +macdHist.toFixed(1), signal: +(macdHist*0.9).toFixed(1), line: +(macdHist*1.1).toFixed(1) }, stoch: { k: 58, d: 52 }, bb: { upper: +(p*1.025).toFixed(2), mid: +p.toFixed(2), lower: +(p*0.975).toFixed(2), width: 5.1, pct: 55 }, ema8: +(p*0.998).toFixed(2), ema21: +(p*0.993).toFixed(2), ema50: +(p*0.985).toFixed(2), ema100: +(p*0.970).toFixed(2), ema200: +(p*0.945).toFixed(2), roc5: +(1.8+Math.random()*2-1).toFixed(2), roc10: +(2.1+Math.random()*3-1.5).toFixed(2), roc20: +(3.4+Math.random()*4-2).toFixed(2), volRatio5: +(0.9+Math.random()*0.6).toFixed(2), precio: p }, w: { rsi14: +(rsi-5).toFixed(1), macd: { hist: +( macdHist*0.7).toFixed(1), signal: null }, roc4: +1.4.toFixed(2), roc8: +3.2.toFixed(2) }, m: { rsi14: +(rsi-3).toFixed(1), roc3: +4.8.toFixed(2) } },
-    giro: { d: { divAlcista: false, divBajista: rsi > 72, fiabilidad: rsi > 72 ? 'media' : 'sin_div' }, w: { divAlcista: false, divBajista: false }, bb: { señal: rsi > 72 ? 'techo' : 'neutro', pct: 55, width: 5.1 }, diasConsec: { dias: 4, dir: 'subiendo', señal: 'vigilar_techo' }, señalGlobal: rsi > 72 ? 'techo' : 'neutro' },
-    flows: { qqq: { name:'QQQ', retorno5d: 1.8, retorno10d: 2.9, volRatio: 1.1, señal: 'entradas' }, spy: { name:'SPY', retorno5d: 1.2, retorno10d: 2.1, volRatio: 1.0, señal:'entradas_mod'}, tlt: { name:'TLT', retorno5d: -0.9, retorno10d: -1.2, volRatio: 0.9, señal:'salidas_mod'}, hyg: { name:'HYG', retorno5d: 0.4, retorno10d: 0.8, volRatio: 1.0, señal:'neutro'}, gld: { name:'GLD', retorno5d: 0.6, retorno10d: 1.1, volRatio: 1.05, señal:'neutro'}, eem: { name:'EEM', retorno5d: -0.3, retorno10d: -0.5, volRatio: 0.95, señal:'neutro'}, iwm: { name:'IWM', retorno5d: 0.9, retorno10d: 1.4, volRatio: 1.0, señal:'neutro'}, modo: 'risk_on' },
-    liquidez: { precio: p, atr14: +(p*0.011).toFixed(2), zonasResistencia: [{ nivel: +(p*1.02).toFixed(2), igualdad: false, cnt: 1, reciente: true, distPct: 2.0 }, { nivel: +(p*1.035).toFixed(2), igualdad: true, cnt: 2, reciente: false, distPct: 3.5 }], zonasSoporte: [{ nivel: +(p*0.985).toFixed(2), igualdad: false, cnt: 1, reciente: true, distPct: -1.5 }, { nivel: +(p*0.970).toFixed(2), igualdad: true, cnt: 3, reciente: false, distPct: -3.0 }], rangosPorHorizonte: { d2: { sup: +(p*0.994).toFixed(2), res: +(p*1.006).toFixed(2) }, d5: { sup: +(p*0.986).toFixed(2), res: +(p*1.014).toFixed(2) }, w1: { sup: +(p*0.977).toFixed(2), res: +(p*1.023).toFixed(2) }, w2: { sup: +(p*0.965).toFixed(2), res: +(p*1.035).toFixed(2) }, w3: { sup: +(p*0.953).toFixed(2), res: +(p*1.047).toFixed(2) }, w4: { sup: +(p*0.940).toFixed(2), res: +(p*1.060).toFixed(2) } } },
-    ts: new Date().toISOString(), version: '2.0-demo'
-  };
-}
-
-// ══════════════════════════════════════════════════════════
-// LOAD DATA
-// ══════════════════════════════════════════════════════════
-async function loadData() {
-  const btn = document.getElementById('btn-refresh');
-  btn.disabled = true; document.getElementById('btn-txt').textContent = 'Cargando...';
-  document.getElementById('live-dot').style.background = 'var(--am)';
-  try {
-    const r = await Promise.race([
-      fetch(API_URL),
-      new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 25000))
-    ]);
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    D = await r.json();
-  } catch (e) {
-    console.warn('JSON error, using demo:', e.message);
-    D = buildDemo();
+  var html = '<div style="text-align:center;padding:8px 0 14px"><div style="font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;font-family:JetBrains Mono,monospace;margin-bottom:4px">Señal Global de Giro</div><div style="font-size:22px;font-weight:800;color:' + senalCol + '">' + senal.toUpperCase() + '</div></div>';
+  for (var li = 0; li < items.length; li++) {
+    var it7 = items[li];
+    html += '<div class="giro-row"><div class="giro-icon">' + it7.icon + '</div><div class="giro-body"><div class="giro-name">' + it7.n + '</div><div class="giro-desc">' + it7.d + (it7.fi ? ' · Fiabilidad: ' + it7.fi : '') + '</div></div><div class="giro-badge"><div class="badge ' + it7.badge + '">' + it7.bl + '</div></div></div>';
   }
-  renderAll();
-  document.getElementById('last-upd').textContent = 'Actualizado: ' + new Date().toLocaleTimeString('es-ES') + (D.version?.includes('demo') ? ' · MODO DEMO' : '');
-  document.getElementById('live-dot').style.background = 'var(--gr)';
-  btn.disabled = false; document.getElementById('btn-txt').textContent = 'Actualizar';
+  el.innerHTML = html;
 }
 
+// ══════════════════════════════════════════════════════════
+// TÉCNICOS
+// ══════════════════════════════════════════════════════════
+function renderTecnicos() {
+  var t = D.tecnicos;
+  var el = document.getElementById('tec-content');
+  if (!el) return;
+  if (!t) { el.innerHTML = '<div class="no-data">No disponible</div>'; return; }
+  var d = t.d, w = t.w, m = t.m;
+  var p = (d && d.precio) || (D.precio && D.precio.ndx) || 0;
+
+  var emaItems = [
+    { l: 'EMA 8', v: d && d.ema8, above: p > ((d && d.ema8) || 0) },
+    { l: 'EMA 21', v: d && d.ema21, above: p > ((d && d.ema21) || 0) },
+    { l: 'EMA 50', v: d && d.ema50, above: p > ((d && d.ema50) || 0) },
+    { l: 'EMA 100', v: d && d.ema100, above: p > ((d && d.ema100) || 0) },
+    { l: 'EMA 200', v: d && d.ema200, above: p > ((d && d.ema200) || 0) }
+  ].filter(function(e) { return e.v; });
+
+  var html = '<div style="font-family:JetBrains Mono,monospace;font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Timeframe Diario</div>';
+  html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">RSI (14)</div><div class="ind-sub">' + (d && d.rsi14 > 70 ? 'Sobrecompra' : d && d.rsi14 < 30 ? 'Sobreventa' : 'Zona normal') + '</div></div><div class="ind-right"><div class="ind-val ' + (d && d.rsi14 > 70 ? 'c-rd' : d && d.rsi14 < 30 ? 'c-gr' : 'c-am') + '">' + (d && d.rsi14 || '--') + '</div></div></div>';
+  html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">MACD Histograma</div><div class="ind-sub">Señal: ' + (d && d.macd && d.macd.signal || '--') + ' · Línea: ' + (d && d.macd && d.macd.line || '--') + '</div></div><div class="ind-right"><div class="ind-val ' + ((d && d.macd && d.macd.hist || 0) > 0 ? 'c-gr' : 'c-rd') + '">' + (d && d.macd && d.macd.hist != null ? (d.macd.hist >= 0 ? '+' : '') + d.macd.hist : '--') + '</div></div></div>';
+  html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">Estocástico %K/%D</div><div class="ind-sub">' + ((d && d.stoch && d.stoch.k) < 20 ? 'Sobreventa' : (d && d.stoch && d.stoch.k) > 80 ? 'Sobrecompra' : 'Zona normal') + '</div></div><div class="ind-right"><div class="ind-val ' + ((d && d.stoch && d.stoch.k || 50) < 20 ? 'c-gr' : (d && d.stoch && d.stoch.k || 50) > 80 ? 'c-rd' : 'c-am') + '">' + (d && d.stoch ? d.stoch.k + '/' + d.stoch.d : '--') + '</div></div></div>';
+  html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">Bollinger %B</div><div class="ind-sub">Anchura: ' + (d && d.bb && d.bb.width || '--') + '% · Ancho relativo</div></div><div class="ind-right"><div class="ind-val ' + ((d && d.bb && d.bb.pct || 50) > 80 ? 'c-rd' : (d && d.bb && d.bb.pct || 50) < 20 ? 'c-gr' : 'c-am') + '">' + (d && d.bb && d.bb.pct != null ? d.bb.pct + '%' : '--') + '</div></div></div>';
+  html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">ROC 5D / 10D / 20D</div><div class="ind-sub">Rate of Change</div></div><div class="ind-right"><div class="ind-val c-t2" style="font-size:11px">' + fmtPct(d && d.roc5, 2) + ' / ' + fmtPct(d && d.roc10, 2) + ' / ' + fmtPct(d && d.roc20, 2) + '</div></div></div>';
+  html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">Vol. Relativo 5D</div><div class="ind-sub">vs media histórica</div></div><div class="ind-right"><div class="ind-val ' + ((d && d.volRatio5 || 1) > 1.3 ? 'c-gr' : (d && d.volRatio5 || 1) < 0.7 ? 'c-rd' : 'c-t2') + '">' + (d && d.volRatio5 != null ? d.volRatio5 + 'x' : '--') + '</div></div></div>';
+
+  html += '<div style="font-family:JetBrains Mono,monospace;font-size:10px;color:var(--t3);margin:10px 0 6px">EMAs · Precio: ' + fmt(p) + '</div>';
+  for (var em = 0; em < emaItems.length; em++) {
+    var e = emaItems[em];
+    html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">' + e.l + '</div><div class="ind-sub">' + (e.above ? 'Precio POR ENCIMA' : 'Precio POR DEBAJO') + '</div></div><div class="ind-right"><div class="ind-val ' + (e.above ? 'c-gr' : 'c-rd') + '">' + fmt(e.v) + '</div></div></div>';
+  }
+
+  if (w) {
+    html += '<div class="divider"></div><div style="font-family:JetBrains Mono,monospace;font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Timeframe Semanal</div>';
+    html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">RSI Semanal (14)</div></div><div class="ind-right"><div class="ind-val ' + ((w.rsi14 || 50) > 70 ? 'c-rd' : (w.rsi14 || 50) < 30 ? 'c-gr' : 'c-am') + '">' + (w.rsi14 || '--') + '</div></div></div>';
+    html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">MACD Semanal</div><div class="ind-sub">Señal: ' + (w.macd && w.macd.signal || '--') + '</div></div><div class="ind-right"><div class="ind-val ' + ((w.macd && w.macd.hist || 0) > 0 ? 'c-gr' : 'c-rd') + '">' + (w.macd && w.macd.hist != null ? (w.macd.hist >= 0 ? '+' : '') + w.macd.hist : '--') + '</div></div></div>';
+    html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">ROC 4S / 8S</div></div><div class="ind-right"><div class="ind-val c-t2" style="font-size:11px">' + fmtPct(w.roc4, 2) + ' / ' + fmtPct(w.roc8, 2) + '</div></div></div>';
+  }
+  if (m) {
+    html += '<div class="divider"></div><div style="font-family:JetBrains Mono,monospace;font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px">Timeframe Mensual</div>';
+    html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">RSI Mensual</div></div><div class="ind-right"><div class="ind-val ' + ((m.rsi14 || 50) > 70 ? 'c-rd' : (m.rsi14 || 50) < 30 ? 'c-gr' : 'c-am') + '">' + (m.rsi14 || '--') + '</div></div></div>';
+    html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">ROC 3M</div></div><div class="ind-right"><div class="ind-val ' + ((m.roc3 || 0) > 0 ? 'c-gr' : 'c-rd') + '">' + fmtPct(m.roc3, 2) + '</div></div></div>';
+  }
+  el.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════════
+// B5 CTA TRIGGER LEVELS
+// ══════════════════════════════════════════════════════════
+function renderCTA() {
+  var cta = D.cta_levels;
+  var el = document.getElementById('cta-content');
+  var badge = document.getElementById('cta-badge');
+  if (!el) return;
+  if (!cta) {
+    el.innerHTML = '<div class="no-data">CTA Levels no disponibles (requiere Python Fase 7)</div>';
+    if (badge) { badge.className = 'badge n'; badge.textContent = 'N/A'; }
+    return;
+  }
+  var senal = getVal(cta, 'senal_cta') || 'neutro';
+  if (badge) { badge.className = 'badge ' + (senal === 'compra_algorítmica' || senal === 'compra_algoritmica' ? 'g' : senal === 'venta_algorítmica' || senal === 'venta_algoritmica' ? 'r' : 'a'); badge.textContent = senal.toUpperCase().replace(/_/g, ' '); }
+
+  var precio = cta.precio_qqq || D.precio && D.precio.qqq || 0;
+  var levels = [
+    { l: 'Don 20D High', v: cta.don20_high, dist: cta.dist_don20h_pct, es: 'res' },
+    { l: 'Don 20D Low', v: cta.don20_low, dist: cta.dist_don20l_pct, es: 'sup' },
+    { l: 'Don 50D High', v: cta.don50_high, dist: cta.dist_don50h_pct, es: 'res' },
+    { l: 'Don 50D Low', v: cta.don50_low, dist: cta.dist_don50l_pct, es: 'sup' }
+  ];
+
+  var html = '<div class="ind-row"><div class="ind-left"><div class="ind-name">Precio QQQ</div><div class="ind-sub">vs canales Donchian</div></div><div class="ind-right"><div class="ind-val c-ac">' + fmt(precio) + '</div></div></div>';
+  for (var ci2 = 0; ci2 < levels.length; ci2++) {
+    var lv = levels[ci2];
+    if (!lv.v) continue;
+    var col5 = lv.es === 'res' ? 'var(--rd)' : 'var(--gr)';
+    var distPct = lv.dist != null ? fmtPct(lv.dist, 2) : '--';
+    html += '<div class="ind-row"><div class="ind-left"><div class="ind-name">' + lv.l + '</div><div class="ind-sub">Distancia: ' + distPct + '</div></div><div class="ind-right"><div class="ind-val" style="color:' + col5 + '">' + fmt(lv.v) + '</div></div></div>';
+  }
+  if (cta.desc) html += '<div style="margin-top:8px;font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t3);line-height:1.6">' + cta.desc + '</div>';
+  el.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════════
+// B6 AMPLITUD NDX-100 BREADTH
+// ══════════════════════════════════════════════════════════
+function renderBreadth() {
+  var amp = D.amplitud_mercado;
+  var br = amp && amp.ndx100_breadth ? amp.ndx100_breadth : null;
+  var el = document.getElementById('breadth-content');
+  var badge = document.getElementById('breadth-badge');
+  if (!el) return;
+  if (!br) {
+    el.innerHTML = '<div class="no-data">Amplitud NDX-100 no disponible (requiere Python Fase 7)</div>';
+    if (badge) { badge.className = 'badge n'; badge.textContent = 'N/A'; }
+    return;
+  }
+  var senal = getVal(br, 'senal') || getVal(br, 'señal') || 'neutro';
+  if (badge) { badge.className = 'badge ' + badgeCls(senal); badge.textContent = senal.toUpperCase(); }
+
+  var highs = br.new_highs_52w || 0;
+  var lows = br.new_lows_52w || 0;
+  var netBp = br.net_breadth_pct != null ? br.net_breadth_pct : (highs - lows);
+  var total = highs + lows || 1;
+  var highsPct = Math.min(100, (highs / total) * 100);
+  var lowsPct = Math.min(100, (lows / total) * 100);
+  var netCol = netBp > 40 ? 'var(--gr)' : netBp > 0 ? 'var(--am)' : 'var(--rd)';
+
+  var html = '';
+  html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">';
+  html += '<div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t2);font-weight:700">Net Breadth NDX-100 (52W)</div>';
+  html += '<div style="font-family:JetBrains Mono,monospace;font-size:18px;font-weight:700;color:' + netCol + '">' + (netBp >= 0 ? '+' : '') + netBp.toFixed(1) + '%</div>';
+  html += '</div>';
+
+  html += '<div class="breadth-bar-wrap"><div class="breadth-label">New Highs</div><div class="breadth-track"><div class="breadth-fill" style="width:' + highsPct + '%;background:var(--gr)"></div></div><span style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--gr);min-width:32px">' + highs + '</span></div>';
+  html += '<div class="breadth-bar-wrap"><div class="breadth-label">New Lows</div><div class="breadth-track"><div class="breadth-fill" style="width:' + lowsPct + '%;background:var(--rd)"></div></div><span style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--rd);min-width:32px">' + lows + '</span></div>';
+
+  if (br.score != null) {
+    var scCol = br.score > 0 ? 'var(--gr)' : br.score < 0 ? 'var(--rd)' : 'var(--am)';
+    html += '<div class="divider"></div><div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t3)">Score breadth: <span style="color:' + scCol + '">' + (br.score >= 0 ? '+' : '') + br.score + '</span> · Señal: <span style="color:' + scCol + '">' + senal.toUpperCase() + '</span></div>';
+  }
+  el.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════════
+// LIQUIDEZ
+// ══════════════════════════════════════════════════════════
+function renderLiquidez() {
+  var liq = D.liquidez;
+  var el = document.getElementById('liq-content');
+  if (!el) return;
+  if (!liq) { el.innerHTML = '<div class="no-data">No disponible</div>'; return; }
+  var p2 = liq.precio;
+  var zR = (liq.zonasResistencia || []).slice(0, 5);
+  var zS = (liq.zonasSoporte || []).slice(0, 5);
+
+  var allZ = [];
+  for (var zri = 0; zri < zR.length; zri++) allZ.push(Object.assign({}, zR[zri], { tipo: 'res' }));
+  allZ.push({ nivel: p2, tipo: 'precio', igualdad: false, cnt: 0, distPct: 0 });
+  for (var zsi = 0; zsi < zS.length; zsi++) allZ.push(Object.assign({}, zS[zsi], { tipo: 'sup' }));
+  allZ.sort(function(a, b) { return b.nivel - a.nivel; });
+
+  var html = '';
+  for (var zi = 0; zi < allZ.length; zi++) {
+    var z = allZ[zi];
+    if (z.tipo === 'precio') {
+      html += '<div class="precio-line"><div class="ind-val c-ac mono" style="font-size:14px">' + fmt(p2) + '</div><div style="flex:1;height:1px;background:linear-gradient(90deg,var(--ac),transparent)"></div><div style="font-family:JetBrains Mono,monospace;font-size:10px;color:var(--ac)">PRECIO ACTUAL</div></div>';
+    } else {
+      var col6 = z.tipo === 'res' ? 'var(--rd)' : 'var(--gr)';
+      var arrow = z.tipo === 'res' ? '▲' : '▼';
+      var fi2 = z.igualdad ? 'alta' : (z.reciente ? 'media' : 'baja');
+      html += '<div class="liq-row"><div class="liq-nivel" style="color:' + col6 + '">' + arrow + ' ' + fmt(z.nivel) + '</div>';
+      html += '<div class="liq-info"><div class="liq-tipo" style="color:' + col6 + '">' + (z.tipo === 'res' ? 'Resistencia' : 'Soporte') + (z.igualdad ? ' · Equal ' + (z.tipo === 'res' ? 'High' : 'Low') : '') + '</div>';
+      html += '<div class="liq-dist mono">' + (z.distPct >= 0 ? '+' : '') + z.distPct + '%' + (z.cnt > 1 ? ' · ' + z.cnt + 'x testado' : '') + '</div></div>';
+      html += '<div class="liq-fuerza ' + fi2 + '">' + fi2.toUpperCase() + '</div></div>';
+    }
+  }
+  el.innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════════
+// MRM
+// ══════════════════════════════════════════════════════════
 function renderMRM() {
   var mrm = D.comparativa_correcciones;
   var body = document.getElementById('mrm-body');
   var badge = document.getElementById('mrm-rec-badge');
+  if (!body) return;
   if (!mrm || !mrm.micro_3pct) {
-    body.innerHTML = '<div class="no-data">Fase 4 pendiente</div>';
+    body.innerHTML = '<div class="no-data">Fase 4 pendiente — ejecuta actualizar_radar.py v4</div>';
     return;
   }
   var rec = mrm.recomendacion || '';
   var recCls = rec.indexOf('MANTENER') >= 0 ? 'mantener' : rec.indexOf('REDUCIR') >= 0 ? 'reducir' : 'monitorear';
   var recShort = rec.indexOf('MANTENER') >= 0 ? 'MANTENER/ACUMULAR' : rec.indexOf('REDUCIR') >= 0 ? 'REDUCIR EXPOSICION' : 'MONITOREAR';
-  badge.className = 'mrm-rec ' + recCls;
-  badge.textContent = recShort;
+  if (badge) { badge.className = 'mrm-rec ' + recCls; badge.textContent = recShort; }
+
   var scenarios = [
-    {key:'micro_3pct',      label:'Micro-Retraccion (2-3%)',         desc:'Ajuste tecnico saludable',                     colH:'var(--gr)', colL:'rgba(46,204,138,0.3)'},
-    {key:'tecnica_7pct',    label:'Correccion Tecnica (5-7%)',        desc:'Testeo de soportes intermedios',               colH:'#a3e635',   colL:'rgba(163,230,53,0.3)'},
-    {key:'macro_15pct',     label:'Correccion Macro/Geo (10-15%)',    desc:'Aranceles, DXY fuerte, geopolitica',           colH:'var(--am)', colL:'rgba(240,165,0,0.3)'},
-    {key:'bajista_25pct',   label:'Mercado Bajista Ciclico (20-25%)', desc:'Drenaje severo de liquidez - como 2022',       colH:'#f97316',   colL:'rgba(249,115,22,0.3)'},
-    {key:'cisne_negro_30pct',label:'Cisne Negro / Colapso (+30%)',    desc:'Punto Com 2000 / Crisis 2008 / COVID 2020',    colH:'var(--rd)', colL:'rgba(255,94,94,0.3)'}
+    { key: 'micro_3pct', label: 'Micro-Retraccion (2-3%)', desc: 'Ajuste técnico saludable', colH: 'var(--gr)', colL: 'rgba(46,204,138,0.3)' },
+    { key: 'tecnica_7pct', label: 'Correccion Técnica (5-7%)', desc: 'Testeo de soportes intermedios', colH: '#a3e635', colL: 'rgba(163,230,53,0.3)' },
+    { key: 'macro_15pct', label: 'Correccion Macro/Geo (10-15%)', desc: 'Aranceles, DXY fuerte, geopolitica', colH: 'var(--am)', colL: 'rgba(240,165,0,0.3)' },
+    { key: 'bajista_25pct', label: 'Mercado Bajista Ciclico (20-25%)', desc: 'Drenaje severo — como 2022', colH: '#f97316', colL: 'rgba(249,115,22,0.3)' },
+    { key: 'cisne_negro_30pct', label: 'Cisne Negro / Colapso (+30%)', desc: 'Punto Com 2000 / Crisis 2008 / COVID 2020', colH: 'var(--rd)', colL: 'rgba(255,94,94,0.3)' }
   ];
   var dom = mrm.escenario_dominante;
   var html = '';
-  for (var i = 0; i < scenarios.length; i++) {
-    var sc = scenarios[i];
-    var val = mrm[sc.key] || 0;
-    var col = val > 65 ? sc.colH : val > 40 ? sc.colL : 'var(--s4)';
-    var domTag = sc.key === dom ? '<span style="font-family:monospace;font-size:9px;padding:1px 6px;border-radius:100px;background:var(--ac2);border:1px solid var(--acb);color:var(--ac);margin-left:6px">DOM</span>' : '';
+  for (var si = 0; si < scenarios.length; si++) {
+    var sc3 = scenarios[si];
+    var val = mrm[sc3.key] || 0;
+    var col7 = val > 65 ? sc3.colH : val > 40 ? sc3.colL : 'var(--s4)';
+    var domTag = sc3.key === dom ? '<span style="font-family:monospace;font-size:9px;padding:1px 6px;border-radius:100px;background:var(--ac2);border:1px solid var(--acb);color:var(--ac);margin-left:6px">DOM</span>' : '';
     html += '<div class="mrm-scenario">';
-    html += '<div class="mrm-sc-header"><div class="mrm-sc-label">' + sc.label + domTag + '</div><div class="mrm-sc-pct" style="color:' + col + '">' + val + '%</div></div>';
-    html += '<div style="font-family:monospace;font-size:9px;color:var(--t4);margin-bottom:5px">' + sc.desc + '</div>';
-    html += '<div class="mrm-bar-track"><div class="mrm-bar-fill" data-w="' + val + '" style="width:0%;background:' + col + '"></div></div>';
+    html += '<div class="mrm-sc-header"><div class="mrm-sc-label">' + sc3.label + domTag + '</div><div class="mrm-sc-pct" style="color:' + col7 + '">' + val + '%</div></div>';
+    html += '<div style="font-family:monospace;font-size:9px;color:var(--t4);margin-bottom:5px">' + sc3.desc + '</div>';
+    html += '<div class="mrm-bar-track"><div class="mrm-bar-fill" data-w="' + val + '" style="width:0%;background:' + col7 + '"></div></div>';
     html += '</div>';
   }
   html += '<div class="mrm-detalle">' + (mrm.detalle || '') + '</div>';
-  html += '<div class="mrm-conf">Confianza: ' + (mrm.confianza || 0) + '% - MRM v4 - ' + (mrm.ts_calculo || '').slice(0,10) + '</div>';
+  html += '<div class="mrm-conf">Confianza: ' + (mrm.confianza || 0) + '% · MRM v4 · ' + ((mrm.ts_calculo || '').slice(0, 10)) + '</div>';
   body.innerHTML = html;
   setTimeout(function() {
     var fills = body.querySelectorAll('.mrm-bar-fill');
-    for (var j = 0; j < fills.length; j++) {
-      fills[j].style.width = fills[j].getAttribute('data-w') + '%';
+    for (var fi3 = 0; fi3 < fills.length; fi3++) {
+      fills[fi3].style.width = fills[fi3].getAttribute('data-w') + '%';
     }
   }, 150);
 }
 
-
 // ══════════════════════════════════════════════════════════
-// FASE 6 — AMPLITUD DE MERCADO
+// AMPLITUD FASE 5
 // ══════════════════════════════════════════════════════════
 function renderAmplitud() {
   try {
@@ -1452,106 +1806,57 @@ function renderAmplitud() {
     var badge = document.getElementById('amp-badge');
     var container = document.getElementById('amp-content');
     if (!amp || !container) return;
-
     if (amp.error && amp.error !== 'no_ejecutado') {
       if (badge) { badge.className = 'badge r'; badge.textContent = 'ERROR'; }
       container.innerHTML = '<div class="no-data">Amplitud no disponible: ' + (amp.error || '') + '</div>';
       return;
     }
-
-    // Señal global amplitud
     var sa = amp.score_amplitud || 0;
     var fe = amp.factor_exposicion_recomendado || 1.0;
     var signalCls = sa > 1 ? 'g' : sa < -1 ? 'r' : 'a';
     var signalTxt = sa > 1 ? 'RISK ON' : sa < -1 ? 'RISK OFF' : 'NEUTRO';
     if (badge) { badge.className = 'badge ' + signalCls; badge.textContent = signalTxt; }
 
-    // Cobre/Oro
     var cuOro = amp.ratio_cobre_oro != null ? amp.ratio_cobre_oro.toFixed(4) : '--';
-    var cuTend = amp.tendencia_cobre_oro || 'neutro';
-    var cuSenal = amp.señal_cobre_oro || 'neutro';
+    var cuSenal = getVal(amp, 'senal_cobre_oro') || getVal(amp, 'señal_cobre_oro') || 'neutro';
     var cuCol = cuSenal === 'risk_on' ? 'var(--gr)' : cuSenal === 'risk_off' ? 'var(--rd)' : 'var(--am)';
-    var cuLabel = cuSenal === 'risk_on' ? 'RISK-ON' : cuSenal === 'risk_off' ? 'RISK-OFF' : 'NEUTRO';
-    var cuArrow = cuTend === 'up' ? ' &#9650;' : cuTend === 'down' ? ' &#9660;' : '';
+    var cuArrow = amp.tendencia_cobre_oro === 'subiendo' ? ' ▲' : amp.tendencia_cobre_oro === 'bajando' ? ' ▼' : '';
+    var cuLabel = cuSenal === 'risk_on' ? 'Risk-On industrial' : cuSenal === 'risk_off' ? 'Risk-Off / fuga a oro' : 'Neutral';
 
-    // Z-Score QQQ vs SMA200
-    var zs = amp.zscore_qqq_sma200;
-    var zsStr = zs != null ? zs.toFixed(3) : '--';
-    var zsSenal = amp.señal_zscore || 'normal';
-    var zsCol = zsSenal === 'sobreextendido' ? 'var(--rd)' : zsSenal === 'elevado' ? 'var(--am)' : zsSenal === 'deprimido' || zsSenal === 'sobreventa' ? 'var(--gr)' : 'var(--t2)';
-    var zsDescMap = {sobreextendido: 'Sobreextendido', elevado: 'Elevado', normal: 'Normal', deprimido: 'Deprimido', sobreventa: 'Sobreventa'};
-    var zsDesc = zsDescMap[zsSenal] || zsSenal;
-    // Barra Z-Score de -3 a +3
-    var zsNum = zs != null ? Math.max(-3, Math.min(3, zs)) : 0;
-    var zsW = Math.abs(zsNum) / 3 * 50;
-    var zsLeft = zsNum >= 0 ? 50 : (50 - zsW);
-
-    // Estacional
-    var estVal = amp.sesgo_estacional != null ? amp.sesgo_estacional : 0;
-    var estDesc = amp.descripcion_estacional || 'Sin datos estacionales';
+    var estVal = amp.sesgo_estacional != null ? amp.sesgo_estacional.toFixed(2) : 0;
+    var estDesc = amp.desc_estacional || '';
     var estCol = estVal > 0 ? 'var(--gr)' : estVal < 0 ? 'var(--rd)' : 'var(--am)';
     var estSign = estVal > 0 ? '+' : '';
 
-    // Kelly
+    var zs = amp.zscore_qqq_sma200;
+    var zsStr = zs != null ? (zs >= 0 ? '+' : '') + zs.toFixed(2) : '--';
+    var zsCol = zs != null ? (Math.abs(zs) > 2 ? (zs > 0 ? 'var(--rd)' : 'var(--gr)') : 'var(--am)') : 'var(--t3)';
+    var zsDesc = zs != null ? (Math.abs(zs) > 2.5 ? 'EXTREMO' : Math.abs(zs) > 1.5 ? 'extendido' : 'normal') : '';
+    var zsW = zs != null ? Math.min(50, Math.abs(zs) / 3 * 50) : 0;
+    var zsLeft = zs != null ? (zs >= 0 ? 50 : 50 - zsW) : 50;
+
     var kelly = amp.kelly_bruto != null ? amp.kelly_bruto.toFixed(3) : '--';
     var vixSc = amp.vix_scalar != null ? amp.vix_scalar.toFixed(3) : '--';
     var feW = Math.min(100, Math.max(0, fe / 1.5 * 100));
     var feCol = fe >= 1.0 ? 'var(--gr)' : fe >= 0.5 ? 'var(--am)' : 'var(--rd)';
 
-    var html = '';
-    html += '<div class="amp-grid">';
-
-    // Cobre/Oro
-    html += '<div class="amp-box">';
-    html += '<div class="amp-lbl">Ratio Cobre / Oro</div>';
-    html += '<div class="amp-val" style="color:' + cuCol + '">' + cuOro + cuArrow + '</div>';
-    html += '<div class="amp-sub" style="color:' + cuCol + '">' + cuLabel + '</div>';
+    var html = '<div class="amp-grid">';
+    html += '<div class="amp-box"><div class="amp-lbl">Ratio Cobre / Oro</div><div class="amp-val" style="color:' + cuCol + '">' + cuOro + cuArrow + '</div><div class="amp-sub" style="color:' + cuCol + '">' + cuLabel + '</div></div>';
+    html += '<div class="amp-box"><div class="amp-lbl">Sesgo Estacional</div><div class="amp-val" style="color:' + estCol + '">' + estSign + estVal + '</div><div class="amp-sub" style="color:var(--t3);font-size:8px;line-height:1.3">' + estDesc.substring(0, 40) + '</div></div>';
     html += '</div>';
-
-    // Estacional
-    html += '<div class="amp-box">';
-    html += '<div class="amp-lbl">Sesgo Estacional</div>';
-    html += '<div class="amp-val" style="color:' + estCol + '">' + estSign + estVal + '</div>';
-    html += '<div class="amp-sub" style="color:var(--t3);font-size:8px;line-height:1.3">' + estDesc.substring(0, 40) + '</div>';
-    html += '</div>';
-
-    html += '</div>'; // amp-grid
-
-    // Z-Score row
-    html += '<div style="margin-bottom:10px">';
-    html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">';
-    html += '<div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t2);font-weight:700">Z-Score QQQ vs SMA200</div>';
-    html += '<div style="font-family:JetBrains Mono,monospace;font-size:13px;font-weight:700;color:' + zsCol + '">' + zsStr + ' <span style="font-size:10px">' + zsDesc + '</span></div>';
-    html += '</div>';
-    html += '<div class="zscore-track">';
-    html += '<div class="zscore-mid"></div>';
-    html += '<div class="zscore-fill" style="width:' + zsW + '%;left:' + zsLeft + '%;background:' + zsCol + '"></div>';
-    html += '</div>';
-    html += '<div class="zscore-labels"><span>-3</span><span>-2</span><span>-1</span><span>0</span><span>+1</span><span>+2</span><span>+3</span></div>';
-    html += '</div>';
-
-    // Kelly row
-    html += '<div class="divider"></div>';
-    html += '<div style="margin-top:10px">';
-    html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px">';
-    html += '<div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t2);font-weight:700">Factor Exposicion Kelly</div>';
-    html += '<div style="font-family:JetBrains Mono,monospace;font-size:14px;font-weight:700;color:' + feCol + '">' + fe.toFixed(3) + 'x</div>';
-    html += '</div>';
+    html += '<div style="margin-bottom:10px"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t2);font-weight:700">Z-Score QQQ vs SMA200</div><div style="font-family:JetBrains Mono,monospace;font-size:13px;font-weight:700;color:' + zsCol + '">' + zsStr + ' <span style="font-size:10px">' + zsDesc + '</span></div></div>';
+    html += '<div class="zscore-track"><div class="zscore-mid"></div><div class="zscore-fill" style="width:' + zsW + '%;left:' + zsLeft + '%;background:' + zsCol + '"></div></div>';
+    html += '<div class="zscore-labels"><span>-3</span><span>-2</span><span>-1</span><span>0</span><span>+1</span><span>+2</span><span>+3</span></div></div>';
+    html += '<div class="divider"></div><div style="margin-top:10px">';
+    html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:3px"><div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--t2);font-weight:700">Factor Exposicion Kelly</div><div style="font-family:JetBrains Mono,monospace;font-size:14px;font-weight:700;color:' + feCol + '">' + fe.toFixed(3) + 'x</div></div>';
     html += '<div class="kelly-track"><div class="kelly-fill" style="width:' + feW + '%;background:' + feCol + '"></div></div>';
-    html += '<div style="font-family:JetBrains Mono,monospace;font-size:9px;color:var(--t3);display:flex;gap:16px">';
-    html += '<span>Kelly bruto: ' + kelly + '</span><span>VIX scalar: ' + vixSc + '</span>';
-    html += '<span>Score amplitud: ' + (sa >= 0 ? '+' : '') + sa + '</span>';
-    html += '</div>';
-    html += '</div>';
-
+    html += '<div style="font-family:JetBrains Mono,monospace;font-size:9px;color:var(--t3);display:flex;gap:16px"><span>Kelly bruto: ' + kelly + '</span><span>VIX scalar: ' + vixSc + '</span><span>Score: ' + (sa >= 0 ? '+' : '') + sa + '</span></div></div>';
     container.innerHTML = html;
-  } catch(e) {
-    console.warn('renderAmplitud error:', e);
-  }
+  } catch(e) { console.warn('renderAmplitud error:', e); }
 }
 
 // ══════════════════════════════════════════════════════════
-// FASE 6 — BANNER DE ALERTAS
+// ALERTAS
 // ══════════════════════════════════════════════════════════
 var FUENTES_OFICIALES = {
   cot: 'https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm',
@@ -1564,68 +1869,128 @@ var FUENTES_OFICIALES = {
 function checkAlertas() {
   try {
     var errores = [];
-    var modulos = {
-      'COT': D.cot,
-      'PCR': D.pcr,
-      'FRED': D.macro && D.macro.fred ? D.macro.fred : null,
-      'Opciones': D.opciones,
-      'VIX TS': D.vixTS,
-      'Amplitud': D.amplitud_mercado
-    };
-    var fuente_keys = { 'COT': 'cot', 'PCR': 'pcr', 'FRED': 'fred', 'Opciones': 'opciones', 'VIX TS': 'vix', 'Amplitud': '' };
-
+    var modulos = { 'COT': D.cot, 'PCR': D.pcr, 'FRED': D.macro && D.macro.fred ? D.macro.fred : null, 'Opciones': D.opciones, 'VIX TS': D.vixTS };
+    var fuente_keys = { 'COT': 'cot', 'PCR': 'pcr', 'FRED': 'fred', 'Opciones': 'opciones', 'VIX TS': 'vix' };
     for (var nombre in modulos) {
       var mod = modulos[nombre];
-      if (!mod) {
-        errores.push({ nombre: nombre, url: FUENTES_OFICIALES[fuente_keys[nombre]] || '' });
-      } else if (mod.error && mod.error !== 'no_ejecutado') {
-        errores.push({ nombre: nombre, url: FUENTES_OFICIALES[fuente_keys[nombre]] || '' });
-      }
+      if (!mod) errores.push({ nombre: nombre, url: FUENTES_OFICIALES[fuente_keys[nombre]] || '' });
+      else if (mod.error && mod.error !== 'no_ejecutado') errores.push({ nombre: nombre, url: FUENTES_OFICIALES[fuente_keys[nombre]] || '' });
     }
-
     var banner = document.getElementById('alert-banner');
     var body = document.getElementById('alert-banner-body');
     if (!banner || !body) return;
-
-    if (errores.length === 0) {
-      banner.classList.add('hidden');
-      return;
-    }
-
+    if (errores.length === 0) { banner.classList.add('hidden'); return; }
     banner.classList.remove('hidden');
-    var html = '';
-    html += '<strong>Modulos con error:</strong> ';
     var parts = [];
-    for (var i = 0; i < errores.length; i++) {
-      var e = errores[i];
-      var link = e.url ? ' <a href="' + e.url + '" target="_blank" rel="noopener">[verificar]</a>' : '';
-      parts.push('<strong>' + e.nombre + '</strong>' + link);
+    for (var ei = 0; ei < errores.length; ei++) {
+      var er = errores[ei];
+      var link = er.url ? ' <a href="' + er.url + '" target="_blank" rel="noopener">[verificar]</a>' : '';
+      parts.push('<strong>' + er.nombre + '</strong>' + link);
     }
-    html += parts.join(', ');
-    html += '<br><span style="color:var(--t3)">Los datos mostrados pueden ser parciales. Verifica las fuentes oficiales.</span>';
-    body.innerHTML = html;
-  } catch(e2) {
-    console.warn('checkAlertas error:', e2);
-  }
+    body.innerHTML = '<strong>Modulos con error:</strong> ' + parts.join(', ') + '<br><span style="color:var(--t3)">Datos parciales. Verifica fuentes.</span>';
+  } catch(e2) { console.warn('checkAlertas error:', e2); }
 }
 
+// ══════════════════════════════════════════════════════════
+// DEMO DATA
+// ══════════════════════════════════════════════════════════
+function buildDemo() {
+  var p = 19850 + Math.random() * 300;
+  var vix = 18 + Math.random() * 8;
+  var rsi = 45 + Math.random() * 25;
+  var macdHist = (Math.random() - 0.4) * 80;
+  var bull = rsi > 50 && macdHist > 0;
+  var scores = { d2: bull ? 4.2 : -3.1, d5: bull ? 3.8 : -2.4, w1: bull ? 2.9 : -1.8, w2: bull ? 2.1 : -1.2, w3: bull ? 1.4 : -0.7, w4: bull ? 0.8 : -0.3 };
+  var estado = function(s) { return s >= 3 ? 'alcista' : s <= -3 ? 'bajista' : s >= 1 ? 'alcista_mod' : s <= -1 ? 'bajista_mod' : 'neutro'; };
+  var conf = function(s) { return Math.min(95, Math.max(15, Math.round(Math.abs(s) / 10 * 100))); };
+  var hs = {};
+  var hk = Object.keys(scores);
+  for (var hki = 0; hki < hk.length; hki++) {
+    var k = hk[hki];
+    hs[k] = { score: +scores[k].toFixed(1), estado: estado(scores[k]), conf: conf(scores[k]), pesos: 'DEMO' };
+  }
+  return {
+    precio: { ndx: +p.toFixed(2), vix: +vix.toFixed(2), qqq: +(p / 36).toFixed(2), tnx: 4.4, dxy: 100.5 },
+    scores: { componentes: { tecnico: bull ? 6 : -5, macro: bull ? 2 : -3, cot: bull ? 1.5 : -1.5, vix: bull ? 2 : -1.5, flujos: bull ? 1.5 : -1, giro: bull ? 1 : -1, amplitud: bull ? 1 : -1, breadth: bull ? 0.5 : -0.5 }, horizontes: hs },
+    cot: { largos: 185000, cortos: 85000, neto: 100000, netoDealers: -45000, pctLargo: 68.5, cambioNeto: 8500, trend4w: 22000, senal: 'bajista_mod', desc: 'Specs 68.5% largos — precaucion', senalDealers: 'neutro', fecha: '2025-05-16', fuente: 'DEMO' },
+    sec_insiders: { compras_90d: 12500000, ventas_90d: 68000000, ratio: 0.18, empresas_ok: 15, senal: 'bajista_mod', desc: 'Ratio compra/venta 0.18 — directivos vendiendo mucho vs compras', nota: 'Datos demo aproximados' },
+    opciones: { precio: p, gex: { estado: 'positivo', valor: 2, trampa: false, desc: 'Gamma positiva — dealers comprando caidas' }, gex_real: { valor_total: 1.8e9, gamma_flip_level: +(p * 0.97).toFixed(0), dist_gamma_flip_pct: -3.0, fuente: 'demo' }, skew: { valor: 22.4, put_iv: 0.21, call_iv: 0.17, senal: 'neutro', desc: 'Skew moderado — cobertura normal sin pánico' }, ratio_0dte: { valor: 0.28, vol_0dte: 280000, vol_total: 1000000, senal: 'neutro', desc: 'Ratio 0DTE normal — sin anomalias de delta hedging' }, v1: { fecha: '2025-05-23', maxPain: Math.round(p / 10) * 10 - 50, distPct: -1.2, topCalls: [{ strike: Math.round(p / 10) * 10 + 50, oi: 85000, dist: 0.8 }], topPuts: [{ strike: Math.round(p / 10) * 10 - 50, oi: 72000, dist: -0.8 }], senal: 'neutro', desc: 'Demo: Max Pain cerca del precio actual' } },
+    pcr: { equity: 0.72, total: 0.85, senal: 'neutro', desc: 'PCR normal — sin señal extrema' },
+    vixTS: { spot: vix, vix3m: +(vix + 1.8).toFixed(2), vx1: +(vix + 1.2).toFixed(2), vx2: +(vix + 2.4).toFixed(2), spread1: 1.8, spread1Pct: +(1.8 / vix * 100).toFixed(1), backwardation: false, vixPercentil: 42, senal: 'neutro', desc: 'Contango normal — mercado sin estrés agudo' },
+    macro: {
+      curva: { t3m: 4.28, t5y: 4.1, t10y: 4.42, t30y: 4.85, sp10_2: 0.18, sp10_3m: 0.14, invertida2y: false, invertida3m: false, senalRecesion: 'baja' },
+      fred: { walcl: { v: 8941000, trend: 'down' }, fedfunds: { v: 4.33, trend: null }, hySpread: { v: 3.1, trend: 'up' }, nfci: { v: -0.24, trend: 'down' }, sofr: { v: 4.31, trend: null }, t5yie: { v: 2.42, trend: 'up' }, t10yie: { v: 2.38, trend: 'up' }, liquidez_neta: -1.2e11, cpi_yoy: 3.2, wlcflpcl: { v: 2.1e9, trend: 'up' } },
+      proxy_china: { roc_cny_20d: -0.8, roc_soxx_20d: 2.3, corr_cny_soxx_30d: 0.42, senal: 'neutro', score: 0.5 },
+      score: 1.5
+    },
+    cta_levels: { don20_high: +(p * 1.018 / 36).toFixed(2), don20_low: +(p * 0.982 / 36).toFixed(2), don50_high: +(p * 1.032 / 36).toFixed(2), don50_low: +(p * 0.968 / 36).toFixed(2), precio_qqq: +(p / 36).toFixed(2), dist_don20h_pct: 1.8, dist_don20l_pct: -1.8, dist_don50h_pct: 3.2, dist_don50l_pct: -3.2, senal_cta: 'neutro', desc: 'Demo: Precio dentro del canal Donchian 20D' },
+    amplitud_mercado: { ratio_cobre_oro: 0.0042, tendencia_cobre_oro: 'subiendo', senal_cobre_oro: 'risk_on', sesgo_estacional: 0.8, desc_estacional: 'Mayo-junio: sesgo alcista estacional moderado', zscore_qqq_sma200: 1.2, kelly_bruto: 0.48, vix_scalar: 0.82, factor_exposicion_recomendado: 0.94, score_amplitud: 1.5, ndx100_breadth: { new_highs_52w: 58, new_lows_52w: 12, net_breadth_pct: 32.9, senal: 'neutro', score: 0.5 } },
+    tecnicos: { label: 'NDX-DEMO', d: { rsi14: +rsi.toFixed(1), macd: { hist: +macdHist.toFixed(1), signal: +(macdHist * 0.9).toFixed(1), line: +(macdHist * 1.1).toFixed(1) }, stoch: { k: 58, d: 52 }, bb: { upper: +(p * 1.025).toFixed(2), mid: +p.toFixed(2), lower: +(p * 0.975).toFixed(2), width: 5.1, pct: 55 }, ema8: +(p * 0.998).toFixed(2), ema21: +(p * 0.993).toFixed(2), ema50: +(p * 0.985).toFixed(2), ema100: +(p * 0.970).toFixed(2), ema200: +(p * 0.945).toFixed(2), roc5: +(1.8 + Math.random() * 2 - 1).toFixed(2), roc10: +(2.1 + Math.random() * 3 - 1.5).toFixed(2), roc20: +(3.4 + Math.random() * 4 - 2).toFixed(2), volRatio5: +(0.9 + Math.random() * 0.6).toFixed(2), precio: p }, w: { rsi14: +(rsi - 5).toFixed(1), macd: { hist: +(macdHist * 0.7).toFixed(1), signal: null }, roc4: 1.4, roc8: 3.2 }, m: { rsi14: +(rsi - 3).toFixed(1), roc3: 4.8 } },
+    giro: { d: { divAlcista: false, divBajista: rsi > 72, fiabilidad: rsi > 72 ? 'media' : 'sin_div' }, w: { divAlcista: false, divBajista: false }, bb: { senal: rsi > 72 ? 'techo' : 'neutro', pct: 55, width: 5.1 }, diasConsec: { dias: 4, dir: 'subiendo', senal: 'vigilar_techo' }, senalGlobal: rsi > 72 ? 'techo' : 'neutro' },
+    flows: { qqq: { name: 'QQQ', retorno5d: 1.8, retorno10d: 2.9, volRatio: 1.1, senal: 'entradas' }, spy: { name: 'SPY', retorno5d: 1.2, retorno10d: 2.1, volRatio: 1.0, senal: 'entradas_mod' }, tlt: { name: 'TLT', retorno5d: -0.9, retorno10d: -1.2, volRatio: 0.9, senal: 'salidas_mod' }, hyg: { name: 'HYG', retorno5d: 0.4, retorno10d: 0.8, volRatio: 1.0, senal: 'neutro' }, gld: { name: 'GLD', retorno5d: 0.6, retorno10d: 1.1, volRatio: 1.05, senal: 'neutro' }, eem: { name: 'EEM', retorno5d: -0.3, retorno10d: -0.5, volRatio: 0.95, senal: 'neutro' }, iwm: { name: 'IWM', retorno5d: 0.9, retorno10d: 1.4, volRatio: 1.0, senal: 'neutro' }, modo: 'risk_on' },
+    liquidez: { precio: p, atr14: +(p * 0.011).toFixed(2), zonasResistencia: [{ nivel: +(p * 1.02).toFixed(2), igualdad: false, cnt: 1, reciente: true, distPct: 2.0 }, { nivel: +(p * 1.035).toFixed(2), igualdad: true, cnt: 2, reciente: false, distPct: 3.5 }], zonasSoporte: [{ nivel: +(p * 0.985).toFixed(2), igualdad: false, cnt: 1, reciente: true, distPct: -1.5 }, { nivel: +(p * 0.970).toFixed(2), igualdad: true, cnt: 3, reciente: false, distPct: -3.0 }], rangosPorHorizonte: { d2: { sup: +(p * 0.994).toFixed(2), res: +(p * 1.006).toFixed(2) }, d5: { sup: +(p * 0.986).toFixed(2), res: +(p * 1.014).toFixed(2) }, w1: { sup: +(p * 0.977).toFixed(2), res: +(p * 1.023).toFixed(2) }, w2: { sup: +(p * 0.965).toFixed(2), res: +(p * 1.035).toFixed(2) }, w3: { sup: +(p * 0.953).toFixed(2), res: +(p * 1.047).toFixed(2) }, w4: { sup: +(p * 0.940).toFixed(2), res: +(p * 1.060).toFixed(2) } } },
+    comparativa_correcciones: null,
+    ts: new Date().toISOString(),
+    version: '7.0-demo'
+  };
+}
+
+// ══════════════════════════════════════════════════════════
+// LOAD DATA
+// ══════════════════════════════════════════════════════════
+async function loadData() {
+  var btn = document.getElementById('btn-refresh');
+  var liveDot = document.getElementById('live-dot');
+  if (btn) btn.disabled = true;
+  var btnTxt = document.getElementById('btn-txt');
+  if (btnTxt) btnTxt.textContent = 'Cargando...';
+  if (liveDot) liveDot.style.background = 'var(--am)';
+  try {
+    var r = await Promise.race([
+      fetch(API_URL),
+      new Promise(function(_, rej) { setTimeout(function() { rej(new Error('timeout')); }, 25000); })
+    ]);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    D = await r.json();
+  } catch (e) {
+    console.warn('JSON error, using demo:', e.message);
+    D = buildDemo();
+  }
+  renderAll();
+  updateFreshness();
+  if (liveDot) liveDot.style.background = 'var(--gr)';
+  if (btn) btn.disabled = false;
+  if (btnTxt) btnTxt.textContent = 'Actualizar';
+}
+
+// ══════════════════════════════════════════════════════════
+// B9 renderAll COMPLETO
+// ══════════════════════════════════════════════════════════
 function renderAll() {
-  buildHorTabs();
-  renderSignalHero();
-  renderHorGrid();
-  renderScoreComponents();
-  renderMRM();
-  renderCOT();
-  renderOI();
-  renderGEX();
-  renderPCR();
-  renderVixTS();
-  renderFRED();
-  renderCurva();
-  renderFlows();
-  renderGiro();
-  renderTecnicos();
-  renderLiquidez();
+  try { buildHorTabs(); } catch(e) { console.warn('buildHorTabs:', e); }
+  try { renderSignalHero(); } catch(e) { console.warn('renderSignalHero:', e); }
+  try { renderHorGrid(); } catch(e) { console.warn('renderHorGrid:', e); }
+  try { renderScoreComponents(); } catch(e) { console.warn('renderScoreComponents:', e); }
+  try { renderMRM(); } catch(e) { console.warn('renderMRM:', e); }
+  // Institucional
+  try { renderCOT(); } catch(e) { console.warn('renderCOT:', e); }
+  try { renderInsiders(); } catch(e) { console.warn('renderInsiders:', e); }
+  try { renderOI(); } catch(e) { console.warn('renderOI:', e); }
+  try { renderDerivados(); } catch(e) { console.warn('renderDerivados:', e); }
+  try { renderGEX(); } catch(e) { console.warn('renderGEX:', e); }
+  try { renderPCR(); } catch(e) { console.warn('renderPCR:', e); }
+  // Macro
+  try { renderVixTS(); } catch(e) { console.warn('renderVixTS:', e); }
+  try { renderFRED(); } catch(e) { console.warn('renderFRED:', e); }
+  try { renderCurva(); } catch(e) { console.warn('renderCurva:', e); }
+  try { renderChina(); } catch(e) { console.warn('renderChina:', e); }
+  try { renderFlows(); } catch(e) { console.warn('renderFlows:', e); }
+  // Técnico
+  try { renderGiro(); } catch(e) { console.warn('renderGiro:', e); }
+  try { renderTecnicos(); } catch(e) { console.warn('renderTecnicos:', e); }
+  try { renderCTA(); } catch(e) { console.warn('renderCTA:', e); }
+  try { renderBreadth(); } catch(e) { console.warn('renderBreadth:', e); }
+  try { renderLiquidez(); } catch(e) { console.warn('renderLiquidez:', e); }
   try { renderAmplitud(); } catch(e) { console.warn('renderAmplitud:', e); }
   try { checkAlertas(); } catch(e) { console.warn('checkAlertas:', e); }
   try {
@@ -1638,104 +2003,118 @@ function renderAll() {
 // IA REPORT
 // ══════════════════════════════════════════════════════════
 function buildIAPrompt() {
-  const p = D.precio?.ndx, vix = D.precio?.vix;
-  const sc = D.scores;
-  const t = D.tecnicos?.d;
-  const cot = D.cot;
-  const macro = D.macro;
-  const hs = sc?.horizontes;
+  var p = D.precio && D.precio.ndx;
+  var vix = D.precio && D.precio.vix;
+  var sc = D.scores;
+  var t = D.tecnicos && D.tecnicos.d;
+  var cot = D.cot;
+  var macro = D.macro;
+  var hs = sc && sc.horizontes;
+  var ins = D.sec_insiders;
+  var cta = D.cta_levels;
 
-  return `Eres un analista institucional senior de Nasdaq 100. Análisis COMPLETO en español con datos reales.
+  var hsLines = [];
+  if (hs) {
+    var hkeys = Object.keys(hs);
+    for (var hi3 = 0; hi3 < hkeys.length; hi3++) {
+      var k3 = hkeys[hi3];
+      var v3 = hs[k3];
+      hsLines.push(k3 + ': ' + (v3.score > 0 ? '+' : '') + v3.score + ' (' + v3.estado.toUpperCase() + ', conf ' + v3.conf + '%)');
+    }
+  }
 
-PRECIOS: NDX ${p?.toFixed(0)} | VIX ${vix?.toFixed(1)} | DXY ${D.precio?.dxy?.toFixed(1)} | TNX ${D.precio?.tnx?.toFixed(2)}%
-
-TÉCNICO (NDX diario):
-RSI: ${t?.rsi14} | MACD hist: ${t?.macd?.hist} | Stoch: ${t?.stoch?.k}/${t?.stoch?.d}
-EMA8: ${t?.ema8} | EMA21: ${t?.ema21} | EMA50: ${t?.ema50} | EMA200: ${t?.ema200}
-ROC 5D/10D/20D: ${t?.roc5}% / ${t?.roc10}% / ${t?.roc20}%
-
-COT (mano institucional):
-Neto especuladores: ${cot?.neto > 0 ? '+' : ''}${cot?.neto} (${cot?.pctLargo}% largos)
-Cambio semanal: ${cot?.cambioNeto > 0 ? '+' : ''}${cot?.cambioNeto}
-Tendencia 4 semanas: ${cot?.trend4w > 0 ? 'acumulando' : 'reduciendo'} ${Math.abs(cot?.trend4w ?? 0)}
-Señal dealers: ${cot?.señalDealers}
-
-OPCIONES: Max Pain ${D.opciones?.v1?.maxPain} (${D.opciones?.v1?.distPct}%) | GEX: ${D.opciones?.gex?.estado} (${D.opciones?.gex?.valor})
-PCR: ${D.pcr?.total} (${D.pcr?.señal}) | VIX backwardation: ${D.vixTS?.backwardation ? 'SÍ' : 'NO'}
-
-MACRO: HY Spread: ${macro?.fred?.hySpread?.v}% | NFCI: ${macro?.fred?.nfci?.v} | Curva 10Y-2Y: ${macro?.curva?.sp10_2}%
-
-SCORES POR HORIZONTE:
-${Object.entries(hs ?? {}).map(([k, v]) => `${k}: ${v.score > 0 ? '+' : ''}${v.score} (${v.estado.toUpperCase()}, conf ${v.conf}%)`).join(' | ')}
-
-GENERA INFORME CON ESTAS 5 SECCIONES:
-
-### MANO INSTITUCIONAL
-[¿Qué están haciendo los grandes? COT, opciones, GEX, flujos. ¿Acumulando o distribuyendo?]
-
-### SEÑALES POR HORIZONTE
-[2D / 5D / 1S / 2S / 3S / 4S: entrada exacta, stop, objetivo, probabilidad]
-
-### ANÁLISIS TÉCNICO Y ESTRUCTURA
-[EMAs, RSI, MACD, Bollinger, momentum, divergencias detectadas]
-
-### MACRO Y SENTIMIENTO
-[Curva, crédito, NFCI, VIX TS, PCR — ¿apoya o contradice la técnica?]
-
-### VEREDICTO Y PLAN ACCIÓN
-[3-5 líneas. Qué hacer HOY. Próximos catalizadores a vigilar. Niveles críticos de invalidación.]
-
-Usa [ALCISTA], [BAJISTA] o [NEUTRO] al inicio. Sé específico con precios y niveles.`;
+  return 'Eres un analista institucional senior de Nasdaq 100. Análisis COMPLETO en español con datos reales.\n\n' +
+    'PRECIOS: NDX ' + (p ? p.toFixed(0) : '--') + ' | VIX ' + (vix ? vix.toFixed(1) : '--') + ' | DXY ' + (D.precio && D.precio.dxy ? D.precio.dxy.toFixed(1) : '--') + ' | TNX ' + (D.precio && D.precio.tnx ? D.precio.tnx.toFixed(2) : '--') + '%\n\n' +
+    'TÉCNICO: RSI ' + (t && t.rsi14) + ' | MACD hist ' + (t && t.macd && t.macd.hist) + ' | Stoch ' + (t && t.stoch && t.stoch.k) + '/' + (t && t.stoch && t.stoch.d) + '\n' +
+    'EMAs: 8=' + (t && t.ema8) + ' 21=' + (t && t.ema21) + ' 50=' + (t && t.ema50) + ' 200=' + (t && t.ema200) + '\n\n' +
+    'COT: Neto ' + (cot && (cot.neto > 0 ? '+' : '') + cot.neto) + ' (' + (cot && cot.pctLargo) + '% largos) | cambio semanal ' + (cot && (cot.cambioNeto > 0 ? '+' : '') + cot.cambioNeto) + '\n' +
+    'Dealers: ' + (getVal(cot || {}, 'senalDealers') || getVal(cot || {}, 'señalDealers') || '--') + '\n\n' +
+    'INSIDERS SEC: compras ' + (ins && fmtK(ins.compras_90d)) + ' vs ventas ' + (ins && fmtK(ins.ventas_90d)) + ' | ratio ' + (ins && ins.ratio ? ins.ratio.toFixed(2) : '--') + '\n\n' +
+    'OPCIONES: Max Pain ' + (D.opciones && D.opciones.v1 && D.opciones.v1.maxPain) + ' (' + (D.opciones && D.opciones.v1 && D.opciones.v1.distPct) + '%) | GEX ' + (D.opciones && D.opciones.gex && D.opciones.gex.estado) + '\n' +
+    'PCR: ' + (D.pcr && D.pcr.total) + ' | VIX backwardation: ' + (D.vixTS && D.vixTS.backwardation ? 'SÍ' : 'NO') + '\n' +
+    'SKEW: ' + (D.opciones && D.opciones.skew && D.opciones.skew.valor) + ' | 0DTE ratio: ' + (D.opciones && D.opciones.ratio_0dte && D.opciones.ratio_0dte.valor ? (D.opciones.ratio_0dte.valor * 100).toFixed(1) + '%' : '--') + '\n\n' +
+    'CTA TRIGGERS: Don20H ' + (cta && cta.don20_high) + ' Don20L ' + (cta && cta.don20_low) + ' Don50H ' + (cta && cta.don50_high) + '\n\n' +
+    'MACRO: HY Spread ' + (macro && macro.fred && macro.fred.hySpread && macro.fred.hySpread.v) + '% | NFCI ' + (macro && macro.fred && macro.fred.nfci && macro.fred.nfci.v) + '\n' +
+    'Curva 10Y-2Y: ' + (macro && macro.curva && macro.curva.sp10_2) + '% | Liquidez neta: ' + (macro && macro.fred && macro.fred.liquidez_neta ? (macro.fred.liquidez_neta / 1e9).toFixed(0) + 'B' : '--') + '\n\n' +
+    'SCORES: ' + hsLines.join(' | ') + '\n\n' +
+    'GENERA INFORME CON ESTAS 5 SECCIONES:\n\n' +
+    '### MANO INSTITUCIONAL\n[COT, insiders, opciones, GEX, flujos. Acumulando o distribuyendo?]\n\n' +
+    '### SEÑALES POR HORIZONTE\n[2D/5D/1S/2S/3S/4S: entrada exacta, stop, objetivo, probabilidad]\n\n' +
+    '### ANÁLISIS TÉCNICO Y ESTRUCTURA\n[EMAs, RSI, MACD, Bollinger, CTA triggers, divergencias]\n\n' +
+    '### MACRO Y SENTIMIENTO\n[Curva, crédito, NFCI, VIX TS, PCR, SKEW, liquidez neta]\n\n' +
+    '### VEREDICTO Y PLAN ACCIÓN\n[3-5 líneas. Qué hacer HOY. Catalizadores. Niveles de invalidación.]\n\n' +
+    'Usa [ALCISTA], [BAJISTA] o [NEUTRO] al inicio. Sé específico con precios.';
 }
 
 async function generateIA() {
-  const btn = document.getElementById('btn-ia');
+  var btn = document.getElementById('btn-ia');
+  if (!btn) return;
   btn.disabled = true; btn.classList.add('loading');
-  const msgs = ['Analizando COT y opciones...', 'Procesando mano institucional...', 'Calculando horizontes...', 'Redactando informe...'];
-  let ti = 0;
-  document.getElementById('ia-body').innerHTML = `<div style="display:flex;align-items:center;gap:12px;padding:8px 0"><div style="display:flex;gap:5px">${[1,2,3].map(()=>`<div style="width:7px;height:7px;background:var(--ac);border-radius:50%;animation:pulse 1.2s ease infinite"></div>`).join('')}</div><div id="ia-msg" style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ac)">${msgs[0]}</div></div>`;
-  const iv = setInterval(() => { ti = (ti+1) % msgs.length; const m = document.getElementById('ia-msg'); if(m) m.textContent = msgs[ti]; }, 1800);
+  var msgs = ['Analizando COT e insiders...', 'Procesando derivados avanzados...', 'Calculando horizontes...', 'Redactando informe institucional...'];
+  var ti = 0;
+  var iaBody = document.getElementById('ia-body');
+  if (iaBody) {
+    iaBody.innerHTML = '<div style="display:flex;align-items:center;gap:12px;padding:8px 0"><div style="display:flex;gap:5px"><div style="width:7px;height:7px;background:var(--ac);border-radius:50%;animation:pulse 1.2s ease infinite"></div><div style="width:7px;height:7px;background:var(--ac);border-radius:50%;animation:pulse 1.2s ease infinite;animation-delay:.2s"></div><div style="width:7px;height:7px;background:var(--ac);border-radius:50%;animation:pulse 1.2s ease infinite;animation-delay:.4s"></div></div><div id="ia-msg" style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--ac)">' + msgs[0] + '</div></div>';
+  }
+  var iv = setInterval(function() { ti = (ti + 1) % msgs.length; var m = document.getElementById('ia-msg'); if (m) m.textContent = msgs[ti]; }, 1800);
 
   try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
+    var res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 2000, messages: [{ role: 'user', content: buildIAPrompt() }] })
     });
     clearInterval(iv);
-    const data = await res.json();
-    const text = data?.content?.[0]?.text ?? '';
-    const fmt2 = text.replace(/^### (.+)$/gm, '<p><strong style="color:var(--ac);font-size:13px">$1</strong></p>')
+    var data = await res.json();
+    var text = (data && data.content && data.content[0] && data.content[0].text) || '';
+    var fmt2 = text
+      .replace(/^### (.+)$/gm, '<p><strong style="color:var(--ac);font-size:13px">$1</strong></p>')
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/\[ALCISTA\]/g, '<em style="color:var(--gr);font-weight:700">[ALCISTA]</em>')
       .replace(/\[BAJISTA\]/g, '<em style="color:var(--rd);font-weight:700">[BAJISTA]</em>')
       .replace(/\[NEUTRO\]/g, '<em style="color:var(--am);font-weight:700">[NEUTRO]</em>')
-      .split('\n').filter(l => l.trim()).map(l => `<p>${l}</p>`).join('');
-    document.getElementById('ia-body').innerHTML = fmt2 || '<div class="no-data">Sin respuesta</div>';
-  } catch(e) {
+      .split('\n').filter(function(l) { return l.trim(); }).map(function(l) { return '<p>' + l + '</p>'; }).join('');
+    if (iaBody) iaBody.innerHTML = fmt2 || '<div class="no-data">Sin respuesta</div>';
+  } catch (e) {
     clearInterval(iv);
-    // Fallback local
-    const hs = D.scores?.horizontes;
-    const bull = (hs?.d5?.estado === 'alcista' || hs?.d5?.estado === 'alcista_mod');
-    document.getElementById('ia-body').innerHTML = `
-      <p><strong style="color:var(--ac)">MANO INSTITUCIONAL</strong></p>
-      <p>${bull ? '[ALCISTA]' : '[BAJISTA]'} COT muestra ${D.cot?.pctLargo}% de especuladores largos. ${D.cot?.cambioNeto > 0 ? 'Incremento semanal — acumulación en curso.' : 'Reducción semanal — distribución posible.'} GEX en ${D.opciones?.gex?.estado?.replace(/_/g,' ')} — ${D.opciones?.gex?.desc}.</p>
-      <p><strong style="color:var(--ac)">SEÑALES POR HORIZONTE</strong></p>
-      <p>${Object.entries(D.scores?.horizontes ?? {}).map(([k, v]) => `<strong>${k.toUpperCase()}</strong>: ${v.estado.toUpperCase()} (${v.conf}%)`).join(' · ')}</p>
-      <p><strong style="color:var(--ac)">VEREDICTO</strong></p>
-      <p>Score dominante ${bull ? 'alcista' : 'bajista'}. ${bull ? 'Buscar entradas en retrocesos a EMA8/21. ' : 'Evitar nuevas posiciones largas. '}Catalizadores clave: datos macro del calendario, comportamiento VIX y confirmación de volumen.</p>
-    `;
+    var hs2 = D.scores && D.scores.horizontes;
+    var bull2 = hs2 && (hs2.d5 && (hs2.d5.estado === 'alcista' || hs2.d5.estado === 'alcista_mod'));
+    var fallback = '<p><strong style="color:var(--ac)">MANO INSTITUCIONAL</strong></p>' +
+      '<p>' + (bull2 ? '[ALCISTA]' : '[BAJISTA]') + ' COT muestra ' + (D.cot && D.cot.pctLargo) + '% de especuladores largos. ' +
+      (D.cot && D.cot.cambioNeto > 0 ? 'Incremento semanal.' : 'Reducción semanal.') + ' GEX en ' +
+      (D.opciones && D.opciones.gex && D.opciones.gex.estado || '--').replace(/_/g, ' ') + '.</p>' +
+      '<p><strong style="color:var(--ac)">SEÑALES POR HORIZONTE</strong></p>';
+    if (hs2) {
+      var hkeys2 = Object.keys(hs2);
+      var parts2 = [];
+      for (var hi4 = 0; hi4 < hkeys2.length; hi4++) {
+        var k4 = hkeys2[hi4];
+        var v4 = hs2[k4];
+        parts2.push('<strong>' + k4.toUpperCase() + '</strong>: ' + v4.estado.toUpperCase() + ' (' + v4.conf + '%)');
+      }
+      fallback += '<p>' + parts2.join(' · ') + '</p>';
+    }
+    fallback += '<p><strong style="color:var(--ac)">VEREDICTO</strong></p><p>' +
+      'Score dominante ' + (bull2 ? 'alcista' : 'bajista') + '. ' +
+      (bull2 ? 'Buscar entradas en retrocesos a EMA8/21. ' : 'Evitar nuevas posiciones largas. ') +
+      'Vigilar CTA triggers en Donchian 20/50D y comportamiento del VIX.</p>';
+    if (iaBody) iaBody.innerHTML = fallback;
   }
-
   btn.disabled = false; btn.classList.remove('loading');
 }
 
 // ══════════════════════════════════════════════════════════
 // INIT
 // ══════════════════════════════════════════════════════════
-window.addEventListener('DOMContentLoaded', async () => {
-  setTimeout(() => {
-    document.getElementById('splash').classList.add('out');
-    setTimeout(() => { document.getElementById('splash').style.display = 'none'; document.getElementById('app').style.display = 'block'; }, 600);
+window.addEventListener('DOMContentLoaded', async function() {
+  setTimeout(function() {
+    var splash = document.getElementById('splash');
+    if (splash) splash.classList.add('out');
+    setTimeout(function() {
+      if (splash) splash.style.display = 'none';
+      var app = document.getElementById('app');
+      if (app) app.style.display = 'block';
+    }, 600);
   }, 1800);
   await loadData();
 });
