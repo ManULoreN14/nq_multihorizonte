@@ -1,14 +1,8 @@
 {
   "version": 2,
-  "routes": [
-    {
-      "src": "/",
-      "dest": "/nq-multihor.html"
-    },
-    {
-      "src": "/datos_radar.json",
-      "dest": "/datos_radar.json"
-    }
+  "rewrites": [
+    { "source": "/", "destination": "/nq-multihor.html" },
+    { "source": "/datos_radar.json", "destination": "/datos_radar.json" }
   ],
   "headers": [
     {
@@ -19,7 +13,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.html",
+      "source": "/(.*).html",
       "headers": [
         { "key": "Cache-Control", "value": "no-cache" }
       ]
