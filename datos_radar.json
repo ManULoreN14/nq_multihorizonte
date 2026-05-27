@@ -1,6 +1,6 @@
 {
   "version": "7.0-fase7",
-  "ts": "2026-05-27T07:26:29.920617",
+  "ts": "2026-05-27T07:35:54.791839",
   "precio": {
     "ndx": 30001.3203,
     "qqq": 730.28,
@@ -441,44 +441,44 @@
       "tecnico": 0,
       "macro": 1.5,
       "cot": -1.5,
-      "vix": -2.2,
+      "vix": 0.8,
       "flujos": 0.0,
       "giro": -2.0,
       "amplitud": 0.0
     },
     "horizontes": {
       "d2": {
-        "score": -0.7,
+        "score": -0.0,
         "estado": "neutro",
         "conf": 10,
         "pesos": "28%T+23%V+13%F+10%G+10%M+10%C+6%A"
       },
       "d5": {
-        "score": -0.6,
+        "score": -0.0,
         "estado": "neutro",
         "conf": 10,
         "pesos": "23%T+18%V+14%M+14%C+13%F+9%G+9%A"
       },
       "w1": {
-        "score": -0.5,
+        "score": -0.1,
         "estado": "neutro",
         "conf": 10,
         "pesos": "19%M+19%C+18%T+14%V+13%F+9%G+8%A"
       },
       "w2": {
-        "score": -0.3,
+        "score": -0.0,
         "estado": "neutro",
         "conf": 10,
         "pesos": "23%M+23%C+18%T+13%F+9%A+9%V+5%G"
       },
       "w3": {
-        "score": -0.3,
+        "score": -0.0,
         "estado": "neutro",
         "conf": 10,
         "pesos": "28%M+28%C+13%T+11%F+8%A+7%V+5%G"
       },
       "w4": {
-        "score": -0.2,
+        "score": -0.1,
         "estado": "neutro",
         "conf": 10,
         "pesos": "32%M+32%C+10%A+9%F+8%T+5%G+4%V"
@@ -533,58 +533,58 @@
     "vencimientos": [
       {
         "fecha": "2026-05-27",
-        "maxPain": 495.0,
-        "distPct": -32.22,
+        "maxPain": 730.28,
+        "distPct": 0.0,
         "topCalls": [],
         "topPuts": [],
-        "señal": "bajista",
-        "desc": "Max Pain 495 (-32.22%) — gravedad atrae precio abajo"
+        "señal": "neutro",
+        "desc": "Max Pain no calculable (OI insuficiente en venc. corto)"
       },
       {
         "fecha": "2026-05-28",
-        "maxPain": 495.0,
-        "distPct": -32.22,
+        "maxPain": 730.28,
+        "distPct": 0.0,
         "topCalls": [],
         "topPuts": [],
-        "señal": "bajista",
-        "desc": "Max Pain 495 (-32.22%) — gravedad atrae precio abajo"
+        "señal": "neutro",
+        "desc": "Max Pain no calculable (OI insuficiente en venc. corto)"
       },
       {
         "fecha": "2026-05-29",
-        "maxPain": 405.0,
-        "distPct": -44.54,
+        "maxPain": 601.0,
+        "distPct": -17.7,
         "topCalls": [],
         "topPuts": [],
         "señal": "bajista",
-        "desc": "Max Pain 405 (-44.54%) — gravedad atrae precio abajo"
+        "desc": "Max Pain 601 (-17.7%) — gravedad atrae precio abajo"
       }
     ],
     "v1": {
       "fecha": "2026-05-27",
-      "maxPain": 495.0,
-      "distPct": -32.22,
+      "maxPain": 730.28,
+      "distPct": 0.0,
       "topCalls": [],
       "topPuts": [],
-      "señal": "bajista",
-      "desc": "Max Pain 495 (-32.22%) — gravedad atrae precio abajo"
+      "señal": "neutro",
+      "desc": "Max Pain no calculable (OI insuficiente en venc. corto)"
     },
     "v2": {
       "fecha": "2026-05-28",
-      "maxPain": 495.0,
-      "distPct": -32.22,
+      "maxPain": 730.28,
+      "distPct": 0.0,
       "topCalls": [],
       "topPuts": [],
-      "señal": "bajista",
-      "desc": "Max Pain 495 (-32.22%) — gravedad atrae precio abajo"
+      "señal": "neutro",
+      "desc": "Max Pain no calculable (OI insuficiente en venc. corto)"
     },
     "v3": {
       "fecha": "2026-05-29",
-      "maxPain": 405.0,
-      "distPct": -44.54,
+      "maxPain": 601.0,
+      "distPct": -17.7,
       "topCalls": [],
       "topPuts": [],
       "señal": "bajista",
-      "desc": "Max Pain 405 (-44.54%) — gravedad atrae precio abajo"
+      "desc": "Max Pain 601 (-17.7%) — gravedad atrae precio abajo"
     },
     "gex": {
       "estado": "positivo",
@@ -612,18 +612,18 @@
       "senal": "elevado",
       "desc": "0DTE=41.5% - actividad intradiaria elevada"
     },
-    "pcrOI": 0.0,
+    "pcrOI": 1.624,
     "pcrVol": 1.624,
     "fuente": "yahoo_options"
   },
   "pcr": {
     "equity": null,
     "index": null,
-    "total": 0.0,
+    "total": 1.624,
     "trend": null,
     "historial": [],
-    "señal": "bajista_contrario",
-    "desc": "PCR=0.0 — euforia, señal contraria bajista (QQQ only — proxy Nasdaq, ligero sesgo large-cap tech)",
+    "señal": "alcista_contrario",
+    "desc": "PCR=1.624 — miedo extremo, señal contraria alcista (QQQ only — proxy Nasdaq, ligero sesgo large-cap tech)",
     "fuente": "yahoo_qqq_options",
     "sesgo": "(QQQ only — proxy Nasdaq, ligero sesgo large-cap tech)",
     "fuente_verificacion": "https://www.cboe.com/data/volatility-and-put-call-ratio-data/",
@@ -640,10 +640,10 @@
     "confianza": 18,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (90% similitud). Contexto: VIX=17.0, RSI=75. Confianza del sistema: 18%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-05-27T07:26:03.513280"
+    "ts_calculo": "2026-05-27T07:35:24.986238"
   },
   "amplitud_mercado": {
-    "ratio_cobre_oro": 0.015554,
+    "ratio_cobre_oro": 0.015565,
     "tendencia_cobre_oro": "up",
     "señal_cobre_oro": "risk_on",
     "zscore_qqq_sma200": 1.865,
