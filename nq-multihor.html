@@ -1946,14 +1946,25 @@ async function loadData() {
   if (btnTxt) btnTxt.textContent = 'Cargando...';
   if (liveDot) liveDot.style.background = 'var(--am)';
   try {
+    var cacheBust = API_URL + (API_URL.includes('?') ? '&' : '?') + '_=' + Date.now();
     var r = await Promise.race([
-      fetch(API_URL),
+      fetch(cacheBust, { cache: 'no-store' }),
       new Promise(function(_, rej) { setTimeout(function() { rej(new Error('timeout')); }, 25000); })
     ]);
     if (!r.ok) throw new Error('HTTP ' + r.status);
     D = await r.json();
+    // Limpiar banner de error si la carga fue exitosa
+    var banner = document.getElementById('alert-banner');
+    if (banner) banner.classList.add('hidden');
   } catch (e) {
     console.warn('JSON error, using demo:', e.message);
+    // Mostrar banner de error visible en lugar de fallar silenciosamente
+    var banner = document.getElementById('alert-banner');
+    var bannerBody = document.getElementById('alert-banner-body');
+    if (banner && bannerBody) {
+      bannerBody.textContent = '\u26a0\ufe0f No se pudo cargar datos_radar.json (' + e.message + '). Comprueba que el script Python ha hecho push y que la URL est\u00e1 bien configurada.';
+      banner.classList.remove('hidden');
+    }
     D = buildDemo();
   }
   renderAll();
