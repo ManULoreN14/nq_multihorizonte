@@ -351,6 +351,77 @@ input,textarea,button{font-family:inherit}
 .ins-vs{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--t4)}
 .ins-sell{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:var(--rd)}
 .ins-ratio-val{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;margin-left:auto}
+
+/* ── IA v2: pipeline Haiku→Sonnet ── */
+.ia-tabs{display:flex;gap:6px;padding:10px 16px 0;border-bottom:1px solid var(--b1)}
+.ia-tab{flex:1;padding:7px 10px;border-radius:var(--r-md) var(--r-md) 0 0;font-size:11px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--t3);letter-spacing:.04em;transition:color .2s}
+.ia-tab.active{background:var(--s2);color:var(--ac);border:1px solid var(--b2);border-bottom:1px solid var(--s2);margin-bottom:-1px}
+.ia-pipeline{display:flex;gap:8px;padding:10px 16px}
+.ia-step{flex:1;display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:var(--r-md);font-size:10px;font-weight:700;transition:background .3s}
+.ia-step.idle{background:var(--s2);color:var(--t3)}
+.ia-step.running{background:rgba(139,127,255,.15);color:var(--ac)}
+.ia-step.done{background:rgba(34,197,94,.1);color:var(--gr)}
+.ia-step.error{background:rgba(239,68,68,.1);color:var(--rd)}
+.ia-step-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0}
+.ia-step.running .ia-step-dot{animation:pulse 1s ease infinite}
+.ia-step-info{display:flex;flex-direction:column;gap:1px}
+.ia-step-lbl{font-size:10px;font-weight:700}
+.ia-step-sub{font-size:9px;opacity:.7;font-family:'JetBrains Mono',monospace}
+.ia-escenarios{padding:12px 16px 0}
+.ia-esc-row{margin-bottom:9px;padding:8px 10px;border-radius:var(--r-md);border:0.5px solid var(--b1)}
+.ia-esc-row.winner{border-width:2px;padding:11px 12px}
+.ia-esc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
+.ia-esc-name{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700}
+.ia-esc-winner-badge{font-size:8px;padding:1px 6px;border-radius:10px;color:#fff;font-weight:700;letter-spacing:.06em}
+.ia-esc-right{display:flex;align-items:baseline;gap:6px}
+.ia-esc-delta{font-size:10px;font-family:'JetBrains Mono',monospace}
+.ia-esc-pct{font-size:13px;font-weight:700;font-family:'JetBrains Mono',monospace}
+.ia-esc-bar-bg{height:4px;background:var(--s3);border-radius:3px;overflow:hidden}
+.ia-esc-bar-fill{height:100%;border-radius:3px;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.ia-esc-sub{font-size:10px;color:var(--t3);margin-top:5px;line-height:1.4}
+.ia-dims{padding:0 16px 12px;display:grid;grid-template-columns:1fr;gap:1px;border:0.5px solid var(--b1);border-radius:var(--r-md);margin:8px 16px 0;overflow:hidden}
+.ia-dim-row{display:flex;justify-content:space-between;align-items:center;padding:6px 10px;background:var(--s1)}
+.ia-dim-row:not(:last-child){border-bottom:0.5px solid var(--b1)}
+.ia-dim-lbl{font-size:11px;color:var(--t2)}
+.ia-dim-val{font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px;font-family:'JetBrains Mono',monospace;letter-spacing:.05em}
+.ia-dim-val.BULL{background:rgba(34,197,94,.15);color:var(--gr)}
+.ia-dim-val.BEAR{background:rgba(239,68,68,.15);color:var(--rd)}
+.ia-dim-val.NEUTRAL{background:var(--s3);color:var(--t3)}
+.ia-chips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 16px}
+.ia-chip{display:flex;align-items:center;gap:4px;padding:4px 10px;border-radius:20px;font-size:10px;line-height:1.4}
+.ia-chip.senal{background:var(--s2);border:0.5px solid var(--b2);color:var(--t2)}
+.ia-chip.alerta{background:rgba(239,68,68,.1);border:0.5px solid rgba(239,68,68,.3);color:var(--rd)}
+.ia-chip.div{background:rgba(234,179,8,.1);border:0.5px solid rgba(234,179,8,.3);color:var(--am)}
+.ia-sections{padding:0 16px 16px}
+.ia-sec{border-left:3px solid var(--ac);border-radius:0 var(--r-md) var(--r-md) 0;padding:12px 14px;margin-bottom:10px;background:var(--s1)}
+.ia-sec-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--ac);margin-bottom:7px}
+.ia-sec-body{font-size:12px;color:var(--t2);line-height:1.75;white-space:pre-wrap}
+.ia-sec.cadena .ia-sec-title{color:var(--cy)}
+.ia-sec.cadena{border-left-color:var(--cy)}
+.ia-sec.evidencia .ia-sec-title{color:var(--gr)}
+.ia-sec.evidencia{border-left-color:var(--gr)}
+.ia-sec.divergencias .ia-sec-title{color:var(--am)}
+.ia-sec.divergencias{border-left-color:var(--am)}
+.ia-sec.catalizadores .ia-sec-title{color:#f97316}
+.ia-sec.catalizadores{border-left-color:#f97316}
+.ia-sec.plan .ia-sec-title{color:#22c55e}
+.ia-sec.plan{border-left-color:#22c55e}
+.ia-saved-ok{margin:6px 16px;padding:7px 12px;background:rgba(34,197,94,.1);border:0.5px solid rgba(34,197,94,.3);border-radius:var(--r-md);font-size:11px;color:var(--gr);display:none}
+.ia-hist-list{padding:10px 16px}
+.ia-hist-item{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:var(--r-md);border-left:3px solid var(--b2);margin-bottom:6px;cursor:pointer;transition:background .2s;background:var(--s1)}
+.ia-hist-item:hover{background:var(--s2)}
+.ia-hist-item.active{background:var(--s2);border-left-color:var(--ac)}
+.ia-hist-main{flex:1;min-width:0}
+.ia-hist-esc{font-size:11px;font-weight:700;color:var(--t1)}
+.ia-hist-meta{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--t3);margin-top:2px}
+.ia-hist-del{background:none;border:none;color:var(--t4);cursor:pointer;font-size:13px;padding:2px 6px}
+.ia-hist-del:hover{color:var(--rd)}
+.ia-hist-empty{text-align:center;padding:24px;font-size:12px;color:var(--t4)}
+.ia-sparkline{margin:0 16px 10px;background:var(--s2);border-radius:var(--r-md);padding:8px 10px}
+.ia-sparkline-title{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.ia-sparkline-meta{display:flex;justify-content:space-between;font-size:9px;font-family:'JetBrains Mono',monospace;color:var(--t3);margin-top:4px}
+.ia-compare-banner{margin:6px 16px;padding:7px 12px;background:rgba(139,127,255,.08);border:0.5px solid var(--acb);border-radius:var(--r-md);font-size:10px;color:var(--ac);display:none}
+
 </style>
 </head>
 <body>
@@ -451,178 +522,54 @@ input,textarea,button{font-family:inherit}
       <div class="ia-header">
         <span style="font-size:18px">🤖</span>
         <div class="ia-title">Análisis Institucional IA</div>
-        <span class="ia-pill">CLAUDE SONNET 4</span>
+        <span class="ia-pill" id="ia-model-pill">HAIKU + SONNET</span>
         <button class="btn-ia" id="btn-ia" onclick="generateIA()">
           <div class="sp"></div>
-          <span>Generar</span>
+          <span id="btn-ia-txt">Generar</span>
         </button>
       </div>
+      <!-- Tabs -->
+      <div class="ia-tabs">
+        <button class="ia-tab active" id="ia-tab-live" onclick="iaSetTab('live')">📊 Análisis</button>
+        <button class="ia-tab" id="ia-tab-hist" onclick="iaSetTab('hist')">🕐 Historial (<span id="ia-hist-count">0</span>)</button>
+      </div>
+      <!-- Pipeline status -->
+      <div class="ia-pipeline" id="ia-pipeline" style="display:none">
+        <div class="ia-step idle" id="ia-step-haiku">
+          <div class="ia-step-dot"></div>
+          <div class="ia-step-info"><div class="ia-step-lbl">1. Haiku 4.5</div><div class="ia-step-sub" id="ia-step-haiku-sub">Clasificador</div></div>
+        </div>
+        <div class="ia-step idle" id="ia-step-sonnet">
+          <div class="ia-step-dot"></div>
+          <div class="ia-step-info"><div class="ia-step-lbl">2. Sonnet 4</div><div class="ia-step-sub" id="ia-step-sonnet-sub">Análisis causal</div></div>
+        </div>
+      </div>
+      <!-- Compare banner -->
+      <div class="ia-compare-banner" id="ia-compare-banner"></div>
+      <!-- Saved ok -->
+      <div class="ia-saved-ok" id="ia-saved-ok">✅ Informe guardado en historial</div>
+      <!-- Escenarios (resultado Haiku) -->
+      <div class="ia-escenarios" id="ia-escenarios" style="display:none"></div>
+      <!-- Dimensiones -->
+      <div class="ia-dims" id="ia-dims" style="display:none"></div>
+      <!-- Chips señales/alertas/divergencias -->
+      <div class="ia-chips" id="ia-chips" style="display:none"></div>
+      <!-- Cuerpo informe Sonnet -->
+      <div class="ia-sections" id="ia-sections" style="display:none"></div>
+      <!-- Body legacy (placeholder y streaming raw) -->
       <div class="ia-body" id="ia-body">
-        <div class="ia-placeholder"><div class="ia-ph-icon">🧠</div><div>Pulsa <strong style="color:var(--ac)">Generar</strong> para análisis institucional completo con señales 2D→4W y niveles exactos.</div></div>
+        <div class="ia-placeholder"><div class="ia-ph-icon">🧠</div><div>Pulsa <strong style="color:var(--ac)">Generar</strong> para diagnóstico institucional completo con pipeline Haiku→Sonnet, 6 escenarios y análisis causal.</div></div>
+      </div>
+      <!-- Historial -->
+      <div id="ia-hist-panel" style="display:none">
+        <div class="ia-sparkline" id="ia-sparkline" style="display:none">
+          <div class="ia-sparkline-title">Evolución del escenario ganador</div>
+          <svg id="ia-spark-svg" width="100%" viewBox="0 0 600 80" style="display:block"></svg>
+          <div class="ia-sparkline-meta"><span id="ia-spark-from">—</span><span id="ia-spark-range">—</span><span id="ia-spark-to">—</span></div>
+        </div>
+        <div class="ia-hist-list" id="ia-hist-list"><div class="ia-hist-empty">No hay informes guardados</div></div>
       </div>
     </div>
-  </div>
-
-  <!-- PAGE 2: INSTITUCIONAL -->
-  <div class="page" id="page-inst">
-
-    <!-- COT -->
-    <div class="section">
-      <div class="section-title">🏦 COT Report — CFTC (Mano Institucional)</div>
-      <div class="card">
-        <div class="card-header">
-          <div class="card-icon">📋</div>
-          <div class="card-info">
-            <div class="card-title">Non-Commercial Positions — NQ Futures</div>
-            <div class="card-sub">CFTC · Actualización viernes 15:30 ET</div>
-          </div>
-          <div class="badge" id="cot-badge">—</div>
-        </div>
-        <div class="card-body">
-          <div class="card-explain">Posiciones de <strong>Large Speculators</strong> en futuros Nasdaq Mini. Indicador contrario: exceso de largos = techo · exceso de cortos = suelo.</div>
-          <div id="cot-content"><div class="no-data">Cargando datos CFTC...</div></div>
-          <div class="fuente-bar">
-            <span class="fuente-label">Verificar fuente</span>
-            <div class="fuente-links">
-              <a class="fuente-link" href="https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm" target="_blank" rel="noopener">CFTC Oficial</a>
-              <a class="fuente-link warn" href="https://barchart.com/futures/commitment-of-traders/NQ" target="_blank" rel="noopener">Barchart Visual</a>
-            </div>
-          </div>
-          <div class="edit-panel">
-            <div class="edit-panel-title">Corrección manual</div>
-            <div class="edit-row">
-              <span class="edit-lbl">% Largos specs</span>
-              <input class="edit-input" id="edit-cot-pctlargo" type="number" step="0.1" min="0" max="100" placeholder="ej: 68.5">
-              <button class="btn-apply" onclick="applyEditCOT()">Aplicar</button>
-              <span class="edit-applied" id="edit-cot-ok">Aplicado</span>
-            </div>
-            <div class="edit-row">
-              <span class="edit-lbl">Neto especuladores</span>
-              <input class="edit-input" id="edit-cot-neto" type="number" placeholder="ej: 95000">
-            </div>
-            <div class="edit-row">
-              <span class="edit-lbl">Fecha del dato</span>
-              <input class="edit-input" id="edit-cot-fecha" type="date">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- B8 SEC INSIDERS -->
-    <div class="section">
-      <div class="section-title">🔍 SEC Insiders — Form 4 Big Tech</div>
-      <div class="card">
-        <div class="card-header">
-          <div class="card-icon">🏢</div>
-          <div class="card-info">
-            <div class="card-title">Compras vs Ventas de Directivos</div>
-            <div class="card-sub">SEC EDGAR · Form 4 · Últimos 90 días</div>
-          </div>
-          <div class="badge" id="insider-badge">—</div>
-        </div>
-        <div class="card-body">
-          <div class="card-explain">Las compras de insiders (directivos y consejeros) con dinero propio son la señal institucional más fiable. Ratio compras/ventas &gt;0.3 es bullish.</div>
-          <div id="insider-content"><div class="no-data">Cargando insiders...</div></div>
-          <div class="fuente-bar">
-            <span class="fuente-label">Verificar fuente</span>
-            <div class="fuente-links">
-              <a class="fuente-link" href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&type=4&dateb=&owner=include&count=40" target="_blank" rel="noopener">SEC EDGAR Form 4</a>
-              <a class="fuente-link warn" href="https://openinsider.com/screener?s=&o=&pl=&ph=&ll=&lh=&fd=90&fdr=&td=0&tdr=&fdlyl=&fdlyh=&daysago=&xp=1&xs=1&vl=&vh=&ocl=&och=&sic1=-1&sicl=100&sich=9999&grp=0&nfl=&nfh=&nil=&nih=&nol=&noh=&v2l=&v2h=&oc2l=&oc2h=&sortcol=0&cnt=100&page=1" target="_blank" rel="noopener">OpenInsider</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- OI STRIKES -->
-    <div class="section">
-      <div class="section-title">📊 Open Interest por Strike — QQQ Options</div>
-      <div class="card">
-        <div class="card-header">
-          <div class="card-icon">🎯</div>
-          <div class="card-info">
-            <div class="card-title">Paredes de Opciones · Max Pain · GEX</div>
-            <div class="card-sub">Yahoo Finance Options Chain · Multi-vencimiento</div>
-          </div>
-          <div class="badge" id="oi-badge">—</div>
-        </div>
-        <div class="card-body">
-          <div class="card-explain">Las concentraciones de <strong>Open Interest</strong> actúan como imanes de precio. El <strong>Max Pain</strong> es el nivel donde expira con mayor pérdida para compradores de opciones.</div>
-          <div id="oi-content"><div class="no-data">Cargando opciones...</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- B4 DERIVADOS AVANZADOS -->
-    <div class="section">
-      <div class="section-title">⚡ Derivados Avanzados — GEX Real · SKEW · 0DTE</div>
-      <div class="card">
-        <div class="card-header">
-          <div class="card-icon">🧮</div>
-          <div class="card-info">
-            <div class="card-title">Gamma Exposure Real · Skew Options · 0DTE Ratio</div>
-            <div class="card-sub">Python local · yfinance · CBOE · Fase 7</div>
-          </div>
-          <div class="badge" id="deriv-badge">—</div>
-        </div>
-        <div class="card-body">
-          <div class="card-explain"><strong>GEX Real</strong>: exposición gamma calculada con strikes reales (negativo = amplifica volatilidad). <strong>SKEW</strong>: coste relativo de Puts vs Calls (cobertura de cisne negro). <strong>0DTE</strong>: ratio volumen opciones same-day vs total.</div>
-          <div id="deriv-content"><div class="no-data">Cargando derivados avanzados...</div></div>
-          <div class="fuente-bar">
-            <span class="fuente-label">Verificar fuente</span>
-            <div class="fuente-links">
-              <a class="fuente-link" href="https://finance.yahoo.com/quote/QQQ/options/" target="_blank" rel="noopener">QQQ Options</a>
-              <a class="fuente-link warn" href="https://www.cboe.com/data/volatility-and-put-call-ratio-data/" target="_blank" rel="noopener">CBOE SKEW</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- GEX ESTIMADO -->
-    <div class="section">
-      <div class="section-title">⚡ GEX Estimado + Gamma Flip</div>
-      <div class="card">
-        <div class="card-body">
-          <div class="card-explain">El <strong>Gamma Exposure (GEX)</strong> mide si los dealers compran caídas (positivo = estable) o amplifican movimientos (negativo = tendencias violentas).</div>
-          <div id="gex-content"><div class="no-data">Cargando...</div></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- PCR -->
-    <div class="section">
-      <div class="section-title">📉 Put/Call Ratio — CBOE / QQQ</div>
-      <div class="card">
-        <div class="card-body">
-          <div class="card-explain">Indicador contrario: PCR alto (&gt;1.2) = miedo extremo → señal alcista contraria. PCR bajo (&lt;0.6) = euforia → señal bajista contraria.</div>
-          <div id="pcr-content"><div class="no-data">Cargando PCR...</div></div>
-          <div class="fuente-bar">
-            <span class="fuente-label">Verificar fuente</span>
-            <div class="fuente-links">
-              <a class="fuente-link" href="https://www.cboe.com/data/volatility-and-put-call-ratio-data/" target="_blank" rel="noopener">CBOE Oficial</a>
-              <a class="fuente-link warn" href="https://finance.yahoo.com/quote/QQQ/options/" target="_blank" rel="noopener">Yahoo QQQ Options</a>
-            </div>
-          </div>
-          <div id="pcr-sesgo-notice"></div>
-          <div class="edit-panel">
-            <div class="edit-panel-title">Corrección manual PCR</div>
-            <div class="edit-row">
-              <span class="edit-lbl">PCR Total</span>
-              <input class="edit-input" id="edit-pcr-total" type="number" step="0.001" min="0" max="5" placeholder="ej: 0.85">
-              <button class="btn-apply" onclick="applyEditPCR()">Aplicar</button>
-              <span class="edit-applied" id="edit-pcr-ok">Aplicado</span>
-            </div>
-            <div class="edit-row">
-              <span class="edit-lbl">PCR Equity</span>
-              <input class="edit-input" id="edit-pcr-equity" type="number" step="0.001" min="0" max="5" placeholder="ej: 0.72">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
   </div><!-- /page-inst -->
 
   <!-- PAGE 3: MACRO -->
@@ -2011,107 +1958,432 @@ function renderAll() {
 }
 
 // ══════════════════════════════════════════════════════════
-// IA REPORT
+// IA REPORT v2 — pipeline Haiku→Sonnet + 6 escenarios + localStorage
 // ══════════════════════════════════════════════════════════
-function buildIAPrompt() {
-  var p = D.precio && D.precio.ndx;
-  var vix = D.precio && D.precio.vix;
-  var sc = D.scores;
-  var t = D.tecnicos && D.tecnicos.d;
-  var cot = D.cot;
-  var macro = D.macro;
-  var hs = sc && sc.horizontes;
-  var ins = D.sec_insiders;
-  var cta = D.cta_levels;
 
-  var hsLines = [];
-  if (hs) {
-    var hkeys = Object.keys(hs);
-    for (var hi3 = 0; hi3 < hkeys.length; hi3++) {
-      var k3 = hkeys[hi3];
-      var v3 = hs[k3];
-      hsLines.push(k3 + ': ' + (v3.score > 0 ? '+' : '') + v3.score + ' (' + v3.estado.toUpperCase() + ', conf ' + v3.conf + '%)');
-    }
-  }
+var IA_PROXY = '/api/claude';
+var IA_HAIKU = 'claude-haiku-4-5-20251001';
+var IA_SONNET = 'claude-sonnet-4-20250514';
+var IA_STORAGE_KEY = 'nq_ia_informes';
+var IA_MAX_INFORMES = 30;
 
-  return 'Eres un analista institucional senior de Nasdaq 100. Análisis COMPLETO en español con datos reales.\n\n' +
-    'PRECIOS: NDX ' + (p ? p.toFixed(0) : '--') + ' | VIX ' + (vix ? vix.toFixed(1) : '--') + ' | DXY ' + (D.precio && D.precio.dxy ? D.precio.dxy.toFixed(1) : '--') + ' | TNX ' + (D.precio && D.precio.tnx ? D.precio.tnx.toFixed(2) : '--') + '%\n\n' +
-    'TÉCNICO: RSI ' + (t && t.rsi14) + ' | MACD hist ' + (t && t.macd && t.macd.hist) + ' | Stoch ' + (t && t.stoch && t.stoch.k) + '/' + (t && t.stoch && t.stoch.d) + '\n' +
-    'EMAs: 8=' + (t && t.ema8) + ' 21=' + (t && t.ema21) + ' 50=' + (t && t.ema50) + ' 200=' + (t && t.ema200) + '\n\n' +
-    'COT: Neto ' + (cot && (cot.neto > 0 ? '+' : '') + cot.neto) + ' (' + (cot && cot.pctLargo) + '% largos) | cambio semanal ' + (cot && (cot.cambioNeto > 0 ? '+' : '') + cot.cambioNeto) + '\n' +
-    'Dealers: ' + (getVal(cot || {}, 'senalDealers') || getVal(cot || {}, 'señalDealers') || '--') + '\n\n' +
-    'INSIDERS SEC: compras ' + (ins && fmtK(ins.compras_90d)) + ' vs ventas ' + (ins && fmtK(ins.ventas_90d)) + ' | ratio ' + (ins && ins.ratio ? ins.ratio.toFixed(2) : '--') + '\n\n' +
-    'OPCIONES: Max Pain ' + (D.opciones && D.opciones.v1 && D.opciones.v1.maxPain) + ' (' + (D.opciones && D.opciones.v1 && D.opciones.v1.distPct) + '%) | GEX ' + (D.opciones && D.opciones.gex && D.opciones.gex.estado) + '\n' +
-    'PCR: ' + (D.pcr && D.pcr.total) + ' | VIX backwardation: ' + (D.vixTS && D.vixTS.backwardation ? 'SÍ' : 'NO') + '\n' +
-    'SKEW: ' + (D.opciones && D.opciones.skew && D.opciones.skew.valor) + ' | 0DTE ratio: ' + (D.opciones && D.opciones.ratio_0dte && D.opciones.ratio_0dte.valor ? (D.opciones.ratio_0dte.valor * 100).toFixed(1) + '%' : '--') + '\n\n' +
-    'CTA TRIGGERS: Don20H ' + (cta && cta.don20_high) + ' Don20L ' + (cta && cta.don20_low) + ' Don50H ' + (cta && cta.don50_high) + '\n\n' +
-    'MACRO: HY Spread ' + (macro && macro.fred && macro.fred.hySpread && macro.fred.hySpread.v) + '% | NFCI ' + (macro && macro.fred && macro.fred.nfci && macro.fred.nfci.v) + '\n' +
-    'Curva 10Y-2Y: ' + (macro && macro.curva && macro.curva.sp10_2) + '% | Liquidez neta: ' + (macro && macro.fred && macro.fred.liquidez_neta ? (macro.fred.liquidez_neta / 1e9).toFixed(0) + 'B' : '--') + '\n\n' +
-    'SCORES: ' + hsLines.join(' | ') + '\n\n' +
-    'GENERA INFORME CON ESTAS 5 SECCIONES:\n\n' +
-    '### MANO INSTITUCIONAL\n[COT, insiders, opciones, GEX, flujos. Acumulando o distribuyendo?]\n\n' +
-    '### SEÑALES POR HORIZONTE\n[2D/5D/1S/2S/3S/4S: entrada exacta, stop, objetivo, probabilidad]\n\n' +
-    '### ANÁLISIS TÉCNICO Y ESTRUCTURA\n[EMAs, RSI, MACD, Bollinger, CTA triggers, divergencias]\n\n' +
-    '### MACRO Y SENTIMIENTO\n[Curva, crédito, NFCI, VIX TS, PCR, SKEW, liquidez neta]\n\n' +
-    '### VEREDICTO Y PLAN ACCIÓN\n[3-5 líneas. Qué hacer HOY. Catalizadores. Niveles de invalidación.]\n\n' +
-    'Usa [ALCISTA], [BAJISTA] o [NEUTRO] al inicio. Sé específico con precios.';
+var IA_ESCENARIOS = {
+  expansion_sostenida:  { label:'Expansión Sostenida',      color:'#0F6E56', bg:'rgba(15,110,86,.12)',  icon:'📈' },
+  distribucion_techo:   { label:'Distribución de Techo',    color:'#BA7517', bg:'rgba(186,117,23,.12)', icon:'⚠️' },
+  rebote_tactico:       { label:'Rebote Táctico (Trampa)',   color:'#7F77DD', bg:'rgba(127,119,221,.12)',icon:'↗️' },
+  caida_severa:         { label:'Caída Severa',              color:'#A32D2D', bg:'rgba(163,45,45,.12)',  icon:'📉' },
+  capitulacion:         { label:'Capitulación / Suelo',      color:'#185FA5', bg:'rgba(24,95,165,.12)',  icon:'🔄' },
+  rango_compresion:     { label:'Rango / Compresión Gamma',  color:'#888780', bg:'rgba(136,135,128,.12)',icon:'↔️' }
+};
+
+var IA_DIMS = [
+  { k:'tecnico_corto',         label:'Técnico corto (2D-5D)' },
+  { k:'tecnico_medio',         label:'Técnico medio (1S-4W)' },
+  { k:'macro',                 label:'Macro (Fed, tipos, crédito)' },
+  { k:'derivados',             label:'Derivados (GEX, PCR, OI)' },
+  { k:'flujos_institucionales',label:'Flujos institucionales (COT, insiders)' },
+  { k:'sentiment',             label:'Sentiment (VIX, breadth)' },
+  { k:'regime_history',        label:'Regime History (MRM)' }
+];
+
+var IA_SEC_CFG = {
+  'DIAGNÓSTICO DEL RÉGIMEN':          { cls:'diagnostico', color:'#8B7FFF' },
+  'CADENA CAUSAL':                    { cls:'cadena',      color:'#06B6D4' },
+  'EVIDENCIA POR CAPA':               { cls:'evidencia',   color:'#22C55E' },
+  'DIVERGENCIAS Y CONTRADICCIONES':   { cls:'divergencias',color:'#EAB308' },
+  'CATALIZADORES Y NIVELES DE TRANSICIÓN': { cls:'catalizadores', color:'#F97316' },
+  'PLAN DE ACCIÓN EJECUTIVO':         { cls:'plan',        color:'#22C55E' }
+};
+
+var iaCurrentTab = 'live';
+var iaActiveId = null;
+
+// ── Storage ──
+function iaSaveIndex(arr) {
+  try { localStorage.setItem(IA_STORAGE_KEY + ':idx', JSON.stringify(arr)); } catch(e) {}
+}
+function iaLoadIndex() {
+  try { return JSON.parse(localStorage.getItem(IA_STORAGE_KEY + ':idx') || '[]'); } catch(e) { return []; }
+}
+function iaSaveInforme(id, obj) {
+  try { localStorage.setItem(IA_STORAGE_KEY + ':' + id, JSON.stringify(obj)); } catch(e) {}
+}
+function iaLoadInforme(id) {
+  try { return JSON.parse(localStorage.getItem(IA_STORAGE_KEY + ':' + id) || 'null'); } catch(e) { return null; }
+}
+function iaDeleteInforme(id) {
+  try { localStorage.removeItem(IA_STORAGE_KEY + ':' + id); } catch(e) {}
+  var idx = iaLoadIndex().filter(function(x) { return x.id !== id; });
+  iaSaveIndex(idx);
+  return idx;
+}
+function iaClearAll() {
+  var idx = iaLoadIndex();
+  idx.forEach(function(x) { try { localStorage.removeItem(IA_STORAGE_KEY + ':' + x.id); } catch(e) {} });
+  iaSaveIndex([]);
+  return [];
+}
+function iaPersistInforme(haikuJson, sonnetText) {
+  var id = 'INF' + Date.now().toString(36).toUpperCase();
+  var ts = new Date().toISOString();
+  var meta = { id:id, ts:ts, ganador:haikuJson.escenario_ganador, confianza:haikuJson.confianza,
+    ndx: D.precio && D.precio.ndx, vix: D.precio && D.precio.vix,
+    escenarios: haikuJson.escenarios, data_ts: D.ts };
+  var contenido = { id:id, ts:ts, haikuJson:haikuJson, sonnetText:sonnetText };
+  iaSaveInforme(id, contenido);
+  var idx = iaLoadIndex();
+  idx.unshift(meta);
+  if (idx.length > IA_MAX_INFORMES) idx = idx.slice(0, IA_MAX_INFORMES);
+  iaSaveIndex(idx);
+  return { id:id, idx:idx };
 }
 
+// ── Data summary (vanilla JS) ──
+function iaBuildDataSummary() {
+  var p = D.precio || {}, t = (D.tecnicos && D.tecnicos.d) || {}, tw = (D.tecnicos && D.tecnicos.w) || {};
+  var cot = D.cot || {}, macro = D.macro || {}, fred = (macro.fred) || {};
+  var vts = D.vixTS || {}, opc = D.opciones || {}, pcr = D.pcr || {};
+  var cc = D.comparativa_correcciones || {}, amp = D.amplitud_mercado || {};
+  var sc = D.scores || {}, hs = (sc.horizontes) || {};
+  var ins = D.sec_insiders || {}, cta = D.cta_levels || {};
+  var giro = D.giro || {}, flows = D.flows || {}, liq = D.liquidez || {};
+  var f = function(v, d) { if (v == null) return '--'; return Number(v).toFixed(d != null ? d : 2); };
+  var fk = function(v) { if (v == null) return '--'; return v >= 1e6 ? (v/1e6).toFixed(1)+'M' : v >= 1e3 ? (v/1e3).toFixed(0)+'K' : String(v); };
+  var hLines = Object.keys(hs).map(function(k) {
+    var v = hs[k]; return k.toUpperCase()+'='+(v.score>0?'+':'')+f(v.score,1)+' ('+v.estado+', conf='+v.conf+'%)';
+  }).join(' | ');
+  var liqR = (liq.zonasResistencia||[]).slice(0,3).map(function(z){return 'R:'+z.nivel+'('+f(z.distPct,1)+'%,cnt='+z.cnt+')'}).join(' | ');
+  var liqS = (liq.zonasSoporte||[]).slice(0,3).map(function(z){return 'S:'+z.nivel+'('+f(z.distPct,1)+'%,cnt='+z.cnt+')'}).join(' | ');
+  return '═══ DATOS NDX ('+( D.ts||'').slice(0,16).replace('T',' ')+' UTC) ═══\n\n'+
+    'PRECIOS: NDX='+f(p.ndx,0)+' QQQ='+f(p.qqq)+' VIX='+f(p.vix,1)+' (%il='+vts.vixPercentil+') DXY='+f(p.dxy,2)+' TNX='+f(p.tnx,3)+'% Oro='+f(p.oro,0)+'\n\n'+
+    'TÉCNICO DIARIO: RSI14='+f(t.rsi14,1)+' RSI5='+f(t.rsi5,1)+' Stoch='+f((t.stoch||{}).k)+'/'+f((t.stoch||{}).d)+'\n'+
+    'MACD: línea='+f((t.macd||{}).line,0)+' señal='+f((t.macd||{}).signal,0)+' hist='+f((t.macd||{}).hist,0)+'\n'+
+    'EMAs: 8='+f(t.ema8,0)+' 21='+f(t.ema21,0)+' 50='+f(t.ema50,0)+' 200='+f(t.ema200,0)+'\n'+
+    'BB %B='+f((t.bb||{}).pct,1)+'% ATR14='+f(t.atr14,0)+' ROC5d='+f(t.roc5,2)+'% ROC20d='+f(t.roc20,2)+'%\n\n'+
+    'TÉCNICO SEMANAL: RSI14='+f(tw.rsi14,1)+' Stoch='+f((tw.stoch||{}).k)+'/'+f((tw.stoch||{}).d)+' BB%B='+f((tw.bb||{}).pct,1)+'% MACDhist='+f((tw.macd||{}).hist,0)+'\n\n'+
+    'GIRO: divBajistaDiaria='+((giro.d||{}).divBajista)+' divAlcistaDiaria='+((giro.d||{}).divAlcista)+' señalGlobal='+((giro.señalGlobal||'').toUpperCase())+'\n\n'+
+    'VIX TS: Spot='+f(vts.spot,1)+' VIX3M='+f(vts.vix3m,1)+' Spread=+'+f(vts.spread1Pct,1)+'% BACKWARDATION='+(vts.backwardation?'SÍ ⚠️':'NO')+'\n\n'+
+    'SCORES: '+hLines+'\n'+
+    'Componentes: T='+f((sc.componentes||{}).tecnico,1)+' M='+f((sc.componentes||{}).macro,1)+' C='+f((sc.componentes||{}).cot,1)+' V='+f((sc.componentes||{}).vix,1)+' F='+f((sc.componentes||{}).flujos,1)+' G='+f((sc.componentes||{}).giro,1)+' A='+f((sc.componentes||{}).amplitud,1)+'\n\n'+
+    'COT ('+cot.fecha+'): Largos='+cot.largos+' Cortos='+cot.cortos+' Neto='+(cot.neto>0?'+':'')+cot.neto+' %Largo='+f(cot.pctLargo,1)+'%\n'+
+    'CambioNeto='+(cot.cambioNeto>0?'+':'')+cot.cambioNeto+' Dealers='+((cot.señalDealers||cot.senalDealers||'').toUpperCase())+' Señal='+((cot.señal||'').toUpperCase())+'\n\n'+
+    'INSIDERS SEC: Compras='+fk(ins.compras_90d)+' Ventas='+fk(ins.ventas_90d)+' Ratio='+f(ins.ratio,2)+' Señal='+((ins.senal||ins.señal||'').toUpperCase())+'\n\n'+
+    'OPCIONES: MaxPain='+((opc.v1||{}).maxPain)+' ('+f((opc.v1||{}).distPct,2)+'%) GEX='+((opc.gex||{}).estado||'').toUpperCase()+' PCR='+f(pcr.total,3)+' Señal='+((pcr.señal||'').toUpperCase())+'\n\n'+
+    'CTA: Don20H='+(cta.don20_high||'--')+' Don20L='+(cta.don20_low||'--')+' Don50H='+(cta.don50_high||'--')+' Señal='+((cta.senal_cta||cta.señal_cta||'--').toUpperCase())+'\n\n'+
+    'MACRO: HYSpread='+f((fred.hySpread||{}).v,2)+'% NFCI='+f((fred.nfci||{}).v,3)+' TipoReal10Y='+f((fred.tipoReal10y||{}).v,2)+'% DrenajeLiquidez='+((macro.tiposRealesOro||{}).alerta?'SÍ':'NO')+'\n'+
+    'LiquidezFed='+(macro.liquidezNeta&&macro.liquidezNeta.valor?(macro.liquidezNeta.valor/1e6).toFixed(2)+'T':' --')+'USD ScoreMacro='+f(macro.score,1)+'\n\n'+
+    'FLUJOS ETF: modo='+(flows.modo)+' QQQ5d='+f((flows.qqq||{}).retorno5d,2)+'% SPY='+f((flows.spy||{}).retorno5d,2)+'% TLT='+f((flows.tlt||{}).retorno5d,2)+'% HYG='+f((flows.hyg||{}).retorno5d,2)+'%\n\n'+
+    'AMPLITUD: CuO='+f(amp.ratio_cobre_oro,5)+' Z-Score='+f(amp.zscore_qqq_sma200,3)+' ('+amp.señal_zscore+') Kelly='+f(amp.factor_exposicion_recomendado,3)+' Estacional: '+amp.descripcion_estacional+'\n\n'+
+    'MRM: Micro='+(cc.micro_3pct||0)+'% Técnica='+(cc.tecnica_7pct||0)+'% Macro='+(cc.macro_15pct||0)+'% Bajista='+(cc.bajista_25pct||0)+'% Cisne='+(cc.cisne_negro_30pct||0)+'%\n'+
+    'Dominante='+(cc.escenario_dominante||'--')+' (conf='+(cc.confianza||0)+'%) Reco='+( cc.recomendacion||'--')+'\n\n'+
+    'LIQUIDEZ: '+liqR+' '+liqS;
+}
+
+function iaBuildHaikuPrompt() {
+  return 'Eres un clasificador cuantitativo de régimen de mercado para Nasdaq 100. Analiza los siguientes datos y devuelve EXCLUSIVAMENTE un objeto JSON válido, sin markdown, sin texto antes o después.\n\n'+
+    iaBuildDataSummary()+'\n\n'+
+    '═══ ESCENARIOS (probabilidad 0-100 independiente para cada uno) ═══\n'+
+    '1. expansion_sostenida: todos horizontes verdes, GEX+, VIX contango, COT acumulando\n'+
+    '2. distribucion_techo: RSI>70 + divergencia bajista + dealers distribuyendo + insiders vendiendo + Z>1.5\n'+
+    '3. rebote_tactico: score 2D-5D alcista pero 2S-4W bajista, trampa alcista\n'+
+    '4. caida_severa: VIX backwardation, GEX negativo, PCR>1.3, HY spread subiendo\n'+
+    '5. capitulacion: PCR>1.5, VIX%il>85, insiders comprando, COT extremo corto\n'+
+    '6. rango_compresion: precio pineado en max pain, GEX+ extremo, IV baja\n\n'+
+    'DEVUELVE ESTE JSON EXACTO:\n'+
+    '{"escenarios":{"expansion_sostenida":0,"distribucion_techo":0,"rebote_tactico":0,"caida_severa":0,"capitulacion":0,"rango_compresion":0},'+
+    '"dimensiones":{"tecnico_corto":"BULL|BEAR|NEUTRAL","tecnico_medio":"BULL|BEAR|NEUTRAL","macro":"BULL|BEAR|NEUTRAL","derivados":"BULL|BEAR|NEUTRAL","flujos_institucionales":"BULL|BEAR|NEUTRAL","sentiment":"BULL|BEAR|NEUTRAL","regime_history":"BULL|BEAR|NEUTRAL"},'+
+    '"senales_clave":["señal con cifra exacta"],"alertas_criticas":[],"divergencias":[],"escenario_ganador":"clave","confianza":0}';
+}
+
+function iaBuildSonnetPrompt(haikuJson, prevInforme) {
+  var comparativo = '';
+  if (prevInforme && prevInforme.haikuJson) {
+    var prev = prevInforme.haikuJson.escenarios || {};
+    var curr = haikuJson.escenarios || {};
+    var deltas = Object.keys(curr).map(function(k) {
+      var d = (curr[k]||0)-(prev[k]||0); return '  '+k+': '+(prev[k]||0)+'%→'+(curr[k]||0)+'% (Δ'+(d>0?'+':'')+d+')';
+    }).join('\n');
+    comparativo = '\n═══ CAMBIOS vs INFORME ANTERIOR ('+prevInforme.ts.slice(0,16).replace('T',' ')+') ═══\n'+deltas+'\nGanador anterior: '+prevInforme.haikuJson.escenario_ganador+'\n';
+  }
+  var escLines = Object.keys(haikuJson.escenarios||{}).map(function(k){return '  '+k+': '+(haikuJson.escenarios[k]||0)+'%';}).join('\n');
+  var dimLines = Object.keys(haikuJson.dimensiones||{}).map(function(k){return '  '+k+': '+(haikuJson.dimensiones[k]||'--');}).join('\n');
+  return 'Eres un Portfolio Manager institucional senior especializado en Nasdaq 100. Recibes datos cuantitativos + clasificación previa. Construye análisis CAUSAL con plan de acción concreto.\n\n'+
+    iaBuildDataSummary()+'\n\n'+
+    '═══ PRE-CLASIFICACIÓN HAIKU ═══\nGanador: '+haikuJson.escenario_ganador+' (conf '+haikuJson.confianza+'%)\n'+escLines+'\nDimensiones:\n'+dimLines+'\n'+
+    'Señales: '+((haikuJson.senales_clave||[]).join(' | '))+'\nAlertas: '+((haikuJson.alertas_criticas||[]).join(' | ')||'ninguna')+'\nDivergencias: '+((haikuJson.divergencias||[]).join(' | ')||'ninguna')+
+    comparativo+'\n\n═══════════════════════════════════════\n\n'+
+    'GENERA EXACTAMENTE ESTAS 6 SECCIONES (## H2). Cita datos exactos en cada afirmación.\n\n'+
+    '## DIAGNÓSTICO DEL RÉGIMEN\n¿Confirmas el escenario de Haiku? Probabilidad final por escenario. Estamos en X porque [cadena corta].'+(prevInforme?' Comenta cambios respecto al anterior.':'')+'\n\n'+
+    '## CADENA CAUSAL\nCausa raíz → Efecto intermedio → Manifestación observable. Mínimo 2 cadenas. Cita datos.\n\n'+
+    '## EVIDENCIA POR CAPA\nUna línea por capa: TÉCNICO / MACRO / DERIVADOS / FLUJOS / SENTIMENT / REGIME HISTORY.\n\n'+
+    '## DIVERGENCIAS Y CONTRADICCIONES\n¿Qué capa miente? ¿Precio vs internas? ¿COT vs insiders?\n\n'+
+    '## CATALIZADORES Y NIVELES DE TRANSICIÓN\nNivel exacto de invalidación. Evento macro pendiente. Señal técnica de adelanto.\n\n'+
+    '## PLAN DE ACCIÓN EJECUTIVO\n3-5 líneas. Exposición % (Kelly del sistema), niveles, stops, objetivos, decisión clara.\n\nTono profesional, directo, con datos.';
+}
+
+// ── API calls ──
+async function iaCallHaiku() {
+  var res = await fetch(IA_PROXY, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ model:IA_HAIKU, max_tokens:1500, messages:[{role:'user',content:iaBuildHaikuPrompt()}] })
+  });
+  if (!res.ok) { var e = await res.json().catch(function(){return {};}); throw new Error((e.error&&e.error.message)||'Haiku HTTP '+res.status); }
+  var data = await res.json();
+  var text = (data.content||[]).filter(function(b){return b.type==='text';}).map(function(b){return b.text;}).join('').trim();
+  var m = text.match(/\{[\s\S]*\}/); if (!m) throw new Error('Haiku no devolvió JSON parseable');
+  return JSON.parse(m[0]);
+}
+
+async function iaCallSonnetStream(haikuJson, prevInforme, onChunk) {
+  var res = await fetch(IA_PROXY, {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ model:IA_SONNET, max_tokens:2500, stream:true, messages:[{role:'user',content:iaBuildSonnetPrompt(haikuJson,prevInforme)}] })
+  });
+  if (!res.ok) { var e = await res.json().catch(function(){return {};}); throw new Error((e.error&&e.error.message)||'Sonnet HTTP '+res.status); }
+  var reader = res.body.getReader(), dec = new TextDecoder(), full = '', buf = '';
+  while (true) {
+    var chunk = await reader.read(); if (chunk.done) break;
+    buf += dec.decode(chunk.value, {stream:true});
+    var lines = buf.split('\n'); buf = lines.pop()||'';
+    for (var i=0;i<lines.length;i++) {
+      var line = lines[i]; if (!line.startsWith('data:')) continue;
+      var raw = line.slice(5).trim(); if (!raw||raw==='[DONE]') continue;
+      try { var obj = JSON.parse(raw); if (obj.type==='content_block_delta'&&obj.delta&&obj.delta.text) { full+=obj.delta.text; onChunk(full); } } catch(e) {}
+    }
+  }
+  return full;
+}
+
+// ── Render helpers ──
+function iaSetStep(id, status, sub) {
+  var el = document.getElementById(id); if (!el) return;
+  el.className = 'ia-step ' + status;
+  var subEl = document.getElementById(id+'-sub'); if (subEl && sub) subEl.textContent = sub;
+}
+
+function iaRenderEscenarios(haikuJson, prevEscenarios) {
+  var el = document.getElementById('ia-escenarios'); if (!el) return;
+  var sorted = Object.keys(haikuJson.escenarios||{}).sort(function(a,b){return (haikuJson.escenarios[b]||0)-(haikuJson.escenarios[a]||0);});
+  var winner = haikuJson.escenario_ganador;
+  var html = '';
+  sorted.forEach(function(k) {
+    var prob = haikuJson.escenarios[k]||0;
+    var cfg = IA_ESCENARIOS[k]||{label:k,color:'#888',bg:'rgba(128,128,128,.1)',icon:'•'};
+    var isW = k===winner;
+    var delta = (prevEscenarios&&prevEscenarios[k]!=null) ? prob-(prevEscenarios[k]||0) : null;
+    var deltaHtml = delta!=null&&delta!==0 ? '<span class="ia-esc-delta" style="color:'+(delta>0?'var(--gr)':'var(--rd)')+'">'+( delta>0?'▲+':'▼')+delta+'</span>' : '';
+    html += '<div class="ia-esc-row'+(isW?' winner':'')+'" style="border-color:'+(isW?cfg.color:'var(--b1)')+'";background:'+(isW?cfg.bg:'transparent')+'>'  +
+      '<div class="ia-esc-top">'+
+      '<div class="ia-esc-name">'+cfg.icon+' <span style="color:'+(isW?cfg.color:'var(--t1)')+'">'+cfg.label+'</span>'+(isW?'<span class="ia-esc-winner-badge" style="background:'+cfg.color+'">GANADOR</span>':'')+' </div>'+
+      '<div class="ia-esc-right">'+deltaHtml+'<span class="ia-esc-pct" style="color:'+cfg.color+'">'+prob+'%</span></div>'+
+      '</div>'+
+      '<div class="ia-esc-bar-bg"><div class="ia-esc-bar-fill" style="width:'+prob+'%;background:'+cfg.color+'"></div></div>'+
+      (isW?'<div class="ia-esc-sub">'+cfg.label+'</div>':'')+
+      '</div>';
+  });
+  el.innerHTML = html; el.style.display='';
+}
+
+function iaRenderDims(haikuJson) {
+  var el = document.getElementById('ia-dims'); if (!el) return;
+  var html = '';
+  IA_DIMS.forEach(function(d) {
+    var v = (haikuJson.dimensiones||{})[d.k]||'--';
+    html += '<div class="ia-dim-row"><span class="ia-dim-lbl">'+d.label+'</span><span class="ia-dim-val '+v+'">'+v+'</span></div>';
+  });
+  el.innerHTML = html; el.style.display='';
+}
+
+function iaRenderChips(haikuJson) {
+  var el = document.getElementById('ia-chips'); if (!el) return;
+  var html = '';
+  (haikuJson.senales_clave||[]).forEach(function(s){ html+='<div class="ia-chip senal">🔹 '+s+'</div>'; });
+  (haikuJson.alertas_criticas||[]).forEach(function(s){ html+='<div class="ia-chip alerta">⚠️ '+s+'</div>'; });
+  (haikuJson.divergencias||[]).forEach(function(s){ html+='<div class="ia-chip div">⚡ '+s+'</div>'; });
+  if (html) { el.innerHTML=html; el.style.display=''; } else { el.style.display='none'; }
+}
+
+function iaRenderSections(text) {
+  var secEl = document.getElementById('ia-sections'); if (!secEl) return;
+  var lines = text.split('\n'), sections = [], cur = null;
+  lines.forEach(function(l) {
+    var m = l.match(/^##\s+(.+)/);
+    if (m) { if (cur) sections.push(cur); cur = {title:m[1].trim(),content:[]}; }
+    else if (cur) cur.content.push(l);
+  });
+  if (cur) sections.push(cur);
+  if (!sections.length) return;
+  var html = '';
+  sections.forEach(function(s) {
+    var cfg = IA_SEC_CFG[s.title]||{cls:'',color:'var(--ac)'};
+    html += '<div class="ia-sec '+cfg.cls+'" style="border-left-color:'+cfg.color+'">'+
+      '<div class="ia-sec-title" style="color:'+cfg.color+'">'+s.title+'</div>'+
+      '<div class="ia-sec-body">'+s.content.join('\n').trim()+'</div>'+
+      '</div>';
+  });
+  secEl.innerHTML=html; secEl.style.display='';
+}
+
+function iaRenderHistorial() {
+  var idx = iaLoadIndex();
+  var countEl = document.getElementById('ia-hist-count'); if (countEl) countEl.textContent=idx.length;
+  var listEl = document.getElementById('ia-hist-list'); if (!listEl) return;
+  if (!idx.length) { listEl.innerHTML='<div class="ia-hist-empty">No hay informes guardados todavía. Genera uno.</div>'; iaRenderSparkline([]); return; }
+  var html = '';
+  idx.forEach(function(item) {
+    var cfg = IA_ESCENARIOS[item.ganador]||{label:item.ganador||'--',color:'var(--ac)'};
+    var isActive = item.id === iaActiveId;
+    html += '<div class="ia-hist-item'+(isActive?' active':'')+'" onclick="iaLoadFromHistory(\''+item.id+'\')" style="border-left-color:'+cfg.color+'">'+
+      '<div class="ia-hist-main">'+
+      '<div class="ia-hist-esc" style="color:'+cfg.color+'">'+cfg.label+' <span style="color:var(--t3);font-weight:400">('+item.confianza+'%)</span></div>'+
+      '<div class="ia-hist-meta">'+(item.ts||'').slice(5,16).replace('T',' ')+' · NDX '+Number(item.ndx||0).toFixed(0)+' · VIX '+Number(item.vix||0).toFixed(1)+'</div>'+
+      '</div>'+
+      '<button class="ia-hist-del" onclick="event.stopPropagation();iaDeleteAndRefresh(\''+item.id+'\')" title="Eliminar">🗑️</button>'+
+      '</div>';
+  });
+  listEl.innerHTML=html;
+  iaRenderSparkline(idx);
+}
+
+function iaRenderSparkline(idx) {
+  var sparkEl = document.getElementById('ia-sparkline');
+  var svgEl = document.getElementById('ia-spark-svg');
+  if (!sparkEl||!svgEl||idx.length<2) { if (sparkEl) sparkEl.style.display='none'; return; }
+  sparkEl.style.display='';
+  var ganador = idx[0].ganador;
+  var cfg = IA_ESCENARIOS[ganador]||{color:'var(--ac)'};
+  var data = idx.slice().reverse();
+  var vals = data.map(function(d){return (d.escenarios&&d.escenarios[ganador])||0;});
+  var W=600,H=80,pad=8,iW=W-pad*2,iH=H-pad*2;
+  var pts = vals.map(function(v,i){return [pad+i*(iW/Math.max(1,data.length-1)), pad+iH*(1-v/100)];});
+  var pathD = pts.map(function(p,i){return (i===0?'M':'L')+p[0]+' '+p[1];}).join(' ');
+  var areaD = pathD+' L'+pts[pts.length-1][0]+' '+(H-pad)+' L'+pts[0][0]+' '+(H-pad)+' Z';
+  var refLines = [25,50,75].map(function(r){var y=pad+iH*(1-r/100);return '<line x1="'+pad+'" y1="'+y+'" x2="'+(W-pad)+'" y2="'+y+'" stroke="rgba(255,255,255,.08)" stroke-dasharray="2 3" stroke-width="0.5"/>';}).join('');
+  var dots = pts.map(function(p){return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3" fill="'+cfg.color+'"/>';}).join('');
+  svgEl.innerHTML = refLines+'<path d="'+areaD+'" fill="'+cfg.color+'" opacity="0.15"/><path d="'+pathD+'" fill="none" stroke="'+cfg.color+'" stroke-width="2"/>'+dots;
+  var fromEl=document.getElementById('ia-spark-from'),rangeEl=document.getElementById('ia-spark-range'),toEl=document.getElementById('ia-spark-to');
+  if (fromEl) fromEl.textContent=(data[0].ts||'').slice(5,16).replace('T',' ');
+  if (toEl) toEl.textContent=(data[data.length-1].ts||'').slice(5,16).replace('T',' ');
+  if (rangeEl) rangeEl.textContent='min '+Math.min.apply(null,vals)+'% · max '+Math.max.apply(null,vals)+'% · ahora '+vals[vals.length-1]+'%';
+}
+
+function iaSetTab(tab) {
+  iaCurrentTab = tab;
+  document.getElementById('ia-tab-live').className = 'ia-tab'+(tab==='live'?' active':'');
+  document.getElementById('ia-tab-hist').className = 'ia-tab'+(tab==='hist'?' active':'');
+  var liveEls = ['ia-pipeline','ia-escenarios','ia-dims','ia-chips','ia-sections','ia-body','ia-saved-ok','ia-compare-banner'];
+  liveEls.forEach(function(id){var el=document.getElementById(id);if(el)el.style.display = tab==='live'&&el._iaVisible?'':'none';});
+  var histEl = document.getElementById('ia-hist-panel');
+  if (histEl) histEl.style.display = tab==='hist'?'':'none';
+  if (tab==='hist') iaRenderHistorial();
+}
+
+function iaLoadFromHistory(id) {
+  var inf = iaLoadInforme(id); if (!inf) return;
+  iaActiveId = id;
+  iaCurrentTab = 'live';
+  iaSetTab('live');
+  var idx = iaLoadIndex();
+  var idx_pos = idx.findIndex(function(x){return x.id===id;});
+  var prevEscenarios = (idx_pos>-1&&idx_pos<idx.length-1) ? idx[idx_pos+1].escenarios : null;
+  var bodyEl=document.getElementById('ia-body'); if(bodyEl){bodyEl.innerHTML=''; bodyEl._iaVisible=false; bodyEl.style.display='none';}
+  iaRenderEscenarios(inf.haikuJson, prevEscenarios);
+  iaRenderDims(inf.haikuJson);
+  iaRenderChips(inf.haikuJson);
+  iaRenderSections(inf.sonnetText||'');
+  ['ia-escenarios','ia-dims','ia-chips','ia-sections'].forEach(function(id){var el=document.getElementById(id);if(el){el._iaVisible=true;}});
+  document.getElementById('ia-hist-panel').style.display='none';
+  document.getElementById('ia-tab-live').className='ia-tab active';
+  document.getElementById('ia-tab-hist').className='ia-tab';
+  var banner=document.getElementById('ia-compare-banner');
+  if(banner){banner.textContent='📂 Informe cargado del historial — '+(inf.ts||'').slice(0,16).replace('T',' ');banner.style.display='';banner._iaVisible=true;}
+}
+
+function iaDeleteAndRefresh(id) {
+  if (!confirm('¿Eliminar este informe del historial?')) return;
+  iaDeleteInforme(id);
+  if (iaActiveId===id) { iaActiveId=null; }
+  iaRenderHistorial();
+}
+
+// ── Main generateIA ──
 async function generateIA() {
   var btn = document.getElementById('btn-ia');
+  var btnTxt = document.getElementById('btn-ia-txt');
   if (!btn) return;
-  btn.disabled = true; btn.classList.add('loading');
-  var msgs = ['Analizando COT e insiders...', 'Procesando derivados avanzados...', 'Calculando horizontes...', 'Redactando informe institucional...'];
-  var ti = 0;
-  var iaBody = document.getElementById('ia-body');
-  if (iaBody) {
-    iaBody.innerHTML = '<div style="display:flex;align-items:center;gap:12px;padding:8px 0"><div style="display:flex;gap:5px"><div style="width:7px;height:7px;background:var(--ac);border-radius:50%;animation:pulse 1.2s ease infinite"></div><div style="width:7px;height:7px;background:var(--ac);border-radius:50%;animation:pulse 1.2s ease infinite;animation-delay:.2s"></div><div style="width:7px;height:7px;background:var(--ac);border-radius:50%;animation:pulse 1.2s ease infinite;animation-delay:.4s"></div></div><div id="ia-msg" style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--ac)">' + msgs[0] + '</div></div>';
-  }
-  var iv = setInterval(function() { ti = (ti + 1) % msgs.length; var m = document.getElementById('ia-msg'); if (m) m.textContent = msgs[ti]; }, 1800);
+  btn.disabled=true; btn.classList.add('loading'); if(btnTxt) btnTxt.textContent='Analizando...';
 
+  // Reset UI
+  ['ia-escenarios','ia-dims','ia-chips','ia-sections'].forEach(function(id){
+    var el=document.getElementById(id); if(el){el.innerHTML='';el.style.display='none';el._iaVisible=false;}
+  });
+  var bodyEl=document.getElementById('ia-body');
+  if(bodyEl){bodyEl.innerHTML='<div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--ac);padding:8px 0">Iniciando pipeline...</div>';bodyEl._iaVisible=true;bodyEl.style.display='';}
+  var savedEl=document.getElementById('ia-saved-ok'); if(savedEl){savedEl.style.display='none';savedEl._iaVisible=false;}
+  var bannerEl=document.getElementById('ia-compare-banner'); if(bannerEl){bannerEl.style.display='none';bannerEl._iaVisible=false;}
+  var pipeEl=document.getElementById('ia-pipeline'); if(pipeEl){pipeEl.style.display='';pipeEl._iaVisible=true;}
+  iaSetStep('ia-step-haiku','idle','Esperando...'); iaSetStep('ia-step-sonnet','idle','Esperando...');
+
+  // Cargar informe anterior si existe
+  var prevInforme = null;
+  var idx = iaLoadIndex();
+  if (idx.length>0) { prevInforme = iaLoadInforme(idx[0].id); }
+
+  // Paso 1: Haiku
+  iaSetStep('ia-step-haiku','running','Clasificando...');
+  if(bodyEl) bodyEl.innerHTML='<div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--ac)">1/2 · Haiku clasificando régimen...</div>';
+  var t0=Date.now(), haikuJson;
   try {
-    var res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model: 'claude-sonnet-4-20250514', max_tokens: 2000, messages: [{ role: 'user', content: buildIAPrompt() }] })
-    });
-    clearInterval(iv);
-    var data = await res.json();
-    var text = (data && data.content && data.content[0] && data.content[0].text) || '';
-    var fmt2 = text
-      .replace(/^### (.+)$/gm, '<p><strong style="color:var(--ac);font-size:13px">$1</strong></p>')
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\[ALCISTA\]/g, '<em style="color:var(--gr);font-weight:700">[ALCISTA]</em>')
-      .replace(/\[BAJISTA\]/g, '<em style="color:var(--rd);font-weight:700">[BAJISTA]</em>')
-      .replace(/\[NEUTRO\]/g, '<em style="color:var(--am);font-weight:700">[NEUTRO]</em>')
-      .split('\n').filter(function(l) { return l.trim(); }).map(function(l) { return '<p>' + l + '</p>'; }).join('');
-    if (iaBody) iaBody.innerHTML = fmt2 || '<div class="no-data">Sin respuesta</div>';
-  } catch (e) {
-    clearInterval(iv);
-    var hs2 = D.scores && D.scores.horizontes;
-    var bull2 = hs2 && (hs2.d5 && (hs2.d5.estado === 'alcista' || hs2.d5.estado === 'alcista_mod'));
-    var fallback = '<p><strong style="color:var(--ac)">MANO INSTITUCIONAL</strong></p>' +
-      '<p>' + (bull2 ? '[ALCISTA]' : '[BAJISTA]') + ' COT muestra ' + (D.cot && D.cot.pctLargo) + '% de especuladores largos. ' +
-      (D.cot && D.cot.cambioNeto > 0 ? 'Incremento semanal.' : 'Reducción semanal.') + ' GEX en ' +
-      (D.opciones && D.opciones.gex && D.opciones.gex.estado || '--').replace(/_/g, ' ') + '.</p>' +
-      '<p><strong style="color:var(--ac)">SEÑALES POR HORIZONTE</strong></p>';
-    if (hs2) {
-      var hkeys2 = Object.keys(hs2);
-      var parts2 = [];
-      for (var hi4 = 0; hi4 < hkeys2.length; hi4++) {
-        var k4 = hkeys2[hi4];
-        var v4 = hs2[k4];
-        parts2.push('<strong>' + k4.toUpperCase() + '</strong>: ' + v4.estado.toUpperCase() + ' (' + v4.conf + '%)');
-      }
-      fallback += '<p>' + parts2.join(' · ') + '</p>';
-    }
-    fallback += '<p><strong style="color:var(--ac)">VEREDICTO</strong></p><p>' +
-      'Score dominante ' + (bull2 ? 'alcista' : 'bajista') + '. ' +
-      (bull2 ? 'Buscar entradas en retrocesos a EMA8/21. ' : 'Evitar nuevas posiciones largas. ') +
-      'Vigilar CTA triggers en Donchian 20/50D y comportamiento del VIX.</p>';
-    if (iaBody) iaBody.innerHTML = fallback;
+    haikuJson = await iaCallHaiku();
+    iaSetStep('ia-step-haiku','done','Listo · '+(Date.now()-t0)+'ms');
+  } catch(e) {
+    iaSetStep('ia-step-haiku','error',e.message);
+    if(bodyEl) bodyEl.innerHTML='<div style="color:var(--rd)">Error Haiku: '+e.message+'</div>';
+    btn.disabled=false; btn.classList.remove('loading'); if(btnTxt) btnTxt.textContent='Generar';
+    return;
   }
-  btn.disabled = false; btn.classList.remove('loading');
+
+  // Renderizar escenarios Haiku inmediatamente
+  var prevEscenarios = prevInforme&&prevInforme.haikuJson ? prevInforme.haikuJson.escenarios : null;
+  iaRenderEscenarios(haikuJson, prevEscenarios);
+  iaRenderDims(haikuJson);
+  iaRenderChips(haikuJson);
+  ['ia-escenarios','ia-dims','ia-chips'].forEach(function(id){var el=document.getElementById(id);if(el)el._iaVisible=true;});
+  if(bodyEl) { bodyEl.innerHTML='<div style="font-family:JetBrains Mono,monospace;font-size:11px;color:var(--ac)">2/2 · Sonnet redactando análisis causal...</div>'; bodyEl._iaVisible=true; }
+
+  // Mostrar comparativo si hay anterior
+  if (prevInforme&&prevInforme.haikuJson&&bannerEl) {
+    bannerEl.textContent='🔄 Comparando con informe del '+(prevInforme.ts||'').slice(5,16).replace('T',' ')+' — ganador anterior: '+(prevInforme.haikuJson.escenario_ganador||'--');
+    bannerEl.style.display=''; bannerEl._iaVisible=true;
+  }
+
+  // Paso 2: Sonnet streaming
+  iaSetStep('ia-step-sonnet','running','Redactando...');
+  var t1=Date.now(), sonnetFinal='';
+  try {
+    sonnetFinal = await iaCallSonnetStream(haikuJson, prevInforme, function(full) {
+      if(bodyEl) bodyEl.innerHTML='<pre style="font-size:11px;color:var(--t2);line-height:1.6;white-space:pre-wrap;margin:0">'+full+'</pre>';
+    });
+    iaSetStep('ia-step-sonnet','done','Listo · '+(Date.now()-t1)+'ms');
+  } catch(e) {
+    iaSetStep('ia-step-sonnet','error',e.message);
+    if(bodyEl) bodyEl.innerHTML='<div style="color:var(--rd)">Error Sonnet: '+e.message+'</div>';
+    btn.disabled=false; btn.classList.remove('loading'); if(btnTxt) btnTxt.textContent='Generar';
+    return;
+  }
+
+  // Renderizar informe estructurado
+  iaRenderSections(sonnetFinal);
+  if(bodyEl){bodyEl.innerHTML='';bodyEl._iaVisible=false;bodyEl.style.display='none';}
+  var secEl=document.getElementById('ia-sections');if(secEl)secEl._iaVisible=true;
+
+  // Guardar en localStorage
+  var saved = iaPersistInforme(haikuJson, sonnetFinal);
+  iaActiveId = saved.id;
+  if(savedEl){savedEl.style.display='';savedEl._iaVisible=true;setTimeout(function(){savedEl.style.display='none';savedEl._iaVisible=false;},3000);}
+  var countEl=document.getElementById('ia-hist-count');if(countEl)countEl.textContent=saved.idx.length;
+
+  btn.disabled=false; btn.classList.remove('loading'); if(btnTxt) btnTxt.textContent='Regenerar';
 }
 
 // ══════════════════════════════════════════════════════════
