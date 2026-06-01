@@ -1,6 +1,6 @@
 {
   "version": "7.0-fase7",
-  "ts": "2026-06-01T22:31:28.795735",
+  "ts": "2026-06-01T22:31:29.333817",
   "precio": {
     "ndx": 30333.1797,
     "qqq": 738.31,
@@ -321,16 +321,16 @@
   },
   "macro": {
     "curva": {
-      "t3m": null,
-      "t2y": null,
-      "t5y": 4.13,
+      "t3m": 3.69,
+      "t2y": 3.98,
+      "t5y": null,
       "t10y": 0.445,
       "t30y": 4.99,
-      "sp10_2": 0.47,
-      "sp10_3m": null,
-      "invertida2y": false,
-      "invertida3m": null,
-      "señalRecesion": null
+      "sp10_2": -3.535,
+      "sp10_3m": 0.76,
+      "invertida2y": true,
+      "invertida3m": false,
+      "señalRecesion": "baja"
     },
     "fred": {
       "walcl": {
@@ -357,35 +357,35 @@
         "fecha": "2026-05-01",
         "trend": "down"
       },
-      "sofr": null,
-      "hySpread": {
-        "v": 2.74,
-        "prev": 2.72,
-        "fecha": "2026-05-31",
+      "sofr": {
+        "v": 3.63,
+        "prev": 3.62,
+        "fecha": "2026-05-29",
         "trend": "up"
       },
-      "nfci": null,
+      "hySpread": null,
+      "nfci": {
+        "v": -0.51,
+        "prev": -0.513,
+        "fecha": "2026-05-22",
+        "trend": "up"
+      },
       "t5yie": {
         "v": 2.52,
         "prev": 2.54,
         "fecha": "2026-05-29",
         "trend": "down"
       },
-      "t10yie": null,
-      "t5y5y": null,
-      "tipoReal10y": {
-        "v": 2.07,
-        "prev": 2.06,
+      "t10yie": {
+        "v": 2.38,
+        "prev": 2.39,
         "fecha": "2026-05-29",
-        "trend": "up"
+        "trend": "down"
       },
-      "sofrSpread": null,
-      "wlcflpcl": {
-        "v": 6362.0,
-        "prev": 5599.0,
-        "fecha": "2026-05-27",
-        "trend": "up"
-      },
+      "t5y5y": null,
+      "tipoReal10y": null,
+      "sofrSpread": 0.0,
+      "wlcflpcl": null,
       "cpi_yoy": 7.68
     },
     "liquidezNeta": {
@@ -397,10 +397,10 @@
       "desc": "Liquidez Neta = WALCL - TGA - RRP = 5,874,086M"
     },
     "tiposRealesOro": {
-      "tipoReal": 2.07,
-      "señal": "drenaje_liquidez",
-      "alerta": true,
-      "desc": "⚠️ Tipos reales elevados (2.07%) — DRENAJE DE LIQUIDEZ, coste oportunidad alto para QQQ",
+      "tipoReal": null,
+      "señal": "neutro",
+      "alerta": false,
+      "desc": "Tipos reales en rango normal",
       "oroPrice": 4560.5
     },
     "dxy": {
@@ -409,7 +409,7 @@
       "señal": "neutro",
       "desc": "DXY estable (ROC5=-0.28%) — correlación 30d=-0.57, 90d=-0.465"
     },
-    "score": -3.0,
+    "score": 0.0,
     "proxy_china": {
       "senal": "neutro",
       "score": 0.0,
@@ -419,7 +419,7 @@
   "scores": {
     "componentes": {
       "tecnico": 4,
-      "macro": -3.0,
+      "macro": 0.0,
       "cot": 1.0,
       "vix": -0.3,
       "flujos": 0.0,
@@ -428,37 +428,37 @@
     },
     "horizontes": {
       "d2": {
-        "score": 0.7,
-        "estado": "neutro",
+        "score": 1.0,
+        "estado": "alcista_mod",
         "conf": 10,
         "pesos": "28%T+23%V+13%F+10%G+10%M+10%C+6%A"
       },
       "d5": {
-        "score": 0.5,
+        "score": 0.9,
         "estado": "neutro",
         "conf": 10,
         "pesos": "23%T+18%V+14%M+14%C+13%F+9%G+9%A"
       },
       "w1": {
-        "score": 0.2,
+        "score": 0.7,
         "estado": "neutro",
         "conf": 10,
         "pesos": "19%M+19%C+18%T+14%V+13%F+9%G+8%A"
       },
       "w2": {
-        "score": 0.2,
+        "score": 0.9,
         "estado": "neutro",
         "conf": 10,
         "pesos": "23%M+23%C+18%T+13%F+9%A+9%V+5%G"
       },
       "w3": {
-        "score": -0.1,
+        "score": 0.7,
         "estado": "neutro",
         "conf": 10,
         "pesos": "28%M+28%C+13%T+11%F+8%A+7%V+5%G"
       },
       "w4": {
-        "score": -0.4,
+        "score": 0.6,
         "estado": "neutro",
         "conf": 10,
         "pesos": "32%M+32%C+10%A+9%F+8%T+5%G+4%V"
@@ -525,7 +525,7 @@
           {
             "strike": 740.0,
             "oi": 6778,
-            "vol": 192234,
+            "vol": 192207,
             "dist": 0.23
           },
           {
@@ -739,7 +739,7 @@
         {
           "strike": 740.0,
           "oi": 6778,
-          "vol": 192234,
+          "vol": 192207,
           "dist": 0.23
         },
         {
@@ -959,8 +959,8 @@
     },
     "ratio_0dte": {
       "valor": 0.723,
-      "vol_0dte": 3698326,
-      "vol_total": 5115224,
+      "vol_0dte": 3698300,
+      "vol_total": 5115198,
       "senal": "extremo",
       "desc": "0DTE=72.3% - delta hedging forzado al cierre, amplificacion movimientos"
     },
@@ -982,17 +982,17 @@
     "fuente_alternativa": "https://finance.yahoo.com/quote/QQQ/options/"
   },
   "comparativa_correcciones": {
-    "micro_3pct": 89,
+    "micro_3pct": 84,
     "tecnica_7pct": 64,
     "macro_15pct": 76,
     "bajista_25pct": 27,
-    "cisne_negro_30pct": 43,
+    "cisne_negro_30pct": 51,
     "escenario_dominante": "micro_3pct",
     "recomendacion": "MONITOREAR SOPORTES",
-    "confianza": 19,
-    "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (89% similitud). Contexto: VIX=15.3, RSI=77. Confianza del sistema: 19%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
+    "confianza": 12,
+    "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (84% similitud). Contexto: VIX=15.3, RSI=77. Confianza del sistema: 12%. ⚠ Similitud con crisis sistémicas elevada — máxima precaución. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-06-01T22:31:01.241295"
+    "ts_calculo": "2026-06-01T22:31:00.201531"
   },
   "amplitud_mercado": {
     "ratio_cobre_oro": 0.001454,
