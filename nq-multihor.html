@@ -689,6 +689,28 @@ input,textarea,button{font-family:inherit}
       </div>
     </div>
 
+              <div class="edit-panel" style="margin-top:10px">
+            <div class="edit-panel-title">Corrección manual derivados</div>
+            <div class="edit-row">
+              <span class="edit-lbl">SKEW ratio (IV Put/Call)</span>
+              <input class="edit-input" id="edit-skew" type="number" step="0.01" min="0.5" max="5" placeholder="ej: 0.94">
+              <button class="btn-apply" onclick="applyEditDeriv()">Aplicar</button>
+              <span class="edit-applied" id="edit-deriv-ok">Aplicado</span>
+            </div>
+            <div class="edit-row">
+              <span class="edit-lbl">0DTE ratio (0.0 – 1.0)</span>
+              <input class="edit-input" id="edit-0dte" type="number" step="0.001" min="0" max="1" placeholder="ej: 0.519">
+            </div>
+            <div class="edit-row">
+              <span class="edit-lbl">GEX Real (billones, + o -)</span>
+              <input class="edit-input" id="edit-gex-real" type="number" step="0.1" min="-20" max="20" placeholder="ej: 5.1">
+            </div>
+            <div class="edit-row">
+              <span class="edit-lbl">Gamma Flip Level (precio QQQ)</span>
+              <input class="edit-input" id="edit-gamma-flip" type="number" step="0.5" placeholder="ej: 735">
+            </div>
+          </div>
+
     <!-- GEX ESTIMADO -->
     <div class="section">
       <div class="section-title">⚡ GEX Estimado + Gamma Flip</div>
@@ -990,7 +1012,7 @@ var ESTADO_CLASS = {
 };
 
 // B1 — OVERRIDES GLOBALES EN MEMORIA
-var OVERRIDES = { cot: {}, pcr: {} };
+var OVERRIDES = { cot: {}, pcr: {}, deriv: {} };
 
 // ══════════════════════════════════════════════════════════
 // UTILS
@@ -1249,6 +1271,41 @@ function applyEditPCR() {
   var ok = document.getElementById('edit-pcr-ok');
   if (ok) { ok.classList.add('show'); setTimeout(function() { ok.classList.remove('show'); }, 2000); }
 }
+function applyEditDeriv() {
+  var skewVal  = parseFloat(document.getElementById('edit-skew').value);
+  var dteVal   = parseFloat(document.getElementById('edit-0dte').value);
+  var gexVal   = parseFloat(document.getElementById('edit-gex-real').value);
+  var flipVal  = parseFloat(document.getElementById('edit-gamma-flip').value);
+
+  if (!isNaN(skewVal)) {
+    OVERRIDES.deriv.skew_valor = skewVal;
+    OVERRIDES.deriv.skew_senal = skewVal > 1.5 ? 'cisne_negro'
+                               : skewVal > 1.3 ? 'elevado'
+                               : skewVal < 0.9 ? 'complacencia'
+                               : 'normal';
+    OVERRIDES.deriv.skew_desc = 'SKEW=' + skewVal + ' (manual)';
+  }
+  if (!isNaN(dteVal)) {
+    OVERRIDES.deriv.dte0_valor = dteVal;
+    OVERRIDES.deriv.dte0_senal = dteVal > 0.6 ? 'extremo' : dteVal > 0.4 ? 'elevado' : 'normal';
+    OVERRIDES.deriv.dte0_desc  = '0DTE=' + (dteVal * 100).toFixed(1) + '% (manual)';
+  }
+  if (!isNaN(gexVal)) {
+    OVERRIDES.deriv.gex_real_valor = gexVal * 1e9;
+  }
+  if (!isNaN(flipVal)) {
+    OVERRIDES.deriv.gamma_flip = flipVal;
+    var qqq = D.precio && D.precio.qqq ? D.precio.qqq : null;
+    if (qqq) OVERRIDES.deriv.gamma_flip_dist = ((qqq - flipVal) / flipVal * 100).toFixed(2);
+  }
+
+  try { renderDerivados(); } catch(e) {}
+  try { renderGEX();       } catch(e) {}
+
+  var ok = document.getElementById('edit-deriv-ok');
+  if (ok) { ok.classList.add('show'); setTimeout(function() { ok.classList.remove('show'); }, 2000); }
+}
+
 
 // ══════════════════════════════════════════════════════════
 // COT
@@ -1386,6 +1443,28 @@ function renderDerivados() {
   var op = D.opciones;
   var el = document.getElementById('deriv-content');
   var badge = document.getElementById('deriv-badge');
+
+  // Aplicar OVERRIDES manuales sobre los datos del JSON
+  var ov = (typeof OVERRIDES !== 'undefined' && OVERRIDES.deriv) ? OVERRIDES.deriv : {};
+  if (D.opciones) {
+    if (ov.skew_valor != null && D.opciones.skew) {
+      D.opciones.skew.valor = ov.skew_valor;
+      D.opciones.skew.senal = ov.skew_senal;
+      D.opciones.skew.desc  = ov.skew_desc;
+    }
+    if (ov.dte0_valor != null && D.opciones.ratio_0dte) {
+      D.opciones.ratio_0dte.valor = ov.dte0_valor;
+      D.opciones.ratio_0dte.senal = ov.dte0_senal;
+      D.opciones.ratio_0dte.desc  = ov.dte0_desc;
+    }
+    if (ov.gex_real_valor != null && D.opciones.gex_real) {
+      D.opciones.gex_real.valor_total = ov.gex_real_valor;
+    }
+    if (ov.gamma_flip != null && D.opciones.gex_real) {
+      D.opciones.gex_real.gamma_flip_level   = ov.gamma_flip;
+      D.opciones.gex_real.dist_gamma_flip_pct = ov.gamma_flip_dist || null;
+    }
+  }
   if (!el) return;
 
   var gexReal = op && op.gex_real ? op.gex_real : null;
