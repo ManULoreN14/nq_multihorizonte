@@ -1,6 +1,6 @@
 {
   "version": "7.0-fase7",
-  "ts": "2026-06-01T22:31:29.742582",
+  "ts": "2026-06-02T23:52:27.633686",
   "precio": {
     "ndx": 30333.1797,
     "qqq": 738.31,
@@ -321,13 +321,13 @@
   },
   "macro": {
     "curva": {
-      "t3m": null,
-      "t2y": 3.98,
-      "t5y": null,
-      "t10y": 4.45,
-      "t30y": null,
-      "sp10_2": 0.47,
-      "sp10_3m": 0.76,
+      "t3m": 3.78,
+      "t2y": 4.05,
+      "t5y": 4.18,
+      "t10y": 4.47,
+      "t30y": 4.99,
+      "sp10_2": 0.41,
+      "sp10_3m": 0.69,
       "invertida2y": false,
       "invertida3m": false,
       "señalRecesion": "baja"
@@ -345,51 +345,76 @@
         "fecha": "2026-05-27",
         "trend": "up"
       },
-      "rrpontsyd": null,
-      "fedfunds": null,
-      "sofr": {
+      "rrpontsyd": {
+        "v": 2.502,
+        "prev": 1.302,
+        "fecha": "2026-06-02",
+        "trend": "up"
+      },
+      "fedfunds": {
         "v": 3.63,
-        "prev": 3.62,
-        "fecha": "2026-05-29",
+        "prev": 3.64,
+        "fecha": "2026-05-01",
+        "trend": "down"
+      },
+      "sofr": {
+        "v": 3.65,
+        "prev": 3.63,
+        "fecha": "2026-06-01",
         "trend": "up"
       },
       "hySpread": {
-        "v": 2.74,
-        "prev": 2.72,
-        "fecha": "2026-05-31",
-        "trend": "up"
-      },
-      "nfci": null,
-      "t5yie": null,
-      "t10yie": {
-        "v": 2.38,
-        "prev": 2.39,
-        "fecha": "2026-05-29",
+        "v": 2.72,
+        "prev": 2.74,
+        "fecha": "2026-06-01",
         "trend": "down"
       },
-      "t5y5y": null,
-      "tipoReal10y": {
-        "v": 2.07,
-        "prev": 2.06,
-        "fecha": "2026-05-29",
+      "nfci": {
+        "v": -0.51,
+        "prev": -0.513,
+        "fecha": "2026-05-22",
         "trend": "up"
       },
-      "sofrSpread": null,
+      "t5yie": {
+        "v": 2.52,
+        "prev": 2.54,
+        "fecha": "2026-06-02",
+        "trend": "down"
+      },
+      "t10yie": {
+        "v": 2.39,
+        "prev": 2.4,
+        "fecha": "2026-06-02",
+        "trend": "down"
+      },
+      "t5y5y": {
+        "v": 2.26,
+        "prev": 2.26,
+        "fecha": "2026-06-02",
+        "trend": "down"
+      },
+      "tipoReal10y": {
+        "v": 2.07,
+        "prev": 2.07,
+        "fecha": "2026-06-01",
+        "trend": "down"
+      },
+      "sofrSpread": 0.02,
       "wlcflpcl": {
         "v": 6362.0,
         "prev": 5599.0,
         "fecha": "2026-05-27",
         "trend": "up"
       },
-      "cpi_yoy": null
+      "cpi_yoy": 7.68
     },
     "liquidezNeta": {
-      "valor": null,
-      "trend": null,
+      "valor": 5874084.0,
+      "trend": "down",
       "walcl": 6704383.0,
       "wtregen": 830296.0,
-      "rrpontsyd": null,
-      "desc": "No disponible"
+      "rrpontsyd": 2.502,
+      "desc": "Liquidez Neta = WALCL - TGA - RRP = 5,874,084M"
     },
     "tiposRealesOro": {
       "tipoReal": 2.07,
@@ -507,431 +532,431 @@
     "precio": 738.31,
     "vencimientos": [
       {
-        "fecha": "2026-06-01",
+        "fecha": "2026-06-02",
+        "maxPain": 739.0,
+        "distPct": 0.09,
+        "topCalls": [
+          {
+            "strike": 739.0,
+            "oi": 8038,
+            "vol": 7805,
+            "dist": 0.09
+          },
+          {
+            "strike": 745.0,
+            "oi": 6611,
+            "vol": 396905,
+            "dist": 0.91
+          },
+          {
+            "strike": 740.0,
+            "oi": 5677,
+            "vol": 38497,
+            "dist": 0.23
+          },
+          {
+            "strike": 755.0,
+            "oi": 4654,
+            "vol": 9860,
+            "dist": 2.26
+          },
+          {
+            "strike": 746.0,
+            "oi": 4356,
+            "vol": 302370,
+            "dist": 1.04
+          }
+        ],
+        "topPuts": [
+          {
+            "strike": 710.0,
+            "oi": 20217,
+            "vol": 20543,
+            "dist": -3.83
+          },
+          {
+            "strike": 720.0,
+            "oi": 14997,
+            "vol": 6790,
+            "dist": -2.48
+          },
+          {
+            "strike": 735.0,
+            "oi": 14237,
+            "vol": 37477,
+            "dist": -0.45
+          },
+          {
+            "strike": 715.0,
+            "oi": 10777,
+            "vol": 5008,
+            "dist": -3.16
+          },
+          {
+            "strike": 714.0,
+            "oi": 8943,
+            "vol": 7085,
+            "dist": -3.29
+          }
+        ],
+        "señal": "neutro",
+        "desc": "Max Pain 739 — precio cerca, zona equilibrio"
+      },
+      {
+        "fecha": "2026-06-03",
+        "maxPain": 740.0,
+        "distPct": 0.23,
+        "topCalls": [
+          {
+            "strike": 755.0,
+            "oi": 2730,
+            "vol": 7867,
+            "dist": 2.26
+          },
+          {
+            "strike": 750.0,
+            "oi": 2490,
+            "vol": 21753,
+            "dist": 1.58
+          },
+          {
+            "strike": 760.0,
+            "oi": 1555,
+            "vol": 3618,
+            "dist": 2.94
+          },
+          {
+            "strike": 747.0,
+            "oi": 1514,
+            "vol": 15896,
+            "dist": 1.18
+          },
+          {
+            "strike": 725.0,
+            "oi": 1363,
+            "vol": 70,
+            "dist": -1.8
+          }
+        ],
+        "topPuts": [
+          {
+            "strike": 745.0,
+            "oi": 5186,
+            "vol": 42581,
+            "dist": 0.91
+          },
+          {
+            "strike": 710.0,
+            "oi": 3839,
+            "vol": 4101,
+            "dist": -3.83
+          },
+          {
+            "strike": 700.0,
+            "oi": 3741,
+            "vol": 825,
+            "dist": -5.19
+          },
+          {
+            "strike": 730.0,
+            "oi": 2894,
+            "vol": 7242,
+            "dist": -1.13
+          },
+          {
+            "strike": 722.0,
+            "oi": 2733,
+            "vol": 1900,
+            "dist": -2.21
+          }
+        ],
+        "señal": "neutro",
+        "desc": "Max Pain 740 — precio cerca, zona equilibrio"
+      },
+      {
+        "fecha": "2026-06-04",
         "maxPain": 735.0,
         "distPct": -0.45,
         "topCalls": [
           {
-            "strike": 750.0,
-            "oi": 9692,
-            "vol": 24125,
-            "dist": 1.58
-          },
-          {
-            "strike": 740.0,
-            "oi": 6778,
-            "vol": 192207,
-            "dist": 0.23
-          },
-          {
-            "strike": 742.0,
-            "oi": 6427,
-            "vol": 239357,
-            "dist": 0.5
-          },
-          {
-            "strike": 752.0,
-            "oi": 6310,
-            "vol": 8195,
-            "dist": 1.85
-          },
-          {
-            "strike": 739.0,
-            "oi": 5483,
-            "vol": 123373,
-            "dist": 0.09
-          }
-        ],
-        "topPuts": [
-          {
-            "strike": 724.0,
-            "oi": 10333,
-            "vol": 11130,
-            "dist": -1.94
-          },
-          {
-            "strike": 725.0,
-            "oi": 7090,
-            "vol": 11406,
-            "dist": -1.8
-          },
-          {
-            "strike": 735.0,
-            "oi": 6578,
-            "vol": 84678,
-            "dist": -0.45
-          },
-          {
-            "strike": 729.0,
-            "oi": 6199,
-            "vol": 16619,
-            "dist": -1.26
-          },
-          {
-            "strike": 730.0,
-            "oi": 5651,
-            "vol": 39040,
-            "dist": -1.13
-          }
-        ],
-        "señal": "neutro",
-        "desc": "Max Pain 735 — precio cerca, zona equilibrio"
-      },
-      {
-        "fecha": "2026-06-02",
-        "maxPain": 734.0,
-        "distPct": -0.58,
-        "topCalls": [
-          {
-            "strike": 740.0,
-            "oi": 7895,
-            "vol": 27505,
-            "dist": 0.23
-          },
-          {
-            "strike": 739.0,
-            "oi": 6818,
-            "vol": 16404,
-            "dist": 0.09
-          },
-          {
-            "strike": 735.0,
-            "oi": 2731,
-            "vol": 1544,
-            "dist": -0.45
-          },
-          {
-            "strike": 765.0,
-            "oi": 2457,
-            "vol": 2340,
-            "dist": 3.62
-          },
-          {
-            "strike": 744.0,
-            "oi": 1688,
-            "vol": 19543,
-            "dist": 0.77
-          }
-        ],
-        "topPuts": [
-          {
-            "strike": 710.0,
-            "oi": 16133,
-            "vol": 6005,
-            "dist": -3.83
-          },
-          {
-            "strike": 689.0,
-            "oi": 7043,
-            "vol": 145,
-            "dist": -6.68
-          },
-          {
-            "strike": 720.0,
-            "oi": 4631,
-            "vol": 14772,
-            "dist": -2.48
-          },
-          {
-            "strike": 730.0,
-            "oi": 4057,
-            "vol": 17720,
-            "dist": -1.13
-          },
-          {
-            "strike": 711.0,
-            "oi": 3963,
-            "vol": 1776,
-            "dist": -3.7
-          }
-        ],
-        "señal": "neutro",
-        "desc": "Max Pain 734 — precio cerca, zona equilibrio"
-      },
-      {
-        "fecha": "2026-06-03",
-        "maxPain": 730.0,
-        "distPct": -1.13,
-        "topCalls": [
-          {
-            "strike": 750.0,
-            "oi": 1751,
-            "vol": 3339,
-            "dist": 1.58
-          },
-          {
             "strike": 747.0,
-            "oi": 1299,
-            "vol": 1149,
+            "oi": 3858,
+            "vol": 1842,
             "dist": 1.18
           },
           {
             "strike": 760.0,
-            "oi": 1230,
-            "vol": 1105,
+            "oi": 2695,
+            "vol": 1049,
             "dist": 2.94
           },
           {
-            "strike": 725.0,
-            "oi": 1150,
-            "vol": 241,
-            "dist": -1.8
+            "strike": 755.0,
+            "oi": 1400,
+            "vol": 1222,
+            "dist": 2.26
           },
           {
-            "strike": 740.0,
-            "oi": 944,
-            "vol": 4233,
-            "dist": 0.23
+            "strike": 727.0,
+            "oi": 1347,
+            "vol": 3,
+            "dist": -1.53
+          },
+          {
+            "strike": 753.0,
+            "oi": 1132,
+            "vol": 8753,
+            "dist": 1.99
           }
         ],
         "topPuts": [
           {
             "strike": 710.0,
-            "oi": 1728,
-            "vol": 2592,
+            "oi": 3238,
+            "vol": 417,
             "dist": -3.83
           },
           {
-            "strike": 733.0,
-            "oi": 1440,
-            "vol": 2267,
-            "dist": -0.72
+            "strike": 722.0,
+            "oi": 2488,
+            "vol": 4522,
+            "dist": -2.21
           },
           {
-            "strike": 730.0,
-            "oi": 1425,
-            "vol": 4528,
-            "dist": -1.13
+            "strike": 717.0,
+            "oi": 2271,
+            "vol": 1166,
+            "dist": -2.89
           },
           {
-            "strike": 725.0,
-            "oi": 1001,
-            "vol": 2886,
-            "dist": -1.8
+            "strike": 742.0,
+            "oi": 2182,
+            "vol": 2482,
+            "dist": 0.5
           },
           {
-            "strike": 720.0,
-            "oi": 986,
-            "vol": 1417,
-            "dist": -2.48
+            "strike": 715.0,
+            "oi": 1766,
+            "vol": 1208,
+            "dist": -3.16
           }
         ],
         "señal": "neutro",
-        "desc": "Max Pain 730 — precio cerca, zona equilibrio"
+        "desc": "Max Pain 735 — precio cerca, zona equilibrio"
       }
     ],
     "v1": {
-      "fecha": "2026-06-01",
+      "fecha": "2026-06-02",
+      "maxPain": 739.0,
+      "distPct": 0.09,
+      "topCalls": [
+        {
+          "strike": 739.0,
+          "oi": 8038,
+          "vol": 7805,
+          "dist": 0.09
+        },
+        {
+          "strike": 745.0,
+          "oi": 6611,
+          "vol": 396905,
+          "dist": 0.91
+        },
+        {
+          "strike": 740.0,
+          "oi": 5677,
+          "vol": 38497,
+          "dist": 0.23
+        },
+        {
+          "strike": 755.0,
+          "oi": 4654,
+          "vol": 9860,
+          "dist": 2.26
+        },
+        {
+          "strike": 746.0,
+          "oi": 4356,
+          "vol": 302370,
+          "dist": 1.04
+        }
+      ],
+      "topPuts": [
+        {
+          "strike": 710.0,
+          "oi": 20217,
+          "vol": 20543,
+          "dist": -3.83
+        },
+        {
+          "strike": 720.0,
+          "oi": 14997,
+          "vol": 6790,
+          "dist": -2.48
+        },
+        {
+          "strike": 735.0,
+          "oi": 14237,
+          "vol": 37477,
+          "dist": -0.45
+        },
+        {
+          "strike": 715.0,
+          "oi": 10777,
+          "vol": 5008,
+          "dist": -3.16
+        },
+        {
+          "strike": 714.0,
+          "oi": 8943,
+          "vol": 7085,
+          "dist": -3.29
+        }
+      ],
+      "señal": "neutro",
+      "desc": "Max Pain 739 — precio cerca, zona equilibrio"
+    },
+    "v2": {
+      "fecha": "2026-06-03",
+      "maxPain": 740.0,
+      "distPct": 0.23,
+      "topCalls": [
+        {
+          "strike": 755.0,
+          "oi": 2730,
+          "vol": 7867,
+          "dist": 2.26
+        },
+        {
+          "strike": 750.0,
+          "oi": 2490,
+          "vol": 21753,
+          "dist": 1.58
+        },
+        {
+          "strike": 760.0,
+          "oi": 1555,
+          "vol": 3618,
+          "dist": 2.94
+        },
+        {
+          "strike": 747.0,
+          "oi": 1514,
+          "vol": 15896,
+          "dist": 1.18
+        },
+        {
+          "strike": 725.0,
+          "oi": 1363,
+          "vol": 70,
+          "dist": -1.8
+        }
+      ],
+      "topPuts": [
+        {
+          "strike": 745.0,
+          "oi": 5186,
+          "vol": 42581,
+          "dist": 0.91
+        },
+        {
+          "strike": 710.0,
+          "oi": 3839,
+          "vol": 4101,
+          "dist": -3.83
+        },
+        {
+          "strike": 700.0,
+          "oi": 3741,
+          "vol": 825,
+          "dist": -5.19
+        },
+        {
+          "strike": 730.0,
+          "oi": 2894,
+          "vol": 7242,
+          "dist": -1.13
+        },
+        {
+          "strike": 722.0,
+          "oi": 2733,
+          "vol": 1900,
+          "dist": -2.21
+        }
+      ],
+      "señal": "neutro",
+      "desc": "Max Pain 740 — precio cerca, zona equilibrio"
+    },
+    "v3": {
+      "fecha": "2026-06-04",
       "maxPain": 735.0,
       "distPct": -0.45,
       "topCalls": [
         {
-          "strike": 750.0,
-          "oi": 9692,
-          "vol": 24125,
-          "dist": 1.58
-        },
-        {
-          "strike": 740.0,
-          "oi": 6778,
-          "vol": 192207,
-          "dist": 0.23
-        },
-        {
-          "strike": 742.0,
-          "oi": 6427,
-          "vol": 239357,
-          "dist": 0.5
-        },
-        {
-          "strike": 752.0,
-          "oi": 6310,
-          "vol": 8195,
-          "dist": 1.85
-        },
-        {
-          "strike": 739.0,
-          "oi": 5483,
-          "vol": 123373,
-          "dist": 0.09
-        }
-      ],
-      "topPuts": [
-        {
-          "strike": 724.0,
-          "oi": 10333,
-          "vol": 11130,
-          "dist": -1.94
-        },
-        {
-          "strike": 725.0,
-          "oi": 7090,
-          "vol": 11406,
-          "dist": -1.8
-        },
-        {
-          "strike": 735.0,
-          "oi": 6578,
-          "vol": 84678,
-          "dist": -0.45
-        },
-        {
-          "strike": 729.0,
-          "oi": 6199,
-          "vol": 16619,
-          "dist": -1.26
-        },
-        {
-          "strike": 730.0,
-          "oi": 5651,
-          "vol": 39040,
-          "dist": -1.13
-        }
-      ],
-      "señal": "neutro",
-      "desc": "Max Pain 735 — precio cerca, zona equilibrio"
-    },
-    "v2": {
-      "fecha": "2026-06-02",
-      "maxPain": 734.0,
-      "distPct": -0.58,
-      "topCalls": [
-        {
-          "strike": 740.0,
-          "oi": 7895,
-          "vol": 27505,
-          "dist": 0.23
-        },
-        {
-          "strike": 739.0,
-          "oi": 6818,
-          "vol": 16404,
-          "dist": 0.09
-        },
-        {
-          "strike": 735.0,
-          "oi": 2731,
-          "vol": 1544,
-          "dist": -0.45
-        },
-        {
-          "strike": 765.0,
-          "oi": 2457,
-          "vol": 2340,
-          "dist": 3.62
-        },
-        {
-          "strike": 744.0,
-          "oi": 1688,
-          "vol": 19543,
-          "dist": 0.77
-        }
-      ],
-      "topPuts": [
-        {
-          "strike": 710.0,
-          "oi": 16133,
-          "vol": 6005,
-          "dist": -3.83
-        },
-        {
-          "strike": 689.0,
-          "oi": 7043,
-          "vol": 145,
-          "dist": -6.68
-        },
-        {
-          "strike": 720.0,
-          "oi": 4631,
-          "vol": 14772,
-          "dist": -2.48
-        },
-        {
-          "strike": 730.0,
-          "oi": 4057,
-          "vol": 17720,
-          "dist": -1.13
-        },
-        {
-          "strike": 711.0,
-          "oi": 3963,
-          "vol": 1776,
-          "dist": -3.7
-        }
-      ],
-      "señal": "neutro",
-      "desc": "Max Pain 734 — precio cerca, zona equilibrio"
-    },
-    "v3": {
-      "fecha": "2026-06-03",
-      "maxPain": 730.0,
-      "distPct": -1.13,
-      "topCalls": [
-        {
-          "strike": 750.0,
-          "oi": 1751,
-          "vol": 3339,
-          "dist": 1.58
-        },
-        {
           "strike": 747.0,
-          "oi": 1299,
-          "vol": 1149,
+          "oi": 3858,
+          "vol": 1842,
           "dist": 1.18
         },
         {
           "strike": 760.0,
-          "oi": 1230,
-          "vol": 1105,
+          "oi": 2695,
+          "vol": 1049,
           "dist": 2.94
         },
         {
-          "strike": 725.0,
-          "oi": 1150,
-          "vol": 241,
-          "dist": -1.8
+          "strike": 755.0,
+          "oi": 1400,
+          "vol": 1222,
+          "dist": 2.26
         },
         {
-          "strike": 740.0,
-          "oi": 944,
-          "vol": 4233,
-          "dist": 0.23
+          "strike": 727.0,
+          "oi": 1347,
+          "vol": 3,
+          "dist": -1.53
+        },
+        {
+          "strike": 753.0,
+          "oi": 1132,
+          "vol": 8753,
+          "dist": 1.99
         }
       ],
       "topPuts": [
         {
           "strike": 710.0,
-          "oi": 1728,
-          "vol": 2592,
+          "oi": 3238,
+          "vol": 417,
           "dist": -3.83
         },
         {
-          "strike": 733.0,
-          "oi": 1440,
-          "vol": 2267,
-          "dist": -0.72
+          "strike": 722.0,
+          "oi": 2488,
+          "vol": 4522,
+          "dist": -2.21
         },
         {
-          "strike": 730.0,
-          "oi": 1425,
-          "vol": 4528,
-          "dist": -1.13
+          "strike": 717.0,
+          "oi": 2271,
+          "vol": 1166,
+          "dist": -2.89
         },
         {
-          "strike": 725.0,
-          "oi": 1001,
-          "vol": 2886,
-          "dist": -1.8
+          "strike": 742.0,
+          "oi": 2182,
+          "vol": 2482,
+          "dist": 0.5
         },
         {
-          "strike": 720.0,
-          "oi": 986,
-          "vol": 1417,
-          "dist": -2.48
+          "strike": 715.0,
+          "oi": 1766,
+          "vol": 1208,
+          "dist": -3.16
         }
       ],
       "señal": "neutro",
-      "desc": "Max Pain 730 — precio cerca, zona equilibrio"
+      "desc": "Max Pain 735 — precio cerca, zona equilibrio"
     },
     "gex": {
       "estado": "positivo_alto",
@@ -940,41 +965,45 @@
       "desc": "Gamma positiva alta — dealers estabilizan, mercado en rango"
     },
     "gex_real": {
-      "valor_total": null,
-      "gamma_flip_level": null,
-      "dist_gamma_flip_pct": null,
-      "fuente": "sintetico"
+      "valor_total": -274196799.0,
+      "gamma_flip_level": 495.0,
+      "dist_gamma_flip_pct": -32.95,
+      "fuente": "black_scholes"
     },
     "skew": {
-      "valor": 1.875,
-      "put_iv": 0.3516,
-      "call_iv": 0.1875,
-      "senal": "cisne_negro",
-      "desc": "SKEW=1.875 - cobertura institucional extrema contra colapso"
+      "valor": 143.24,
+      "put_iv": null,
+      "call_iv": null,
+      "senal": "elevado",
+      "desc": "SKEW=143.24 — cobertura activa, mercado nervioso (CBOE)",
+      "fuente": "cboe_skew_index"
     },
     "ratio_0dte": {
-      "valor": 0.723,
-      "vol_0dte": 3698300,
-      "vol_total": 5115198,
+      "valor": 0.701,
+      "vol_0dte": 3626680,
+      "vol_total": 5170962,
       "senal": "extremo",
-      "desc": "0DTE=72.3% - delta hedging forzado al cierre, amplificacion movimientos"
+      "desc": "0DTE=70.1% - delta hedging forzado al cierre, amplificacion movimientos"
     },
-    "pcrOI": 2.005,
-    "pcrVol": 1.104,
+    "pcrOI": 2.362,
+    "pcrVol": 1.101,
     "fuente": "yahoo_options"
   },
   "pcr": {
     "equity": null,
     "index": null,
-    "total": 2.005,
+    "total": 2.362,
     "trend": null,
     "historial": [],
     "señal": "alcista_contrario",
-    "desc": "PCR=2.005 — miedo extremo, señal contraria alcista (QQQ only — proxy Nasdaq, ligero sesgo large-cap tech)",
+    "desc": "PCR=2.362 — miedo extremo, señal contraria alcista (QQQ only — proxy Nasdaq, ligero sesgo large-cap tech)",
     "fuente": "yahoo_qqq_options",
     "sesgo": "(QQQ only — proxy Nasdaq, ligero sesgo large-cap tech)",
     "fuente_verificacion": "https://www.cboe.com/data/volatility-and-put-call-ratio-data/",
-    "fuente_alternativa": "https://finance.yahoo.com/quote/QQQ/options/"
+    "fuente_alternativa": "https://finance.yahoo.com/quote/QQQ/options/",
+    "pcr_vol_spy": 0.882,
+    "pcr_oi_spy": 1.15,
+    "ratio_qqq_vs_spy": 2.68
   },
   "comparativa_correcciones": {
     "micro_3pct": 89,
@@ -987,10 +1016,10 @@
     "confianza": 19,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (89% similitud). Contexto: VIX=15.3, RSI=77. Confianza del sistema: 19%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-06-01T22:31:00.096724"
+    "ts_calculo": "2026-06-02T23:52:03.192859"
   },
   "amplitud_mercado": {
-    "ratio_cobre_oro": 0.001454,
+    "ratio_cobre_oro": 0.001478,
     "tendencia_cobre_oro": "up",
     "señal_cobre_oro": "risk_on",
     "zscore_qqq_sma200": 1.972,
@@ -1033,6 +1062,16 @@
     "fuente": "sec_edgar_form4",
     "nota": "Datos con retraso de hasta 2 dias habiles (normativa SEC)",
     "error": null
+  },
+  "dix_finra": {
+    "valor": 0.4198,
+    "fecha": "20260602",
+    "vol_total": 296064448,
+    "vol_short": 124289001,
+    "senal": "distribucion",
+    "desc": "DIX proxy=0.420 — menor actividad dark pool (bearish)",
+    "fuente": "finra_shortvol_cnms",
+    "url_fuente": "https://www.finra.org/finra-data/browse-catalog/short-sale-volume-data"
   },
   "fase_activa": 7,
   "proximas_fases": "Fase8=SEC_13F_Form4_Completo+PBoC_Directo"
