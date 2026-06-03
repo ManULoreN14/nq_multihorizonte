@@ -1,6 +1,6 @@
 {
   "version": "7.0-fase7",
-  "ts": "2026-06-03T22:31:49.546643",
+  "ts": "2026-06-03T22:32:02.914909",
   "precio": {
     "ndx": 30660.5996,
     "qqq": 746.16,
@@ -400,7 +400,7 @@
     "componentes": {
       "tecnico": 4,
       "macro": -1.0,
-      "cot": 0.0,
+      "cot": 1.0,
       "vix": -0.3,
       "flujos": 0.0,
       "giro": -2.0,
@@ -408,37 +408,37 @@
     },
     "horizontes": {
       "d2": {
-        "score": 0.7,
+        "score": 0.8,
         "estado": "neutro",
         "conf": 10,
         "pesos": "28%T+23%V+13%F+10%G+10%M+10%C+6%A"
       },
       "d5": {
-        "score": 0.5,
+        "score": 0.6,
         "estado": "neutro",
         "conf": 10,
         "pesos": "23%T+18%V+14%M+14%C+13%F+9%G+9%A"
       },
       "w1": {
-        "score": 0.2,
+        "score": 0.4,
         "estado": "neutro",
         "conf": 10,
         "pesos": "19%M+19%C+18%T+14%V+13%F+9%G+8%A"
       },
       "w2": {
-        "score": 0.3,
+        "score": 0.5,
         "estado": "neutro",
         "conf": 10,
         "pesos": "23%M+23%C+18%T+13%F+9%A+9%V+5%G"
       },
       "w3": {
-        "score": 0.0,
+        "score": 0.3,
         "estado": "neutro",
         "conf": 10,
         "pesos": "28%M+28%C+13%T+11%F+8%A+7%V+5%G"
       },
       "w4": {
-        "score": -0.2,
+        "score": 0.1,
         "estado": "neutro",
         "conf": 10,
         "pesos": "32%M+32%C+10%A+9%F+8%T+5%G+4%V"
@@ -446,18 +446,47 @@
     }
   },
   "cot": {
-    "error": "todas_fuentes_fallaron",
-    "fuente_verificacion": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm",
+    "fecha": "2026-05-26",
+    "largos": 85248,
+    "cortos": 91333,
+    "neto": -6085,
+    "netoDealers": -562,
+    "pctLargo": 48.3,
+    "pctDealers": 49.9,
+    "cambioNeto": -4665,
+    "cambioNetoDealers": 3471,
+    "trend4w": -7306,
     "señal": "neutro",
-    "desc": "COT no disponible — verificar manualmente",
-    "largos": null,
-    "cortos": null,
-    "neto": null,
-    "pctLargo": null,
-    "cambioNeto": null,
-    "trend4w": null,
-    "señalDealers": "neutro",
-    "netoDealers": null
+    "desc": "Specs 48.3% largos — posicionamiento neutral",
+    "señalDealers": "acumulacion",
+    "historial": [
+      {
+        "fecha": "2026-05-26",
+        "neto": -6085,
+        "largos": 85248,
+        "cortos": 91333
+      },
+      {
+        "fecha": "2026-05-19",
+        "neto": -1420,
+        "largos": 87137,
+        "cortos": 88557
+      },
+      {
+        "fecha": "2026-05-12",
+        "neto": -15985,
+        "largos": 71239,
+        "cortos": 87224
+      },
+      {
+        "fecha": "2026-05-05",
+        "neto": 1221,
+        "largos": 81707,
+        "cortos": 80486
+      }
+    ],
+    "fuente": "cftc_socrata_api",
+    "fuente_verificacion": "https://www.cftc.gov/MarketReports/CommitmentsofTraders/index.htm"
   },
   "opciones": {
     "precio": 746.16,
@@ -476,7 +505,7 @@
           {
             "strike": 750.0,
             "oi": 6511,
-            "vol": 109024,
+            "vol": 109127,
             "dist": 0.51
           },
           {
@@ -494,7 +523,7 @@
           {
             "strike": 746.0,
             "oi": 4913,
-            "vol": 239649,
+            "vol": 239684,
             "dist": -0.02
           }
         ],
@@ -541,7 +570,7 @@
           {
             "strike": 747.0,
             "oi": 3858,
-            "vol": 22835,
+            "vol": 22861,
             "dist": 0.11
           },
           {
@@ -559,7 +588,7 @@
           {
             "strike": 760.0,
             "oi": 2967,
-            "vol": 2741,
+            "vol": 2794,
             "dist": 1.85
           },
           {
@@ -618,7 +647,7 @@
           {
             "strike": 753.0,
             "oi": 7118,
-            "vol": 2188,
+            "vol": 2241,
             "dist": 0.92
           },
           {
@@ -662,7 +691,7 @@
           {
             "strike": 730.0,
             "oi": 11559,
-            "vol": 13537,
+            "vol": 14046,
             "dist": -2.17
           },
           {
@@ -690,7 +719,7 @@
         {
           "strike": 750.0,
           "oi": 6511,
-          "vol": 109024,
+          "vol": 109127,
           "dist": 0.51
         },
         {
@@ -708,7 +737,7 @@
         {
           "strike": 746.0,
           "oi": 4913,
-          "vol": 239649,
+          "vol": 239684,
           "dist": -0.02
         }
       ],
@@ -755,7 +784,7 @@
         {
           "strike": 747.0,
           "oi": 3858,
-          "vol": 22835,
+          "vol": 22861,
           "dist": 0.11
         },
         {
@@ -773,7 +802,7 @@
         {
           "strike": 760.0,
           "oi": 2967,
-          "vol": 2741,
+          "vol": 2794,
           "dist": 1.85
         },
         {
@@ -832,7 +861,7 @@
         {
           "strike": 753.0,
           "oi": 7118,
-          "vol": 2188,
+          "vol": 2241,
           "dist": 0.92
         },
         {
@@ -876,7 +905,7 @@
         {
           "strike": 730.0,
           "oi": 11559,
-          "vol": 13537,
+          "vol": 14046,
           "dist": -2.17
         },
         {
@@ -896,7 +925,7 @@
       "desc": "Gamma positiva alta — dealers estabilizan, mercado en rango"
     },
     "gex_real": {
-      "valor_total": 139037862.0,
+      "valor_total": 147064053.0,
       "gamma_flip_level": 495.0,
       "dist_gamma_flip_pct": -33.66,
       "fuente": "black_scholes"
@@ -910,14 +939,14 @@
       "fuente": "cboe_skew_index"
     },
     "ratio_0dte": {
-      "valor": 0.7,
-      "vol_0dte": 3907990,
-      "vol_total": 5585743,
+      "valor": 0.699,
+      "vol_0dte": 3909068,
+      "vol_total": 5592394,
       "senal": "extremo",
-      "desc": "0DTE=70.0% - delta hedging forzado al cierre, amplificacion movimientos"
+      "desc": "0DTE=69.9% - delta hedging forzado al cierre, amplificacion movimientos"
     },
     "pcrOI": 2.659,
-    "pcrVol": 1.144,
+    "pcrVol": 1.147,
     "fuente": "yahoo_options"
   },
   "pcr": {
@@ -947,10 +976,10 @@
     "confianza": 13,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (79% similitud). Contexto: VIX=15.8, RSI=79. Confianza del sistema: 13%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-06-03T22:31:24.346573"
+    "ts_calculo": "2026-06-03T22:31:38.348172"
   },
   "amplitud_mercado": {
-    "ratio_cobre_oro": 0.001452,
+    "ratio_cobre_oro": 0.001453,
     "tendencia_cobre_oro": "up",
     "señal_cobre_oro": "risk_on",
     "zscore_qqq_sma200": 2.168,
