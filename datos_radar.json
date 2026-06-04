@@ -1,6 +1,6 @@
 {
   "version": "7.0-fase7",
-  "ts": "2026-06-04T22:14:15.536282",
+  "ts": "2026-06-04T22:31:49.397753",
   "precio": {
     "ndx": 30571.2402,
     "qqq": 744.21,
@@ -539,31 +539,31 @@
           {
             "strike": 750.0,
             "oi": 8645,
-            "vol": 15757,
+            "vol": 15806,
             "dist": 0.78
           },
           {
             "strike": 753.0,
             "oi": 6625,
-            "vol": 8999,
+            "vol": 9023,
             "dist": 1.18
           },
           {
             "strike": 748.0,
             "oi": 5818,
-            "vol": 21687,
+            "vol": 21860,
             "dist": 0.51
           },
           {
             "strike": 745.0,
             "oi": 5250,
-            "vol": 118525,
+            "vol": 124165,
             "dist": 0.11
           },
           {
             "strike": 744.0,
             "oi": 4739,
-            "vol": 233894,
+            "vol": 246161,
             "dist": -0.03
           }
         ],
@@ -571,31 +571,31 @@
           {
             "strike": 741.0,
             "oi": 17103,
-            "vol": 161941,
+            "vol": 186324,
             "dist": -0.43
           },
           {
             "strike": 735.0,
             "oi": 12153,
-            "vol": 160589,
+            "vol": 163273,
             "dist": -1.24
           },
           {
             "strike": 740.0,
             "oi": 10111,
-            "vol": 188460,
+            "vol": 204311,
             "dist": -0.57
           },
           {
             "strike": 719.0,
             "oi": 9303,
-            "vol": 6430,
+            "vol": 6440,
             "dist": -3.39
           },
           {
             "strike": 722.0,
             "oi": 8887,
-            "vol": 7840,
+            "vol": 7854,
             "dist": -2.98
           }
         ],
@@ -610,31 +610,31 @@
           {
             "strike": 750.0,
             "oi": 11732,
-            "vol": 50916,
+            "vol": 54167,
             "dist": 0.78
           },
           {
             "strike": 745.0,
             "oi": 10678,
-            "vol": 36775,
+            "vol": 40474,
             "dist": 0.11
           },
           {
             "strike": 753.0,
             "oi": 7255,
-            "vol": 5057,
+            "vol": 5385,
             "dist": 1.18
           },
           {
             "strike": 758.0,
             "oi": 7052,
-            "vol": 1240,
+            "vol": 1336,
             "dist": 1.85
           },
           {
             "strike": 735.0,
             "oi": 6472,
-            "vol": 19305,
+            "vol": 19638,
             "dist": -1.24
           }
         ],
@@ -642,25 +642,25 @@
           {
             "strike": 707.0,
             "oi": 24187,
-            "vol": 775,
+            "vol": 778,
             "dist": -5.0
           },
           {
             "strike": 700.0,
             "oi": 24180,
-            "vol": 4132,
+            "vol": 4350,
             "dist": -5.94
           },
           {
             "strike": 730.0,
             "oi": 14491,
-            "vol": 32962,
+            "vol": 35765,
             "dist": -1.91
           },
           {
             "strike": 715.0,
             "oi": 11105,
-            "vol": 6092,
+            "vol": 6520,
             "dist": -3.92
           },
           {
@@ -693,19 +693,19 @@
           {
             "strike": 745.0,
             "oi": 2141,
-            "vol": 4573,
+            "vol": 4847,
             "dist": 0.11
           },
           {
             "strike": 764.0,
             "oi": 2105,
-            "vol": 97,
+            "vol": 101,
             "dist": 2.66
           },
           {
             "strike": 750.0,
             "oi": 1962,
-            "vol": 6481,
+            "vol": 6732,
             "dist": 0.78
           }
         ],
@@ -713,31 +713,31 @@
           {
             "strike": 730.0,
             "oi": 8910,
-            "vol": 7651,
+            "vol": 7757,
             "dist": -1.91
           },
           {
             "strike": 740.0,
             "oi": 5961,
-            "vol": 8692,
+            "vol": 9612,
             "dist": -0.57
           },
           {
             "strike": 705.0,
             "oi": 4285,
-            "vol": 4672,
+            "vol": 4688,
             "dist": -5.27
           },
           {
             "strike": 736.0,
             "oi": 3016,
-            "vol": 6001,
+            "vol": 6219,
             "dist": -1.1
           },
           {
             "strike": 745.0,
             "oi": 1909,
-            "vol": 1176,
+            "vol": 1279,
             "dist": 0.11
           }
         ],
@@ -753,31 +753,31 @@
         {
           "strike": 750.0,
           "oi": 8645,
-          "vol": 15757,
+          "vol": 15806,
           "dist": 0.78
         },
         {
           "strike": 753.0,
           "oi": 6625,
-          "vol": 8999,
+          "vol": 9023,
           "dist": 1.18
         },
         {
           "strike": 748.0,
           "oi": 5818,
-          "vol": 21687,
+          "vol": 21860,
           "dist": 0.51
         },
         {
           "strike": 745.0,
           "oi": 5250,
-          "vol": 118525,
+          "vol": 124165,
           "dist": 0.11
         },
         {
           "strike": 744.0,
           "oi": 4739,
-          "vol": 233894,
+          "vol": 246161,
           "dist": -0.03
         }
       ],
@@ -785,31 +785,31 @@
         {
           "strike": 741.0,
           "oi": 17103,
-          "vol": 161941,
+          "vol": 186324,
           "dist": -0.43
         },
         {
           "strike": 735.0,
           "oi": 12153,
-          "vol": 160589,
+          "vol": 163273,
           "dist": -1.24
         },
         {
           "strike": 740.0,
           "oi": 10111,
-          "vol": 188460,
+          "vol": 204311,
           "dist": -0.57
         },
         {
           "strike": 719.0,
           "oi": 9303,
-          "vol": 6430,
+          "vol": 6440,
           "dist": -3.39
         },
         {
           "strike": 722.0,
           "oi": 8887,
-          "vol": 7840,
+          "vol": 7854,
           "dist": -2.98
         }
       ],
@@ -824,31 +824,31 @@
         {
           "strike": 750.0,
           "oi": 11732,
-          "vol": 50916,
+          "vol": 54167,
           "dist": 0.78
         },
         {
           "strike": 745.0,
           "oi": 10678,
-          "vol": 36775,
+          "vol": 40474,
           "dist": 0.11
         },
         {
           "strike": 753.0,
           "oi": 7255,
-          "vol": 5057,
+          "vol": 5385,
           "dist": 1.18
         },
         {
           "strike": 758.0,
           "oi": 7052,
-          "vol": 1240,
+          "vol": 1336,
           "dist": 1.85
         },
         {
           "strike": 735.0,
           "oi": 6472,
-          "vol": 19305,
+          "vol": 19638,
           "dist": -1.24
         }
       ],
@@ -856,25 +856,25 @@
         {
           "strike": 707.0,
           "oi": 24187,
-          "vol": 775,
+          "vol": 778,
           "dist": -5.0
         },
         {
           "strike": 700.0,
           "oi": 24180,
-          "vol": 4132,
+          "vol": 4350,
           "dist": -5.94
         },
         {
           "strike": 730.0,
           "oi": 14491,
-          "vol": 32962,
+          "vol": 35765,
           "dist": -1.91
         },
         {
           "strike": 715.0,
           "oi": 11105,
-          "vol": 6092,
+          "vol": 6520,
           "dist": -3.92
         },
         {
@@ -907,19 +907,19 @@
         {
           "strike": 745.0,
           "oi": 2141,
-          "vol": 4573,
+          "vol": 4847,
           "dist": 0.11
         },
         {
           "strike": 764.0,
           "oi": 2105,
-          "vol": 97,
+          "vol": 101,
           "dist": 2.66
         },
         {
           "strike": 750.0,
           "oi": 1962,
-          "vol": 6481,
+          "vol": 6732,
           "dist": 0.78
         }
       ],
@@ -927,31 +927,31 @@
         {
           "strike": 730.0,
           "oi": 8910,
-          "vol": 7651,
+          "vol": 7757,
           "dist": -1.91
         },
         {
           "strike": 740.0,
           "oi": 5961,
-          "vol": 8692,
+          "vol": 9612,
           "dist": -0.57
         },
         {
           "strike": 705.0,
           "oi": 4285,
-          "vol": 4672,
+          "vol": 4688,
           "dist": -5.27
         },
         {
           "strike": 736.0,
           "oi": 3016,
-          "vol": 6001,
+          "vol": 6219,
           "dist": -1.1
         },
         {
           "strike": 745.0,
           "oi": 1909,
-          "vol": 1176,
+          "vol": 1279,
           "dist": 0.11
         }
       ],
@@ -965,7 +965,7 @@
       "desc": "Gamma positiva — dealers comprando caídas"
     },
     "gex_real": {
-      "valor_total": 362463384.0,
+      "valor_total": 97979539.0,
       "gamma_flip_level": 495.0,
       "dist_gamma_flip_pct": -33.49,
       "fuente": "black_scholes"
@@ -979,14 +979,14 @@
       "fuente": "cboe_skew_index"
     },
     "ratio_0dte": {
-      "valor": 0.731,
-      "vol_0dte": 5027356,
-      "vol_total": 6875841,
+      "valor": 0.722,
+      "vol_0dte": 5178592,
+      "vol_total": 7174056,
       "senal": "extremo",
-      "desc": "0DTE=73.1% - delta hedging forzado al cierre, amplificacion movimientos"
+      "desc": "0DTE=72.2% - delta hedging forzado al cierre, amplificacion movimientos"
     },
     "pcrOI": 2.842,
-    "pcrVol": 0.961,
+    "pcrVol": 0.977,
     "fuente": "yahoo_options"
   },
   "pcr": {
@@ -1001,9 +1001,9 @@
     "sesgo": "(QQQ only — proxy Nasdaq, ligero sesgo large-cap tech)",
     "fuente_verificacion": "https://www.cboe.com/data/volatility-and-put-call-ratio-data/",
     "fuente_alternativa": "https://finance.yahoo.com/quote/QQQ/options/",
-    "pcr_vol_spy": 0.936,
+    "pcr_vol_spy": 0.96,
     "pcr_oi_spy": 2.215,
-    "ratio_qqq_vs_spy": 3.04
+    "ratio_qqq_vs_spy": 2.96
   },
   "comparativa_correcciones": {
     "micro_3pct": 86,
@@ -1016,7 +1016,7 @@
     "confianza": 22,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (86% similitud). Contexto: VIX=16.1, RSI=77. Confianza del sistema: 22%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-06-04T22:13:49.663765"
+    "ts_calculo": "2026-06-04T22:31:11.374091"
   },
   "amplitud_mercado": {
     "ratio_cobre_oro": 0.00145,
