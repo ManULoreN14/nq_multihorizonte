@@ -1,6 +1,6 @@
 {
   "version": "7.0-fase7",
-  "ts": "2026-06-05T22:14:43.521685",
+  "ts": "2026-06-05T22:31:58.702527",
   "precio": {
     "ndx": 30407.8105,
     "qqq": 740.61,
@@ -322,10 +322,10 @@
   "macro": {
     "curva": {
       "t3m": 3.78,
-      "t2y": 4.08,
-      "t5y": 4.21,
-      "t10y": 4.49,
-      "t30y": 4.99,
+      "t2y": 4.05,
+      "t5y": 4.18,
+      "t10y": 4.47,
+      "t30y": 4.97,
       "sp10_2": 0.42,
       "sp10_3m": 0.69,
       "invertida2y": false,
@@ -395,9 +395,9 @@
       },
       "tipoReal10y": {
         "v": 2.11,
-        "prev": 2.07,
-        "fecha": "2026-06-03",
-        "trend": "up"
+        "prev": 2.11,
+        "fecha": "2026-06-04",
+        "trend": "down"
       },
       "sofrSpread": -0.01,
       "wlcflpcl": {
@@ -539,31 +539,31 @@
           {
             "strike": 745.0,
             "oi": 15477,
-            "vol": 14991,
+            "vol": 15024,
             "dist": 0.59
           },
           {
             "strike": 750.0,
             "oi": 14366,
-            "vol": 10195,
+            "vol": 10361,
             "dist": 1.27
           },
           {
             "strike": 753.0,
             "oi": 8464,
-            "vol": 1798,
+            "vol": 1799,
             "dist": 1.67
           },
           {
             "strike": 735.0,
             "oi": 8148,
-            "vol": 96387,
+            "vol": 96395,
             "dist": -0.76
           },
           {
             "strike": 743.0,
             "oi": 7862,
-            "vol": 9957,
+            "vol": 9958,
             "dist": 0.32
           }
         ],
@@ -571,31 +571,31 @@
           {
             "strike": 700.0,
             "oi": 24408,
-            "vol": 51492,
+            "vol": 54947,
             "dist": -5.48
           },
           {
             "strike": 707.0,
             "oi": 24183,
-            "vol": 183956,
+            "vol": 214199,
             "dist": -4.54
           },
           {
             "strike": 730.0,
             "oi": 18598,
-            "vol": 49546,
+            "vol": 49649,
             "dist": -1.43
           },
           {
             "strike": 732.0,
             "oi": 16410,
-            "vol": 19651,
+            "vol": 19794,
             "dist": -1.16
           },
           {
             "strike": 715.0,
             "oi": 12578,
-            "vol": 220925,
+            "vol": 222703,
             "dist": -3.46
           }
         ],
@@ -610,7 +610,7 @@
           {
             "strike": 750.0,
             "oi": 4049,
-            "vol": 8077,
+            "vol": 8863,
             "dist": 1.27
           },
           {
@@ -622,19 +622,19 @@
           {
             "strike": 745.0,
             "oi": 2745,
-            "vol": 5678,
+            "vol": 5699,
             "dist": 0.59
           },
           {
             "strike": 765.0,
             "oi": 2618,
-            "vol": 607,
+            "vol": 627,
             "dist": 3.29
           },
           {
             "strike": 764.0,
             "oi": 2097,
-            "vol": 223,
+            "vol": 237,
             "dist": 3.16
           }
         ],
@@ -642,31 +642,31 @@
           {
             "strike": 730.0,
             "oi": 9750,
-            "vol": 12761,
+            "vol": 12827,
             "dist": -1.43
           },
           {
             "strike": 705.0,
             "oi": 8761,
-            "vol": 31647,
+            "vol": 33723,
             "dist": -4.81
           },
           {
             "strike": 740.0,
             "oi": 4747,
-            "vol": 1171,
+            "vol": 1174,
             "dist": -0.08
           },
           {
             "strike": 736.0,
             "oi": 4597,
-            "vol": 5186,
+            "vol": 5199,
             "dist": -0.62
           },
           {
             "strike": 725.0,
             "oi": 3866,
-            "vol": 17687,
+            "vol": 18429,
             "dist": -2.11
           }
         ],
@@ -681,7 +681,7 @@
           {
             "strike": 750.0,
             "oi": 4334,
-            "vol": 1995,
+            "vol": 2087,
             "dist": 1.27
           },
           {
@@ -693,19 +693,19 @@
           {
             "strike": 748.0,
             "oi": 1418,
-            "vol": 383,
+            "vol": 446,
             "dist": 1.0
           },
           {
             "strike": 746.0,
             "oi": 1390,
-            "vol": 683,
+            "vol": 685,
             "dist": 0.73
           },
           {
             "strike": 743.0,
             "oi": 1259,
-            "vol": 2224,
+            "vol": 2260,
             "dist": 0.32
           }
         ],
@@ -713,19 +713,19 @@
           {
             "strike": 720.0,
             "oi": 2715,
-            "vol": 3667,
+            "vol": 3684,
             "dist": -2.78
           },
           {
             "strike": 740.0,
             "oi": 2027,
-            "vol": 737,
+            "vol": 740,
             "dist": -0.08
           },
           {
             "strike": 725.0,
             "oi": 1276,
-            "vol": 2760,
+            "vol": 2811,
             "dist": -2.11
           },
           {
@@ -737,7 +737,7 @@
           {
             "strike": 744.0,
             "oi": 1060,
-            "vol": 221,
+            "vol": 223,
             "dist": 0.46
           }
         ],
@@ -753,31 +753,31 @@
         {
           "strike": 745.0,
           "oi": 15477,
-          "vol": 14991,
+          "vol": 15024,
           "dist": 0.59
         },
         {
           "strike": 750.0,
           "oi": 14366,
-          "vol": 10195,
+          "vol": 10361,
           "dist": 1.27
         },
         {
           "strike": 753.0,
           "oi": 8464,
-          "vol": 1798,
+          "vol": 1799,
           "dist": 1.67
         },
         {
           "strike": 735.0,
           "oi": 8148,
-          "vol": 96387,
+          "vol": 96395,
           "dist": -0.76
         },
         {
           "strike": 743.0,
           "oi": 7862,
-          "vol": 9957,
+          "vol": 9958,
           "dist": 0.32
         }
       ],
@@ -785,31 +785,31 @@
         {
           "strike": 700.0,
           "oi": 24408,
-          "vol": 51492,
+          "vol": 54947,
           "dist": -5.48
         },
         {
           "strike": 707.0,
           "oi": 24183,
-          "vol": 183956,
+          "vol": 214199,
           "dist": -4.54
         },
         {
           "strike": 730.0,
           "oi": 18598,
-          "vol": 49546,
+          "vol": 49649,
           "dist": -1.43
         },
         {
           "strike": 732.0,
           "oi": 16410,
-          "vol": 19651,
+          "vol": 19794,
           "dist": -1.16
         },
         {
           "strike": 715.0,
           "oi": 12578,
-          "vol": 220925,
+          "vol": 222703,
           "dist": -3.46
         }
       ],
@@ -824,7 +824,7 @@
         {
           "strike": 750.0,
           "oi": 4049,
-          "vol": 8077,
+          "vol": 8863,
           "dist": 1.27
         },
         {
@@ -836,19 +836,19 @@
         {
           "strike": 745.0,
           "oi": 2745,
-          "vol": 5678,
+          "vol": 5699,
           "dist": 0.59
         },
         {
           "strike": 765.0,
           "oi": 2618,
-          "vol": 607,
+          "vol": 627,
           "dist": 3.29
         },
         {
           "strike": 764.0,
           "oi": 2097,
-          "vol": 223,
+          "vol": 237,
           "dist": 3.16
         }
       ],
@@ -856,31 +856,31 @@
         {
           "strike": 730.0,
           "oi": 9750,
-          "vol": 12761,
+          "vol": 12827,
           "dist": -1.43
         },
         {
           "strike": 705.0,
           "oi": 8761,
-          "vol": 31647,
+          "vol": 33723,
           "dist": -4.81
         },
         {
           "strike": 740.0,
           "oi": 4747,
-          "vol": 1171,
+          "vol": 1174,
           "dist": -0.08
         },
         {
           "strike": 736.0,
           "oi": 4597,
-          "vol": 5186,
+          "vol": 5199,
           "dist": -0.62
         },
         {
           "strike": 725.0,
           "oi": 3866,
-          "vol": 17687,
+          "vol": 18429,
           "dist": -2.11
         }
       ],
@@ -895,7 +895,7 @@
         {
           "strike": 750.0,
           "oi": 4334,
-          "vol": 1995,
+          "vol": 2087,
           "dist": 1.27
         },
         {
@@ -907,19 +907,19 @@
         {
           "strike": 748.0,
           "oi": 1418,
-          "vol": 383,
+          "vol": 446,
           "dist": 1.0
         },
         {
           "strike": 746.0,
           "oi": 1390,
-          "vol": 683,
+          "vol": 685,
           "dist": 0.73
         },
         {
           "strike": 743.0,
           "oi": 1259,
-          "vol": 2224,
+          "vol": 2260,
           "dist": 0.32
         }
       ],
@@ -927,19 +927,19 @@
         {
           "strike": 720.0,
           "oi": 2715,
-          "vol": 3667,
+          "vol": 3684,
           "dist": -2.78
         },
         {
           "strike": 740.0,
           "oi": 2027,
-          "vol": 737,
+          "vol": 740,
           "dist": -0.08
         },
         {
           "strike": 725.0,
           "oi": 1276,
-          "vol": 2760,
+          "vol": 2811,
           "dist": -2.11
         },
         {
@@ -951,7 +951,7 @@
         {
           "strike": 744.0,
           "oi": 1060,
-          "vol": 221,
+          "vol": 223,
           "dist": 0.46
         }
       ],
@@ -965,7 +965,7 @@
       "desc": "Gamma positiva alta — dealers estabilizan, mercado en rango"
     },
     "gex_real": {
-      "valor_total": 194982827.0,
+      "valor_total": 236920749.0,
       "gamma_flip_level": 350.0,
       "dist_gamma_flip_pct": -52.74,
       "fuente": "black_scholes"
@@ -979,14 +979,14 @@
       "fuente": "cboe_skew_index"
     },
     "ratio_0dte": {
-      "valor": 0.736,
-      "vol_0dte": 8226236,
-      "vol_total": 11180149,
+      "valor": 0.723,
+      "vol_0dte": 8436228,
+      "vol_total": 11672249,
       "senal": "extremo",
-      "desc": "0DTE=73.6% - delta hedging forzado al cierre, amplificacion movimientos"
+      "desc": "0DTE=72.3% - delta hedging forzado al cierre, amplificacion movimientos"
     },
     "pcrOI": 2.598,
-    "pcrVol": 0.905,
+    "pcrVol": 0.916,
     "fuente": "yahoo_options"
   },
   "pcr": {
@@ -1001,9 +1001,9 @@
     "sesgo": "(QQQ only — proxy Nasdaq, ligero sesgo large-cap tech)",
     "fuente_verificacion": "https://www.cboe.com/data/volatility-and-put-call-ratio-data/",
     "fuente_alternativa": "https://finance.yahoo.com/quote/QQQ/options/",
-    "pcr_vol_spy": 1.143,
+    "pcr_vol_spy": 1.125,
     "pcr_oi_spy": 2.236,
-    "ratio_qqq_vs_spy": 2.27
+    "ratio_qqq_vs_spy": 2.31
   },
   "comparativa_correcciones": {
     "micro_3pct": 84,
@@ -1016,10 +1016,10 @@
     "confianza": 7,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (84% similitud). Contexto: VIX=15.4, RSI=73. Confianza del sistema: 7%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-06-05T22:14:16.821663"
+    "ts_calculo": "2026-06-05T22:31:25.922894"
   },
   "amplitud_mercado": {
-    "ratio_cobre_oro": 0.001442,
+    "ratio_cobre_oro": 0.001439,
     "tendencia_cobre_oro": "up",
     "señal_cobre_oro": "risk_on",
     "zscore_qqq_sma200": 1.877,
