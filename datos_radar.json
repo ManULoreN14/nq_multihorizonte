@@ -1,6 +1,6 @@
 {
   "version": "7.0-fase7",
-  "ts": "2026-06-09T22:31:17.507756",
+  "ts": "2026-06-09T22:31:17.600012",
   "precio": {
     "ndx": 28957.5996,
     "qqq": 705.06,
@@ -1024,7 +1024,7 @@
     "confianza": 7,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (82% similitud). Contexto: VIX=21.5, RSI=49. Confianza del sistema: 7%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-06-09T22:30:52.912558"
+    "ts_calculo": "2026-06-09T22:30:52.839266"
   },
   "amplitud_mercado": {
     "ratio_cobre_oro": 0.001482,
