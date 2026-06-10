@@ -1,6 +1,6 @@
 {
   "version": "7.0-fase7",
-  "ts": "2026-06-10T22:31:39.786060",
+  "ts": "2026-06-10T22:31:40.336108",
   "precio": {
     "ndx": 29084.5,
     "qqq": 707.83,
@@ -996,7 +996,7 @@
     "ratio_0dte": {
       "valor": 0.743,
       "vol_0dte": 6487649,
-      "vol_total": 8728200,
+      "vol_total": 8728203,
       "senal": "extremo",
       "desc": "0DTE=74.3% - delta hedging forzado al cierre, amplificacion movimientos"
     },
@@ -1016,7 +1016,7 @@
     "sesgo": "(QQQ only — proxy Nasdaq, ligero sesgo large-cap tech)",
     "fuente_verificacion": "https://www.cboe.com/data/volatility-and-put-call-ratio-data/",
     "fuente_alternativa": "https://finance.yahoo.com/quote/QQQ/options/",
-    "pcr_vol_spy": 1.258,
+    "pcr_vol_spy": 1.259,
     "pcr_oi_spy": 1.615,
     "ratio_qqq_vs_spy": 1.17
   },
@@ -1031,7 +1031,7 @@
     "confianza": 6,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (82% similitud). Contexto: VIX=19.9, RSI=51. Confianza del sistema: 6%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-06-10T22:31:04.769038"
+    "ts_calculo": "2026-06-10T22:31:05.520769"
   },
   "amplitud_mercado": {
     "ratio_cobre_oro": 0.001479,
