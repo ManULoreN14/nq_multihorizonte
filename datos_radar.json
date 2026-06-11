@@ -1,6 +1,6 @@
 {
   "version": "7.0-fase7",
-  "ts": "2026-06-11T22:14:39.617061",
+  "ts": "2026-06-11T22:31:20.212055",
   "precio": {
     "ndx": 28508.0293,
     "qqq": 693.69,
@@ -338,9 +338,9 @@
     "curva": {
       "t3m": 3.79,
       "t2y": 4.13,
-      "t5y": 4.26,
-      "t10y": 4.53,
-      "t30y": 5.01,
+      "t5y": 4.27,
+      "t10y": 4.55,
+      "t30y": 5.03,
       "sp10_2": 0.42,
       "sp10_3m": 0.76,
       "invertida2y": false,
@@ -409,10 +409,10 @@
         "trend": "up"
       },
       "tipoReal10y": {
-        "v": 2.2,
-        "prev": 2.21,
-        "fecha": "2026-06-09",
-        "trend": "down"
+        "v": 2.21,
+        "prev": 2.2,
+        "fecha": "2026-06-10",
+        "trend": "up"
       },
       "sofrSpread": -0.04,
       "wlcflpcl": {
@@ -432,10 +432,10 @@
       "desc": "Liquidez Neta = WALCL - TGA - RRP = 5,835,782M"
     },
     "tiposRealesOro": {
-      "tipoReal": 2.2,
+      "tipoReal": 2.21,
       "señal": "drenaje_liquidez",
       "alerta": true,
-      "desc": "⚠️ Tipos reales elevados (2.2%) — DRENAJE DE LIQUIDEZ, coste oportunidad alto para QQQ",
+      "desc": "⚠️ Tipos reales elevados (2.21%) — DRENAJE DE LIQUIDEZ, coste oportunidad alto para QQQ",
       "oroPrice": 4108.2002
     },
     "dxy": {
@@ -554,31 +554,31 @@
           {
             "strike": 700.0,
             "oi": 5958,
-            "vol": 155187,
+            "vol": 155493,
             "dist": 0.91
           },
           {
             "strike": 710.0,
             "oi": 5724,
-            "vol": 276096,
+            "vol": 277134,
             "dist": 2.35
           },
           {
             "strike": 723.0,
             "oi": 5194,
-            "vol": 21294,
+            "vol": 21915,
             "dist": 4.23
           },
           {
             "strike": 715.0,
             "oi": 5115,
-            "vol": 197754,
+            "vol": 205008,
             "dist": 3.07
           },
           {
             "strike": 730.0,
             "oi": 4780,
-            "vol": 7537,
+            "vol": 7677,
             "dist": 5.23
           }
         ],
@@ -586,7 +586,7 @@
           {
             "strike": 680.0,
             "oi": 6816,
-            "vol": 37109,
+            "vol": 37181,
             "dist": -1.97
           },
           {
@@ -598,7 +598,7 @@
           {
             "strike": 685.0,
             "oi": 5879,
-            "vol": 60775,
+            "vol": 60829,
             "dist": -1.25
           },
           {
@@ -610,7 +610,7 @@
           {
             "strike": 690.0,
             "oi": 4595,
-            "vol": 145973,
+            "vol": 146042,
             "dist": -0.53
           }
         ],
@@ -625,31 +625,31 @@
           {
             "strike": 720.0,
             "oi": 25980,
-            "vol": 55507,
+            "vol": 60315,
             "dist": 3.79
           },
           {
             "strike": 740.0,
             "oi": 15647,
-            "vol": 8034,
+            "vol": 9343,
             "dist": 6.68
           },
           {
             "strike": 705.0,
             "oi": 12583,
-            "vol": 32737,
+            "vol": 32824,
             "dist": 1.63
           },
           {
             "strike": 730.0,
             "oi": 12458,
-            "vol": 19708,
+            "vol": 22370,
             "dist": 5.23
           },
           {
             "strike": 750.0,
             "oi": 12144,
-            "vol": 5482,
+            "vol": 7910,
             "dist": 8.12
           }
         ],
@@ -657,31 +657,31 @@
           {
             "strike": 625.0,
             "oi": 21102,
-            "vol": 3475,
+            "vol": 3502,
             "dist": -9.9
           },
           {
             "strike": 690.0,
             "oi": 19868,
-            "vol": 40396,
+            "vol": 42334,
             "dist": -0.53
           },
           {
             "strike": 700.0,
             "oi": 18298,
-            "vol": 56169,
+            "vol": 59984,
             "dist": 0.91
           },
           {
             "strike": 710.0,
             "oi": 17022,
-            "vol": 24895,
+            "vol": 30055,
             "dist": 2.35
           },
           {
             "strike": 670.0,
             "oi": 8845,
-            "vol": 15134,
+            "vol": 15503,
             "dist": -3.42
           }
         ],
@@ -696,31 +696,31 @@
           {
             "strike": 720.0,
             "oi": 3426,
-            "vol": 13950,
+            "vol": 14547,
             "dist": 3.79
           },
           {
             "strike": 715.0,
             "oi": 1953,
-            "vol": 5901,
+            "vol": 6240,
             "dist": 3.07
           },
           {
             "strike": 730.0,
             "oi": 1855,
-            "vol": 3086,
+            "vol": 3582,
             "dist": 5.23
           },
           {
             "strike": 750.0,
             "oi": 1703,
-            "vol": 830,
+            "vol": 1265,
             "dist": 8.12
           },
           {
             "strike": 740.0,
             "oi": 1620,
-            "vol": 3290,
+            "vol": 3648,
             "dist": 6.68
           }
         ],
@@ -728,31 +728,31 @@
           {
             "strike": 675.0,
             "oi": 22928,
-            "vol": 4179,
+            "vol": 4225,
             "dist": -2.69
           },
           {
             "strike": 660.0,
             "oi": 20284,
-            "vol": 4203,
+            "vol": 4843,
             "dist": -4.86
           },
           {
             "strike": 680.0,
             "oi": 8792,
-            "vol": 11833,
+            "vol": 12808,
             "dist": -1.97
           },
           {
             "strike": 715.0,
             "oi": 5515,
-            "vol": 1178,
+            "vol": 1658,
             "dist": 3.07
           },
           {
             "strike": 620.0,
             "oi": 3366,
-            "vol": 165,
+            "vol": 202,
             "dist": -10.62
           }
         ],
@@ -768,31 +768,31 @@
         {
           "strike": 700.0,
           "oi": 5958,
-          "vol": 155187,
+          "vol": 155493,
           "dist": 0.91
         },
         {
           "strike": 710.0,
           "oi": 5724,
-          "vol": 276096,
+          "vol": 277134,
           "dist": 2.35
         },
         {
           "strike": 723.0,
           "oi": 5194,
-          "vol": 21294,
+          "vol": 21915,
           "dist": 4.23
         },
         {
           "strike": 715.0,
           "oi": 5115,
-          "vol": 197754,
+          "vol": 205008,
           "dist": 3.07
         },
         {
           "strike": 730.0,
           "oi": 4780,
-          "vol": 7537,
+          "vol": 7677,
           "dist": 5.23
         }
       ],
@@ -800,7 +800,7 @@
         {
           "strike": 680.0,
           "oi": 6816,
-          "vol": 37109,
+          "vol": 37181,
           "dist": -1.97
         },
         {
@@ -812,7 +812,7 @@
         {
           "strike": 685.0,
           "oi": 5879,
-          "vol": 60775,
+          "vol": 60829,
           "dist": -1.25
         },
         {
@@ -824,7 +824,7 @@
         {
           "strike": 690.0,
           "oi": 4595,
-          "vol": 145973,
+          "vol": 146042,
           "dist": -0.53
         }
       ],
@@ -839,31 +839,31 @@
         {
           "strike": 720.0,
           "oi": 25980,
-          "vol": 55507,
+          "vol": 60315,
           "dist": 3.79
         },
         {
           "strike": 740.0,
           "oi": 15647,
-          "vol": 8034,
+          "vol": 9343,
           "dist": 6.68
         },
         {
           "strike": 705.0,
           "oi": 12583,
-          "vol": 32737,
+          "vol": 32824,
           "dist": 1.63
         },
         {
           "strike": 730.0,
           "oi": 12458,
-          "vol": 19708,
+          "vol": 22370,
           "dist": 5.23
         },
         {
           "strike": 750.0,
           "oi": 12144,
-          "vol": 5482,
+          "vol": 7910,
           "dist": 8.12
         }
       ],
@@ -871,31 +871,31 @@
         {
           "strike": 625.0,
           "oi": 21102,
-          "vol": 3475,
+          "vol": 3502,
           "dist": -9.9
         },
         {
           "strike": 690.0,
           "oi": 19868,
-          "vol": 40396,
+          "vol": 42334,
           "dist": -0.53
         },
         {
           "strike": 700.0,
           "oi": 18298,
-          "vol": 56169,
+          "vol": 59984,
           "dist": 0.91
         },
         {
           "strike": 710.0,
           "oi": 17022,
-          "vol": 24895,
+          "vol": 30055,
           "dist": 2.35
         },
         {
           "strike": 670.0,
           "oi": 8845,
-          "vol": 15134,
+          "vol": 15503,
           "dist": -3.42
         }
       ],
@@ -910,31 +910,31 @@
         {
           "strike": 720.0,
           "oi": 3426,
-          "vol": 13950,
+          "vol": 14547,
           "dist": 3.79
         },
         {
           "strike": 715.0,
           "oi": 1953,
-          "vol": 5901,
+          "vol": 6240,
           "dist": 3.07
         },
         {
           "strike": 730.0,
           "oi": 1855,
-          "vol": 3086,
+          "vol": 3582,
           "dist": 5.23
         },
         {
           "strike": 750.0,
           "oi": 1703,
-          "vol": 830,
+          "vol": 1265,
           "dist": 8.12
         },
         {
           "strike": 740.0,
           "oi": 1620,
-          "vol": 3290,
+          "vol": 3648,
           "dist": 6.68
         }
       ],
@@ -942,31 +942,31 @@
         {
           "strike": 675.0,
           "oi": 22928,
-          "vol": 4179,
+          "vol": 4225,
           "dist": -2.69
         },
         {
           "strike": 660.0,
           "oi": 20284,
-          "vol": 4203,
+          "vol": 4843,
           "dist": -4.86
         },
         {
           "strike": 680.0,
           "oi": 8792,
-          "vol": 11833,
+          "vol": 12808,
           "dist": -1.97
         },
         {
           "strike": 715.0,
           "oi": 5515,
-          "vol": 1178,
+          "vol": 1658,
           "dist": 3.07
         },
         {
           "strike": 620.0,
           "oi": 3366,
-          "vol": 165,
+          "vol": 202,
           "dist": -10.62
         }
       ],
@@ -980,7 +980,7 @@
       "desc": "⚠️ TRAMPA: VIX elevado — posible distribución institucional"
     },
     "gex_real": {
-      "valor_total": -79930329.0,
+      "valor_total": -149322722.0,
       "gamma_flip_level": 495.0,
       "dist_gamma_flip_pct": -28.64,
       "fuente": "black_scholes"
@@ -994,14 +994,14 @@
       "fuente": "cboe_skew_index"
     },
     "ratio_0dte": {
-      "valor": 0.734,
-      "vol_0dte": 6481207,
-      "vol_total": 8831604,
+      "valor": 0.723,
+      "vol_0dte": 6642746,
+      "vol_total": 9193641,
       "senal": "extremo",
-      "desc": "0DTE=73.4% - delta hedging forzado al cierre, amplificacion movimientos"
+      "desc": "0DTE=72.3% - delta hedging forzado al cierre, amplificacion movimientos"
     },
     "pcrOI": 1.407,
-    "pcrVol": 0.995,
+    "pcrVol": 0.994,
     "fuente": "yahoo_options"
   },
   "pcr": {
@@ -1016,9 +1016,9 @@
     "sesgo": "(QQQ only — proxy Nasdaq, ligero sesgo large-cap tech)",
     "fuente_verificacion": "https://www.cboe.com/data/volatility-and-put-call-ratio-data/",
     "fuente_alternativa": "https://finance.yahoo.com/quote/QQQ/options/",
-    "pcr_vol_spy": 1.058,
+    "pcr_vol_spy": 1.041,
     "pcr_oi_spy": 1.074,
-    "ratio_qqq_vs_spy": 1.33
+    "ratio_qqq_vs_spy": 1.35
   },
   "comparativa_correcciones": {
     "micro_3pct": 77,
@@ -1031,7 +1031,7 @@
     "confianza": 6,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (77% similitud). Contexto: VIX=22.2, RSI=45. Confianza del sistema: 6%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-06-11T22:14:16.338403"
+    "ts_calculo": "2026-06-11T22:30:56.179310"
   },
   "amplitud_mercado": {
     "ratio_cobre_oro": 0.001521,
