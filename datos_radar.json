@@ -1,6 +1,6 @@
 {
   "version": "7.0-fase7",
-  "ts": "2026-06-11T22:31:20.212055",
+  "ts": "2026-06-11T22:31:22.276544",
   "precio": {
     "ndx": 28508.0293,
     "qqq": 693.69,
@@ -696,7 +696,7 @@
           {
             "strike": 720.0,
             "oi": 3426,
-            "vol": 14547,
+            "vol": 14597,
             "dist": 3.79
           },
           {
@@ -910,7 +910,7 @@
         {
           "strike": 720.0,
           "oi": 3426,
-          "vol": 14547,
+          "vol": 14597,
           "dist": 3.79
         },
         {
@@ -980,7 +980,7 @@
       "desc": "⚠️ TRAMPA: VIX elevado — posible distribución institucional"
     },
     "gex_real": {
-      "valor_total": -149322722.0,
+      "valor_total": -149322863.0,
       "gamma_flip_level": 495.0,
       "dist_gamma_flip_pct": -28.64,
       "fuente": "black_scholes"
@@ -994,11 +994,11 @@
       "fuente": "cboe_skew_index"
     },
     "ratio_0dte": {
-      "valor": 0.723,
-      "vol_0dte": 6642746,
-      "vol_total": 9193641,
+      "valor": 0.722,
+      "vol_0dte": 6642989,
+      "vol_total": 9194555,
       "senal": "extremo",
-      "desc": "0DTE=72.3% - delta hedging forzado al cierre, amplificacion movimientos"
+      "desc": "0DTE=72.2% - delta hedging forzado al cierre, amplificacion movimientos"
     },
     "pcrOI": 1.407,
     "pcrVol": 0.994,
@@ -1031,7 +1031,7 @@
     "confianza": 6,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (77% similitud). Contexto: VIX=22.2, RSI=45. Confianza del sistema: 6%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-06-11T22:30:56.179310"
+    "ts_calculo": "2026-06-11T22:30:59.042251"
   },
   "amplitud_mercado": {
     "ratio_cobre_oro": 0.001521,
