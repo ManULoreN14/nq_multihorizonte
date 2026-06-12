@@ -1,6 +1,6 @@
 {
   "version": "7.0-fase7",
-  "ts": "2026-06-12T22:31:46.646039",
+  "ts": "2026-06-12T22:31:47.371084",
   "precio": {
     "ndx": 28508.0293,
     "qqq": 693.69,
@@ -554,7 +554,7 @@
           {
             "strike": 720.0,
             "oi": 23906,
-            "vol": 307583,
+            "vol": 307606,
             "dist": 3.79
           },
           {
@@ -768,7 +768,7 @@
         {
           "strike": 720.0,
           "oi": 23906,
-          "vol": 307583,
+          "vol": 307606,
           "dist": 3.79
         },
         {
@@ -1031,7 +1031,7 @@
     "confianza": 6,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (77% similitud). Contexto: VIX=22.2, RSI=45. Confianza del sistema: 6%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-06-12T22:31:22.171837"
+    "ts_calculo": "2026-06-12T22:31:22.165230"
   },
   "amplitud_mercado": {
     "ratio_cobre_oro": 0.001521,
