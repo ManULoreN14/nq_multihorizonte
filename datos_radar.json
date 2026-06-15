@@ -1,6 +1,6 @@
 {
   "version": "7.0-fase7",
-  "ts": "2026-06-15T22:31:53.162070",
+  "ts": "2026-06-15T22:31:57.269711",
   "precio": {
     "ndx": 29635.9492,
     "qqq": 721.34,
@@ -995,8 +995,8 @@
     },
     "ratio_0dte": {
       "valor": 0.718,
-      "vol_0dte": 5345443,
-      "vol_total": 7446583,
+      "vol_0dte": 5345627,
+      "vol_total": 7446818,
       "senal": "extremo",
       "desc": "0DTE=71.8% - delta hedging forzado al cierre, amplificacion movimientos"
     },
@@ -1031,7 +1031,7 @@
     "confianza": 5,
     "detalle": "Escenario dominante: Micro-retracción técnica (2-3%) (81% similitud). Contexto: VIX=17.7, RSI=56. Confianza del sistema: 5%. ✅ Entorno compatible con corrección menor — mantener posiciones core. ",
     "fuente": "market_regime_matching_v4",
-    "ts_calculo": "2026-06-15T22:31:13.079674"
+    "ts_calculo": "2026-06-15T22:31:15.956669"
   },
   "amplitud_mercado": {
     "ratio_cobre_oro": 0.001526,
